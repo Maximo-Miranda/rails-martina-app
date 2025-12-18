@@ -1,0 +1,26 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: martina_postgres_database
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: rails_martina_app
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: rails_martina_app_development
+    ports:
+      - "5432:5432"
+    volumes:
+      - martina_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rails_martina_app -d rails_martina_app_development"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  martina_postgres_data:
+    driver: local
+
+networks:
+  default:
+    name: martina-dev-network
