@@ -28,5 +28,10 @@
     }
   },
 
-  "include": ["app/frontend/**/*.ts", "app/frontend/**/*.tsx", "app/frontend/**/*.vue"]
+  "include": [
+    "app/frontend/**/*.ts",
+    "app/frontend/**/*.tsx",
+    "app/frontend/**/*.vue",
+    "app/frontend/**/*.d.ts"
+  ]
 }
