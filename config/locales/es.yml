@@ -1,0 +1,26 @@
+es:
+  activemodel:
+    errors:
+      models:
+        user_login_request:
+          attributes:
+            email:
+              blank: "es requerido"
+              invalid: "no es válido"
+            password:
+              blank: "es requerida"
+              too_short: "es muy corta (mínimo %{count} caracteres)"
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "es requerido"
+              invalid: "no es válido"
+              taken: "ya está en uso"
+            password:
+              blank: "es requerida"
+              too_short: "es muy corta (mínimo %{count} caracteres)"
+            password_confirmation:
+              confirmation: "no coincide con la contraseña"

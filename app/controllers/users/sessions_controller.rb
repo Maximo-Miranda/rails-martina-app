@@ -4,14 +4,12 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def create
-    # Validaciones de campos requeridos
     user_params = params.dig(:user) || {}
-    errors = {}
-    errors[:email] = [ "El correo electrónico es requerido" ] if user_params[:email].blank?
-    errors[:password] = [ "La contraseña es requerida" ] if user_params[:password].blank?
 
-    if errors.any?
-      render inertia: "auth/login", props: { errors: errors }
+    request = UserLoginRequest.new(user_params.permit(:email, :password))
+
+    unless request.valid?
+      render inertia: "auth/login", props: { errors: request.errors.messages }
       return
     end
 

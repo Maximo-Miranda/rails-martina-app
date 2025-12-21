@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import { useForm, Link } from '@inertiajs/vue3'
-import { ref } from 'vue'
-import { rules } from '@/utils/validation'
+  import { ref, computed } from 'vue'
+  import { rules } from '@/utils/validation'
+  import { useForm, Link, usePage } from '@inertiajs/vue3'
 
-// Los parámetros deben estar bajo 'user' para que Devise los reconozca
+const page = usePage()
+
+const serverErrors = computed(() => page.props.errors || {})
+
 const form = useForm({
   user: {
     email: '',
@@ -15,7 +18,6 @@ const form = useForm({
 const showPassword = ref(false)
 const formRef = ref<HTMLFormElement | null>(null)
 
-// Reglas de validación
 const emailRules = [
   rules.required('El correo electrónico es requerido'),
   rules.email('Ingresa un correo electrónico válido'),
@@ -23,6 +25,7 @@ const emailRules = [
 
 const passwordRules = [
   rules.required('La contraseña es requerida'),
+  rules.minLength(6, 'La contraseña debe tener al menos 6 caracteres'),
 ]
 
 const submit = async () => {
@@ -34,7 +37,6 @@ const submit = async () => {
 </script>
 
 <template>
-  <!-- Tarjeta centrada con diseño moderno -->
   <v-card class="pa-6 pa-sm-8 rounded-xl" elevation="2">
     <div class="text-center mb-6">
       <v-icon color="primary" size="48" class="mb-4">mdi-account-circle-outline</v-icon>
@@ -52,7 +54,7 @@ const submit = async () => {
         density="comfortable"
         prepend-inner-icon="mdi-email-outline"
         :rules="emailRules"
-        :error-messages="form.errors['user.email']"
+        :error-messages="serverErrors.email"
         class="mb-1"
         autocomplete="email"
       />
@@ -68,12 +70,11 @@ const submit = async () => {
         :append-inner-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
         @click:append-inner="showPassword = !showPassword"
         :rules="passwordRules"
-        :error-messages="form.errors['user.password']"
+        :error-messages="serverErrors.password"
         class="mb-1"
         autocomplete="current-password"
       />
 
-      <!-- Opciones: recordarme y olvidé contraseña - responsive -->
       <div class="d-flex flex-column flex-sm-row justify-space-between align-sm-center mb-4 ga-2">
         <v-checkbox
           v-model="form.user.remember_me"
