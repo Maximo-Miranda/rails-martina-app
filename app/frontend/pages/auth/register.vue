@@ -1,7 +1,8 @@
 <!-- filepath: /home/mhmh/code/wudok/rails-martina-app/app/frontend/pages/Auth/Register.vue -->
 <script setup lang="ts">
 import { useForm, Link } from '@inertiajs/vue3'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { rules } from '@/utils/validation'
 
 const form = useForm({
   full_name: '',
@@ -12,8 +13,34 @@ const form = useForm({
 
 const showPassword = ref(false)
 const showPasswordConfirmation = ref(false)
+const formRef = ref<HTMLFormElement | null>(null)
 
-const submit = () => {
+// Reglas de validación
+const nameRules = [
+  rules.required('El nombre completo es requerido'),
+  rules.minLength(3, 'El nombre debe tener al menos 3 caracteres'),
+]
+
+const emailRules = [
+  rules.required('El correo electrónico es requerido'),
+  rules.email('Ingresa un correo electrónico válido'),
+]
+
+const passwordRules = [
+  rules.required('La contraseña es requerida'),
+  rules.password('La contraseña debe tener al menos 6 caracteres'),
+]
+
+// Regla dinámica para confirmación de contraseña
+const passwordConfirmationRules = computed(() => [
+  rules.required('La confirmación de contraseña es requerida'),
+  rules.passwordConfirmation(form.password, 'Las contraseñas no coinciden'),
+])
+
+const submit = async () => {
+  const { valid } = await formRef.value?.validate()
+  if (!valid) return
+
   form.post('/users')
 }
 </script>
@@ -27,7 +54,7 @@ const submit = () => {
       <p class="text-body-2 text-medium-emphasis">Únete a Martina y comienza hoy</p>
     </div>
 
-    <v-form @submit.prevent="submit">
+    <v-form ref="formRef" @submit.prevent="submit" validate-on="blur lazy">
       <v-text-field
         v-model="form.full_name"
         label="Nombre completo"
@@ -35,6 +62,7 @@ const submit = () => {
         color="primary"
         density="comfortable"
         prepend-inner-icon="mdi-account-outline"
+        :rules="nameRules"
         :error-messages="form.errors.full_name"
         class="mb-1"
         autocomplete="name"
@@ -48,6 +76,7 @@ const submit = () => {
         color="primary"
         density="comfortable"
         prepend-inner-icon="mdi-email-outline"
+        :rules="emailRules"
         :error-messages="form.errors.email"
         class="mb-1"
         autocomplete="email"
@@ -65,6 +94,7 @@ const submit = () => {
             prepend-inner-icon="mdi-lock-outline"
             :append-inner-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
             @click:append-inner="showPassword = !showPassword"
+            :rules="passwordRules"
             :error-messages="form.errors.password"
             autocomplete="new-password"
           />
@@ -80,6 +110,7 @@ const submit = () => {
             prepend-inner-icon="mdi-lock-check-outline"
             :append-inner-icon="showPasswordConfirmation ? 'mdi-eye-off' : 'mdi-eye'"
             @click:append-inner="showPasswordConfirmation = !showPasswordConfirmation"
+            :rules="passwordConfirmationRules"
             :error-messages="form.errors.password_confirmation"
             autocomplete="new-password"
           />

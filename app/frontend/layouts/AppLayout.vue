@@ -32,8 +32,9 @@ const logout = () => {
 }
 
 const navigateTo = (href: string) => {
-  router.visit(href)
+  userMenu.value = false
   drawer.value = false
+  router.visit(href)
 }
 
 // Get user initials for avatar
@@ -112,14 +113,6 @@ const userInitials = computed(() => {
                   title="Mi perfil"
                   value="profile"
                   @click="navigateTo('/users/edit')"
-                  rounded="lg"
-                  class="mb-1"
-                />
-                <v-list-item
-                  prepend-icon="mdi-cog-outline"
-                  title="Configuración"
-                  value="settings"
-                  @click="navigateTo('/settings')"
                   rounded="lg"
                 />
               </v-list>

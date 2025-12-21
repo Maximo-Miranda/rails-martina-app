@@ -17,10 +17,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "pages#landing"
 
-  # Devise routes for User model with custom registrations controller
+  # Devise routes for User model with custom controllers
   devise_for :users, controllers: {
     registrations: "users/registrations",
-    sessions: "users/sessions"
+    sessions: "users/sessions",
+    passwords: "users/passwords"
   }
 
   get "dashboard", to: "home#index"
