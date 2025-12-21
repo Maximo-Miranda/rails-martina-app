@@ -1,0 +1,55 @@
+<!-- Greeting -->
+<h1 style="margin: 0 0 20px 0; font-size: 24px; font-weight: 600; color: #333333;">
+  Cambio de correo electrónico 📧
+</h1>
+
+<p style="margin: 0 0 20px 0; font-size: 16px; line-height: 26px; color: #51545e;">
+  Hola <strong><%= @resource.full_name || @email %></strong>,
+</p>
+
+<% if @resource.try(:unconfirmed_email?) %>
+  <p style="margin: 0 0 25px 0; font-size: 16px; line-height: 26px; color: #51545e;">
+    Te informamos que tu correo electrónico está siendo cambiado a:
+  </p>
+
+  <!-- New Email Box -->
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 25px;">
+    <tr>
+      <td style="background-color: #e8f4fd; border-left: 4px solid #5C6BC0; padding: 15px; border-radius: 4px;">
+        <p style="margin: 0; font-size: 16px; line-height: 22px; color: #333333;">
+          <strong><%= @resource.unconfirmed_email %></strong>
+        </p>
+      </td>
+    </tr>
+  </table>
+
+  <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 26px; color: #51545e;">
+    El cambio se completará una vez que confirmes tu nuevo correo electrónico.
+  </p>
+<% else %>
+  <p style="margin: 0 0 25px 0; font-size: 16px; line-height: 26px; color: #51545e;">
+    Te informamos que tu correo electrónico ha sido actualizado exitosamente a:
+  </p>
+
+  <!-- New Email Box -->
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 25px;">
+    <tr>
+      <td style="background-color: #e8f9e8; border-left: 4px solid #28a745; padding: 15px; border-radius: 4px;">
+        <p style="margin: 0; font-size: 16px; line-height: 22px; color: #333333;">
+          ✓ <strong><%= @resource.email %></strong>
+        </p>
+      </td>
+    </tr>
+  </table>
+<% end %>
+
+<!-- Divider -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin: 25px 0;">
+  <tr>
+    <td style="border-top: 1px solid #e8e8eb;"></td>
+  </tr>
+</table>
+
+<p style="margin: 0; font-size: 14px; line-height: 22px; color: #9a9ea6;">
+  Si no realizaste este cambio, contacta con soporte inmediatamente.
+</p>

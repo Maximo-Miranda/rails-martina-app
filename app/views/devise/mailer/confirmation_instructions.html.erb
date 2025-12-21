@@ -1,0 +1,50 @@
+<!-- Greeting -->
+<h1 style="margin: 0 0 20px 0; font-size: 24px; font-weight: 600; color: #333333;">
+  ¡Bienvenido a Martina! 🎉
+</h1>
+
+<p style="margin: 0 0 20px 0; font-size: 16px; line-height: 26px; color: #51545e;">
+  Hola <strong><%= @resource.full_name || @email %></strong>,
+</p>
+
+<p style="margin: 0 0 25px 0; font-size: 16px; line-height: 26px; color: #51545e;">
+  Gracias por registrarte. Para completar tu registro y comenzar a usar tu cuenta,
+  confirma tu correo electrónico haciendo clic en el siguiente botón:
+</p>
+
+<!-- Action Button -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 25px;">
+  <tr>
+    <td align="center">
+      <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td align="center" style="border-radius: 8px; background-color: #5C6BC0;">
+            <%= link_to confirmation_url(@resource, confirmation_token: @token),
+                style: "display: inline-block; padding: 16px 36px; font-size: 16px; font-weight: 600; color: #ffffff; text-decoration: none; border-radius: 8px;" do %>
+              Confirmar mi cuenta
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<!-- Alternative Link -->
+<p style="margin: 0 0 15px 0; font-size: 14px; line-height: 22px; color: #9a9ea6;">
+  Si el botón no funciona, copia y pega este enlace en tu navegador:
+</p>
+<p style="margin: 0 0 20px 0; font-size: 14px; line-height: 22px; color: #5C6BC0; word-break: break-all;">
+  <%= confirmation_url(@resource, confirmation_token: @token) %>
+</p>
+
+<!-- Divider -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin: 25px 0;">
+  <tr>
+    <td style="border-top: 1px solid #e8e8eb;"></td>
+  </tr>
+</table>
+
+<p style="margin: 0; font-size: 14px; line-height: 22px; color: #9a9ea6;">
+  Si no creaste esta cuenta, puedes ignorar este correo de forma segura.
+</p>
