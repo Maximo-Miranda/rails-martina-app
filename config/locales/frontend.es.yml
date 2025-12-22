@@ -1,0 +1,116 @@
+es:
+  frontend:
+
+    common:
+      save: "Guardar"
+      cancel: "Cancelar"
+      delete: "Eliminar"
+      edit: "Editar"
+      back: "Volver"
+      confirm: "Confirmar"
+      loading: "Cargando..."
+      or: "o"
+      see_all: "Ver todo"
+      times: "veces"
+
+    validation:
+      required: "Este campo es requerido"
+      email_invalid: "Ingresa un correo electrónico válido"
+      min_length: "Debe tener al menos %{count} caracteres"
+      password_hint: "Usa 6 caracteres o más con letras, números y símbolos."
+      passwords_no_match: "Las contraseñas no coinciden"
+
+    navigation:
+      dashboard: "Dashboard"
+      projects: "Proyectos"
+      tasks: "Tareas"
+      reports: "Reportes"
+      settings: "Configuración"
+      my_profile: "Mi perfil"
+      logout: "Cerrar sesión"
+      login: "Iniciar sesión"
+      register: "Registrarse"
+
+    auth:
+      login:
+        title: "¡Bienvenido de vuelta!"
+        subtitle: "Ingresa tus credenciales para continuar"
+        email: "Correo electrónico"
+        password: "Contraseña"
+        remember_me: "Recordarme"
+        forgot_password: "¿Olvidaste tu contraseña?"
+        submit: "Iniciar sesión"
+        no_account: "¿No tienes cuenta?"
+        create_account: "Crear una cuenta"
+
+      register:
+        title: "Crea tu cuenta"
+        subtitle: "Únete a Martina y comienza hoy"
+        full_name: "Nombre completo"
+        email: "Correo electrónico"
+        password: "Contraseña"
+        password_confirmation: "Confirmar"
+        submit: "Crear cuenta"
+        has_account: "¿Ya tienes cuenta?"
+        login_link: "Iniciar sesión"
+
+      forgot_password:
+        title: "¿Olvidaste tu contraseña?"
+        subtitle: "Ingresa tu correo electrónico y te enviaremos instrucciones para restablecerla."
+        email: "Correo electrónico"
+        submit: "Enviar instrucciones"
+        back_to_login: "Volver a iniciar sesión"
+        success_title: "¡Revisa tu correo!"
+        success_message: "Hemos enviado las instrucciones para restablecer tu contraseña a"
+        spam_notice: "Si no ves el correo, revisa tu carpeta de spam o correo no deseado."
+
+      reset_password:
+        title: "Crear nueva contraseña"
+        subtitle: "Ingresa tu nueva contraseña para restablecer el acceso a tu cuenta."
+        password: "Nueva contraseña"
+        password_confirmation: "Confirmar contraseña"
+        submit: "Restablecer contraseña"
+        back_to_login: "Volver a iniciar sesión"
+
+      profile:
+        title: "Mi Perfil"
+        subtitle: "Administra tu información personal"
+        personal_info: "Información personal"
+        full_name: "Nombre completo"
+        email: "Correo electrónico"
+        account_activity: "Actividad de la cuenta"
+        member_since: "Miembro desde"
+        last_access: "Último acceso"
+        first_session: "Primera sesión"
+        login_count: "Inicios de sesión"
+        change_password: "Cambiar contraseña"
+        change_password_hint: "Para cambiar tu contraseña, ingresa tu contraseña actual y la nueva contraseña."
+        current_password: "Contraseña actual"
+        new_password: "Nueva contraseña"
+        confirm_password: "Confirmar contraseña"
+        save_changes: "Guardar cambios"
+
+    dashboard:
+      greeting: "¡Hola, %{name}!"
+      summary: "Aquí tienes un resumen de tu actividad reciente."
+      stats:
+        active_projects: "Proyectos activos"
+        pending_tasks: "Tareas pendientes"
+        completed_today: "Completadas hoy"
+        in_review: "En revisión"
+      recent_activity: "Actividad reciente"
+      quick_actions: "Acciones rápidas"
+      new_project: "Nuevo proyecto"
+      create_task: "Crear tarea"
+      invite_team: "Invitar equipo"
+      tip_title: "Consejo del día"
+      tip_message: "Organiza tus tareas por prioridad para ser más productivo. ¡Empieza por las más importantes!"
+
+    activities:
+      new_project: "Nuevo proyecto creado"
+      task_completed: "Tarea completada"
+      comment_added: "Comentario agregado"
+      file_uploaded: "Archivo subido"
+      time:
+        hours_ago: "Hace %{count} horas"
+        yesterday: "Ayer"

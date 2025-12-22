@@ -67,3 +67,6 @@ gem "vite_rails", "~> 3.0"
 gem "devise", "~> 4.9"
 
 gem "discard", "~> 1.4"
+
+# Internationalization
+gem "devise-i18n"

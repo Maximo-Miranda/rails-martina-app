@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { usePage, router, Link } from '@inertiajs/vue3'
+import { useTranslations } from '@/composables/useTranslations'
 
 interface User {
   id: number
   email: string
   full_name: string
 }
+
+const { t } = useTranslations()
 
 const page = usePage()
 const currentUser = computed(() => page.props.current_user as User | null)
@@ -19,13 +22,13 @@ const drawer = ref(false)
 const userMenu = ref(false)
 
 // Navigation items for authenticated users
-const navigationItems = [
-  { title: 'Dashboard', icon: 'mdi-view-dashboard', href: '/dashboard' },
-  { title: 'Proyectos', icon: 'mdi-folder-outline', href: '/projects' },
-  { title: 'Tareas', icon: 'mdi-checkbox-marked-outline', href: '/tasks' },
-  { title: 'Reportes', icon: 'mdi-chart-bar', href: '/reports' },
-  { title: 'Configuración', icon: 'mdi-cog-outline', href: '/settings' },
-]
+const navigationItems = computed(() => [
+  { title: t('navigation.dashboard'), icon: 'mdi-view-dashboard', href: '/dashboard' },
+  { title: t('navigation.projects'), icon: 'mdi-folder-outline', href: '/projects' },
+  { title: t('navigation.tasks'), icon: 'mdi-checkbox-marked-outline', href: '/tasks' },
+  { title: t('navigation.reports'), icon: 'mdi-chart-bar', href: '/reports' },
+  { title: t('navigation.settings'), icon: 'mdi-cog-outline', href: '/settings' },
+])
 
 const logout = () => {
   router.delete('/users/sign_out')
@@ -110,7 +113,7 @@ const userInitials = computed(() => {
               <v-list density="compact" nav class="pa-0">
                 <v-list-item
                   prepend-icon="mdi-account-outline"
-                  title="Mi perfil"
+                  :title="t('navigation.user_menu.profile')"
                   value="profile"
                   @click="navigateTo('/users/edit')"
                   rounded="lg"
@@ -127,7 +130,7 @@ const userInitials = computed(() => {
                 @click="logout"
                 rounded="lg"
               >
-                Cerrar sesión
+                {{ t('navigation.user_menu.logout') }}
               </v-btn>
             </v-card-text>
           </v-card>
@@ -138,12 +141,12 @@ const userInitials = computed(() => {
       <template v-else>
         <Link href="/users/sign_in">
           <v-btn variant="text" class="text-none text-white mr-1">
-            Iniciar sesión
+            {{ t('navigation.auth.login') }}
           </v-btn>
         </Link>
         <Link href="/users/sign_up">
           <v-btn variant="flat" color="white" class="text-none text-primary">
-            Registrarse
+            {{ t('navigation.auth.register') }}
           </v-btn>
         </Link>
       </template>
@@ -196,7 +199,7 @@ const userInitials = computed(() => {
             @click="logout"
             class="text-none"
           >
-            Cerrar sesión
+            {{ t('navigation.user_menu.logout') }}
           </v-btn>
         </div>
       </template>

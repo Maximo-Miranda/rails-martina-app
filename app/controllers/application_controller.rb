@@ -7,11 +7,14 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  # Traducciones cacheadas en el cliente con once
+  inertia_share t: InertiaRails.once { I18n.t("frontend").deep_stringify_keys }
+
   inertia_share do
-  {
-    flash: flash.to_hash,
-    current_user: current_user&.as_json(only: [ :id, :email, :full_name ])
-  }
+    {
+      flash: flash.to_hash,
+      current_user: current_user&.as_json(only: [ :id, :email, :full_name ])
+    }
   end
 
   protected

@@ -1,15 +1,14 @@
 <!-- Greeting -->
 <h1 style="margin: 0 0 20px 0; font-size: 24px; font-weight: 600; color: #333333;">
-  Cuenta bloqueada 🔒
+  <%= t('devise.mailer.unlock_instructions.title') %>
 </h1>
 
 <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 26px; color: #51545e;">
-  Hola <strong><%= @resource.full_name || @resource.email %></strong>,
+  <%= t('devise.mailer.unlock_instructions.greeting', name: @resource.full_name || @resource.email) %>
 </p>
 
 <p style="margin: 0 0 25px 0; font-size: 16px; line-height: 26px; color: #51545e;">
-  Tu cuenta ha sido bloqueada temporalmente debido a múltiples intentos de inicio de sesión fallidos.
-  Para desbloquearla, haz clic en el siguiente botón:
+  <%= t('devise.mailer.unlock_instructions.instruction') %>
 </p>
 
 <!-- Action Button -->
@@ -21,7 +20,7 @@
           <td align="center" style="border-radius: 8px; background-color: #5C6BC0;">
             <%= link_to unlock_url(@resource, unlock_token: @token),
                 style: "display: inline-block; padding: 16px 36px; font-size: 16px; font-weight: 600; color: #ffffff; text-decoration: none; border-radius: 8px;" do %>
-              Desbloquear mi cuenta
+              <%= t('devise.mailer.unlock_instructions.action') %>
             <% end %>
           </td>
         </tr>
@@ -32,7 +31,7 @@
 
 <!-- Alternative Link -->
 <p style="margin: 0 0 15px 0; font-size: 14px; line-height: 22px; color: #9a9ea6;">
-  Si el botón no funciona, copia y pega este enlace en tu navegador:
+  <%= t('devise.mailer.unlock_instructions.alternative_link') %>
 </p>
 <p style="margin: 0 0 20px 0; font-size: 14px; line-height: 22px; color: #5C6BC0; word-break: break-all;">
   <%= unlock_url(@resource, unlock_token: @token) %>
@@ -46,5 +45,5 @@
 </table>
 
 <p style="margin: 0; font-size: 14px; line-height: 22px; color: #9a9ea6;">
-  Si no reconoces esta actividad, te recomendamos cambiar tu contraseña inmediatamente.
+  <%= t('devise.mailer.unlock_instructions.warning') %>
 </p>

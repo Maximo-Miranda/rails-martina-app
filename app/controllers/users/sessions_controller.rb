@@ -21,7 +21,7 @@ class Users::SessionsController < Devise::SessionsController
       redirect_to dashboard_path
     else
       render inertia: "auth/login", props: {
-        errors: { email: [ "Correo electrónico o contraseña inválidos" ] }
+        errors: { email: [ I18n.t("controllers.sessions.invalid_credentials") ] }
       }
     end
   end

@@ -41,6 +41,8 @@ es:
       models:
         user:
           attributes:
+            full_name:
+              blank: "El nombre completo es requerido"
             email:
               blank: "El correo electrónico es requerido"
               invalid: "El formato del correo electrónico es inválido"
@@ -50,3 +52,16 @@ es:
               too_short: "La contraseña debe tener al menos %{count} caracteres"
             password_confirmation:
               confirmation: "Las contraseñas no coinciden"
+
+  # Mensajes de controladores
+  controllers:
+    sessions:
+      invalid_credentials: "Correo electrónico o contraseña inválidos"
+    passwords:
+      email_required: "El correo electrónico es requerido"
+      password_required: "La contraseña es requerida"
+      password_confirmation_required: "La confirmación de contraseña es requerida"
+      invalid_token: "El token de restablecimiento es inválido"
+      reset_instructions_sent: "Recibirás un correo con instrucciones para restablecer tu contraseña."
+    registrations:
+      profile_updated: "Perfil actualizado correctamente"

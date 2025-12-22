@@ -2,6 +2,9 @@
 import { useForm, Link } from '@inertiajs/vue3'
 import { ref, computed } from 'vue'
 import { rules } from '@/utils/validation'
+import { useTranslations } from '@/composables/useTranslations'
+
+const { t } = useTranslations()
 
 const props = defineProps<{
   user: {
@@ -32,33 +35,33 @@ const changePassword = ref(false)
 
 // Reglas de validación
 const nameRules = [
-  rules.required('El nombre completo es requerido'),
-  rules.minLength(3, 'El nombre debe tener al menos 3 caracteres'),
+  rules.required(t('validation.required')),
+  rules.minLength(3, t('validation.min_length', { count: 3 })),
 ]
 
 const emailRules = [
-  rules.required('El correo electrónico es requerido'),
-  rules.email('Ingresa un correo electrónico válido'),
+  rules.required(t('validation.required')),
+  rules.email(t('validation.email_invalid')),
 ]
 
 const currentPasswordRules = computed(() => {
   if (!changePassword.value) return []
-  return [rules.required('La contraseña actual es requerida')]
+  return [rules.required(t('validation.required'))]
 })
 
 const newPasswordRules = computed(() => {
   if (!changePassword.value) return []
   return [
-    rules.required('La nueva contraseña es requerida'),
-    rules.password('La contraseña debe tener al menos 6 caracteres'),
+    rules.required(t('validation.required')),
+    rules.password(t('validation.min_length', { count: 6 })),
   ]
 })
 
 const confirmPasswordRules = computed(() => {
   if (!changePassword.value) return []
   return [
-    rules.required('La confirmación es requerida'),
-    rules.passwordConfirmation(form.user.password, 'Las contraseñas no coinciden'),
+    rules.required(t('validation.required')),
+    rules.passwordConfirmation(form.user.password, t('validation.passwords_no_match')),
   ]
 })
 
@@ -93,9 +96,9 @@ const submit = async () => {
         </v-btn>
       </Link>
       <div>
-        <h1 class="text-h4 font-weight-bold">Mi Perfil</h1>
+        <h1 class="text-h4 font-weight-bold">{{ t('auth.profile.title') }}</h1>
         <p class="text-body-2 text-medium-emphasis mt-1">
-          Administra tu información personal
+          {{ t('auth.profile.subtitle') }}
         </p>
       </div>
     </div>
@@ -105,13 +108,13 @@ const submit = async () => {
       <v-card class="mb-6 rounded-xl" elevation="2">
         <v-card-title class="d-flex align-center pa-4 bg-grey-lighten-4">
           <v-icon color="primary" class="mr-3">mdi-account-circle</v-icon>
-          <span class="text-h6">Información personal</span>
+          <span class="text-h6">{{ t('auth.profile.personal_info') }}</span>
         </v-card-title>
 
         <v-card-text class="pa-6">
           <v-text-field
             v-model="form.user.full_name"
-            label="Nombre completo"
+            :label="t('auth.profile.full_name')"
             variant="outlined"
             color="primary"
             density="comfortable"
@@ -123,7 +126,7 @@ const submit = async () => {
 
           <v-text-field
             v-model="form.user.email"
-            label="Correo electrónico"
+            :label="t('auth.profile.email')"
             type="email"
             variant="outlined"
             color="primary"
@@ -139,7 +142,7 @@ const submit = async () => {
       <v-card class="mb-6 rounded-xl" elevation="2">
         <v-card-title class="d-flex align-center pa-4 bg-grey-lighten-4">
           <v-icon color="primary" class="mr-3">mdi-shield-account</v-icon>
-          <span class="text-h6">Actividad de la cuenta</span>
+          <span class="text-h6">{{ t('auth.profile.account_activity') }}</span>
         </v-card-title>
 
         <v-card-text class="pa-0">
@@ -149,7 +152,7 @@ const submit = async () => {
                 <v-icon color="grey-darken-1" size="small">mdi-calendar-plus</v-icon>
               </template>
               <v-list-item-title class="text-body-2 text-medium-emphasis">
-                Miembro desde
+                {{ t('auth.profile.member_since') }}
               </v-list-item-title>
               <v-list-item-subtitle class="text-body-2 font-weight-medium text-high-emphasis">
                 {{ user.created_at }}
@@ -163,10 +166,10 @@ const submit = async () => {
                 <v-icon color="grey-darken-1" size="small">mdi-login</v-icon>
               </template>
               <v-list-item-title class="text-body-2 text-medium-emphasis">
-                Último acceso
+                {{ t('auth.profile.last_access') }}
               </v-list-item-title>
               <v-list-item-subtitle class="text-body-2 font-weight-medium text-high-emphasis">
-                {{ user.last_sign_in_at || 'Primera sesión' }}
+                {{ user.last_sign_in_at || t('auth.profile.first_session') }}
               </v-list-item-subtitle>
             </v-list-item>
 
@@ -177,10 +180,10 @@ const submit = async () => {
                 <v-icon color="grey-darken-1" size="small">mdi-counter</v-icon>
               </template>
               <v-list-item-title class="text-body-2 text-medium-emphasis">
-                Inicios de sesión
+                {{ t('auth.profile.login_count') }}
               </v-list-item-title>
               <v-list-item-subtitle class="text-body-2 font-weight-medium text-high-emphasis">
-                {{ user.sign_in_count }} veces
+                {{ user.sign_in_count }} {{ t('common.times') }}
               </v-list-item-subtitle>
             </v-list-item>
           </v-list>
@@ -192,7 +195,7 @@ const submit = async () => {
         <v-card-title class="d-flex align-center justify-space-between pa-4 bg-grey-lighten-4">
           <div class="d-flex align-center">
             <v-icon color="primary" class="mr-3">mdi-lock-outline</v-icon>
-            <span class="text-h6">Cambiar contraseña</span>
+            <span class="text-h6">{{ t('auth.profile.change_password') }}</span>
           </div>
           <v-switch
             v-model="changePassword"
@@ -212,13 +215,13 @@ const submit = async () => {
               class="mb-4"
             >
               <template v-slot:text>
-                Para cambiar tu contraseña, ingresa tu contraseña actual y la nueva contraseña.
+                {{ t('auth.profile.change_password_hint') }}
               </template>
             </v-alert>
 
             <v-text-field
               v-model="form.user.current_password"
-              label="Contraseña actual"
+              :label="t('auth.profile.current_password')"
               :type="showCurrentPassword ? 'text' : 'password'"
               variant="outlined"
               color="primary"
@@ -236,7 +239,7 @@ const submit = async () => {
               <v-col cols="12" sm="6">
                 <v-text-field
                   v-model="form.user.password"
-                  label="Nueva contraseña"
+                  :label="t('auth.profile.new_password')"
                   :type="showNewPassword ? 'text' : 'password'"
                   variant="outlined"
                   color="primary"
@@ -252,7 +255,7 @@ const submit = async () => {
               <v-col cols="12" sm="6">
                 <v-text-field
                   v-model="form.user.password_confirmation"
-                  label="Confirmar contraseña"
+                  :label="t('auth.profile.confirm_password')"
                   :type="showConfirmPassword ? 'text' : 'password'"
                   variant="outlined"
                   color="primary"
@@ -278,7 +281,7 @@ const submit = async () => {
             color="grey"
             class="text-none"
           >
-            Cancelar
+            {{ t('common.cancel') }}
           </v-btn>
         </Link>
         <v-btn
@@ -287,7 +290,7 @@ const submit = async () => {
           :loading="form.processing"
           class="text-none"
         >
-          Guardar cambios
+          {{ t('auth.profile.save_changes') }}
         </v-btn>
       </div>
     </v-form>

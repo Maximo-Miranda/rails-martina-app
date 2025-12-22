@@ -1,8 +1,10 @@
-<!-- filepath: /home/mhmh/code/wudok/rails-martina-app/app/frontend/pages/Auth/Register.vue -->
 <script setup lang="ts">
-  import { ref, computed } from 'vue'
-  import { rules } from '@/utils/validation'
-  import { useForm, Link } from '@inertiajs/vue3'
+import { ref, computed } from 'vue'
+import { rules } from '@/utils/validation'
+import { useForm, Link } from '@inertiajs/vue3'
+import { useTranslations } from '@/composables/useTranslations'
+
+const { t } = useTranslations()
 
 const form = useForm({
   full_name: '',
@@ -16,23 +18,23 @@ const showPasswordConfirmation = ref(false)
 const formRef = ref<HTMLFormElement | null>(null)
 
 const nameRules = [
-  rules.required('El nombre completo es requerido'),
-  rules.minLength(3, 'El nombre debe tener al menos 3 caracteres'),
+  rules.required(t('validation.required')),
+  rules.minLength(3, t('validation.min_length', { count: 3 })),
 ]
 
 const emailRules = [
-  rules.required('El correo electrónico es requerido'),
-  rules.email('Ingresa un correo electrónico válido'),
+  rules.required(t('validation.required')),
+  rules.email(t('validation.email_invalid')),
 ]
 
 const passwordRules = [
-  rules.required('La contraseña es requerida'),
-  rules.password('La contraseña debe tener al menos 6 caracteres'),
+  rules.required(t('validation.required')),
+  rules.password(t('validation.min_length', { count: 6 })),
 ]
 
 const passwordConfirmationRules = computed(() => [
-  rules.required('La confirmación de contraseña es requerida'),
-  rules.passwordConfirmation(form.password, 'Las contraseñas no coinciden'),
+  rules.required(t('validation.required')),
+  rules.passwordConfirmation(form.password, t('validation.passwords_no_match')),
 ])
 
 const submit = async () => {
@@ -47,14 +49,14 @@ const submit = async () => {
   <v-card class="pa-6 pa-sm-8 rounded-xl" elevation="2">
     <div class="text-center mb-6">
       <v-icon color="primary" size="48" class="mb-4">mdi-account-plus-outline</v-icon>
-      <h1 class="text-h5 font-weight-bold mb-2">Crea tu cuenta</h1>
-      <p class="text-body-2 text-medium-emphasis">Únete a Martina y comienza hoy</p>
+      <h1 class="text-h5 font-weight-bold mb-2">{{ t('auth.register.title') }}</h1>
+      <p class="text-body-2 text-medium-emphasis">{{ t('auth.register.subtitle') }}</p>
     </div>
 
     <v-form ref="formRef" @submit.prevent="submit" validate-on="blur lazy">
       <v-text-field
         v-model="form.full_name"
-        label="Nombre completo"
+        :label="t('auth.register.full_name')"
         variant="outlined"
         color="primary"
         density="comfortable"
@@ -67,7 +69,7 @@ const submit = async () => {
 
       <v-text-field
         v-model="form.email"
-        label="Correo electrónico"
+        :label="t('auth.register.email')"
         type="email"
         variant="outlined"
         color="primary"
@@ -83,7 +85,7 @@ const submit = async () => {
         <v-col cols="12" sm="6">
           <v-text-field
             v-model="form.password"
-            label="Contraseña"
+            :label="t('auth.register.password')"
             :type="showPassword ? 'text' : 'password'"
             variant="outlined"
             color="primary"
@@ -100,7 +102,7 @@ const submit = async () => {
         <v-col cols="12" sm="6">
           <v-text-field
             v-model="form.password_confirmation"
-            label="Confirmar"
+            :label="t('auth.register.password_confirmation')"
             :type="showPasswordConfirmation ? 'text' : 'password'"
             variant="outlined"
             color="primary"
@@ -117,7 +119,7 @@ const submit = async () => {
 
       <div class="text-caption text-medium-emphasis mb-4 mt-1">
         <v-icon size="x-small" class="mr-1">mdi-information-outline</v-icon>
-        Usa 6 caracteres o más con letras, números y símbolos.
+        {{ t('validation.password_hint') }}
       </div>
 
       <v-btn
@@ -129,19 +131,19 @@ const submit = async () => {
         class="text-none font-weight-medium mb-4"
         rounded="lg"
       >
-        Crear cuenta
+        {{ t('auth.register.submit') }}
       </v-btn>
 
       <div class="d-flex align-center my-4">
         <v-divider />
-        <span class="mx-3 text-caption text-medium-emphasis">o</span>
+        <span class="mx-3 text-caption text-medium-emphasis">{{ t('common.or') }}</span>
         <v-divider />
       </div>
 
       <div class="text-center">
-        <span class="text-body-2 text-medium-emphasis">¿Ya tienes cuenta?</span>
+        <span class="text-body-2 text-medium-emphasis">{{ t('auth.register.has_account') }}</span>
         <Link href="/users/sign_in" class="text-decoration-none ml-1">
-          <span class="text-primary font-weight-medium">Iniciar sesión</span>
+          <span class="text-primary font-weight-medium">{{ t('auth.register.login_link') }}</span>
         </Link>
       </div>
     </v-form>

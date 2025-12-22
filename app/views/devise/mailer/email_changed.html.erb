@@ -1,15 +1,15 @@
 <!-- Greeting -->
 <h1 style="margin: 0 0 20px 0; font-size: 24px; font-weight: 600; color: #333333;">
-  Cambio de correo electrónico 📧
+  <%= t('devise.mailer.email_changed.title') %>
 </h1>
 
 <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 26px; color: #51545e;">
-  Hola <strong><%= @resource.full_name || @email %></strong>,
+  <%= t('devise.mailer.email_changed.greeting', name: @resource.full_name || @email) %>
 </p>
 
 <% if @resource.try(:unconfirmed_email?) %>
   <p style="margin: 0 0 25px 0; font-size: 16px; line-height: 26px; color: #51545e;">
-    Te informamos que tu correo electrónico está siendo cambiado a:
+    <%= t('devise.mailer.email_changed.message_unconfirmed') %>
   </p>
 
   <!-- New Email Box -->
@@ -24,11 +24,11 @@
   </table>
 
   <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 26px; color: #51545e;">
-    El cambio se completará una vez que confirmes tu nuevo correo electrónico.
+    <%= t('devise.mailer.email_changed.pending_confirmation') %>
   </p>
 <% else %>
   <p style="margin: 0 0 25px 0; font-size: 16px; line-height: 26px; color: #51545e;">
-    Te informamos que tu correo electrónico ha sido actualizado exitosamente a:
+    <%= t('devise.mailer.email_changed.message_confirmed') %>
   </p>
 
   <!-- New Email Box -->
@@ -51,5 +51,5 @@
 </table>
 
 <p style="margin: 0; font-size: 14px; line-height: 22px; color: #9a9ea6;">
-  Si no realizaste este cambio, contacta con soporte inmediatamente.
+  <%= t('devise.mailer.email_changed.warning') %>
 </p>

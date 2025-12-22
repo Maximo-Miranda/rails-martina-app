@@ -2,6 +2,9 @@
 import { useForm, Link } from '@inertiajs/vue3'
 import { ref } from 'vue'
 import { rules } from '@/utils/validation'
+import { useTranslations } from '@/composables/useTranslations'
+
+const { t } = useTranslations()
 
 const form = useForm({
   email: '',
@@ -12,8 +15,8 @@ const formRef = ref<HTMLFormElement | null>(null)
 
 // Reglas de validación
 const emailRules = [
-  rules.required('El correo electrónico es requerido'),
-  rules.email('Ingresa un correo electrónico válido'),
+  rules.required(t('validation.required')),
+  rules.email(t('validation.email_invalid')),
 ]
 
 const submit = async () => {
@@ -35,16 +38,16 @@ const submit = async () => {
     <template v-if="!submitted">
       <div class="text-center mb-6">
         <v-icon color="primary" size="48" class="mb-4">mdi-lock-reset</v-icon>
-        <h1 class="text-h5 font-weight-bold mb-2">¿Olvidaste tu contraseña?</h1>
+        <h1 class="text-h5 font-weight-bold mb-2">{{ t('auth.forgot_password.title') }}</h1>
         <p class="text-body-2 text-medium-emphasis">
-          Ingresa tu correo electrónico y te enviaremos instrucciones para restablecerla.
+          {{ t('auth.forgot_password.subtitle') }}
         </p>
       </div>
 
       <v-form ref="formRef" @submit.prevent="submit" validate-on="blur lazy">
         <v-text-field
           v-model="form.email"
-          label="Correo electrónico"
+          :label="t('auth.forgot_password.email')"
           type="email"
           variant="outlined"
           color="primary"
@@ -66,12 +69,12 @@ const submit = async () => {
           class="text-none font-weight-medium mb-4"
           rounded="lg"
         >
-          Enviar instrucciones
+          {{ t('auth.forgot_password.submit') }}
         </v-btn>
 
         <div class="d-flex align-center my-4">
           <v-divider />
-          <span class="mx-3 text-caption text-medium-emphasis">o</span>
+          <span class="mx-3 text-caption text-medium-emphasis">{{ t('common.or') }}</span>
           <v-divider />
         </div>
 
@@ -83,7 +86,7 @@ const submit = async () => {
               prepend-icon="mdi-arrow-left"
               class="text-none"
             >
-              Volver a iniciar sesión
+              {{ t('auth.forgot_password.back_to_login') }}
             </v-btn>
           </Link>
         </div>
@@ -94,9 +97,9 @@ const submit = async () => {
     <template v-else>
       <div class="text-center">
         <v-icon color="success" size="64" class="mb-4">mdi-email-check-outline</v-icon>
-        <h1 class="text-h5 font-weight-bold mb-2">¡Revisa tu correo!</h1>
+        <h1 class="text-h5 font-weight-bold mb-2">{{ t('auth.forgot_password.success_title') }}</h1>
         <p class="text-body-2 text-medium-emphasis mb-6">
-          Hemos enviado las instrucciones para restablecer tu contraseña a
+          {{ t('auth.forgot_password.success_message') }}
           <strong>{{ form.email }}</strong>
         </p>
 
@@ -108,7 +111,7 @@ const submit = async () => {
         >
           <template v-slot:text>
             <div class="text-body-2">
-              Si no ves el correo, revisa tu carpeta de spam o correo no deseado.
+              {{ t('auth.forgot_password.spam_notice') }}
             </div>
           </template>
         </v-alert>
@@ -121,7 +124,7 @@ const submit = async () => {
             rounded="lg"
             block
           >
-            Volver a iniciar sesión
+            {{ t('auth.forgot_password.back_to_login') }}
           </v-btn>
         </Link>
       </div>
