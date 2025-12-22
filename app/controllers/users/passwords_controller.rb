@@ -1,7 +1,7 @@
 class Users::PasswordsController < Devise::PasswordsController
   # GET /users/password/new
   def new
-    render inertia: "auth/forgot-password", props: {}
+    render inertia: "auth/forgot-password"
   end
 
   # POST /users/password

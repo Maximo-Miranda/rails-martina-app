@@ -59,8 +59,10 @@ const navigateTo = (href: string) => {
             <v-btn
               v-bind="props"
               variant="text"
-              class="text-none text-white"
+              class="text-none text-white px-1"
               rounded="pill"
+              :ripple="false"
+              style="min-width: auto;"
             >
               <v-avatar color="white" size="34" class="mr-2">
                 <span class="text-primary text-body-2 font-weight-bold">{{ userInitials }}</span>

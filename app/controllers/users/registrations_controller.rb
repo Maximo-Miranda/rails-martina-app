@@ -2,7 +2,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_account_update_params, only: [ :update ]
 
   def new
-    render inertia: "auth/register", props: {}
+    render inertia: "auth/register"
   end
 
   def create

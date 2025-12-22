@@ -1,10 +1,8 @@
 class Users::ConfirmationsController < Devise::ConfirmationsController
-  # GET /users/confirmation/new
   def new
-    render inertia: "auth/resend-confirmation", props: {}
+    render inertia: "auth/resend-confirmation"
   end
 
-  # POST /users/confirmation
   def create
     request = UserConfirmationRequest.new(resource_params.to_h)
 
