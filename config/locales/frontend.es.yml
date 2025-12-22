@@ -30,6 +30,9 @@ es:
       logout: "Cerrar sesión"
       login: "Iniciar sesión"
       register: "Registrarse"
+      user_menu:
+        profile: "Mi perfil"
+        logout: "Cerrar sesión"
 
     auth:
       login:
@@ -70,6 +73,23 @@ es:
         password: "Nueva contraseña"
         password_confirmation: "Confirmar contraseña"
         submit: "Restablecer contraseña"
+        back_to_login: "Volver a iniciar sesión"
+
+      confirmation:
+        success_title: "¡Cuenta confirmada!"
+        success_subtitle: "Tu cuenta ha sido confirmada exitosamente. Ya puedes iniciar sesión."
+        error_title: "Error de confirmación"
+        error_subtitle: "No pudimos confirmar tu cuenta. El enlace puede haber expirado o ya fue utilizado."
+        go_to_login: "Ir a iniciar sesión"
+        resend_link: "Reenviar enlace de confirmación"
+        no_account: "¿No tienes cuenta?"
+        create_account: "Crear una cuenta"
+
+      resend_confirmation:
+        title: "Reenviar confirmación"
+        subtitle: "Ingresa tu correo electrónico y te enviaremos un nuevo enlace de confirmación."
+        email: "Correo electrónico"
+        submit: "Enviar enlace"
         back_to_login: "Volver a iniciar sesión"
 
       profile:

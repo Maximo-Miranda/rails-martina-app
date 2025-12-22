@@ -54,14 +54,7 @@ class Users::PasswordsController < Devise::PasswordsController
 
     if resource.errors.empty?
       resource.unlock_access! if unlockable?(resource)
-      if Devise.sign_in_after_reset_password
-        set_flash_message!(:notice, :updated_not_active)
-        sign_in(resource_name, resource)
-        redirect_to after_sign_in_path_for(resource)
-      else
-        set_flash_message!(:notice, :updated)
-        redirect_to new_session_path(resource_name)
-      end
+      redirect_to new_session_path(resource_name), notice: I18n.t("controllers.passwords.updated_successfully")
     else
       set_minimum_password_length
       render inertia: "auth/reset-password", props: {

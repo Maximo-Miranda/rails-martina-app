@@ -29,3 +29,25 @@
 
 en:
   hello: "Hello world"
+  errors:
+    messages:
+      not_saved:
+        one: "1 error prohibited this %{resource} from being saved"
+        other: "%{count} errors prohibited this %{resource} from being saved"
+  activerecord:
+    models:
+      user: "user"
+  controllers:
+    sessions:
+      invalid_credentials: "Invalid email or password"
+    passwords:
+      email_required: "Email is required"
+      password_required: "Password is required"
+      password_confirmation_required: "Password confirmation is required"
+      invalid_token: "Invalid reset token"
+      reset_instructions_sent: "You will receive an email with instructions to reset your password."
+      updated_successfully: "Your password has been changed successfully. Please sign in with your new password."
+    confirmations:
+      email_required: "Email is required"
+      instructions_sent: "You will receive an email with instructions to confirm your account."
+      confirmed: "Your account has been confirmed successfully. You can now sign in."

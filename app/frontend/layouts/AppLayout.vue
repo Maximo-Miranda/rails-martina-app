@@ -1,54 +1,28 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { usePage, router, Link } from '@inertiajs/vue3'
+import { router, Link } from '@inertiajs/vue3'
 import { useTranslations } from '@/composables/useTranslations'
-
-interface User {
-  id: number
-  email: string
-  full_name: string
-}
+import { useUser } from '@/composables/useUser'
 
 const { t } = useTranslations()
+const { currentUser, isAuthenticated, userInitials, logout } = useUser()
 
-const page = usePage()
-const currentUser = computed(() => page.props.current_user as User | null)
-const isAuthenticated = computed(() => !!currentUser.value)
-
-// Navigation drawer state
 const drawer = ref(false)
-
-// User menu state
 const userMenu = ref(false)
 
-// Navigation items for authenticated users
 const navigationItems = computed(() => [
   { title: t('navigation.dashboard'), icon: 'mdi-view-dashboard', href: '/dashboard' },
-  { title: t('navigation.projects'), icon: 'mdi-folder-outline', href: '/projects' },
-  { title: t('navigation.tasks'), icon: 'mdi-checkbox-marked-outline', href: '/tasks' },
-  { title: t('navigation.reports'), icon: 'mdi-chart-bar', href: '/reports' },
-  { title: t('navigation.settings'), icon: 'mdi-cog-outline', href: '/settings' },
+  //{ title: t('navigation.projects'), icon: 'mdi-folder-outline', href: '#' },
+  //{ title: t('navigation.tasks'), icon: 'mdi-checkbox-marked-outline', href: '#' },
+  //{ title: t('navigation.reports'), icon: 'mdi-chart-bar', href: '#' },
+  //{ title: t('navigation.settings'), icon: 'mdi-cog-outline', href: '#' },
 ])
-
-const logout = () => {
-  router.delete('/users/sign_out')
-}
 
 const navigateTo = (href: string) => {
   userMenu.value = false
   drawer.value = false
   router.visit(href)
 }
-
-// Get user initials for avatar
-const userInitials = computed(() => {
-  if (!currentUser.value?.full_name) return 'U'
-  const names = currentUser.value.full_name.split(' ')
-  if (names.length >= 2) {
-    return `${names[0][0]}${names[1][0]}`.toUpperCase()
-  }
-  return names[0].substring(0, 2).toUpperCase()
-})
 </script>
 
 <template>

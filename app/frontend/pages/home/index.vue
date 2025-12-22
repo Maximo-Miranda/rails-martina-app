@@ -1,18 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { usePage } from '@inertiajs/vue3'
 import { useTranslations } from '@/composables/useTranslations'
+import { useUser } from '@/composables/useUser'
 
 const { t } = useTranslations()
-
-interface User {
-  id: number
-  email: string
-  full_name: string
-}
-
-const page = usePage()
-const currentUser = computed(() => page.props.current_user as User | null)
+const { firstName } = useUser()
 
 // Stats cards mock data
 const stats = computed(() => [
@@ -36,7 +28,7 @@ const recentActivities = computed(() => [
     <!-- Welcome Header -->
     <div class="mb-6">
       <h1 class="text-h4 font-weight-bold mb-1">
-        {{ t('dashboard.greeting', { name: currentUser?.full_name?.split(' ')[0] || 'Usuario' }) }}
+        {{ t('dashboard.greeting', { name: firstName }) }}
       </h1>
       <p class="text-body-1 text-medium-emphasis">
         {{ t('dashboard.summary') }}

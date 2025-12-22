@@ -1,8 +1,7 @@
 import { usePage } from '@inertiajs/vue3'
 
 /**
- * Tipos de las traducciones del frontend
- * Estructura que refleja frontend.es.yml
+ * Translations structure (mirrors frontend.es.yml)
  */
 export interface Translations {
   common: {
@@ -124,23 +123,14 @@ export interface Translations {
   }
 }
 
-/**
- * Composable para acceder a las traducciones del backend
- * Las traducciones se cachean en el cliente con InertiaRails.once
- */
 export function useTranslations() {
   const page = usePage()
   const translations = page.props.t as Translations
 
   /**
-   * Obtiene una traducción por su clave con soporte para interpolación
-   * @param key - Clave de traducción (ej: 'auth.login.title')
-   * @param replacements - Objeto con variables a reemplazar (ej: { name: 'Juan' })
-   * @returns La traducción o la clave si no existe
-   *
-   * @example
-   * t('auth.login.title') // "¡Bienvenido de vuelta!"
-   * t('dashboard.greeting', { name: 'Juan' }) // "¡Hola, Juan!"
+   * @param key - Dot notation key: 'auth.login.title'
+   * @param replacements - Variables to interpolate: { name: 'John' } → %{name}
+   * @returns Translation or key if not found
    */
   function t(key: string, replacements?: Record<string, string | number>): string {
     const keys = key.split('.')
@@ -150,7 +140,7 @@ export function useTranslations() {
       if (value && typeof value === 'object' && k in value) {
         value = (value as Record<string, unknown>)[k]
       } else {
-        return key // Retorna la clave si no encuentra la traducción
+        return key
       }
     }
 
@@ -158,7 +148,6 @@ export function useTranslations() {
       return key
     }
 
-    // Reemplazar variables %{variable}
     if (replacements) {
       return value.replace(/%\{(\w+)\}/g, (_, name) =>
         String(replacements[name] ?? `%{${name}}`)

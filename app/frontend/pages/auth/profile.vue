@@ -18,13 +18,11 @@ const props = defineProps<{
 }>()
 
 const form = useForm({
-  user: {
-    full_name: props.user.full_name,
-    email: props.user.email,
-    current_password: '',
-    password: '',
-    password_confirmation: '',
-  }
+  full_name: props.user.full_name,
+  email: props.user.email,
+  current_password: '',
+  password: '',
+  password_confirmation: '',
 })
 
 const showCurrentPassword = ref(false)
@@ -61,16 +59,16 @@ const confirmPasswordRules = computed(() => {
   if (!changePassword.value) return []
   return [
     rules.required(t('validation.required')),
-    rules.passwordConfirmation(form.user.password, t('validation.passwords_no_match')),
+    rules.passwordConfirmation(form.password, t('validation.passwords_no_match')),
   ]
 })
 
 // Limpiar campos de contraseña cuando se desactiva
 const togglePasswordChange = () => {
   if (!changePassword.value) {
-    form.user.current_password = ''
-    form.user.password = ''
-    form.user.password_confirmation = ''
+    form.current_password = ''
+    form.password = ''
+    form.password_confirmation = ''
   }
 }
 
@@ -113,19 +111,19 @@ const submit = async () => {
 
         <v-card-text class="pa-6">
           <v-text-field
-            v-model="form.user.full_name"
+            v-model="form.full_name"
             :label="t('auth.profile.full_name')"
             variant="outlined"
             color="primary"
             density="comfortable"
             prepend-inner-icon="mdi-account-outline"
             :rules="nameRules"
-            :error-messages="form.errors['user.full_name']"
+            :error-messages="form.errors.full_name"
             class="mb-4"
           />
 
           <v-text-field
-            v-model="form.user.email"
+            v-model="form.email"
             :label="t('auth.profile.email')"
             type="email"
             variant="outlined"
@@ -133,7 +131,7 @@ const submit = async () => {
             density="comfortable"
             prepend-inner-icon="mdi-email-outline"
             :rules="emailRules"
-            :error-messages="form.errors['user.email']"
+            :error-messages="form.errors.email"
           />
         </v-card-text>
       </v-card>
@@ -220,7 +218,7 @@ const submit = async () => {
             </v-alert>
 
             <v-text-field
-              v-model="form.user.current_password"
+              v-model="form.current_password"
               :label="t('auth.profile.current_password')"
               :type="showCurrentPassword ? 'text' : 'password'"
               variant="outlined"
@@ -230,7 +228,7 @@ const submit = async () => {
               :append-inner-icon="showCurrentPassword ? 'mdi-eye-off' : 'mdi-eye'"
               @click:append-inner="showCurrentPassword = !showCurrentPassword"
               :rules="currentPasswordRules"
-              :error-messages="form.errors['user.current_password']"
+              :error-messages="form.errors.current_password"
               class="mb-4"
               autocomplete="current-password"
             />
@@ -238,7 +236,7 @@ const submit = async () => {
             <v-row dense>
               <v-col cols="12" sm="6">
                 <v-text-field
-                  v-model="form.user.password"
+                  v-model="form.password"
                   :label="t('auth.profile.new_password')"
                   :type="showNewPassword ? 'text' : 'password'"
                   variant="outlined"
@@ -248,13 +246,13 @@ const submit = async () => {
                   :append-inner-icon="showNewPassword ? 'mdi-eye-off' : 'mdi-eye'"
                   @click:append-inner="showNewPassword = !showNewPassword"
                   :rules="newPasswordRules"
-                  :error-messages="form.errors['user.password']"
+                  :error-messages="form.errors.password"
                   autocomplete="new-password"
                 />
               </v-col>
               <v-col cols="12" sm="6">
                 <v-text-field
-                  v-model="form.user.password_confirmation"
+                  v-model="form.password_confirmation"
                   :label="t('auth.profile.confirm_password')"
                   :type="showConfirmPassword ? 'text' : 'password'"
                   variant="outlined"
@@ -264,7 +262,7 @@ const submit = async () => {
                   :append-inner-icon="showConfirmPassword ? 'mdi-eye-off' : 'mdi-eye'"
                   @click:append-inner="showConfirmPassword = !showConfirmPassword"
                   :rules="confirmPasswordRules"
-                  :error-messages="form.errors['user.password_confirmation']"
+                  :error-messages="form.errors.password_confirmation"
                   autocomplete="new-password"
                 />
               </v-col>
@@ -274,12 +272,12 @@ const submit = async () => {
       </v-card>
 
       <!-- Botones de acción -->
-      <div class="d-flex justify-end gap-3">
+      <div class="d-flex justify-end">
         <Link href="/dashboard">
           <v-btn
             variant="outlined"
             color="grey"
-            class="text-none"
+            class="text-none mr-4"
           >
             {{ t('common.cancel') }}
           </v-btn>

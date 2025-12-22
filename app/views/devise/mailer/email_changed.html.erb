@@ -1,55 +1,76 @@
-<!-- Greeting -->
-<h1 style="margin: 0 0 20px 0; font-size: 24px; font-weight: 600; color: #333333;">
+<!-- Icon -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 24px;">
+  <tr>
+    <td align="center">
+      <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td style="width: 72px; height: 72px; background-color: #e8f0fe; border-radius: 50%; text-align: center; vertical-align: middle;">
+            <span style="font-size: 32px; color: #1a73e8;">@</span>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- Title -->
+<h1 style="margin: 0 0 12px 0; font-family: Google Sans, Roboto, Arial, sans-serif; font-size: 24px; font-weight: 400; color: #202124; text-align: center; line-height: 32px;">
   <%= t('devise.mailer.email_changed.title') %>
 </h1>
-
-<p style="margin: 0 0 20px 0; font-size: 16px; line-height: 26px; color: #51545e;">
+<!-- Greeting -->
+<p style="margin: 0 0 24px 0; font-family: Roboto, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #5f6368; text-align: center;">
   <%= t('devise.mailer.email_changed.greeting', name: @resource.full_name || @email) %>
 </p>
-
 <% if @resource.try(:unconfirmed_email?) %>
-  <p style="margin: 0 0 25px 0; font-size: 16px; line-height: 26px; color: #51545e;">
+  <!-- Message -->
+  <p style="margin: 0 0 32px 0; font-family: Roboto, Arial, sans-serif; font-size: 14px; line-height: 22px; color: #202124; text-align: center;">
     <%= t('devise.mailer.email_changed.message_unconfirmed') %>
   </p>
-
   <!-- New Email Box -->
-  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 25px;">
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 24px;">
     <tr>
-      <td style="background-color: #e8f4fd; border-left: 4px solid #5C6BC0; padding: 15px; border-radius: 4px;">
-        <p style="margin: 0; font-size: 16px; line-height: 22px; color: #333333;">
-          <strong><%= @resource.unconfirmed_email %></strong>
+      <td style="background-color: #f8f9fa; padding: 16px; border-radius: 8px; text-align: center;">
+        <p style="margin: 0 0 4px 0; font-family: Roboto, Arial, sans-serif; font-size: 12px; line-height: 16px; color: #5f6368;">
+          <%= t('devise.mailer.email_changed.new_email_label') %>
+        </p>
+        <p style="margin: 0; font-family: Roboto, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #1a73e8; font-weight: 500;">
+          <%= @resource.unconfirmed_email %>
         </p>
       </td>
     </tr>
   </table>
-
-  <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 26px; color: #51545e;">
+  <p style="margin: 0 0 24px 0; font-family: Roboto, Arial, sans-serif; font-size: 14px; line-height: 22px; color: #5f6368; text-align: center;">
     <%= t('devise.mailer.email_changed.pending_confirmation') %>
   </p>
 <% else %>
-  <p style="margin: 0 0 25px 0; font-size: 16px; line-height: 26px; color: #51545e;">
+  <!-- Message -->
+  <p style="margin: 0 0 32px 0; font-family: Roboto, Arial, sans-serif; font-size: 14px; line-height: 22px; color: #202124; text-align: center;">
     <%= t('devise.mailer.email_changed.message_confirmed') %>
   </p>
-
   <!-- New Email Box -->
-  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 25px;">
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 24px;">
     <tr>
-      <td style="background-color: #e8f9e8; border-left: 4px solid #28a745; padding: 15px; border-radius: 4px;">
-        <p style="margin: 0; font-size: 16px; line-height: 22px; color: #333333;">
-          ✓ <strong><%= @resource.email %></strong>
+      <td style="background-color: #e6f4ea; padding: 16px; border-radius: 8px; text-align: center;">
+        <p style="margin: 0 0 4px 0; font-family: Roboto, Arial, sans-serif; font-size: 12px; line-height: 16px; color: #5f6368;">
+          <%= t('devise.mailer.email_changed.current_email_label') %>
+        </p>
+        <p style="margin: 0; font-family: Roboto, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #1e8e3e; font-weight: 500;">
+          <%= @resource.email %>
         </p>
       </td>
     </tr>
   </table>
 <% end %>
-
-<!-- Divider -->
-<table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin: 25px 0;">
+<!-- Security notice -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 24px;">
   <tr>
-    <td style="border-top: 1px solid #e8e8eb;"></td>
+    <td style="background-color: #fef7e0; padding: 12px 16px; border-radius: 8px;">
+      <p style="margin: 0; font-family: Roboto, Arial, sans-serif; font-size: 12px; line-height: 18px; color: #5f6368;">
+        <span style="color: #ea8600; font-weight: 500;"><%= t('devise.mailer.email_changed.not_you') %></span> <%= t('devise.mailer.email_changed.not_you_message') %>
+      </p>
+    </td>
   </tr>
 </table>
-
-<p style="margin: 0; font-size: 14px; line-height: 22px; color: #9a9ea6;">
-  <%= t('devise.mailer.email_changed.warning') %>
+<!-- Footer notice -->
+<p style="margin: 0; font-family: Roboto, Arial, sans-serif; font-size: 12px; line-height: 18px; color: #5f6368; text-align: center;">
+  <%= t('devise.mailer.email_changed.footer') %>
 </p>
