@@ -5,22 +5,48 @@ es:
         user_login_request:
           attributes:
             email:
-              blank: "es requerido"
-              invalid: "no es válido"
+              blank: "El correo electrónico es requerido"
+              invalid: "El formato del correo electrónico es inválido"
             password:
-              blank: "es requerida"
-              too_short: "es muy corta (mínimo %{count} caracteres)"
+              blank: "La contraseña es requerida"
+              too_short: "La contraseña debe tener al menos %{count} caracteres"
+        user_registration_request:
+          attributes:
+            full_name:
+              blank: "El nombre completo es requerido"
+            email:
+              blank: "El correo electrónico es requerido"
+              invalid: "El formato del correo electrónico es inválido"
+            password:
+              blank: "La contraseña es requerida"
+              too_short: "La contraseña debe tener al menos %{count} caracteres"
+            password_confirmation:
+              blank: "La confirmación de contraseña es requerida"
+        user_profile_update_request:
+          attributes:
+            full_name:
+              blank: "El nombre completo es requerido"
+            email:
+              blank: "El correo electrónico es requerido"
+              invalid: "El formato del correo electrónico es inválido"
+            current_password:
+              blank: "La contraseña actual es requerida"
+            password:
+              blank: "La nueva contraseña es requerida"
+              too_short: "La contraseña debe tener al menos %{count} caracteres"
+            password_confirmation:
+              blank: "La confirmación es requerida"
   activerecord:
     errors:
       models:
         user:
           attributes:
             email:
-              blank: "es requerido"
-              invalid: "no es válido"
-              taken: "ya está en uso"
+              blank: "El correo electrónico es requerido"
+              invalid: "El formato del correo electrónico es inválido"
+              taken: "Este correo electrónico ya está en uso"
             password:
-              blank: "es requerida"
-              too_short: "es muy corta (mínimo %{count} caracteres)"
+              blank: "La contraseña es requerida"
+              too_short: "La contraseña debe tener al menos %{count} caracteres"
             password_confirmation:
-              confirmation: "no coincide con la contraseña"
+              confirmation: "Las contraseñas no coinciden"

@@ -1,8 +1,8 @@
 <!-- filepath: /home/mhmh/code/wudok/rails-martina-app/app/frontend/pages/Auth/Register.vue -->
 <script setup lang="ts">
-import { useForm, Link } from '@inertiajs/vue3'
-import { ref, computed } from 'vue'
-import { rules } from '@/utils/validation'
+  import { ref, computed } from 'vue'
+  import { rules } from '@/utils/validation'
+  import { useForm, Link } from '@inertiajs/vue3'
 
 const form = useForm({
   full_name: '',
@@ -15,7 +15,6 @@ const showPassword = ref(false)
 const showPasswordConfirmation = ref(false)
 const formRef = ref<HTMLFormElement | null>(null)
 
-// Reglas de validación
 const nameRules = [
   rules.required('El nombre completo es requerido'),
   rules.minLength(3, 'El nombre debe tener al menos 3 caracteres'),
@@ -31,7 +30,6 @@ const passwordRules = [
   rules.password('La contraseña debe tener al menos 6 caracteres'),
 ]
 
-// Regla dinámica para confirmación de contraseña
 const passwordConfirmationRules = computed(() => [
   rules.required('La confirmación de contraseña es requerida'),
   rules.passwordConfirmation(form.password, 'Las contraseñas no coinciden'),
@@ -46,7 +44,6 @@ const submit = async () => {
 </script>
 
 <template>
-  <!-- Tarjeta centrada con diseño moderno -->
   <v-card class="pa-6 pa-sm-8 rounded-xl" elevation="2">
     <div class="text-center mb-6">
       <v-icon color="primary" size="48" class="mb-4">mdi-account-plus-outline</v-icon>
@@ -99,6 +96,7 @@ const submit = async () => {
             autocomplete="new-password"
           />
         </v-col>
+
         <v-col cols="12" sm="6">
           <v-text-field
             v-model="form.password_confirmation"
