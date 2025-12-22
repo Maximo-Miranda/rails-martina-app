@@ -45,6 +45,7 @@ es:
               too_short: "La contraseña debe tener al menos %{count} caracteres"
             password_confirmation:
               blank: "La confirmación de contraseña es requerida"
+              confirmation: "Las contraseñas no coinciden"
         user_profile_update_request:
           attributes:
             full_name:
@@ -59,21 +60,32 @@ es:
               too_short: "La contraseña debe tener al menos %{count} caracteres"
             password_confirmation:
               blank: "La confirmación es requerida"
+              confirmation: "Las contraseñas no coinciden"
+        user_confirmation_request:
+          attributes:
+            email:
+              blank: "El correo electrónico es requerido"
+              invalid: "El formato del correo electrónico es inválido"
 
-  # Mensajes de controladores
-  controllers:
+  # Mensajes de controladores (lazy lookup: users.<controller>.<action>.<key>)
+  users:
     sessions:
-      invalid_credentials: "Correo electrónico o contraseña inválidos"
+      create:
+        invalid_credentials: "Correo electrónico o contraseña inválidos"
     passwords:
-      email_required: "El correo electrónico es requerido"
-      password_required: "La contraseña es requerida"
-      password_confirmation_required: "La confirmación de contraseña es requerida"
-      invalid_token: "El token de restablecimiento es inválido"
-      reset_instructions_sent: "Recibirás un correo con instrucciones para restablecer tu contraseña."
-      updated_successfully: "Tu contraseña ha sido cambiada exitosamente. Por favor inicia sesión con tu nueva contraseña."
+      create:
+        email_required: "El correo electrónico es requerido"
+        reset_instructions_sent: "Recibirás un correo con instrucciones para restablecer tu contraseña."
+      update:
+        password_required: "La contraseña es requerida"
+        password_confirmation_required: "La confirmación de contraseña es requerida"
+        invalid_token: "El token de restablecimiento es inválido"
+        updated_successfully: "Tu contraseña ha sido cambiada exitosamente. Por favor inicia sesión con tu nueva contraseña."
     confirmations:
-      email_required: "El correo electrónico es requerido"
-      instructions_sent: "Recibirás un correo con instrucciones para confirmar tu cuenta."
-      confirmed: "Tu cuenta ha sido confirmada exitosamente. Ya puedes iniciar sesión."
+      create:
+        instructions_sent: "Recibirás un correo con instrucciones para confirmar tu cuenta."
+      show:
+        confirmed: "Tu cuenta ha sido confirmada exitosamente. Ya puedes iniciar sesión."
     registrations:
-      profile_updated: "Perfil actualizado correctamente"
+      update:
+        profile_updated: "Perfil actualizado correctamente"

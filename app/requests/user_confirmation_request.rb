@@ -4,6 +4,6 @@ class UserConfirmationRequest
 
   attr_accessor :email
 
-  validates :email, presence: { message: "El correo electrónico es requerido" },
-                    format: { with: Devise.email_regexp, message: "El formato del correo electrónico es inválido" }
+  validates :email, presence: true,
+                    format: { with: Devise.email_regexp }
 end

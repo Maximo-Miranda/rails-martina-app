@@ -64,7 +64,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     if successfully_updated
       bypass_sign_in(resource) if account_update_params[:password].present?
-      redirect_to edit_user_registration_path, notice: I18n.t("controllers.registrations.profile_updated")
+      redirect_to edit_user_registration_path, notice: t(".profile_updated")
     else
       render inertia: "auth/profile", props: {
         user: user_props,

@@ -4,9 +4,9 @@ class UserProfileUpdateRequest
 
   attr_accessor :full_name, :email, :current_password, :password, :password_confirmation
 
-  validates :full_name, presence: { message: "El nombre completo es requerido" }
-  validates :email, presence: { message: "El correo electrónico es requerido" },
-                    format: { with: Devise.email_regexp, message: "El formato del correo electrónico es inválido" }
+  validates :full_name, presence: true
+  validates :email, presence: true,
+                    format: { with: Devise.email_regexp }
 
   validate :password_fields_if_changing_password
 
@@ -20,19 +20,19 @@ class UserProfileUpdateRequest
     return unless changing_password?
 
     if current_password.blank?
-      errors.add(:current_password, "La contraseña actual es requerida")
+      errors.add(:current_password, :blank)
     end
 
     if password.blank?
-      errors.add(:password, "La nueva contraseña es requerida")
+      errors.add(:password, :blank)
     elsif password.length < Devise.password_length.min
-      errors.add(:password, "La contraseña debe tener al menos #{Devise.password_length.min} caracteres")
+      errors.add(:password, :too_short, count: Devise.password_length.min)
     end
 
     if password_confirmation.blank?
-      errors.add(:password_confirmation, "La confirmación es requerida")
+      errors.add(:password_confirmation, :blank)
     elsif password.present? && password != password_confirmation
-      errors.add(:password_confirmation, "Las contraseñas no coinciden")
+      errors.add(:password_confirmation, :confirmation)
     end
   end
 end

@@ -19,7 +19,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     yield resource if block_given?
 
     if successfully_sent?(resource)
-      redirect_to new_user_session_path, notice: I18n.t("controllers.confirmations.instructions_sent")
+      redirect_to new_user_session_path, notice: t(".instructions_sent")
     else
       render inertia: "auth/resend-confirmation", props: {
         errors: resource.errors.messages
@@ -33,7 +33,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     yield resource if block_given?
 
     if resource.errors.empty?
-      redirect_to new_user_session_path, notice: I18n.t("controllers.confirmations.confirmed")
+      redirect_to new_user_session_path, notice: t(".confirmed")
     else
       render inertia: "auth/confirmation", props: {
         confirmation_token: params[:confirmation_token],

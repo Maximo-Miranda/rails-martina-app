@@ -9,7 +9,7 @@ class Users::PasswordsController < Devise::PasswordsController
     # Validar que el email esté presente
     if resource_params[:email].blank?
       render inertia: "auth/forgot-password", props: {
-        errors: { email: [ I18n.t("controllers.passwords.email_required") ] }
+        errors: { email: [ t(".email_required") ] }
       }
       return
     end
@@ -18,7 +18,7 @@ class Users::PasswordsController < Devise::PasswordsController
     yield resource if block_given?
 
     if successfully_sent?(resource)
-      redirect_to new_user_session_path, notice: I18n.t("controllers.passwords.reset_instructions_sent")
+      redirect_to new_user_session_path, notice: t(".reset_instructions_sent")
     else
       render inertia: "auth/forgot-password", props: {
         errors: resource.errors.messages
@@ -37,9 +37,9 @@ class Users::PasswordsController < Devise::PasswordsController
   def update
     # Validaciones manuales para campos requeridos
     errors = {}
-    errors[:password] = [ I18n.t("controllers.passwords.password_required") ] if resource_params[:password].blank?
-    errors[:password_confirmation] = [ I18n.t("controllers.passwords.password_confirmation_required") ] if resource_params[:password_confirmation].blank?
-    errors[:reset_password_token] = [ I18n.t("controllers.passwords.invalid_token") ] if resource_params[:reset_password_token].blank?
+    errors[:password] = [ t(".password_required") ] if resource_params[:password].blank?
+    errors[:password_confirmation] = [ t(".password_confirmation_required") ] if resource_params[:password_confirmation].blank?
+    errors[:reset_password_token] = [ t(".invalid_token") ] if resource_params[:reset_password_token].blank?
 
     if errors.any?
       render inertia: "auth/reset-password", props: {
@@ -54,7 +54,7 @@ class Users::PasswordsController < Devise::PasswordsController
 
     if resource.errors.empty?
       resource.unlock_access! if unlockable?(resource)
-      redirect_to new_session_path(resource_name), notice: I18n.t("controllers.passwords.updated_successfully")
+      redirect_to new_session_path(resource_name), notice: t(".updated_successfully")
     else
       set_minimum_password_length
       render inertia: "auth/reset-password", props: {

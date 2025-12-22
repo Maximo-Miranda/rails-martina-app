@@ -37,17 +37,85 @@ en:
   activerecord:
     models:
       user: "user"
-  controllers:
+    errors:
+      models:
+        user:
+          attributes:
+            full_name:
+              blank: "Full name is required"
+            email:
+              blank: "Email is required"
+              invalid: "Email format is invalid"
+              taken: "This email is already in use"
+            password:
+              blank: "Password is required"
+              too_short: "Password must have at least %{count} characters"
+            password_confirmation:
+              confirmation: "Passwords do not match"
+  activemodel:
+    errors:
+      models:
+        user_login_request:
+          attributes:
+            email:
+              blank: "Email is required"
+              invalid: "Email format is invalid"
+            password:
+              blank: "Password is required"
+              too_short: "Password must have at least %{count} characters"
+        user_registration_request:
+          attributes:
+            full_name:
+              blank: "Full name is required"
+            email:
+              blank: "Email is required"
+              invalid: "Email format is invalid"
+            password:
+              blank: "Password is required"
+              too_short: "Password must have at least %{count} characters"
+            password_confirmation:
+              blank: "Password confirmation is required"
+              confirmation: "Passwords do not match"
+        user_profile_update_request:
+          attributes:
+            full_name:
+              blank: "Full name is required"
+            email:
+              blank: "Email is required"
+              invalid: "Email format is invalid"
+            current_password:
+              blank: "Current password is required"
+            password:
+              blank: "New password is required"
+              too_short: "Password must have at least %{count} characters"
+            password_confirmation:
+              blank: "Confirmation is required"
+              confirmation: "Passwords do not match"
+        user_confirmation_request:
+          attributes:
+            email:
+              blank: "Email is required"
+              invalid: "Email format is invalid"
+
+  # Controller messages (lazy lookup: users.<controller>.<action>.<key>)
+  users:
     sessions:
-      invalid_credentials: "Invalid email or password"
+      create:
+        invalid_credentials: "Invalid email or password"
     passwords:
-      email_required: "Email is required"
-      password_required: "Password is required"
-      password_confirmation_required: "Password confirmation is required"
-      invalid_token: "Invalid reset token"
-      reset_instructions_sent: "You will receive an email with instructions to reset your password."
-      updated_successfully: "Your password has been changed successfully. Please sign in with your new password."
+      create:
+        email_required: "Email is required"
+        reset_instructions_sent: "You will receive an email with instructions to reset your password."
+      update:
+        password_required: "Password is required"
+        password_confirmation_required: "Password confirmation is required"
+        invalid_token: "Invalid reset token"
+        updated_successfully: "Your password has been changed successfully. Please sign in with your new password."
     confirmations:
-      email_required: "Email is required"
-      instructions_sent: "You will receive an email with instructions to confirm your account."
-      confirmed: "Your account has been confirmed successfully. You can now sign in."
+      create:
+        instructions_sent: "You will receive an email with instructions to confirm your account."
+      show:
+        confirmed: "Your account has been confirmed successfully. You can now sign in."
+    registrations:
+      update:
+        profile_updated: "Profile updated successfully"
