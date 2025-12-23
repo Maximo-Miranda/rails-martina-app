@@ -66,6 +66,21 @@ es:
             email:
               blank: "El correo electrónico es requerido"
               invalid: "El formato del correo electrónico es inválido"
+        user_password_reset_request:
+          attributes:
+            email:
+              blank: "El correo electrónico es requerido"
+              invalid: "El formato del correo electrónico es inválido"
+        user_password_update_request:
+          attributes:
+            reset_password_token:
+              blank: "El token de restablecimiento es inválido"
+            password:
+              blank: "La contraseña es requerida"
+              too_short: "La contraseña debe tener al menos %{count} caracteres"
+            password_confirmation:
+              blank: "La confirmación de contraseña es requerida"
+              confirmation: "Las contraseñas no coinciden"
 
   # Mensajes de controladores (lazy lookup: users.<controller>.<action>.<key>)
   users:

@@ -1,15 +1,14 @@
 class Users::PasswordsController < Devise::PasswordsController
-  # GET /users/password/new
   def new
     render inertia: "auth/forgot-password"
   end
 
-  # POST /users/password
   def create
-    # Validar que el email esté presente
-    if resource_params[:email].blank?
+    request = UserPasswordResetRequest.new(resource_params.slice(:email).to_h)
+
+    unless request.valid?
       render inertia: "auth/forgot-password", props: {
-        errors: { email: [ t(".email_required") ] }
+        errors: request.errors.messages
       }
       return
     end
@@ -33,18 +32,13 @@ class Users::PasswordsController < Devise::PasswordsController
     }
   end
 
-  # PUT /users/password
   def update
-    # Validaciones manuales para campos requeridos
-    errors = {}
-    errors[:password] = [ t(".password_required") ] if resource_params[:password].blank?
-    errors[:password_confirmation] = [ t(".password_confirmation_required") ] if resource_params[:password_confirmation].blank?
-    errors[:reset_password_token] = [ t(".invalid_token") ] if resource_params[:reset_password_token].blank?
+    request = UserPasswordUpdateRequest.new(resource_params.slice(:password, :password_confirmation, :reset_password_token).to_h)
 
-    if errors.any?
+    unless request.valid?
       render inertia: "auth/reset-password", props: {
         reset_password_token: resource_params[:reset_password_token] || params.dig(:user, :reset_password_token) || "",
-        errors: errors
+        errors: request.errors.messages
       }
       return
     end

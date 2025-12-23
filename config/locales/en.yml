@@ -96,6 +96,21 @@ en:
             email:
               blank: "Email is required"
               invalid: "Email format is invalid"
+        user_password_reset_request:
+          attributes:
+            email:
+              blank: "Email is required"
+              invalid: "Email format is invalid"
+        user_password_update_request:
+          attributes:
+            reset_password_token:
+              blank: "Invalid reset token"
+            password:
+              blank: "Password is required"
+              too_short: "Password must have at least %{count} characters"
+            password_confirmation:
+              blank: "Password confirmation is required"
+              confirmation: "Passwords do not match"
 
   # Controller messages (lazy lookup: users.<controller>.<action>.<key>)
   users:

@@ -20,7 +20,6 @@ const showPassword = ref(false)
 const showPasswordConfirmation = ref(false)
 const formRef = ref<HTMLFormElement | null>(null)
 
-// Reglas de validación
 const passwordRules = [
   rules.required(t('validation.required')),
   rules.password(t('validation.min_length', { count: 6 })),
