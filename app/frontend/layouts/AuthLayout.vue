@@ -15,12 +15,13 @@ const flash = computed(() => page.props.flash as Flash)
   <v-app>
     <!-- Header Material Design 3 para auth -->
     <v-app-bar
+      data-testid="auth-app-bar"
       elevation="2"
       color="primary"
       density="comfortable"
     >
       <v-container class="d-flex justify-center align-center py-0">
-        <a href="/" class="text-decoration-none">
+        <a data-testid="auth-logo" href="/" class="text-decoration-none">
           <div class="d-flex align-center">
             <v-avatar color="white" size="32" class="mr-2">
               <v-icon color="primary" size="20">mdi-cube-outline</v-icon>
@@ -39,6 +40,7 @@ const flash = computed(() => page.props.flash as Flash)
             <!-- Flash Messages - fuera del card para mejor visibilidad -->
             <v-slide-y-transition>
               <v-alert
+                data-testid="flash-notice"
                 v-if="flash?.notice"
                 type="success"
                 variant="tonal"
@@ -53,6 +55,7 @@ const flash = computed(() => page.props.flash as Flash)
 
             <v-slide-y-transition>
               <v-alert
+                data-testid="flash-alert"
                 v-if="flash?.alert"
                 type="error"
                 variant="tonal"

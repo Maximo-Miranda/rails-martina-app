@@ -8,6 +8,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     request = UserConfirmationRequest.new(resource_params.to_h)
 
     unless request.valid?
+      flash.now[:alert] = t(".error")
       render inertia: "auth/resend-confirmation", props: {
         errors: request.errors.messages
       }
@@ -20,6 +21,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     if successfully_sent?(resource)
       redirect_to new_user_session_path, notice: t(".instructions_sent")
     else
+      flash.now[:alert] = t(".error")
       render inertia: "auth/resend-confirmation", props: {
         errors: resource.errors.messages
       }
@@ -34,6 +36,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     if resource.errors.empty?
       redirect_to new_user_session_path, notice: t(".confirmed")
     else
+      flash.now[:alert] = t(".error")
       render inertia: "auth/confirmation", props: {
         confirmation_token: params[:confirmation_token],
         errors: resource.errors.messages

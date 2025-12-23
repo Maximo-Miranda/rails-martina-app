@@ -10,6 +10,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     request = UserRegistrationRequest.new(sign_up_params.to_h)
 
     unless request.valid?
+      flash.now[:alert] = t(".error")
       render inertia: "auth/register", props: { errors: request.errors.messages }
       return
     end
@@ -33,6 +34,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       clean_up_passwords resource
       set_minimum_password_length
 
+      flash.now[:alert] = t(".error")
       render inertia: "auth/register", props: {
         errors: resource.errors.messages
       }
@@ -49,6 +51,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     request = UserProfileUpdateRequest.new(account_update_params.to_h)
 
     unless request.valid?
+      flash.now[:alert] = t(".error")
       render inertia: "auth/profile", props: {
         user: user_props,
         errors: request.errors.messages
@@ -67,6 +70,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       bypass_sign_in(resource) if account_update_params[:password].present?
       redirect_to edit_user_registration_path, notice: t(".profile_updated")
     else
+      flash.now[:alert] = t(".error")
       render inertia: "auth/profile", props: {
         user: user_props,
         errors: resource.errors.messages

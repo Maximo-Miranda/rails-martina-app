@@ -121,16 +121,23 @@ en:
       create:
         email_required: "Email is required"
         reset_instructions_sent: "You will receive an email with instructions to reset your password."
+        error: "Could not send reset instructions"
       update:
         password_required: "Password is required"
         password_confirmation_required: "Password confirmation is required"
         invalid_token: "Invalid reset token"
         updated_successfully: "Your password has been changed successfully. Please sign in with your new password."
+        error: "Could not update password"
     confirmations:
       create:
         instructions_sent: "You will receive an email with instructions to confirm your account."
+        error: "Could not send confirmation instructions"
       show:
         confirmed: "Your account has been confirmed successfully. You can now sign in."
+        error: "Confirmation token is invalid or has expired"
     registrations:
+      create:
+        error: "Could not create account. Please check the errors."
       update:
         profile_updated: "Profile updated successfully"
+        error: "Could not update profile. Please check the errors."

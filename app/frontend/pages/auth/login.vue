@@ -39,15 +39,16 @@ const submit = async () => {
 </script>
 
 <template>
-  <v-card class="pa-6 pa-sm-8 rounded-xl" elevation="2">
+  <v-card data-testid="login-card" class="pa-6 pa-sm-8 rounded-xl" elevation="2">
     <div class="text-center mb-6">
       <v-icon color="primary" size="48" class="mb-4">mdi-account-circle-outline</v-icon>
-      <h1 class="text-h5 font-weight-bold mb-2">{{ t('auth.login.title') }}</h1>
+      <h1 data-testid="login-title" class="text-h5 font-weight-bold mb-2">{{ t('auth.login.title') }}</h1>
       <p class="text-body-2 text-medium-emphasis">{{ t('auth.login.subtitle') }}</p>
     </div>
 
     <v-form ref="formRef" @submit.prevent="submit" validate-on="blur lazy">
       <v-text-field
+        data-testid="input-email"
         v-model="form.user.email"
         :label="t('auth.login.email')"
         type="email"
@@ -62,6 +63,7 @@ const submit = async () => {
       />
 
       <v-text-field
+        data-testid="input-password"
         v-model="form.user.password"
         :label="t('auth.login.password')"
         :type="showPassword ? 'text' : 'password'"
@@ -79,6 +81,7 @@ const submit = async () => {
 
       <div class="d-flex flex-column flex-sm-row justify-space-between align-sm-center mb-4 ga-2">
         <v-checkbox
+          data-testid="checkbox-remember"
           v-model="form.user.remember_me"
           :label="t('auth.login.remember_me')"
           color="primary"
@@ -87,7 +90,7 @@ const submit = async () => {
           class="grow-0"
         />
 
-        <Link href="/users/password/new" class="text-decoration-none">
+        <Link data-testid="link-forgot-password" href="/users/password/new" class="text-decoration-none">
           <span class="text-primary text-body-2 font-weight-medium">
             {{ t('auth.login.forgot_password') }}
           </span>
@@ -95,6 +98,7 @@ const submit = async () => {
       </div>
 
       <v-btn
+        data-testid="btn-submit"
         type="submit"
         color="primary"
         :loading="form.processing"
@@ -114,7 +118,7 @@ const submit = async () => {
 
       <div class="text-center">
         <span class="text-body-2 text-medium-emphasis">{{ t('auth.login.no_account') }}</span>
-        <Link href="/users/sign_up" class="text-decoration-none ml-1">
+        <Link data-testid="link-register" href="/users/sign_up" class="text-decoration-none ml-1">
           <span class="text-primary font-weight-medium">{{ t('auth.login.create_account') }}</span>
         </Link>
       </div>

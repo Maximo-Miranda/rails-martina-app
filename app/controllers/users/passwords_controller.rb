@@ -9,6 +9,7 @@ class Users::PasswordsController < Devise::PasswordsController
     request = UserPasswordResetRequest.new(resource_params.slice(:email).to_h)
 
     unless request.valid?
+      flash.now[:alert] = t(".error")
       render inertia: "auth/forgot-password", props: {
         errors: request.errors.messages
       }
@@ -21,6 +22,7 @@ class Users::PasswordsController < Devise::PasswordsController
     if successfully_sent?(resource)
       redirect_to new_user_session_path, notice: t(".reset_instructions_sent")
     else
+      flash.now[:alert] = t(".error")
       render inertia: "auth/forgot-password", props: {
         errors: resource.errors.messages
       }
@@ -38,6 +40,7 @@ class Users::PasswordsController < Devise::PasswordsController
     request = UserPasswordUpdateRequest.new(resource_params.slice(:password, :password_confirmation, :reset_password_token).to_h)
 
     unless request.valid?
+      flash.now[:alert] = t(".error")
       render inertia: "auth/reset-password", props: {
         reset_password_token: resource_params[:reset_password_token] || params.dig(:user, :reset_password_token) || "",
         errors: request.errors.messages
@@ -53,6 +56,7 @@ class Users::PasswordsController < Devise::PasswordsController
       redirect_to new_session_path(resource_name), notice: t(".updated_successfully")
     else
       set_minimum_password_length
+      flash.now[:alert] = t(".error")
       render inertia: "auth/reset-password", props: {
         reset_password_token: resource_params[:reset_password_token] || "",
         errors: resource.errors.messages

@@ -10,6 +10,7 @@ class Users::SessionsController < Devise::SessionsController
     request = UserLoginRequest.new(user_params.permit(:email, :password))
 
     unless request.valid?
+      flash.now[:alert] = t(".invalid_credentials")
       render inertia: "auth/login", props: { errors: request.errors.messages }
       return
     end
@@ -21,6 +22,7 @@ class Users::SessionsController < Devise::SessionsController
       sign_in(resource_name, resource)
       redirect_to dashboard_path
     else
+      flash.now[:alert] = t(".invalid_credentials")
       render inertia: "auth/login", props: {
         errors: { email: [ t(".invalid_credentials") ] }
       }

@@ -25,5 +25,5 @@ Rails.application.routes.draw do
     confirmations: "users/confirmations"
   }
 
-  get "dashboard", to: "home#index"
+  get "dashboard", to: "home#index", as: :dashboard
 end
