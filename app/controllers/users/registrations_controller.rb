@@ -1,4 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+  rate_limit to: 5, within: 1.minute, only: :create
   before_action :configure_account_update_params, only: [ :update ]
 
   def new

@@ -1,4 +1,5 @@
 class Users::ConfirmationsController < Devise::ConfirmationsController
+  rate_limit to: 5, within: 3.minutes, only: :create
   def new
     render inertia: "auth/resend-confirmation"
   end

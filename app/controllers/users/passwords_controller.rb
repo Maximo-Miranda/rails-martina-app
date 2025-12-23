@@ -1,4 +1,6 @@
 class Users::PasswordsController < Devise::PasswordsController
+  rate_limit to: 5, within: 3.minutes, only: :create, name: "password-reset-request"
+  rate_limit to: 5, within: 1.minute, only: :update, name: "password-update"
   def new
     render inertia: "auth/forgot-password"
   end
