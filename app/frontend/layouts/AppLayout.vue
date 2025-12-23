@@ -58,6 +58,7 @@ const navigateTo = (href: string) => {
           <template v-slot:activator="{ props }">
             <v-btn
               v-bind="props"
+              data-testid="user-menu-button"
               variant="text"
               class="text-none text-white px-1"
               rounded="pill"
@@ -72,7 +73,7 @@ const navigateTo = (href: string) => {
             </v-btn>
           </template>
 
-          <v-card min-width="280" class="rounded-xl mt-1" elevation="8">
+          <v-card data-testid="user-menu" min-width="280" class="rounded-xl mt-1" elevation="8">
             <v-card-text class="pa-4">
               <div class="d-flex align-center mb-3">
                 <v-avatar color="primary" size="52" class="mr-3">
@@ -99,6 +100,7 @@ const navigateTo = (href: string) => {
               <v-divider class="my-3" />
 
               <v-btn
+                data-testid="btn-logout"
                 block
                 variant="tonal"
                 color="error"

@@ -59,6 +59,7 @@ group :test do
   gem "capybara"
   gem "capybara-playwright-driver"
   gem "minitest", "~> 5.27"
+  gem "database_cleaner-active_record"
 end
 
 gem "inertia_rails", "~> 3.15"

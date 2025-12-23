@@ -2,6 +2,9 @@ require "test_helper"
 require "capybara"
 require "capybara/minitest"
 require "capybara-playwright-driver"
+require "database_cleaner/active_record"
+
+Dir[Rails.root.join("test/support/**/*.rb")].each { |f| require f }
 
 def ensure_vite_built!
   cache_file = Rails.root.join("tmp/cache/vite/last-build-test.json")
@@ -36,13 +39,25 @@ Capybara.default_max_wait_time = 10
 Capybara.app = Rails.application
 
 class ApplicationSystemTestCase < ActiveSupport::TestCase
+  include SystemTestHelper
   include Capybara::DSL
   include Capybara::Minitest::Assertions
   include Rails.application.routes.url_helpers
 
+  self.use_transactional_tests = false
+
   fixtures :all
 
-  def teardown
+  def before_setup
+    super
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.start
+    setup_fixtures
+  end
+
+  def after_teardown
     Capybara.reset_sessions!
+    DatabaseCleaner.clean
+    super
   end
 end
