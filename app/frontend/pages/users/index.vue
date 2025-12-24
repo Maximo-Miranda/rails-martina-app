@@ -111,6 +111,7 @@ const confirmDeleteUser = () => {
           v-if="can_invite"
           color="primary"
           prepend-icon="mdi-account-plus"
+          size="small"
           @click="navigateTo('/users/new_invitation')"
         >
           {{ t('users.invite') }}

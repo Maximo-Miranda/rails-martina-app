@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useTranslations } from '@/composables/useTranslations'
 import { useNavigation } from '@/composables/useNavigation'
-import PageHeader from '@/components/PageHeader.vue'
 import type { Project } from '@/types'
 
 const props = defineProps<{
@@ -13,20 +12,36 @@ const { navigateTo } = useNavigation()
 </script>
 
 <template>
-  <v-container class="py-6" style="max-width: 900px;">
-    <PageHeader :title="project.name" :subtitle="`/${project.slug}`">
-      <template #actions>
-        <v-btn variant="text" prepend-icon="mdi-arrow-left" @click="navigateTo('/projects')">
-          {{ t('common.back') }}
-        </v-btn>
-        <v-btn color="primary" prepend-icon="mdi-pencil" @click="navigateTo(`/projects/${project.slug}/edit`)">
-          {{ t('common.edit') }}
-        </v-btn>
-      </template>
-    </PageHeader>
+  <v-container class="py-6" style="max-width: 600px;">
+    <!-- Back button -->
+    <v-btn
+      variant="text"
+      prepend-icon="mdi-arrow-left"
+      class="mb-4 px-0"
+      @click="navigateTo('/projects')"
+    >
+      {{ t('common.back') }}
+    </v-btn>
 
     <v-card class="rounded-xl" elevation="0" border>
+      <!-- Header with title and edit button -->
+      <div class="d-flex align-start justify-space-between pa-6 pb-0">
+        <div>
+          <div class="text-h5 font-weight-bold">{{ project.name }}</div>
+          <div class="text-body-2 text-medium-emphasis">/{{ project.slug }}</div>
+        </div>
+        <v-btn
+          icon="mdi-pencil"
+          variant="text"
+          color="primary"
+          size="small"
+          class="mt-n1"
+          @click="navigateTo(`/projects/${project.slug}/edit`)"
+        />
+      </div>
+
       <v-card-text class="pa-6">
+        <!-- Description -->
         <div class="mb-6">
           <div class="text-overline text-medium-emphasis mb-2">{{ t('projects.description') }}</div>
           <div class="text-body-1">
@@ -34,20 +49,15 @@ const { navigateTo } = useNavigation()
           </div>
         </div>
 
-        <v-divider class="my-6" />
+        <v-divider class="my-4" />
 
-        <v-row>
-          <v-col cols="12" sm="6">
-            <div class="text-overline text-medium-emphasis mb-2">{{ t('projects.slug') }}</div>
-            <div class="text-body-1">/{{ project.slug }}</div>
-          </v-col>
-          <v-col cols="12" sm="6">
-            <div class="text-overline text-medium-emphasis mb-2">{{ t('common.created_at') }}</div>
-            <div class="text-body-1">
-              {{ project.created_at ? new Date(project.created_at).toLocaleDateString() : '-' }}
-            </div>
-          </v-col>
-        </v-row>
+        <!-- Created at -->
+        <div>
+          <div class="text-overline text-medium-emphasis mb-2">{{ t('common.created_at') }}</div>
+          <div class="text-body-1">
+            {{ project.created_at ? new Date(project.created_at).toLocaleDateString() : '-' }}
+          </div>
+        </div>
       </v-card-text>
     </v-card>
   </v-container>

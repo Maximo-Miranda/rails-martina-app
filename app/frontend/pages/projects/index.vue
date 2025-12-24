@@ -111,7 +111,7 @@ const confirmDeleteProject = () => {
   <v-container class="py-6">
     <PageHeader :title="t('projects.title')" :subtitle="t('projects.subtitle')">
       <template #actions>
-        <v-btn color="primary" prepend-icon="mdi-plus" @click="navigateTo('/projects/new')">
+        <v-btn color="primary" prepend-icon="mdi-plus" size="small" @click="navigateTo('/projects/new')">
           {{ t('projects.new') }}
         </v-btn>
       </template>
