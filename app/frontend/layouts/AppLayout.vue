@@ -1,22 +1,54 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { router, Link } from '@inertiajs/vue3'
+import { ref, computed, watch } from 'vue'
+import { router, Link, usePage } from '@inertiajs/vue3'
 import { useTranslations } from '@/composables/useTranslations'
 import { useUser } from '@/composables/useUser'
+import ProjectSwitcher from '@/components/ProjectSwitcher.vue'
+
+interface Flash {
+  notice?: string
+  alert?: string
+}
 
 const { t } = useTranslations()
 const { currentUser, isAuthenticated, userInitials, logout } = useUser()
+const page = usePage()
 
 const drawer = ref(false)
 const userMenu = ref(false)
+const snackbar = ref(false)
+const snackbarMessage = ref('')
+const snackbarColor = ref('success')
 
-const navigationItems = computed(() => [
-  { title: t('navigation.dashboard'), icon: 'mdi-view-dashboard', href: '/dashboard' },
-  //{ title: t('navigation.projects'), icon: 'mdi-folder-outline', href: '#' },
-  //{ title: t('navigation.tasks'), icon: 'mdi-checkbox-marked-outline', href: '#' },
-  //{ title: t('navigation.reports'), icon: 'mdi-chart-bar', href: '#' },
-  //{ title: t('navigation.settings'), icon: 'mdi-cog-outline', href: '#' },
-])
+const permissions = computed(() => page.props.permissions as { can_manage_users: boolean } | null)
+const flash = computed(() => page.props.flash as Flash)
+
+// Mostrar snackbar cuando hay mensajes flash
+watch(flash, (newFlash) => {
+  if (newFlash?.notice) {
+    snackbarMessage.value = newFlash.notice
+    snackbarColor.value = 'success'
+    snackbar.value = true
+  } else if (newFlash?.alert) {
+    snackbarMessage.value = newFlash.alert
+    snackbarColor.value = 'error'
+    snackbar.value = true
+  }
+}, { immediate: true })
+
+const navigationItems = computed(() => {
+  const items = [
+    { title: t('navigation.dashboard'), icon: 'mdi-view-dashboard', href: '/dashboard' },
+    { title: t('navigation.projects'), icon: 'mdi-folder-outline', href: '/projects' },
+  ]
+
+  // Solo mostrar Users si tiene permiso
+  if (permissions.value?.can_manage_users) {
+    items.push({ title: t('navigation.users'), icon: 'mdi-account-group-outline', href: '/users' })
+  }
+
+  return items
+})
 
 const navigateTo = (href: string) => {
   userMenu.value = false
@@ -49,6 +81,11 @@ const navigateTo = (href: string) => {
           <span class="text-h6 font-weight-bold text-white">Martina</span>
         </div>
       </Link>
+
+      <!-- Project Switcher -->
+      <div class="ml-4" v-if="isAuthenticated">
+        <ProjectSwitcher />
+      </div>
 
       <v-spacer />
 
@@ -187,5 +224,30 @@ const navigateTo = (href: string) => {
     <v-main class="bg-grey-lighten-4">
       <slot />
     </v-main>
+
+    <!-- Snackbar para mensajes flash -->
+    <v-snackbar
+      v-model="snackbar"
+      :color="snackbarColor"
+      :timeout="4000"
+      location="top"
+      class="mt-4"
+    >
+      <div class="d-flex align-center">
+        <v-icon
+          :icon="snackbarColor === 'success' ? 'mdi-check-circle' : 'mdi-alert-circle'"
+          class="mr-2"
+        />
+        {{ snackbarMessage }}
+      </div>
+      <template v-slot:actions>
+        <v-btn
+          variant="text"
+          @click="snackbar = false"
+          icon="mdi-close"
+          size="small"
+        />
+      </template>
+    </v-snackbar>
   </v-app>
 </template>

@@ -3,6 +3,7 @@ es:
 
     common:
       save: "Guardar"
+      create: "Crear"
       cancel: "Cancelar"
       delete: "Eliminar"
       edit: "Editar"
@@ -12,6 +13,7 @@ es:
       or: "o"
       see_all: "Ver todo"
       times: "veces"
+      actions: "Acciones"
 
     validation:
       required: "Este campo es requerido"
@@ -23,6 +25,7 @@ es:
     navigation:
       dashboard: "Dashboard"
       projects: "Proyectos"
+      users: "Usuarios"
       tasks: "Tareas"
       reports: "Reportes"
       settings: "Configuración"
@@ -92,6 +95,14 @@ es:
         submit: "Enviar enlace"
         back_to_login: "Volver a iniciar sesión"
 
+      accept_invitation:
+        title: "Acepta tu invitación"
+        subtitle: "Completa tu registro para unirte al equipo"
+        full_name: "Nombre completo"
+        password: "Contraseña"
+        password_confirmation: "Confirmar contraseña"
+        submit: "Establecer contraseña"
+
       profile:
         title: "Mi Perfil"
         subtitle: "Administra tu información personal"
@@ -134,3 +145,49 @@ es:
       time:
         hours_ago: "Hace %{count} horas"
         yesterday: "Ayer"
+
+    projects:
+      title: "Proyectos"
+      subtitle: "Administra tus proyectos y espacios de trabajo"
+      new: "Nuevo proyecto"
+      new_description: "Crea un nuevo espacio de trabajo para tu equipo"
+      edit: "Editar proyecto"
+      edit_description: "Modifica la información del proyecto"
+      name: "Nombre del proyecto"
+      description: "Descripción"
+      no_description: "Sin descripción"
+      switch: "Cambiar"
+      select: "Seleccionar proyecto"
+      search: "Buscar proyecto..."
+      no_results: "No se encontraron proyectos"
+      confirm_delete: "¿Estás seguro de eliminar este proyecto?"
+      empty_title: "No tienes proyectos"
+      empty_description: "Crea tu primer proyecto para comenzar a trabajar"
+      create_first: "Crear proyecto"
+
+    users:
+      title: "Usuarios"
+      subtitle: "Gestiona los miembros del proyecto"
+      invite: "Invitar usuario"
+      invite_title: "Invitar usuario"
+      invite_description: "Invita a un nuevo usuario a la plataforma o al proyecto actual"
+      name: "Nombre"
+      email: "Correo electrónico"
+      role: "Rol"
+      joined: "Fecha de registro"
+      roles_in_project: "Roles en el proyecto"
+      no_roles: "Sin roles asignados"
+      empty: "No hay usuarios en este proyecto"
+      confirm_delete: "¿Estás seguro de eliminar este usuario?"
+      invite_to_project: "Invitar al proyecto %{project}"
+      invite_platform_only: "El usuario será invitado solo a la plataforma, sin acceso a ningún proyecto específico."
+      send_invitation: "Enviar invitación"
+
+    roles:
+      owner: "Propietario"
+      coworker: "Colaborador"
+      client: "Cliente"
+      super_admin: "Super Admin"
+      admin: "Administrador"
+      blog_admin: "Admin Blog"
+      blog_writer: "Escritor Blog"

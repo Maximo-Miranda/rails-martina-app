@@ -22,8 +22,27 @@ Rails.application.routes.draw do
     registrations: "users/registrations",
     sessions: "users/sessions",
     passwords: "users/passwords",
-    confirmations: "users/confirmations"
+    confirmations: "users/confirmations",
+    invitations: "users/invitations"
   }
 
   get "dashboard", to: "home#index", as: :dashboard
+
+  # Projects (tenant)
+  resources :projects do
+    collection do
+      get :search
+    end
+    member do
+      post :switch
+    end
+  end
+
+  # Users management
+  resources :users, except: %i[new create] do
+    collection do
+      get :new_invitation
+      post :invite
+    end
+  end
 end

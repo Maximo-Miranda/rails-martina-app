@@ -62,13 +62,41 @@ group :test do
   gem "database_cleaner-active_record"
 end
 
+# Inertia.js integration for Rails
 gem "inertia_rails", "~> 3.15"
 
+# Vite integration for Rails
 gem "vite_rails", "~> 3.0"
 
+# Authentication
 gem "devise", "~> 4.9"
 
+# Soft deletion
 gem "discard", "~> 1.4"
 
 # Internationalization
 gem "devise-i18n"
+
+# Multi-tenancy
+gem "acts_as_tenant", "~> 1.0"
+
+# Authorization
+gem "pundit", "~> 2.5"
+
+# Roles
+gem "rolify", "~> 6.0"
+
+# Invitations
+gem "devise_invitable", "~> 2.0"
+
+# Friendly URLs
+gem "friendly_id", "~> 5.5"
+
+# Data migrations
+gem "data_migrate", "~> 11.3"
+
+# Pagination
+gem "pagy", "~> 43.2"
+
+# Search
+gem "ransack", "~> 4.4"
