@@ -2,9 +2,11 @@
 import { ref, watch } from 'vue'
 import { router, usePage } from '@inertiajs/vue3'
 import { useTranslations } from '@/composables/useTranslations'
+import { useNavigation } from '@/composables/useNavigation'
 import type { Project } from '@/types'
 
 const { t } = useTranslations()
+const { navigateTo: navigate } = useNavigation()
 const page = usePage()
 
 const menu = ref(false)
@@ -38,7 +40,7 @@ const switchProject = (slug: string) => {
 
 const navigateTo = (path: string) => {
   menu.value = false
-  router.visit(path)
+  navigate(path)
 }
 
 // Debounce search

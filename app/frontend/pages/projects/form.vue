@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { useForm, router } from '@inertiajs/vue3'
+import { useForm } from '@inertiajs/vue3'
 import { useTranslations } from '@/composables/useTranslations'
+import { useNavigation } from '@/composables/useNavigation'
 import type { Project } from '@/types'
 
 const props = defineProps<{
@@ -9,10 +10,7 @@ const props = defineProps<{
 }>()
 
 const { t } = useTranslations()
-
-const navigateTo = (path: string) => {
-  router.visit(path)
-}
+const { navigateTo } = useNavigation()
 
 const isEditing = !!props.project.id
 
