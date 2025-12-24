@@ -29,3 +29,115 @@
 
 en:
   hello: "Hello world"
+  errors:
+    messages:
+      not_saved:
+        one: "1 error prohibited this %{resource} from being saved"
+        other: "%{count} errors prohibited this %{resource} from being saved"
+  activerecord:
+    models:
+      user: "user"
+    errors:
+      models:
+        user:
+          attributes:
+            full_name:
+              blank: "Full name is required"
+            email:
+              blank: "Email is required"
+              invalid: "Email format is invalid"
+              taken: "This email is already in use"
+            password:
+              blank: "Password is required"
+              too_short: "Password must have at least %{count} characters"
+            password_confirmation:
+              confirmation: "Passwords do not match"
+  activemodel:
+    errors:
+      models:
+        user_login_request:
+          attributes:
+            email:
+              blank: "Email is required"
+              invalid: "Email format is invalid"
+            password:
+              blank: "Password is required"
+              too_short: "Password must have at least %{count} characters"
+        user_registration_request:
+          attributes:
+            full_name:
+              blank: "Full name is required"
+            email:
+              blank: "Email is required"
+              invalid: "Email format is invalid"
+            password:
+              blank: "Password is required"
+              too_short: "Password must have at least %{count} characters"
+            password_confirmation:
+              blank: "Password confirmation is required"
+              confirmation: "Passwords do not match"
+        user_profile_update_request:
+          attributes:
+            full_name:
+              blank: "Full name is required"
+            email:
+              blank: "Email is required"
+              invalid: "Email format is invalid"
+            current_password:
+              blank: "Current password is required"
+            password:
+              blank: "New password is required"
+              too_short: "Password must have at least %{count} characters"
+            password_confirmation:
+              blank: "Confirmation is required"
+              confirmation: "Passwords do not match"
+        user_confirmation_request:
+          attributes:
+            email:
+              blank: "Email is required"
+              invalid: "Email format is invalid"
+        user_password_reset_request:
+          attributes:
+            email:
+              blank: "Email is required"
+              invalid: "Email format is invalid"
+        user_password_update_request:
+          attributes:
+            reset_password_token:
+              blank: "Invalid reset token"
+            password:
+              blank: "Password is required"
+              too_short: "Password must have at least %{count} characters"
+            password_confirmation:
+              blank: "Password confirmation is required"
+              confirmation: "Passwords do not match"
+
+  # Controller messages (lazy lookup: users.<controller>.<action>.<key>)
+  users:
+    sessions:
+      create:
+        invalid_credentials: "Invalid email or password"
+    passwords:
+      create:
+        email_required: "Email is required"
+        reset_instructions_sent: "You will receive an email with instructions to reset your password."
+        error: "Could not send reset instructions"
+      update:
+        password_required: "Password is required"
+        password_confirmation_required: "Password confirmation is required"
+        invalid_token: "Invalid reset token"
+        updated_successfully: "Your password has been changed successfully. Please sign in with your new password."
+        error: "Could not update password"
+    confirmations:
+      create:
+        instructions_sent: "You will receive an email with instructions to confirm your account."
+        error: "Could not send confirmation instructions"
+      show:
+        confirmed: "Your account has been confirmed successfully. You can now sign in."
+        error: "Confirmation token is invalid or has expired"
+    registrations:
+      create:
+        error: "Could not create account. Please check the errors."
+      update:
+        profile_updated: "Profile updated successfully"
+        error: "Could not update profile. Please check the errors."

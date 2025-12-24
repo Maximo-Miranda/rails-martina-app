@@ -1,5 +1,63 @@
 require "test_helper"
+require "capybara"
+require "capybara/minitest"
+require "capybara-playwright-driver"
+require "database_cleaner/active_record"
 
-class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
-  driven_by :selenium, using: :headless_chrome, screen_size: [ 1400, 1400 ]
+Dir[Rails.root.join("test/support/**/*.rb")].each { |f| require f }
+
+def ensure_vite_built!
+  cache_file = Rails.root.join("tmp/cache/vite/last-build-test.json")
+
+  vite_built = cache_file.exist? && begin
+    cache_data = JSON.parse(cache_file.read)
+    cache_data["success"] == true
+  rescue JSON::ParserError
+    false
+  end
+
+  unless vite_built
+    success = system("bin/vite build --mode test")
+    abort("Vite build failed!") unless success
+  end
+end
+
+ensure_vite_built!
+
+BROWSER = ENV.fetch("BROWSER", "firefox").to_sym
+
+Capybara.register_driver(:playwright) do |app|
+  Capybara::Playwright::Driver.new(app,
+    browser_type: BROWSER,
+    headless: ENV.fetch("HEADLESS", "true") == "true",
+    playwright_cli_executable_path: "./node_modules/.bin/playwright"
+  )
+end
+
+Capybara.default_driver = :playwright
+Capybara.default_max_wait_time = 10
+Capybara.app = Rails.application
+
+class ApplicationSystemTestCase < ActiveSupport::TestCase
+  include SystemTestHelper
+  include Capybara::DSL
+  include Capybara::Minitest::Assertions
+  include Rails.application.routes.url_helpers
+
+  self.use_transactional_tests = false
+
+  fixtures :all
+
+  def before_setup
+    super
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.start
+    setup_fixtures
+  end
+
+  def after_teardown
+    Capybara.reset_sessions!
+    DatabaseCleaner.clean
+    super
+  end
 end

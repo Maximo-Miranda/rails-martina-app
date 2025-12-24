@@ -1,0 +1,101 @@
+es:
+  devise:
+    confirmations:
+      confirmed: "Tu correo electrónico ha sido confirmado exitosamente."
+      send_instructions: "Recibirás un correo con instrucciones sobre cómo confirmar tu cuenta en unos minutos."
+      send_paranoid_instructions: "Si tu correo existe en nuestra base de datos, recibirás instrucciones de confirmación."
+
+    failure:
+      already_authenticated: "Ya has iniciado sesión."
+      inactive: "Tu cuenta aún no ha sido activada."
+      invalid: "Correo electrónico o contraseña inválidos."
+      locked: "Tu cuenta está bloqueada."
+      last_attempt: "Tienes un intento más antes de que tu cuenta sea bloqueada."
+      not_found_in_database: "Correo electrónico o contraseña inválidos."
+      timeout: "Tu sesión ha expirado. Por favor, inicia sesión nuevamente."
+      unauthenticated: "Necesitas iniciar sesión o registrarte para continuar."
+      unconfirmed: "Debes confirmar tu cuenta antes de continuar."
+
+    mailer:
+      confirmation_instructions:
+        subject: "Instrucciones de confirmación"
+        title: "Confirma tu correo electrónico"
+        greeting: "Hola %{name}"
+        instruction: "Para completar tu registro en Martina, confirma tu dirección de correo electrónico haciendo clic en el botón de abajo."
+        action: "Confirmar correo electrónico"
+        alternative_link: "Si el botón no funciona, copia y pega este enlace en tu navegador:"
+        ignore: "Si no creaste esta cuenta, puedes ignorar este mensaje de forma segura."
+
+      reset_password_instructions:
+        subject: "Instrucciones para restablecer contraseña"
+        title: "Restablece tu contraseña"
+        greeting: "Hola %{name}"
+        instruction: "Recibimos una solicitud para restablecer la contraseña de tu cuenta en Martina. Haz clic en el botón de abajo para crear una nueva contraseña."
+        action: "Restablecer contraseña"
+        alternative_link: "Si el botón no funciona, copia y pega este enlace en tu navegador:"
+        security_notice: "Nota de seguridad:"
+        security_message: "Este enlace expirará en unas horas. Si no solicitaste este cambio, ignora este mensaje."
+        ignore: "Si no solicitaste restablecer tu contraseña, puedes ignorar este mensaje de forma segura."
+
+      unlock_instructions:
+        subject: "Instrucciones de desbloqueo"
+        title: "Desbloquea tu cuenta"
+        greeting: "Hola %{name}"
+        instruction: "Tu cuenta ha sido bloqueada debido a múltiples intentos fallidos de inicio de sesión. Haz clic en el botón de abajo para desbloquearla."
+        action: "Desbloquear mi cuenta"
+        alternative_link: "Si el botón no funciona, copia y pega este enlace en tu navegador:"
+        warning: "Si no reconoces esta actividad, te recomendamos cambiar tu contraseña inmediatamente."
+
+      email_changed:
+        subject: "Correo electrónico cambiado"
+        title: "Correo electrónico actualizado"
+        greeting: "Hola %{name}"
+        message_unconfirmed: "Hemos recibido una solicitud para cambiar el correo electrónico asociado a tu cuenta en Martina."
+        message_confirmed: "El correo electrónico asociado a tu cuenta en Martina ha sido actualizado exitosamente."
+        new_email_label: "Nuevo correo electrónico"
+        current_email_label: "Correo electrónico actual"
+        pending_confirmation: "Recibirás un correo de confirmación en tu nueva dirección para completar el cambio."
+        not_you: "¿No fuiste tú?"
+        not_you_message: "Si no solicitaste este cambio, contacta a nuestro equipo de soporte inmediatamente."
+        footer: "Este es un mensaje de seguridad automático para mantenerte informado sobre la actividad de tu cuenta."
+
+      password_change:
+        subject: "Contraseña cambiada"
+        title: "Contraseña actualizada"
+        greeting: "Hola %{name}"
+        message: "Te informamos que la contraseña de tu cuenta en Martina ha sido cambiada exitosamente."
+        changed_at_label: "Fecha del cambio"
+        not_you: "¿No fuiste tú?"
+        not_you_message: "Si no realizaste este cambio, contacta a nuestro equipo de soporte inmediatamente para proteger tu cuenta."
+        footer: "Este es un mensaje de seguridad automático para mantenerte informado sobre la actividad de tu cuenta."
+
+    omniauth_callbacks:
+      failure: 'No pudimos autenticarte desde %{kind} porque "%{reason}".'
+      success: "Has iniciado sesión exitosamente desde tu cuenta de %{kind}."
+
+    passwords:
+      no_token: "No puedes acceder a esta página sin venir de un correo de restablecimiento de contraseña. Si vienes de un correo de restablecimiento, asegúrate de usar la URL completa."
+      send_instructions: "Recibirás un correo con instrucciones sobre cómo restablecer tu contraseña en unos minutos."
+      send_paranoid_instructions: "Si tu correo existe en nuestra base de datos, recibirás un enlace de recuperación en tu correo."
+      updated: "Tu contraseña ha sido cambiada exitosamente. Ya has iniciado sesión."
+      updated_not_active: "Tu contraseña ha sido cambiada exitosamente."
+
+    registrations:
+      destroyed: "Tu cuenta ha sido cancelada exitosamente. Esperamos verte pronto."
+      signed_up: "¡Bienvenido! Te has registrado exitosamente."
+      signed_up_but_inactive: "Te has registrado exitosamente. Sin embargo, no pudimos iniciar sesión porque tu cuenta aún no está activada."
+      signed_up_but_locked: "Te has registrado exitosamente. Sin embargo, no pudimos iniciar sesión porque tu cuenta está bloqueada."
+      signed_up_but_unconfirmed: "Se ha enviado un mensaje con un enlace de confirmación a tu correo electrónico. Por favor, abre el enlace para activar tu cuenta."
+      update_needs_confirmation: "Has actualizado tu cuenta exitosamente, pero necesitamos verificar tu nuevo correo electrónico. Por favor, revisa tu correo y haz clic en el enlace de confirmación."
+      updated: "Tu cuenta ha sido actualizada exitosamente."
+      updated_but_not_signed_in: "Tu cuenta ha sido actualizada exitosamente, pero como tu contraseña cambió, necesitas iniciar sesión nuevamente."
+
+    sessions:
+      signed_in: "Has iniciado sesión exitosamente."
+      signed_out: "Has cerrado sesión exitosamente."
+      already_signed_out: "Has cerrado sesión exitosamente."
+
+    unlocks:
+      send_instructions: "Recibirás un correo con instrucciones sobre cómo desbloquear tu cuenta en unos minutos."
+      send_paranoid_instructions: "Si tu cuenta existe, recibirás un correo con instrucciones de desbloqueo."
+      unlocked: "Tu cuenta ha sido desbloqueada exitosamente. Por favor, inicia sesión para continuar."

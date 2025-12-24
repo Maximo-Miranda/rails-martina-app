@@ -1,0 +1,37 @@
+class Users::SessionsController < Devise::SessionsController
+  rate_limit to: 10, within: 3.minutes, only: :create
+  def new
+    render inertia: "auth/login", props: {}
+  end
+
+  def create
+    user_params = params.dig(:user) || {}
+
+    request = UserLoginRequest.new(user_params.permit(:email, :password))
+
+    unless request.valid?
+      flash.now[:alert] = t(".invalid_credentials")
+      render inertia: "auth/login", props: { errors: request.errors.messages }
+      return
+    end
+
+    self.resource = warden.authenticate(auth_options)
+
+    if resource
+      set_flash_message!(:notice, :signed_in)
+      sign_in(resource_name, resource)
+      redirect_to dashboard_path
+    else
+      flash.now[:alert] = t(".invalid_credentials")
+      render inertia: "auth/login", props: {
+        errors: { email: [ t(".invalid_credentials") ] }
+      }
+    end
+  end
+
+  def destroy
+    signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
+    set_flash_message!(:notice, :signed_out) if signed_out
+    redirect_to new_user_session_path
+  end
+end

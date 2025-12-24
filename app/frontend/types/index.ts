@@ -1,8 +1,5 @@
-export type Flash = {
-  notice?: string
-  alert?: string
-}
+// Models
+export * from './models'
 
-export type SharedProps = {
-  flash: Flash
-}
+// Shared
+export * from './shared'

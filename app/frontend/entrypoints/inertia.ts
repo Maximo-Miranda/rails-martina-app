@@ -1,12 +1,13 @@
 import { createInertiaApp } from '@inertiajs/vue3'
 import { createApp, DefineComponent, h } from 'vue'
 import vuetify from '../plugins/vuetify'
+import AppLayout from '../layouts/AppLayout.vue'
+import AuthLayout from '../layouts/AuthLayout.vue'
 
 createInertiaApp({
   // Set default page title
   // see https://inertia-rails.dev/guide/title-and-meta
-  //
-  // title: title => title ? `${title} - App` : 'App',
+  title: title => title ? `${title} - Martina` : 'Martina',
 
   // Disable progress bar
   //
@@ -22,11 +23,16 @@ createInertiaApp({
       console.error(`Missing Inertia page component: '${name}.vue'`)
     }
 
-    // To use a default layout, import the Layout component
-    // and use the following lines.
-    // see https://inertia-rails.dev/guide/pages#default-layouts
-    //
-    // page.default.layout = page.default.layout || Layout
+    // Assign layout based on page path
+    // Auth pages (login, register) use AuthLayout
+    // All other pages use AppLayout
+    if (page?.default) {
+      if (name.startsWith('auth/')) {
+        page.default.layout = page.default.layout || AuthLayout
+      } else {
+        page.default.layout = page.default.layout || AppLayout
+      }
+    }
 
     return page
   },

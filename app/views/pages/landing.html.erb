@@ -1,0 +1,340 @@
+<!-- filepath: /home/mhmh/code/wudok/rails-martina-app/app/views/pages/landing.html.erb -->
+<% content_for :title, "Software Jurídico con IA para Abogados en Colombia" %>
+<% content_for :description, "Martina Lawyer: Asistente legal con inteligencia artificial. Gestiona expedientes judiciales, consulta jurisprudencia colombiana, analiza documentos legales y optimiza tu práctica jurídica." %>
+
+<% content_for :structured_data do %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Martina Lawyer - Software Jurídico con IA",
+  "description": "Asistente legal con inteligencia artificial para abogados en Colombia. Gestión de expedientes, consulta de jurisprudencia y análisis de documentos.",
+  "url": "https://martinalawyer.co",
+  "mainEntity": {
+    "@type": "SoftwareApplication",
+    "name": "Martina Lawyer",
+    "applicationCategory": "LegalSoftware",
+    "operatingSystem": "Web Browser"
+  }
+}
+</script>
+<% end %>
+
+<!-- Hero Section -->
+<section class="relative overflow-hidden bg-gradient-to-br from-primary-50 via-surface to-surface">
+  <!-- Background Pattern -->
+  <div class="absolute inset-0 opacity-30">
+    <div class="absolute top-20 left-10 w-72 h-72 bg-primary-200 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-20 right-10 w-96 h-96 bg-primary-100 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 md:pt-24 md:pb-32">
+    <div class="text-center max-w-3xl mx-auto animate-fade-in-up">
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-100 text-primary-700 text-sm font-medium mb-8 border border-primary-200">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-500 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-primary-600"></span>
+        </span>
+        Acceso anticipado gratuito disponible
+      </div>
+
+      <!-- Heading con H1 optimizado para SEO -->
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-on-surface mb-6 tracking-tight leading-tight">
+        Tu asistente legal con
+        <span class="text-primary-700">inteligencia artificial</span>
+      </h1>
+
+      <!-- Subheading con keywords -->
+      <p class="text-lg sm:text-xl text-on-surface-variant mb-10 leading-relaxed max-w-2xl mx-auto">
+        Martina combina <strong>inteligencia artificial</strong> con <strong>gestión jurídica</strong> para optimizar tu práctica legal en Colombia.
+        Consulta <strong>jurisprudencia</strong>, gestiona <strong>expedientes</strong> y analiza <strong>documentos legales</strong> en un solo lugar.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+        <a href="#solicitar-invitacion" class="btn-filled w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 text-base">
+          Solicitar invitación
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+          </svg>
+        </a>
+
+        <a href="#how-it-works" class="btn-outlined w-full sm:w-auto px-8 py-4 text-base">
+          Ver cómo funciona
+        </a>
+      </div>
+
+      <!-- Trust Indicators -->
+      <div class="flex flex-wrap items-center justify-center gap-6 text-sm text-on-surface-variant">
+        <div class="flex items-center gap-2">
+          <div class="w-5 h-5 rounded-full bg-success/20 flex items-center justify-center">
+            <svg class="w-3 h-3 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+            </svg>
+          </div>
+          <span>Gratis en versión Preview</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="w-5 h-5 rounded-full bg-success/20 flex items-center justify-center">
+            <svg class="w-3 h-3 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+            </svg>
+          </div>
+          <span>Precio preferencial a futuro</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="w-5 h-5 rounded-full bg-success/20 flex items-center justify-center">
+            <svg class="w-3 h-3 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+            </svg>
+          </div>
+          <span>Diseñado para Colombia</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="py-24 bg-surface-variant" aria-labelledby="features-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <span class="text-primary-700 font-medium text-sm uppercase tracking-wider">Características</span>
+      <h2 id="features-heading" class="text-3xl sm:text-4xl font-bold text-on-surface mt-2 mb-4">
+        Todo lo que necesitas para tu práctica legal
+      </h2>
+      <p class="text-lg text-on-surface-variant max-w-2xl mx-auto">
+        Herramientas de <strong>software jurídico</strong> diseñadas por ingenieros y abogados, para profesionales del derecho.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Feature 1: AI Chat -->
+      <article class="card p-8 hover:-translate-y-1 group text-center">
+        <div class="w-14 h-14 bg-primary-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary-700 transition-colors duration-300 mx-auto">
+          <svg class="w-7 h-7 text-primary-700 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold text-on-surface mb-3">
+          Chat con IA Jurídica
+        </h3>
+        <p class="text-on-surface-variant leading-relaxed">
+          Consulta <strong>normativa colombiana</strong>, <strong>jurisprudencia</strong> y doctrina con respuestas contextualizadas a tus documentos legales.
+        </p>
+      </article>
+
+      <!-- Feature 2: Case Management -->
+      <article class="card p-8 hover:-translate-y-1 group text-center">
+        <div class="w-14 h-14 bg-primary-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary-700 transition-colors duration-300 mx-auto">
+          <svg class="w-7 h-7 text-primary-700 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold text-on-surface mb-3">
+          Gestión de Expedientes
+        </h3>
+        <p class="text-on-surface-variant leading-relaxed">
+          Organiza tus <strong>casos judiciales</strong> con cuadernos, documentos, autos y recordatorios de <strong>términos procesales</strong>.
+        </p>
+      </article>
+
+      <!-- Feature 3: Documents -->
+      <article class="card p-8 hover:-translate-y-1 group text-center">
+        <div class="w-14 h-14 bg-primary-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary-700 transition-colors duration-300 mx-auto">
+          <svg class="w-7 h-7 text-primary-700 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold text-on-surface mb-3">
+          Análisis Documental
+        </h3>
+        <p class="text-on-surface-variant leading-relaxed">
+          Sube <strong>contratos</strong>, <strong>demandas</strong> y escritos. La IA extrae información clave y responde preguntas sobre tus <strong>documentos legales</strong>.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works Section -->
+<section id="how-it-works" class="py-24 bg-surface" aria-labelledby="how-it-works-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <span class="text-primary-700 font-medium text-sm uppercase tracking-wider">Proceso</span>
+      <h2 id="how-it-works-heading" class="text-3xl sm:text-4xl font-bold text-on-surface mt-2 mb-4">
+        Cómo funciona Martina
+      </h2>
+      <p class="text-lg text-on-surface-variant">
+        Comienza a optimizar tu práctica legal en minutos.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-12 relative">
+      <!-- Connecting Line (Desktop) -->
+      <div class="hidden md:block absolute top-8 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-primary-200 via-primary-400 to-primary-200" aria-hidden="true"></div>
+
+      <!-- Step 1 -->
+      <article class="text-center relative">
+        <div class="w-16 h-16 bg-primary-700 text-white rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl font-bold shadow-elevation-3 relative z-10">
+          1
+        </div>
+        <h3 class="text-xl font-semibold text-on-surface mb-3">
+          Crea tu proyecto
+        </h3>
+        <p class="text-on-surface-variant leading-relaxed">
+          Organiza tus <strong>casos</strong> por cliente o materia jurídica: civil, penal, laboral, administrativo.
+        </p>
+      </article>
+
+      <!-- Step 2 -->
+      <article class="text-center relative">
+        <div class="w-16 h-16 bg-primary-700 text-white rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl font-bold shadow-elevation-3 relative z-10">
+          2
+        </div>
+        <h3 class="text-xl font-semibold text-on-surface mb-3">
+          Sube tus documentos
+        </h3>
+        <p class="text-on-surface-variant leading-relaxed">
+          <strong>Demandas</strong>, <strong>contratos</strong>, códigos, sentencias. La IA los procesa y analiza automáticamente.
+        </p>
+      </article>
+
+      <!-- Step 3 -->
+      <article class="text-center relative">
+        <div class="w-16 h-16 bg-primary-700 text-white rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl font-bold shadow-elevation-3 relative z-10">
+          3
+        </div>
+        <h3 class="text-xl font-semibold text-on-surface mb-3">
+          Consulta y gestiona
+        </h3>
+        <p class="text-on-surface-variant leading-relaxed">
+          Haz preguntas a la IA, crea <strong>expedientes</strong>, y nunca pierdas un <strong>término procesal</strong>.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Blog Preview Section (SEO boost) -->
+<section class="py-24 bg-surface-variant" aria-labelledby="blog-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <span class="text-primary-700 font-medium text-sm uppercase tracking-wider">Blog</span>
+      <h2 id="blog-heading" class="text-3xl sm:text-4xl font-bold text-on-surface mt-2 mb-4">
+        Recursos para profesionales del derecho
+      </h2>
+      <p class="text-lg text-on-surface-variant max-w-2xl mx-auto">
+        Artículos sobre <strong>derecho colombiano</strong>, <strong>tecnología legal</strong> e <strong>inteligencia artificial</strong> aplicada al ejercicio jurídico.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Blog Card 1 -->
+      <article class="card p-6 hover:-translate-y-1">
+        <span class="text-xs font-medium text-primary-700 uppercase tracking-wider">LegalTech</span>
+        <h3 class="text-lg font-semibold text-on-surface mt-2 mb-3">
+          IA en el Derecho Colombiano: Oportunidades y Desafíos
+        </h3>
+        <p class="text-on-surface-variant text-sm mb-4">
+          Cómo la inteligencia artificial está transformando la práctica jurídica en Colombia.
+        </p>
+        <a href="#" class="text-primary-700 font-medium text-sm hover:underline">Próximamente →</a>
+      </article>
+
+      <!-- Blog Card 2 -->
+      <article class="card p-6 hover:-translate-y-1">
+        <span class="text-xs font-medium text-primary-700 uppercase tracking-wider">Gestión Legal</span>
+        <h3 class="text-lg font-semibold text-on-surface mt-2 mb-3">
+          Mejores prácticas para gestión de expedientes judiciales
+        </h3>
+        <p class="text-on-surface-variant text-sm mb-4">
+          Optimiza el seguimiento de tus casos y nunca pierdas un término procesal.
+        </p>
+        <a href="#" class="text-primary-700 font-medium text-sm hover:underline">Próximamente →</a>
+      </article>
+
+      <!-- Blog Card 3 -->
+      <article class="card p-6 hover:-translate-y-1">
+        <span class="text-xs font-medium text-primary-700 uppercase tracking-wider">Jurisprudencia</span>
+        <h3 class="text-lg font-semibold text-on-surface mt-2 mb-3">
+          Cómo buscar jurisprudencia colombiana de forma eficiente
+        </h3>
+        <p class="text-on-surface-variant text-sm mb-4">
+          Técnicas y herramientas para encontrar sentencias relevantes rápidamente.
+        </p>
+        <a href="#" class="text-primary-700 font-medium text-sm hover:underline">Próximamente →</a>
+      </article>
+    </div>
+
+    <div class="text-center mt-12">
+      <a href="#" class="btn-outlined">
+        Ver todos los artículos
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section id="solicitar-invitacion" class="py-24 bg-primary-700 relative overflow-hidden scroll-mt-20" aria-labelledby="cta-heading">
+  <!-- Background Pattern -->
+  <div class="absolute inset-0 opacity-10" aria-hidden="true">
+    <div class="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+    <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+  </div>
+
+  <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 id="cta-heading" class="text-3xl sm:text-4xl font-bold text-white mb-4">
+      ¿Listo para transformar tu práctica legal?
+    </h2>
+    <p class="text-xl text-white/80 mb-6 max-w-2xl mx-auto">
+      Déjanos tu nombre y correo para enviarte una invitación al Preview gratuito.
+    </p>
+    <p class="text-white/70 text-sm mb-10 max-w-xl mx-auto">
+      Al lanzar la versión completa, los pioneros accederán al plan profesional con tarifa preferencial.
+    </p>
+
+    <!-- Invitation Request Form -->
+    <div class="max-w-md mx-auto">
+      <%= form_with url: "#", method: :post, class: "space-y-4", data: { turbo: false } do |f| %>
+        <div>
+          <label for="full_name" class="sr-only">Nombre completo</label>
+          <input
+            type="text"
+            name="full_name"
+            id="full_name"
+            placeholder="Nombre completo"
+            required
+            class="w-full px-5 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all duration-200"
+          >
+        </div>
+        <div>
+          <label for="email" class="sr-only">Correo electrónico</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="tucorreo@ejemplo.com"
+            required
+            class="w-full px-5 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all duration-200"
+          >
+        </div>
+        <button
+          type="submit"
+          class="w-full px-8 py-4 text-primary-700 font-semibold bg-white hover:bg-gray-50 rounded-xl transition-all duration-200 shadow-elevation-2 hover:shadow-elevation-3 hover:-translate-y-0.5 flex items-center justify-center gap-2"
+        >
+          Solicitar invitación
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+        </button>
+      <% end %>
+
+      <p class="mt-4 text-white/60 text-sm">
+        ¿Ya tienes cuenta?
+        <%= link_to "Inicia sesión", new_user_session_path, class: "text-white underline hover:no-underline" %>
+      </p>
+    </div>
+  </div>
+</section>

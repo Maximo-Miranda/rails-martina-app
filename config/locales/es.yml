@@ -1,0 +1,113 @@
+es:
+  errors:
+    messages:
+      not_saved:
+        one: "No se pudo guardar %{resource} porque se encontró 1 error"
+        other: "No se pudo guardar %{resource} porque se encontraron %{count} errores"
+  activerecord:
+    models:
+      user: "usuario"
+    errors:
+      models:
+        user:
+          attributes:
+            full_name:
+              blank: "El nombre completo es requerido"
+            email:
+              blank: "El correo electrónico es requerido"
+              invalid: "El formato del correo electrónico es inválido"
+              taken: "Este correo electrónico ya está en uso"
+            password:
+              blank: "La contraseña es requerida"
+              too_short: "La contraseña debe tener al menos %{count} caracteres"
+            password_confirmation:
+              confirmation: "Las contraseñas no coinciden"
+  activemodel:
+    errors:
+      models:
+        user_login_request:
+          attributes:
+            email:
+              blank: "El correo electrónico es requerido"
+              invalid: "El formato del correo electrónico es inválido"
+            password:
+              blank: "La contraseña es requerida"
+              too_short: "La contraseña debe tener al menos %{count} caracteres"
+        user_registration_request:
+          attributes:
+            full_name:
+              blank: "El nombre completo es requerido"
+            email:
+              blank: "El correo electrónico es requerido"
+              invalid: "El formato del correo electrónico es inválido"
+            password:
+              blank: "La contraseña es requerida"
+              too_short: "La contraseña debe tener al menos %{count} caracteres"
+            password_confirmation:
+              blank: "La confirmación de contraseña es requerida"
+              confirmation: "Las contraseñas no coinciden"
+        user_profile_update_request:
+          attributes:
+            full_name:
+              blank: "El nombre completo es requerido"
+            email:
+              blank: "El correo electrónico es requerido"
+              invalid: "El formato del correo electrónico es inválido"
+            current_password:
+              blank: "La contraseña actual es requerida"
+            password:
+              blank: "La nueva contraseña es requerida"
+              too_short: "La contraseña debe tener al menos %{count} caracteres"
+            password_confirmation:
+              blank: "La confirmación es requerida"
+              confirmation: "Las contraseñas no coinciden"
+        user_confirmation_request:
+          attributes:
+            email:
+              blank: "El correo electrónico es requerido"
+              invalid: "El formato del correo electrónico es inválido"
+        user_password_reset_request:
+          attributes:
+            email:
+              blank: "El correo electrónico es requerido"
+              invalid: "El formato del correo electrónico es inválido"
+        user_password_update_request:
+          attributes:
+            reset_password_token:
+              blank: "El token de restablecimiento es inválido"
+            password:
+              blank: "La contraseña es requerida"
+              too_short: "La contraseña debe tener al menos %{count} caracteres"
+            password_confirmation:
+              blank: "La confirmación de contraseña es requerida"
+              confirmation: "Las contraseñas no coinciden"
+
+  # Mensajes de controladores (lazy lookup: users.<controller>.<action>.<key>)
+  users:
+    sessions:
+      create:
+        invalid_credentials: "Correo electrónico o contraseña inválidos"
+    passwords:
+      create:
+        email_required: "El correo electrónico es requerido"
+        reset_instructions_sent: "Recibirás un correo con instrucciones para restablecer tu contraseña."
+        error: "No se pudo enviar las instrucciones de restablecimiento"
+      update:
+        password_required: "La contraseña es requerida"
+        password_confirmation_required: "La confirmación de contraseña es requerida"
+        invalid_token: "El token de restablecimiento es inválido"
+        updated_successfully: "Tu contraseña ha sido cambiada exitosamente. Por favor inicia sesión con tu nueva contraseña."
+        error: "No se pudo actualizar la contraseña"
+    confirmations:
+      create:
+        instructions_sent: "Recibirás un correo con instrucciones para confirmar tu cuenta."
+        error: "No se pudo enviar las instrucciones de confirmación"
+      show:
+        confirmed: "Tu cuenta ha sido confirmada exitosamente. Ya puedes iniciar sesión."
+        error: "El token de confirmaciòn es inválido o ha expirado"
+    registrations:
+      create:
+        error: "No se pudo crear la cuenta. Por favor revisa los errores."
+      update:
+        profile_updated: "Perfil actualizado correctamente"
+        error: "No se pudo actualizar el perfil. Por favor revisa los errores."

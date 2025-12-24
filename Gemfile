@@ -51,14 +51,24 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem "letter_opener"
 end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
-  gem "selenium-webdriver"
+  gem "capybara-playwright-driver"
+  gem "minitest", "~> 5.27"
+  gem "database_cleaner-active_record"
 end
 
 gem "inertia_rails", "~> 3.15"
 
 gem "vite_rails", "~> 3.0"
+
+gem "devise", "~> 4.9"
+
+gem "discard", "~> 1.4"
+
+# Internationalization
+gem "devise-i18n"
