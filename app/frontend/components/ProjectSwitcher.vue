@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 import { router, usePage } from '@inertiajs/vue3'
 import { useTranslations } from '@/composables/useTranslations'
 import { useNavigation } from '@/composables/useNavigation'
@@ -14,7 +14,8 @@ const search = ref('')
 const loading = ref(false)
 const projects = ref<Project[]>([])
 
-const currentProject = page.props.current_project as Project | null
+// User computed so it's reactive to prop changes
+const currentProject = computed(() => page.props.current_project as Project | null)
 
 const fetchProjects = async (query: string = '') => {
   loading.value = true

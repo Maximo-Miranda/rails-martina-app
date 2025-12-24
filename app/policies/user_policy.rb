@@ -32,7 +32,7 @@ class UserPolicy < ApplicationPolicy
         scope.kept
       else
         # Solo usuarios del proyecto actual
-        project = ActsAsTenant.current_tenant
+        project = ActsAsTenant.current_tenant || user.current_project
         return scope.none unless project
 
         user_ids = Role.where(resource: project).joins(:users).pluck("users.id")

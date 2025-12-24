@@ -40,7 +40,11 @@ class ApplicationPolicy
   def super_admin? = user.super_admin?
   def admin? = user.admin?
   def global_admin? = user.global_admin?
-  def owner? = user.owner_of?(ActsAsTenant.current_tenant)
+
+  def owner?
+    project = ActsAsTenant.current_tenant || user.current_project
+    project && user.owner_of?(project)
+  end
 
   class Scope
     attr_reader :user, :scope
