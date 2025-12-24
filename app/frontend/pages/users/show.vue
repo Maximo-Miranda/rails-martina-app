@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { router } from '@inertiajs/vue3'
 import { useTranslations } from '@/composables/useTranslations'
 import type { User } from '@/types'
 
@@ -8,12 +9,16 @@ const props = defineProps<{
 }>()
 
 const { t } = useTranslations()
+
+const navigateTo = (path: string) => {
+  router.visit(path)
+}
 </script>
 
 <template>
   <v-container class="py-6" style="max-width: 600px;">
     <div class="mb-6">
-      <v-btn icon="mdi-arrow-left" variant="text" href="/users" class="mr-2" />
+      <v-btn icon="mdi-arrow-left" variant="text" @click="navigateTo('/users')" class="mr-2" />
       <span class="text-h4 font-weight-bold">{{ user.full_name }}</span>
     </div>
 

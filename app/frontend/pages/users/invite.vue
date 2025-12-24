@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useForm } from '@inertiajs/vue3'
+import { useForm, router } from '@inertiajs/vue3'
 import { useTranslations } from '@/composables/useTranslations'
 import type { Project } from '@/types'
 
@@ -10,6 +10,10 @@ const props = defineProps<{
 }>()
 
 const { t } = useTranslations()
+
+const navigateTo = (path: string) => {
+  router.visit(path)
+}
 
 const inviteToProject = ref(true)
 const selectedRole = ref('coworker')
@@ -80,7 +84,7 @@ const submit = () => {
             >
               {{ t('users.send_invitation') }}
             </v-btn>
-            <v-btn variant="text" href="/users">
+            <v-btn variant="text" @click="navigateTo('/users')">
               {{ t('common.cancel') }}
             </v-btn>
           </div>

@@ -36,6 +36,11 @@ const switchProject = (slug: string) => {
   router.post(`/projects/${slug}/switch`)
 }
 
+const navigateTo = (path: string) => {
+  menu.value = false
+  router.visit(path)
+}
+
 // Debounce search
 let searchTimeout: ReturnType<typeof setTimeout>
 watch(search, (value) => {
@@ -123,7 +128,7 @@ watch(menu, (isOpen) => {
           color="primary"
           prepend-icon="mdi-plus"
           size="small"
-          href="/projects/new"
+          @click="navigateTo('/projects/new')"
           class="text-none"
         >
           {{ t('projects.new') }}

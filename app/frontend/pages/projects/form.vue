@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useForm } from '@inertiajs/vue3'
+import { useForm, router } from '@inertiajs/vue3'
 import { useTranslations } from '@/composables/useTranslations'
 import type { Project } from '@/types'
 
@@ -9,6 +9,10 @@ const props = defineProps<{
 }>()
 
 const { t } = useTranslations()
+
+const navigateTo = (path: string) => {
+  router.visit(path)
+}
 
 const isEditing = !!props.project.id
 
@@ -67,7 +71,7 @@ const submit = () => {
             >
               {{ isEditing ? t('common.save') : t('common.create') }}
             </v-btn>
-            <v-btn variant="text" href="/projects">
+            <v-btn variant="text" @click="navigateTo('/projects')">
               {{ t('common.cancel') }}
             </v-btn>
           </div>

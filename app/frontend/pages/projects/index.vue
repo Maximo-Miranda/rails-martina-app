@@ -9,6 +9,10 @@ const props = defineProps<{
 
 const { t } = useTranslations()
 
+const navigateTo = (path: string) => {
+  router.visit(path)
+}
+
 const switchProject = (slug: string) => {
   router.post(`/projects/${slug}/switch`)
 }
@@ -27,7 +31,7 @@ const deleteProject = (slug: string) => {
         <h1 class="text-h4 font-weight-bold mb-1">{{ t('projects.title') }}</h1>
         <p class="text-body-1 text-medium-emphasis">{{ t('projects.subtitle') }}</p>
       </div>
-      <v-btn color="primary" prepend-icon="mdi-plus" :href="'/projects/new'">
+      <v-btn color="primary" prepend-icon="mdi-plus" @click="navigateTo('/projects/new')">
         {{ t('projects.new') }}
       </v-btn>
     </div>
@@ -54,7 +58,7 @@ const deleteProject = (slug: string) => {
               {{ t('projects.switch') }}
             </v-btn>
             <v-spacer />
-            <v-btn icon="mdi-pencil" variant="text" size="small" :href="`/projects/${project.slug}/edit`" />
+            <v-btn icon="mdi-pencil" variant="text" size="small" @click="navigateTo(`/projects/${project.slug}/edit`)" />
             <v-btn icon="mdi-delete" variant="text" size="small" color="error" @click="deleteProject(project.slug)" />
           </v-card-actions>
         </v-card>
@@ -65,7 +69,7 @@ const deleteProject = (slug: string) => {
       <v-icon size="64" color="grey-lighten-1" class="mb-4">mdi-folder-outline</v-icon>
       <h3 class="text-h6 mb-2">{{ t('projects.empty_title') }}</h3>
       <p class="text-body-2 text-medium-emphasis mb-4">{{ t('projects.empty_description') }}</p>
-      <v-btn color="primary" :href="'/projects/new'">{{ t('projects.create_first') }}</v-btn>
+      <v-btn color="primary" @click="navigateTo('/projects/new')">{{ t('projects.create_first') }}</v-btn>
     </v-card>
   </v-container>
 </template>

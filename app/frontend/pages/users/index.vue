@@ -10,6 +10,10 @@ const props = defineProps<{
 
 const { t } = useTranslations()
 
+const navigateTo = (path: string) => {
+  router.visit(path)
+}
+
 const deleteUser = (id: number) => {
   if (confirm(t('users.confirm_delete'))) {
     router.delete(`/users/${id}`)
@@ -24,7 +28,7 @@ const deleteUser = (id: number) => {
         <h1 class="text-h4 font-weight-bold mb-1">{{ t('users.title') }}</h1>
         <p class="text-body-1 text-medium-emphasis">{{ t('users.subtitle') }}</p>
       </div>
-      <v-btn v-if="can_invite" color="primary" prepend-icon="mdi-account-plus" href="/users/new_invitation">
+      <v-btn v-if="can_invite" color="primary" prepend-icon="mdi-account-plus" @click="navigateTo('/users/new_invitation')">
         {{ t('users.invite') }}
       </v-btn>
     </div>
@@ -52,7 +56,7 @@ const deleteUser = (id: number) => {
             <td>{{ user.email }}</td>
             <td class="text-medium-emphasis">{{ new Date(user.created_at!).toLocaleDateString() }}</td>
             <td class="text-right">
-              <v-btn icon="mdi-eye" variant="text" size="small" :href="`/users/${user.id}`" />
+              <v-btn icon="mdi-eye" variant="text" size="small" @click="navigateTo(`/users/${user.id}`)" />
               <v-btn icon="mdi-delete" variant="text" size="small" color="error" @click="deleteUser(user.id)" />
             </td>
           </tr>
