@@ -122,6 +122,7 @@ es:
     updated: "Proyecto actualizado exitosamente"
     deleted: "Proyecto eliminado exitosamente"
     switched: "Cambiaste al proyecto %{name}"
+    auto_switched: "Ahora estás en el proyecto %{name}"
     create_first: "Debes crear un proyecto para continuar"
 
   # Pundit authorization messages

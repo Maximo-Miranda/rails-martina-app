@@ -8,6 +8,7 @@ import ProjectSwitcher from '@/components/ProjectSwitcher.vue'
 interface Flash {
   notice?: string
   alert?: string
+  warning?: string
 }
 
 const { t } = useTranslations()
@@ -23,11 +24,15 @@ const snackbarColor = ref('success')
 const permissions = computed(() => page.props.permissions as { can_manage_users: boolean } | null)
 const flash = computed(() => page.props.flash as Flash)
 
-// Mostrar snackbar cuando hay mensajes flash
+// Show snackbar for flash messages
 watch(flash, (newFlash) => {
   if (newFlash?.notice) {
     snackbarMessage.value = newFlash.notice
     snackbarColor.value = 'success'
+    snackbar.value = true
+  } else if (newFlash?.warning) {
+    snackbarMessage.value = newFlash.warning
+    snackbarColor.value = 'warning'
     snackbar.value = true
   } else if (newFlash?.alert) {
     snackbarMessage.value = newFlash.alert

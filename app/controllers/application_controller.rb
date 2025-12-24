@@ -39,25 +39,42 @@ class ApplicationController < ActionController::Base
   private
 
   def current_project
-    @current_project ||= current_user&.current_project&.kept? ? current_user.current_project : nil
+    return nil unless current_user
+
+    current_user.accessible_projects.find_by(id: current_user.current_project_id)
   end
   helper_method :current_project
 
   def set_current_tenant
     return unless current_user
 
-    project = current_project || current_user.accessible_projects.first
+    project = current_project || auto_assign_project
 
-    if project
-      if current_user.current_project_id != project.id
-        current_user.update_column(:current_project_id, project.id)
-      end
-      ActsAsTenant.current_tenant = project
-    elsif !creating_project?
-      # Clear current_project_id if it pointed to a deleted project
-      current_user.update_column(:current_project_id, nil) if current_user.current_project_id
+    if project.nil? && !creating_project?
       redirect_to new_project_path, alert: I18n.t("projects.create_first")
+      return
     end
+
+    ActsAsTenant.current_tenant = (project && set_tenant_for_request?) ? project : nil
+  end
+
+  def auto_assign_project
+    project = current_user.last_accessible_project
+    return nil unless project
+
+    had_previous = current_user.current_project_id.present?
+    current_user.update_column(:current_project_id, project.id)
+
+    if had_previous
+      flash.clear
+      flash.now[:warning] = I18n.t("projects.auto_switched", name: project.name)
+    end
+
+    project
+  end
+
+  def set_tenant_for_request?
+    !(controller_name == "projects" && action_name.in?(%w[index search new create]))
   end
 
   def creating_project?
@@ -68,14 +85,12 @@ class ApplicationController < ActionController::Base
     policy_name = exception.policy.class.to_s.underscore
     action_name = exception.query.to_s.delete_suffix("?")
 
-    # Intenta buscar un mensaje específico para policy + action, luego solo action, luego default
-    message = I18n.t(
-      "pundit.#{policy_name}.#{action_name}",
-      default: I18n.t(
-        "pundit.default.#{action_name}",
-        default: I18n.t("pundit.default.not_authorized")
-      )
-    )
+    # Lookup fallback: {policy}.{action} → default.{action} → default.not_authorized
+    specific_key = "pundit.#{policy_name}.#{action_name}"
+    action_key = "pundit.default.#{action_name}"
+    generic_key = "pundit.default.not_authorized"
+
+    message = I18n.t(specific_key, default: I18n.t(action_key, default: I18n.t(generic_key)))
 
     redirect_back fallback_location: dashboard_path, alert: message
   end

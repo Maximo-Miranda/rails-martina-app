@@ -1,7 +1,6 @@
 class ProjectsController < ApplicationController
   include RansackPagyIndex
 
-  skip_before_action :set_current_tenant, only: %i[index search new create]
   before_action :set_project, only: %i[show edit update destroy switch]
 
   def index
@@ -87,6 +86,7 @@ class ProjectsController < ApplicationController
   def destroy
     authorize @project
     @project.discard
+
     redirect_to projects_path, notice: I18n.t("projects.deleted")
   end
 
