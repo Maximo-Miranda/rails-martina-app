@@ -1,34 +1,48 @@
 class ProjectsController < ApplicationController
+  include RansackPagyIndex
+
   skip_before_action :set_current_tenant, only: %i[index search new create]
   before_action :set_project, only: %i[show edit update destroy switch]
 
-  PAGINATION_KEYS = %i[count page limit pages previous next from to].freeze
-
   def index
-    @q = policy_scope(Project).ransack(params[:q])
-    @pagy, projects = pagy(:offset, @q.result(distinct: true))
+    scope = policy_scope(Project)
+    @q, filters = build_ransack(
+      scope,
+      allowed_q_keys: %i[name_or_slug_or_description_cont],
+      allowed_sort_fields: %w[name slug created_at],
+      default_sort: "created_at desc"
+    )
+
+    @pagy, projects = pagy(:offset, @q.result(distinct: true), limit: pagy_limit(default: 10))
 
     render inertia: "projects/index", props: {
-      projects: projects.as_json(only: %i[id name slug description]),
-      pagination: @pagy.data_hash(data_keys: PAGINATION_KEYS),
-      filters: params[:q] || {}
+      projects: projects.as_json(only: %i[id name slug description created_at]),
+      pagination: pagy_pagination(@pagy),
+      filters: filters
     }
   end
 
   # Endpoint para búsqueda en el dropdown (JSON)
   def search
-    @q = policy_scope(Project).ransack(params[:q])
+    scope = policy_scope(Project)
+    @q, = build_ransack(
+      scope,
+      allowed_q_keys: %i[name_or_slug_cont],
+      allowed_sort_fields: %w[name slug created_at],
+      default_sort: "name asc"
+    )
+
     @pagy, projects = pagy(:offset, @q.result(distinct: true), limit: params[:limit] || 5)
 
     render json: {
       projects: projects.as_json(only: %i[id name slug]),
-      pagination: @pagy.data_hash(data_keys: PAGINATION_KEYS)
+      pagination: pagy_pagination(@pagy)
     }
   end
 
   def show
     authorize @project
-    render inertia: "projects/show", props: { project: @project.as_json(only: %i[id name slug description]) }
+    render inertia: "projects/show", props: { project: @project.as_json(only: %i[id name slug description created_at]) }
   end
 
   def new

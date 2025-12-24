@@ -3,6 +3,8 @@ import { ref } from 'vue'
 import { useForm } from '@inertiajs/vue3'
 import { useTranslations } from '@/composables/useTranslations'
 import { useNavigation } from '@/composables/useNavigation'
+import PageHeader from '@/components/PageHeader.vue'
+import FormActions from '@/components/FormActions.vue'
 import type { Project } from '@/types'
 
 const props = defineProps<{
@@ -36,10 +38,7 @@ const submit = () => {
 
 <template>
   <v-container class="py-6" style="max-width: 600px;">
-    <div class="mb-6">
-      <h1 class="text-h4 font-weight-bold mb-1">{{ t('users.invite_title') }}</h1>
-      <p class="text-body-1 text-medium-emphasis">{{ t('users.invite_description') }}</p>
-    </div>
+    <PageHeader :title="t('users.invite_title')" :subtitle="t('users.invite_description')" />
 
     <v-card class="rounded-xl" elevation="0" border>
       <v-card-text class="pa-6">
@@ -73,19 +72,13 @@ const submit = () => {
             {{ t('users.invite_platform_only') }}
           </v-alert>
 
-          <div class="d-flex gap-3">
-            <v-btn
-              type="submit"
-              color="primary"
-              :loading="form.processing"
-              :disabled="form.processing"
-            >
-              {{ t('users.send_invitation') }}
-            </v-btn>
-            <v-btn variant="text" @click="navigateTo('/users')">
-              {{ t('common.cancel') }}
-            </v-btn>
-          </div>
+          <FormActions
+            :primary-label="t('users.send_invitation')"
+            :primary-loading="form.processing"
+            :primary-disabled="form.processing"
+            :cancel-label="t('common.cancel')"
+            @cancel="navigateTo('/users')"
+          />
         </v-form>
       </v-card-text>
     </v-card>

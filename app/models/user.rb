@@ -13,6 +13,14 @@ class User < ApplicationRecord
 
   validates :full_name, presence: true
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id full_name email created_at]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[roles projects current_project]
+  end
+
   # Roles globales
   GLOBAL_ROLES = %i[super_admin admin blog_admin blog_writer].freeze
   # Roles por proyecto

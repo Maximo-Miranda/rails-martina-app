@@ -3,4 +3,5 @@ export interface Project {
   name: string
   slug: string
   description?: string | null
+  created_at?: string
 }

@@ -21,7 +21,7 @@ const fetchProjects = async (query: string = '') => {
   loading.value = true
   try {
     const params = new URLSearchParams()
-    if (query) params.append('q[name_cont]', query)
+    if (query) params.append('q[name_or_slug_cont]', query)
     params.append('limit', '5')
 
     const response = await fetch(`/projects/search?${params}`)

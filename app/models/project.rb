@@ -14,6 +14,14 @@ class Project < ApplicationRecord
   # Asignar rol owner al creador
   after_create :assign_owner_role
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id name slug description created_at]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[user]
+  end
+
   private
 
   def assign_owner_role

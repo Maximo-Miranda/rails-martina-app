@@ -14,6 +14,7 @@ es:
       see_all: "Ver todo"
       times: "veces"
       actions: "Acciones"
+      created_at: "Creado"
 
     validation:
       required: "Este campo es requerido"
@@ -155,6 +156,7 @@ es:
       edit_description: "Modifica la información del proyecto"
       name: "Nombre del proyecto"
       description: "Descripción"
+      slug: "Slug"
       no_description: "Sin descripción"
       switch: "Cambiar"
       select: "Seleccionar proyecto"
@@ -175,6 +177,7 @@ es:
       email: "Correo electrónico"
       role: "Rol"
       joined: "Fecha de registro"
+      search: "Buscar usuario..."
       roles_in_project: "Roles en el proyecto"
       no_roles: "Sin roles asignados"
       empty: "No hay usuarios en este proyecto"

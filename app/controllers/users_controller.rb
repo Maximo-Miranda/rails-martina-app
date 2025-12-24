@@ -1,11 +1,24 @@
 class UsersController < ApplicationController
+  include RansackPagyIndex
+
   before_action :set_user, only: %i[show update destroy]
 
   def index
     authorize User
-    users = policy_scope(User)
+    scope = policy_scope(User)
+    @q, filters = build_ransack(
+      scope,
+      allowed_q_keys: %i[full_name_or_email_cont],
+      allowed_sort_fields: %w[full_name email created_at],
+      default_sort: "created_at desc"
+    )
+
+    @pagy, users = pagy(:offset, @q.result(distinct: true), limit: pagy_limit(default: 10))
+
     render inertia: "users/index", props: {
       users: users.as_json(only: %i[id email full_name created_at]),
+      pagination: pagy_pagination(@pagy),
+      filters: filters,
       can_invite: policy(User).invite?
     }
   end
