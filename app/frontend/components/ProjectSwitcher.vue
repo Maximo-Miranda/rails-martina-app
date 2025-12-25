@@ -16,7 +16,7 @@ const search = ref('')
 const loading = ref(false)
 const projects = ref<Project[]>([])
 
-// User computed so it's reactive to prop changes
+// Computed property ensures reactivity when current_project changes
 const currentProject = computed(() => page.props.current_project as Project | null)
 
 const fetchProjects = async (query: string = '') => {
@@ -47,14 +47,14 @@ const navigateTo = (path: string) => {
   navigate(path)
 }
 
-// Debounce search
+// Debounced search to reduce API calls
 let searchTimeout: ReturnType<typeof setTimeout>
 watch(search, (value) => {
   clearTimeout(searchTimeout)
   searchTimeout = setTimeout(() => fetchProjects(value), 300)
 })
 
-// Load projects when menu opens
+// Fetch projects when menu opens
 watch(menu, (isOpen) => {
   if (isOpen) {
     search.value = ''

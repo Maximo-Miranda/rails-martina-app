@@ -14,7 +14,7 @@ const form = useForm({
 const submitted = ref(false)
 const formRef = ref<HTMLFormElement | null>(null)
 
-// Reglas de validación
+// Validation rules
 const emailRules = [
   rules.required(t('validation.required')),
   rules.email(t('validation.email_invalid')),
@@ -33,9 +33,9 @@ const submit = async () => {
 </script>
 
 <template>
-  <!-- Tarjeta centrada con diseño moderno -->
+  <!-- Centered card with modern design -->
   <v-card class="pa-6 pa-sm-8 rounded-xl" elevation="2">
-    <!-- Estado inicial - formulario -->
+    <!-- Initial state - form -->
     <template v-if="!submitted">
       <div class="text-center mb-6">
         <v-icon color="primary" size="48" class="mb-4">mdi-lock-reset</v-icon>
@@ -94,7 +94,7 @@ const submit = async () => {
       </v-form>
     </template>
 
-    <!-- Estado de éxito - correo enviado -->
+    <!-- Success state - email sent -->
     <template v-else>
       <div class="text-center">
         <v-icon color="success" size="64" class="mb-4">mdi-email-check-outline</v-icon>

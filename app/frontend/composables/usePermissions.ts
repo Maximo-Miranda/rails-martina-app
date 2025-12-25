@@ -31,7 +31,7 @@ export interface ProjectPermissions {
   can_switch: boolean
 }
 
-// Interface for projects with optional permissions (from backend)
+// Interface for projects with optional permission flags (from backend)
 export interface ProjectWithPermissions {
   can_edit?: boolean
   can_delete?: boolean
@@ -87,7 +87,7 @@ export function usePermissions() {
   }
 
   // Helper for project-specific permissions (for projects list, etc.)
-  // Accepts projects with optional permission properties
+  // Accepts projects with optional permission flags
   const canProject = (project: ProjectWithPermissions) => ({
     edit: project.can_edit ?? false,
     delete: project.can_delete ?? false,

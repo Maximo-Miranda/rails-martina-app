@@ -61,7 +61,7 @@ const navigationItems = computed(() => {
     },
   ]
 
-  // Solo mostrar Users si tiene permiso
+  // Only show Users if user has permission
   if (can.value.manageUsers) {
     items.push({
       title: t('navigation.users'),
@@ -84,13 +84,13 @@ const navigateTo = (href: string) => {
 
 <template>
   <v-app>
-    <!-- App Bar - Material Design 3 style -->
+    <!-- App Bar - Material Design 3 -->
     <v-app-bar
       elevation="2"
       color="primary"
       density="comfortable"
     >
-      <!-- Hamburger menu (solo visible si está autenticado) -->
+      <!-- Hamburger menu (visible only when authenticated) -->
       <v-app-bar-nav-icon
         v-if="isAuthenticated"
         data-testid="nav-hamburger"
@@ -98,7 +98,7 @@ const navigateTo = (href: string) => {
         variant="text"
       />
 
-      <!-- Logo / Brand - ir al dashboard -->
+      <!-- Logo / Brand - links to dashboard -->
       <SafeLink href="/dashboard" class="text-decoration-none" data-testid="nav-logo">
         <div class="d-flex align-center ml-2">
           <v-avatar color="white" size="32" class="mr-2">
@@ -108,14 +108,14 @@ const navigateTo = (href: string) => {
         </div>
       </SafeLink>
 
-      <!-- Project Switcher -->
+      <!-- Project switcher -->
       <div class="ml-4" v-if="isAuthenticated">
         <ProjectSwitcher />
       </div>
 
       <v-spacer />
 
-      <!-- User Menu (cuando está autenticado) -->
+      <!-- User menu (when authenticated) -->
       <template v-if="isAuthenticated">
         <v-menu v-model="userMenu" :close-on-content-click="false" location="bottom end">
           <template v-slot:activator="{ props }">
@@ -182,7 +182,7 @@ const navigateTo = (href: string) => {
         </v-menu>
       </template>
 
-      <!-- Botones de login/registro (cuando NO está autenticado) -->
+      <!-- Login/register buttons (when NOT authenticated) -->
       <template v-else>
         <SafeLink href="/users/sign_in">
           <v-btn variant="text" class="text-none text-white mr-1">
@@ -197,7 +197,7 @@ const navigateTo = (href: string) => {
       </template>
     </v-app-bar>
 
-    <!-- Navigation Drawer (Temporary - solo para usuarios autenticados) -->
+    <!-- Navigation drawer (temporary - authenticated users only) -->
     <v-navigation-drawer
       v-if="isAuthenticated"
       v-model="drawer"
@@ -205,7 +205,7 @@ const navigateTo = (href: string) => {
       class="elevation-0"
       data-testid="nav-drawer"
     >
-      <!-- Drawer Header -->
+      <!-- Drawer header -->
       <div class="pa-4 bg-primary">
         <div class="d-flex align-center">
           <v-avatar color="white" size="48" class="mr-3">
@@ -220,7 +220,7 @@ const navigateTo = (href: string) => {
 
       <v-divider />
 
-      <!-- Navigation Items -->
+      <!-- Navigation items -->
       <v-list nav class="pa-2">
         <v-list-item
           v-for="item in navigationItems"
@@ -255,12 +255,12 @@ const navigateTo = (href: string) => {
       </template>
     </v-navigation-drawer>
 
-    <!-- Main Content -->
+    <!-- Main content -->
     <v-main class="bg-grey-lighten-4">
       <slot />
     </v-main>
 
-    <!-- Snackbar para mensajes flash -->
+    <!-- Snackbar for flash messages -->
     <v-snackbar
       v-model="snackbar"
       :color="snackbarColor"

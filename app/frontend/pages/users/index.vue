@@ -28,12 +28,12 @@ const searchKey = 'full_name_or_email_cont'
 const search = ref<string | null>(String(props.filters?.[searchKey] ?? ''))
 const loading = ref(false)
 
-// Dialog para eliminar usuario (solo super_admin)
+// Dialog to delete user (super_admin only)
 const deleteDialog = ref(false)
 const deleteTargetId = ref<number | null>(null)
 const deleting = ref(false)
 
-// Dialog para desvincular usuario del proyecto (owner/admin)
+// Dialog to unlink user from project (owner/admin)
 const unlinkDialog = ref(false)
 const unlinkTargetId = ref<number | null>(null)
 const unlinking = ref(false)
@@ -52,7 +52,7 @@ function parseSort(s: unknown): Array<{ key: string; order: 'asc' | 'desc' }> {
   return [{ key, order }]
 }
 
-// Helpers para verificar si se pueden mostrar acciones para un usuario específico
+// Helpers to check if actions can be shown for a specific user
 const canUnlinkUser = (userId: number) => props.can_remove_from_project && userId !== props.current_user_id
 const canDeleteUser = (userId: number) => props.can_destroy && userId !== props.current_user_id
 
@@ -251,7 +251,7 @@ const confirmUnlinkUser = () => {
       </v-data-table-server>
     </v-card>
 
-    <!-- Dialog para desvincular usuario del proyecto -->
+    <!-- Dialog to unlink user from project -->
     <ConfirmDialog
       v-model="unlinkDialog"
       data-test-id="users-dialog-unlink"
@@ -263,7 +263,7 @@ const confirmUnlinkUser = () => {
       @confirm="confirmUnlinkUser"
     />
 
-    <!-- Dialog para eliminar usuario (solo super_admin) -->
+    <!-- Dialog to delete user (super_admin only) -->
     <ConfirmDialog
       v-model="deleteDialog"
       data-test-id="users-dialog-delete"

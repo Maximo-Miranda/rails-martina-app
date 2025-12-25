@@ -11,7 +11,7 @@ export interface UseActionLoadingReturn {
 }
 
 /**
- * Maneja estados de carga por acción individual (útil para botones en tablas)
+ * Manages loading states for individual actions (useful for table buttons)
  * @example
  * const { isActionLoading, isAnyLoading, startLoading, stopLoading } = useActionLoading()
  * startLoading('delete', item.id)

@@ -1,7 +1,7 @@
 import { computed, ref, type ComputedRef } from 'vue'
 import { router } from '@inertiajs/vue3'
 
-// Estado global singleton
+// Global singleton state
 const requestCount = ref(0)
 let isInitialized = false
 
@@ -28,7 +28,7 @@ export interface UseGlobalLoadingReturn {
 }
 
 /**
- * Monitorea el estado de carga global de todas las requests de Inertia.js
+ * Monitors global loading state for all Inertia.js requests
  * @example const { isLoading } = useGlobalLoading()
  */
 export function useGlobalLoading(): UseGlobalLoadingReturn {

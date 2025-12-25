@@ -13,7 +13,7 @@ const flash = computed(() => page.props.flash as Flash)
 
 <template>
   <v-app>
-    <!-- Header Material Design 3 para auth -->
+    <!-- Auth header - Material Design 3 -->
     <v-app-bar
       data-testid="auth-app-bar"
       elevation="2"
@@ -32,12 +32,12 @@ const flash = computed(() => page.props.flash as Flash)
       </v-container>
     </v-app-bar>
 
-    <!-- Main Content -->
+    <!-- Main content -->
     <v-main class="bg-grey-lighten-4">
       <v-container class="fill-height py-6" fluid>
         <v-row align="center" justify="center" class="fill-height">
           <v-col cols="12" sm="10" md="6" lg="4" xl="3" class="px-4">
-            <!-- Flash Messages - fuera del card para mejor visibilidad -->
+            <!-- Flash messages - outside card for better visibility -->
             <v-slide-y-transition>
               <v-alert
                 data-testid="flash-notice"
@@ -74,11 +74,11 @@ const flash = computed(() => page.props.flash as Flash)
       </v-container>
     </v-main>
 
-    <!-- Footer minimalista -->
+    <!-- Minimalist footer -->
     <v-footer color="transparent" class="text-center text-caption text-medium-emphasis pa-4">
       <v-row justify="center" no-gutters>
         <v-col cols="12">
-          © {{ new Date().getFullYear() }} Martina. Todos los derechos reservados.
+          © {{ new Date().getFullYear() }} Martina. All rights reserved.
         </v-col>
       </v-row>
     </v-footer>

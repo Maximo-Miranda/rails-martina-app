@@ -1,14 +1,14 @@
-// Reglas de validación reutilizables para formularios
-// Basado en el sistema nativo de validación de Vuetify
+// Reusable validation rules for forms
+// Based on Vuetify's native validation system
 
 export const rules = {
-  // Campo requerido
-  required: (message = 'Este campo es requerido') => {
+  // Required field
+  required: (message = 'This field is required') => {
     return (value: string | null | undefined) => !!value || message
   },
 
-  // Email válido
-  email: (message = 'Ingresa un correo electrónico válido') => {
+  // Valid email
+  email: (message = 'Enter a valid email address') => {
     return (value: string) => {
       if (!value) return true
       const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -16,40 +16,40 @@ export const rules = {
     }
   },
 
-  // Longitud mínima
+  // Minimum length
   minLength: (min: number, message?: string) => {
     return (value: string) => {
       if (!value) return true
-      return value.length >= min || message || `Debe tener al menos ${min} caracteres`
+      return value.length >= min || message || `Must be at least ${min} characters`
     }
   },
 
-  // Longitud máxima
+  // Maximum length
   maxLength: (max: number, message?: string) => {
     return (value: string) => {
       if (!value) return true
-      return value.length <= max || message || `Debe tener máximo ${max} caracteres`
+      return value.length <= max || message || `Must be at most ${max} characters`
     }
   },
 
-  // Contraseña segura (mínimo 6 caracteres)
-  password: (message = 'La contraseña debe tener al menos 6 caracteres') => {
+  // Secure password (minimum 6 characters)
+  password: (message = 'Password must be at least 6 characters') => {
     return (value: string) => {
       if (!value) return true
       return value.length >= 6 || message
     }
   },
 
-  // Confirmación de contraseña
-  passwordConfirmation: (password: string, message = 'Las contraseñas no coinciden') => {
+  // Password confirmation
+  passwordConfirmation: (password: string, message = 'Passwords do not match') => {
     return (value: string) => {
       if (!value) return true
       return value === password || message
     }
   },
 
-  // Solo letras y espacios (para nombres)
-  name: (message = 'Solo se permiten letras y espacios') => {
+  // Letters and spaces only (for names)
+  name: (message = 'Only letters and spaces are allowed') => {
     return (value: string) => {
       if (!value) return true
       const pattern = /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]+$/

@@ -15,7 +15,7 @@ const hasErrors = props.errors && Object.keys(props.errors).length > 0
 <template>
   <v-card class="pa-6 pa-sm-8 rounded-xl" elevation="2">
     <div class="text-center mb-6">
-      <!-- Icono de error -->
+      <!-- Error icon -->
       <v-icon
         :color="hasErrors ? 'error' : 'success'"
         size="64"
@@ -33,7 +33,7 @@ const hasErrors = props.errors && Object.keys(props.errors).length > 0
       </p>
     </div>
 
-    <!-- Mostrar errores si existen -->
+    <!-- Show errors if present -->
     <v-alert
       v-if="hasErrors"
       type="error"
@@ -47,7 +47,7 @@ const hasErrors = props.errors && Object.keys(props.errors).length > 0
       </div>
     </v-alert>
 
-    <!-- Acciones -->
+    <!-- Actions -->
     <div class="d-flex flex-column">
       <SafeLink href="/users/sign_in" class="text-decoration-none">
         <v-btn

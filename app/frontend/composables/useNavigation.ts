@@ -2,7 +2,7 @@ import { router } from '@inertiajs/vue3'
 import { useGlobalLoading } from './useGlobalLoading'
 
 /**
- * Navegación protegida - bloquea navegación durante requests activas
+ * Protected navigation - blocks navigation during active requests
  * @example const { navigateTo, isNavigating } = useNavigation()
  */
 export function useNavigation() {

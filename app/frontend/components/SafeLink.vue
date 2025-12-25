@@ -1,6 +1,6 @@
 <script setup lang="ts">
 /**
- * SafeLink - Wrapper de Link que se deshabilita durante requests activas
+ * SafeLink - Link wrapper that disables during active requests
  * @example <SafeLink href="/dashboard">Dashboard</SafeLink>
  */
 import { computed } from 'vue'

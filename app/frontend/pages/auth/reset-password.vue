@@ -40,7 +40,7 @@ const submit = async () => {
 </script>
 
 <template>
-  <!-- Tarjeta centrada con diseño moderno -->
+  <!-- Centered card with modern design -->
   <v-card class="pa-6 pa-sm-8 rounded-xl" elevation="2">
     <div class="text-center mb-6">
       <v-icon color="primary" size="48" class="mb-4">mdi-lock-outline</v-icon>
