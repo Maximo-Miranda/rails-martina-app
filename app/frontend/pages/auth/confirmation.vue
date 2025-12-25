@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { Link } from '@inertiajs/vue3'
 import { useTranslations } from '@/composables/useTranslations'
+import SafeLink from '@/components/SafeLink.vue'
 
 const { t } = useTranslations()
 
@@ -49,7 +49,7 @@ const hasErrors = props.errors && Object.keys(props.errors).length > 0
 
     <!-- Acciones -->
     <div class="d-flex flex-column">
-      <Link href="/users/sign_in" class="text-decoration-none">
+      <SafeLink href="/users/sign_in" class="text-decoration-none">
         <v-btn
           color="primary"
           block
@@ -59,9 +59,9 @@ const hasErrors = props.errors && Object.keys(props.errors).length > 0
         >
           {{ t('auth.confirmation.go_to_login') }}
         </v-btn>
-      </Link>
+      </SafeLink>
 
-      <Link
+      <SafeLink
         v-if="hasErrors"
         href="/users/confirmation/new"
         class="text-decoration-none mt-4"
@@ -76,7 +76,7 @@ const hasErrors = props.errors && Object.keys(props.errors).length > 0
         >
           {{ t('auth.confirmation.resend_link') }}
         </v-btn>
-      </Link>
+      </SafeLink>
     </div>
 
     <div class="d-flex align-center my-4">
@@ -87,9 +87,9 @@ const hasErrors = props.errors && Object.keys(props.errors).length > 0
 
     <div class="text-center">
       <span class="text-body-2 text-medium-emphasis">{{ t('auth.confirmation.no_account') }}</span>
-      <Link href="/users/sign_up" class="text-decoration-none ml-1">
+      <SafeLink href="/users/sign_up" class="text-decoration-none ml-1">
         <span class="text-primary font-weight-medium">{{ t('auth.confirmation.create_account') }}</span>
-      </Link>
+      </SafeLink>
     </div>
   </v-card>
 </template>

@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
-import { router, Link, usePage } from '@inertiajs/vue3'
+import { router, usePage } from '@inertiajs/vue3'
 import { useTranslations } from '@/composables/useTranslations'
 import { useUser } from '@/composables/useUser'
 import { usePermissions } from '@/composables/usePermissions'
+import { useGlobalLoading } from '@/composables/useGlobalLoading'
 import ProjectSwitcher from '@/components/ProjectSwitcher.vue'
+import SafeLink from '@/components/SafeLink.vue'
 
 interface Flash {
   notice?: string
@@ -15,6 +17,7 @@ interface Flash {
 const { t } = useTranslations()
 const { currentUser, isAuthenticated, userInitials, logout } = useUser()
 const { can } = usePermissions()
+const { isLoading } = useGlobalLoading()
 const page = usePage()
 
 const drawer = ref(false)
@@ -72,6 +75,7 @@ const navigationItems = computed(() => {
 })
 
 const navigateTo = (href: string) => {
+  if (isLoading.value) return
   userMenu.value = false
   drawer.value = false
   router.visit(href)
@@ -95,14 +99,14 @@ const navigateTo = (href: string) => {
       />
 
       <!-- Logo / Brand - ir al dashboard -->
-      <Link href="/dashboard" class="text-decoration-none" data-testid="nav-logo">
+      <SafeLink href="/dashboard" class="text-decoration-none" data-testid="nav-logo">
         <div class="d-flex align-center ml-2">
           <v-avatar color="white" size="32" class="mr-2">
             <v-icon color="primary" size="20">mdi-cube-outline</v-icon>
           </v-avatar>
           <span class="text-h6 font-weight-bold text-white">Martina</span>
         </div>
-      </Link>
+      </SafeLink>
 
       <!-- Project Switcher -->
       <div class="ml-4" v-if="isAuthenticated">
@@ -152,6 +156,7 @@ const navigateTo = (href: string) => {
                   :title="t('navigation.user_menu.profile')"
                   value="profile"
                   data-testid="nav-user-menu-profile"
+                  :disabled="isLoading"
                   @click="navigateTo('/users/edit')"
                   rounded="lg"
                 />
@@ -165,6 +170,8 @@ const navigateTo = (href: string) => {
                 variant="tonal"
                 color="error"
                 prepend-icon="mdi-logout"
+                :disabled="isLoading"
+                :loading="isLoading"
                 @click="logout"
                 rounded="lg"
               >
@@ -177,16 +184,16 @@ const navigateTo = (href: string) => {
 
       <!-- Botones de login/registro (cuando NO está autenticado) -->
       <template v-else>
-        <Link href="/users/sign_in">
+        <SafeLink href="/users/sign_in">
           <v-btn variant="text" class="text-none text-white mr-1">
             {{ t('navigation.auth.login') }}
           </v-btn>
-        </Link>
-        <Link href="/users/sign_up">
+        </SafeLink>
+        <SafeLink href="/users/sign_up">
           <v-btn variant="flat" color="white" class="text-none text-primary">
             {{ t('navigation.auth.register') }}
           </v-btn>
-        </Link>
+        </SafeLink>
       </template>
     </v-app-bar>
 
@@ -222,6 +229,7 @@ const navigateTo = (href: string) => {
           :title="item.title"
           :value="item.href"
           :data-testid="`nav-item-${item.href.replace('/', '')}`"
+          :disabled="isLoading"
           @click="navigateTo(item.href)"
           rounded="lg"
           class="mb-1"
@@ -236,6 +244,8 @@ const navigateTo = (href: string) => {
             variant="outlined"
             color="error"
             prepend-icon="mdi-logout"
+            :disabled="isLoading"
+            :loading="isLoading"
             @click="logout"
             class="text-none"
           >

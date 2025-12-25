@@ -3,10 +3,12 @@ import { ref, watch, computed } from 'vue'
 import { router, usePage } from '@inertiajs/vue3'
 import { useTranslations } from '@/composables/useTranslations'
 import { useNavigation } from '@/composables/useNavigation'
+import { useGlobalLoading } from '@/composables/useGlobalLoading'
 import type { Project } from '@/types'
 
 const { t } = useTranslations()
-const { navigateTo: navigate } = useNavigation()
+const { navigateTo: navigate, isNavigating } = useNavigation()
+const { isLoading } = useGlobalLoading()
 const page = usePage()
 
 const menu = ref(false)
@@ -35,6 +37,7 @@ const fetchProjects = async (query: string = '') => {
 }
 
 const switchProject = (slug: string) => {
+  if (isLoading.value) return
   menu.value = false
   router.post(`/projects/${slug}/switch`)
 }
@@ -106,6 +109,7 @@ watch(menu, (isOpen) => {
               :title="project.name"
               :subtitle="'/' + project.slug"
               :active="currentProject?.id === project.id"
+              :disabled="isLoading"
               :data-testid="`switcher-project-${project.slug}`"
               @click="switchProject(project.slug)"
               rounded="lg"
@@ -135,6 +139,7 @@ watch(menu, (isOpen) => {
           prepend-icon="mdi-plus"
           size="small"
           data-testid="switcher-btn-new"
+          :disabled="isLoading || isNavigating"
           @click="navigateTo('/projects/new')"
           class="text-none"
         >

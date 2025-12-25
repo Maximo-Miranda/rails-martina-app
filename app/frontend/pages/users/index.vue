@@ -3,6 +3,7 @@ import { computed, ref, watch } from 'vue'
 import { router } from '@inertiajs/vue3'
 import { useTranslations } from '@/composables/useTranslations'
 import { useNavigation } from '@/composables/useNavigation'
+import { useActionLoading } from '@/composables/useActionLoading'
 import PageHeader from '@/components/PageHeader.vue'
 import ConfirmDialog from '@/components/ConfirmDialog.vue'
 import type { User } from '@/types'
@@ -19,7 +20,8 @@ const props = defineProps<{
 }>()
 
 const { t } = useTranslations()
-const { navigateTo } = useNavigation()
+const { navigateTo, isNavigating } = useNavigation()
+const { isAnyLoading, startLoading, stopLoading } = useActionLoading()
 
 const searchKey = 'full_name_or_email_cont'
 
@@ -107,8 +109,10 @@ const confirmDeleteUser = () => {
   if (!deleteTargetId.value) return
 
   deleting.value = true
+  startLoading('delete', deleteTargetId.value)
   router.delete(`/users/${deleteTargetId.value}` as string, {
     onFinish: () => {
+      stopLoading('delete', deleteTargetId.value!)
       deleting.value = false
       deleteDialog.value = false
       deleteTargetId.value = null
@@ -125,8 +129,10 @@ const confirmUnlinkUser = () => {
   if (!unlinkTargetId.value) return
 
   unlinking.value = true
+  startLoading('unlink', unlinkTargetId.value)
   router.delete(`/users/${unlinkTargetId.value}/remove_from_project` as string, {
     onFinish: () => {
+      stopLoading('unlink', unlinkTargetId.value!)
       unlinking.value = false
       unlinkDialog.value = false
       unlinkTargetId.value = null
@@ -145,6 +151,7 @@ const confirmUnlinkUser = () => {
           prepend-icon="mdi-account-plus"
           size="small"
           data-testid="users-btn-invite"
+          :disabled="isAnyLoading || isNavigating"
           @click="navigateTo('/users/new_invitation')"
         >
           {{ t('users.invite') }}
@@ -207,6 +214,7 @@ const confirmUnlinkUser = () => {
               icon="mdi-eye"
               variant="text"
               size="small"
+              :disabled="isAnyLoading || isNavigating"
               :data-testid="`users-row-${item.id}-btn-view`"
               @click="navigateTo(`/users/${item.id}`)"
             />
@@ -216,6 +224,7 @@ const confirmUnlinkUser = () => {
               variant="text"
               size="small"
               color="warning"
+              :disabled="isAnyLoading || isNavigating"
               :data-testid="`users-row-${item.id}-btn-unlink`"
               :title="t('users.remove_from_project')"
               @click="unlinkUser(item.id)"
@@ -226,6 +235,7 @@ const confirmUnlinkUser = () => {
               variant="text"
               size="small"
               color="error"
+              :disabled="isAnyLoading || isNavigating"
               :data-testid="`users-row-${item.id}-btn-delete`"
               @click="deleteUser(item.id)"
             />

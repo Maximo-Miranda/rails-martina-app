@@ -8,7 +8,7 @@ const props = defineProps<{
 }>()
 
 const { t } = useTranslations()
-const { navigateTo } = useNavigation()
+const { navigateTo, isNavigating } = useNavigation()
 </script>
 
 <template>
@@ -19,6 +19,7 @@ const { navigateTo } = useNavigation()
       prepend-icon="mdi-arrow-left"
       class="mb-4 px-0"
       data-testid="projects-btn-back"
+      :disabled="isNavigating"
       @click="navigateTo('/projects')"
     >
       {{ t('common.back') }}
@@ -38,6 +39,7 @@ const { navigateTo } = useNavigation()
           size="small"
           class="mt-n1"
           data-testid="projects-btn-edit"
+          :disabled="isNavigating"
           @click="navigateTo(`/projects/${project.slug}/edit`)"
         />
       </div>

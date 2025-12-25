@@ -102,11 +102,8 @@ class UsersController < ApplicationController
   def remove_from_project
     authorize @user
 
-    # Quitar todos los roles del usuario en el proyecto actual
     @user.roles.where(resource: current_project).destroy_all
 
-    # Si el proyecto actual era su current_project, limpiarlo
-    # (auto_assign_project en ApplicationController lo reasignará)
     if @user.current_project_id == current_project.id
       @user.update_column(:current_project_id, nil)
     end

@@ -5,6 +5,7 @@ const props = withDefaults(
     primaryLoading?: boolean
     primaryDisabled?: boolean
     cancelLabel?: string
+    cancelDisabled?: boolean
     dataTestId?: string
   }>(),
   {
@@ -22,7 +23,7 @@ defineEmits<{
   <div class="d-flex justify-end gap-3">
     <v-btn
       variant="text"
-      :disabled="props.primaryLoading"
+      :disabled="props.primaryLoading || props.cancelDisabled"
       :data-testid="`${props.dataTestId}-btn-cancel`"
       @click="$emit('cancel')"
     >

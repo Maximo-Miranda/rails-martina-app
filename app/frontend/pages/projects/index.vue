@@ -4,6 +4,7 @@ import { router } from '@inertiajs/vue3'
 import { useTranslations } from '@/composables/useTranslations'
 import { useNavigation } from '@/composables/useNavigation'
 import { usePermissions } from '@/composables/usePermissions'
+import { useActionLoading } from '@/composables/useActionLoading'
 import PageHeader from '@/components/PageHeader.vue'
 import ConfirmDialog from '@/components/ConfirmDialog.vue'
 import type { Project } from '@/types'
@@ -16,8 +17,9 @@ const props = defineProps<{
 }>()
 
 const { t } = useTranslations()
-const { navigateTo } = useNavigation()
+const { navigateTo, isNavigating } = useNavigation()
 const { canProject } = usePermissions()
+const { isActionLoading, isAnyLoading, startLoading, stopLoading } = useActionLoading()
 
 const searchKey = 'name_or_slug_or_description_cont'
 
@@ -87,7 +89,10 @@ watch(search, () => {
 })
 
 const switchProject = (slug: string) => {
-  router.post(`/projects/${slug}/switch`)
+  startLoading('switch', slug)
+  router.post(`/projects/${slug}/switch`, {}, {
+    onFinish: () => stopLoading('switch', slug)
+  })
 }
 
 const deleteProject = (slug: string) => {
@@ -99,8 +104,10 @@ const confirmDeleteProject = () => {
   if (!deleteTargetSlug.value) return
 
   deleting.value = true
+  startLoading('delete', deleteTargetSlug.value)
   router.delete(`/projects/${deleteTargetSlug.value}` as string, {
     onFinish: () => {
+      stopLoading('delete', deleteTargetSlug.value!)
       deleting.value = false
       deleteDialog.value = false
       deleteTargetSlug.value = null
@@ -113,7 +120,7 @@ const confirmDeleteProject = () => {
   <v-container class="py-6">
     <PageHeader :title="t('projects.title')" :subtitle="t('projects.subtitle')">
       <template #actions>
-        <v-btn color="primary" prepend-icon="mdi-plus" size="small" data-testid="projects-btn-new" @click="navigateTo('/projects/new')">
+        <v-btn color="primary" prepend-icon="mdi-plus" size="small" data-testid="projects-btn-new" :disabled="isAnyLoading || isNavigating" @click="navigateTo('/projects/new')">
           {{ t('projects.new') }}
         </v-btn>
       </template>
@@ -173,6 +180,8 @@ const confirmDeleteProject = () => {
               variant="tonal"
               color="primary"
               size="small"
+              :loading="isActionLoading('switch', item.slug)"
+              :disabled="isAnyLoading || isNavigating"
               :data-testid="`projects-row-${item.slug}-btn-switch`"
               @click="switchProject(item.slug)"
             >
@@ -182,6 +191,7 @@ const confirmDeleteProject = () => {
               icon="mdi-eye"
               variant="text"
               size="small"
+              :disabled="isAnyLoading || isNavigating"
               :data-testid="`projects-row-${item.slug}-btn-view`"
               @click="navigateTo(`/projects/${item.slug}`)"
             />
@@ -191,6 +201,7 @@ const confirmDeleteProject = () => {
               icon="mdi-pencil"
               variant="text"
               size="small"
+              :disabled="isAnyLoading || isNavigating"
               :data-testid="`projects-row-${item.slug}-btn-edit`"
               @click="navigateTo(`/projects/${item.slug}/edit`)"
             />
@@ -201,6 +212,7 @@ const confirmDeleteProject = () => {
               variant="text"
               size="small"
               color="error"
+              :disabled="isAnyLoading || isNavigating"
               :data-testid="`projects-row-${item.slug}-btn-delete`"
               @click="deleteProject(item.slug)"
             />

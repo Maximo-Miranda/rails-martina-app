@@ -9,7 +9,7 @@ const props = defineProps<{
 }>()
 
 const { t } = useTranslations()
-const { navigateTo } = useNavigation()
+const { navigateTo, isNavigating } = useNavigation()
 </script>
 
 <template>
@@ -20,6 +20,7 @@ const { navigateTo } = useNavigation()
       prepend-icon="mdi-arrow-left"
       class="mb-4 px-0"
       data-testid="users-btn-back"
+      :disabled="isNavigating"
       @click="navigateTo('/users')"
     >
       {{ t('common.back') }}

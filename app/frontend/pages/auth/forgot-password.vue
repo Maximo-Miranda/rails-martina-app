@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { useForm, Link } from '@inertiajs/vue3'
+import { useForm } from '@inertiajs/vue3'
 import { ref } from 'vue'
 import { rules } from '@/utils/validation'
 import { useTranslations } from '@/composables/useTranslations'
+import SafeLink from '@/components/SafeLink.vue'
 
 const { t } = useTranslations()
 
@@ -79,7 +80,7 @@ const submit = async () => {
         </div>
 
         <div class="text-center">
-          <Link href="/users/sign_in" class="text-decoration-none">
+          <SafeLink href="/users/sign_in" class="text-decoration-none">
             <v-btn
               variant="text"
               color="primary"
@@ -88,7 +89,7 @@ const submit = async () => {
             >
               {{ t('auth.forgot_password.back_to_login') }}
             </v-btn>
-          </Link>
+          </SafeLink>
         </div>
       </v-form>
     </template>
@@ -116,7 +117,7 @@ const submit = async () => {
           </template>
         </v-alert>
 
-        <Link href="/users/sign_in" class="text-decoration-none">
+        <SafeLink href="/users/sign_in" class="text-decoration-none">
           <v-btn
             color="primary"
             size="large"
@@ -126,7 +127,7 @@ const submit = async () => {
           >
             {{ t('auth.forgot_password.back_to_login') }}
           </v-btn>
-        </Link>
+        </SafeLink>
       </div>
     </template>
   </v-card>

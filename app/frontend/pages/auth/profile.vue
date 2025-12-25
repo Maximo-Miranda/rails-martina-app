@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { useForm, Link } from '@inertiajs/vue3'
+import { useForm } from '@inertiajs/vue3'
 import { ref, computed } from 'vue'
 import { rules } from '@/utils/validation'
 import { useTranslations } from '@/composables/useTranslations'
+import SafeLink from '@/components/SafeLink.vue'
 
 const { t } = useTranslations()
 
@@ -84,7 +85,7 @@ const submit = async () => {
   <v-container class="py-8" style="max-width: 800px;">
     <!-- Header -->
     <div class="d-flex align-center mb-6">
-      <Link href="/dashboard">
+      <SafeLink href="/dashboard">
         <v-btn
           icon
           variant="text"
@@ -92,7 +93,7 @@ const submit = async () => {
         >
           <v-icon>mdi-arrow-left</v-icon>
         </v-btn>
-      </Link>
+      </SafeLink>
       <div>
         <h1 class="text-h4 font-weight-bold">{{ t('auth.profile.title') }}</h1>
         <p class="text-body-2 text-medium-emphasis mt-1">

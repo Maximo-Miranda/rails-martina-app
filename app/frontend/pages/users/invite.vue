@@ -13,7 +13,7 @@ const props = defineProps<{
 }>()
 
 const { t } = useTranslations()
-const { navigateTo } = useNavigation()
+const { navigateTo, isNavigating } = useNavigation()
 
 const inviteToProject = ref(true)
 const selectedRole = ref('coworker')
@@ -48,6 +48,7 @@ const submit = () => {
             data-testid="users-input-email"
             :label="t('users.email')"
             :error-messages="form.errors.email || errors?.email"
+            :disabled="form.processing"
             type="email"
             variant="outlined"
             class="mb-4"
@@ -58,6 +59,7 @@ const submit = () => {
             v-model="inviteToProject"
             data-testid="users-checkbox-invite-to-project"
             :label="t('users.invite_to_project', { project: current_project.name })"
+            :disabled="form.processing"
             class="mb-2"
           />
 
@@ -67,6 +69,7 @@ const submit = () => {
             data-testid="users-select-role"
             :items="roles"
             :label="t('users.role')"
+            :disabled="form.processing"
             variant="outlined"
             class="mb-4"
           />
@@ -79,8 +82,9 @@ const submit = () => {
             data-test-id="users-invite-form"
             :primary-label="t('users.send_invitation')"
             :primary-loading="form.processing"
-            :primary-disabled="form.processing"
+            :primary-disabled="form.processing || isNavigating"
             :cancel-label="t('common.cancel')"
+            :cancel-disabled="form.processing || isNavigating"
             @cancel="navigateTo('/users')"
           />
         </v-form>
