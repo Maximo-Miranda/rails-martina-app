@@ -41,8 +41,22 @@ class UsersController < ApplicationController
   def invite
     authorize User, :invite?
 
-    email = invitation_params[:email]
-    invite_to_project = invitation_params[:invite_to_project] == "true"
+    @invitation_request = UserInvitationRequest.new(
+      email: params[:email],
+      invite_to_project: params[:invite_to_project],
+      role: params[:role]
+    )
+
+    unless @invitation_request.valid?
+      render inertia: "users/invite", props: {
+        current_project: current_project.as_json(only: %i[id name slug]),
+        errors: @invitation_request.errors.as_json
+      }
+      return
+    end
+
+    email = @invitation_request.email
+    invite_to_project = @invitation_request.invite_to_project?
 
     existing_user = User.find_by(email: email)
 
@@ -56,7 +70,20 @@ class UsersController < ApplicationController
   def update
     authorize @user
 
-    if @user.update(user_params)
+    @update_request = UserUpdateRequest.new(
+      full_name: params.dig(:user, :full_name),
+      email: params.dig(:user, :email)
+    )
+
+    unless @update_request.valid?
+      render inertia: "users/show", props: {
+        user: user_json(@user),
+        errors: @update_request.errors.as_json
+      }
+      return
+    end
+
+    if @user.update(@update_request.attributes.slice("full_name", "email"))
       redirect_to users_path, notice: I18n.t("users.updated")
     else
       render inertia: "users/show", props: {
@@ -93,22 +120,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def user_params
-    params.require(:user).permit(:full_name, :email)
-  end
-
-  def invitation_params
-    params.permit(:email, :invite_to_project)
-  end
-
-  # Roles permitidos para asignar a usuarios en un proyecto
-  ALLOWED_INVITATION_ROLES = %w[coworker client].freeze
-
-  def safe_invitation_role
-    role = params[:role].to_s
-    ALLOWED_INVITATION_ROLES.include?(role) ? role : "coworker"
-  end
-
   def user_json(user)
     user.as_json(only: %i[id email full_name created_at]).merge(
       roles: user.roles.where(resource: current_project).pluck(:name)
@@ -117,7 +128,7 @@ class UsersController < ApplicationController
 
   def invite_existing_user(user, invite_to_project)
     if invite_to_project && current_project
-      user.add_role(safe_invitation_role, current_project)
+      user.add_role(@invitation_request.safe_role, current_project)
       redirect_to users_path, notice: I18n.t("users.added_to_project", email: user.email)
     else
       redirect_to users_path, alert: I18n.t("users.already_exists")
@@ -129,7 +140,7 @@ class UsersController < ApplicationController
 
     if user.persisted?
       if invite_to_project && current_project
-        user.add_role(safe_invitation_role, current_project)
+        user.add_role(@invitation_request.safe_role, current_project)
         user.update!(current_project_id: current_project.id)
       end
       redirect_to users_path, notice: I18n.t("users.invitation_sent", email: email)
