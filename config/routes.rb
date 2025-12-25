@@ -40,6 +40,9 @@ Rails.application.routes.draw do
 
   # Users management
   resources :users, except: %i[new create] do
+    member do
+      delete :remove_from_project
+    end
     collection do
       get :new_invitation
       post :invite

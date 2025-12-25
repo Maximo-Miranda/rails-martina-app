@@ -42,6 +42,7 @@ const submit = () => {
         <v-form @submit.prevent="submit">
           <v-text-field
             v-model="form.name"
+            data-testid="projects-input-name"
             :label="t('projects.name')"
             :error-messages="form.errors.name || errors?.name"
             variant="outlined"
@@ -51,6 +52,7 @@ const submit = () => {
 
           <v-textarea
             v-model="form.description"
+            data-testid="projects-input-description"
             :label="t('projects.description')"
             :error-messages="form.errors.description || errors?.description"
             variant="outlined"
@@ -59,6 +61,7 @@ const submit = () => {
           />
 
           <FormActions
+            data-test-id="projects-form"
             :primary-label="isEditing ? t('common.save') : t('common.create')"
             :primary-loading="form.processing"
             :primary-disabled="form.processing"

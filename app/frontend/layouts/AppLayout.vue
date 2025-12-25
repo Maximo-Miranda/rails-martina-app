@@ -73,12 +73,13 @@ const navigateTo = (href: string) => {
       <!-- Hamburger menu (solo visible si está autenticado) -->
       <v-app-bar-nav-icon
         v-if="isAuthenticated"
+        data-testid="nav-hamburger"
         @click="drawer = !drawer"
         variant="text"
       />
 
       <!-- Logo / Brand - ir al dashboard -->
-      <Link href="/dashboard" class="text-decoration-none">
+      <Link href="/dashboard" class="text-decoration-none" data-testid="nav-logo">
         <div class="d-flex align-center ml-2">
           <v-avatar color="white" size="32" class="mr-2">
             <v-icon color="primary" size="20">mdi-cube-outline</v-icon>
@@ -134,6 +135,7 @@ const navigateTo = (href: string) => {
                   prepend-icon="mdi-account-outline"
                   :title="t('navigation.user_menu.profile')"
                   value="profile"
+                  data-testid="nav-user-menu-profile"
                   @click="navigateTo('/users/edit')"
                   rounded="lg"
                 />
@@ -178,6 +180,7 @@ const navigateTo = (href: string) => {
       v-model="drawer"
       temporary
       class="elevation-0"
+      data-testid="nav-drawer"
     >
       <!-- Drawer Header -->
       <div class="pa-4 bg-primary">
@@ -202,6 +205,7 @@ const navigateTo = (href: string) => {
           :prepend-icon="item.icon"
           :title="item.title"
           :value="item.href"
+          :data-testid="`nav-item-${item.href.replace('/', '')}`"
           @click="navigateTo(item.href)"
           rounded="lg"
           class="mb-1"

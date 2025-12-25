@@ -111,7 +111,7 @@ const confirmDeleteProject = () => {
   <v-container class="py-6">
     <PageHeader :title="t('projects.title')" :subtitle="t('projects.subtitle')">
       <template #actions>
-        <v-btn color="primary" prepend-icon="mdi-plus" size="small" @click="navigateTo('/projects/new')">
+        <v-btn color="primary" prepend-icon="mdi-plus" size="small" data-testid="projects-btn-new" @click="navigateTo('/projects/new')">
           {{ t('projects.new') }}
         </v-btn>
       </template>
@@ -121,6 +121,7 @@ const confirmDeleteProject = () => {
       <v-card-text class="pa-4">
         <v-text-field
           v-model="search"
+          data-testid="projects-input-search"
           :label="t('projects.search')"
           prepend-inner-icon="mdi-magnify"
           variant="outlined"
@@ -136,6 +137,7 @@ const confirmDeleteProject = () => {
       <v-divider />
 
       <v-data-table-server
+        data-testid="projects-table"
         :headers="headers"
         :items="projects"
         :items-length="pagination.count"
@@ -169,13 +171,14 @@ const confirmDeleteProject = () => {
               variant="tonal"
               color="primary"
               size="small"
+              :data-testid="`projects-row-${item.slug}-btn-switch`"
               @click="switchProject(item.slug)"
             >
               {{ t('projects.switch') }}
             </v-btn>
-            <v-btn icon="mdi-eye" variant="text" size="small" @click="navigateTo(`/projects/${item.slug}`)" />
-            <v-btn icon="mdi-pencil" variant="text" size="small" @click="navigateTo(`/projects/${item.slug}/edit`)" />
-            <v-btn icon="mdi-delete" variant="text" size="small" color="error" @click="deleteProject(item.slug)" />
+            <v-btn icon="mdi-eye" variant="text" size="small" :data-testid="`projects-row-${item.slug}-btn-view`" @click="navigateTo(`/projects/${item.slug}`)" />
+            <v-btn icon="mdi-pencil" variant="text" size="small" :data-testid="`projects-row-${item.slug}-btn-edit`" @click="navigateTo(`/projects/${item.slug}/edit`)" />
+            <v-btn icon="mdi-delete" variant="text" size="small" color="error" :data-testid="`projects-row-${item.slug}-btn-delete`" @click="deleteProject(item.slug)" />
           </div>
         </template>
 
@@ -190,6 +193,7 @@ const confirmDeleteProject = () => {
 
     <ConfirmDialog
       v-model="deleteDialog"
+      data-test-id="projects-dialog-delete"
       :title="t('common.confirm')"
       :text="t('projects.confirm_delete')"
       :confirm-label="t('common.delete')"

@@ -19,6 +19,7 @@ const { navigateTo } = useNavigation()
       variant="text"
       prepend-icon="mdi-arrow-left"
       class="mb-4 px-0"
+      data-testid="users-btn-back"
       @click="navigateTo('/users')"
     >
       {{ t('common.back') }}
@@ -50,7 +51,7 @@ const { navigateTo } = useNavigation()
         <!-- Roles -->
         <div>
           <div class="text-overline text-medium-emphasis mb-2">{{ t('users.roles_in_project') }}</div>
-          <div>
+          <div data-testid="users-roles-chips">
             <v-chip
               v-for="role in user.roles"
               :key="role"

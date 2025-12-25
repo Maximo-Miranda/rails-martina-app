@@ -18,6 +18,7 @@ const { navigateTo } = useNavigation()
       variant="text"
       prepend-icon="mdi-arrow-left"
       class="mb-4 px-0"
+      data-testid="projects-btn-back"
       @click="navigateTo('/projects')"
     >
       {{ t('common.back') }}
@@ -36,6 +37,7 @@ const { navigateTo } = useNavigation()
           color="primary"
           size="small"
           class="mt-n1"
+          data-testid="projects-btn-edit"
           @click="navigateTo(`/projects/${project.slug}/edit`)"
         />
       </div>

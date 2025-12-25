@@ -113,6 +113,7 @@ es:
         error: "No se pudo actualizar el perfil. Por favor revisa los errores."
     updated: "Usuario actualizado exitosamente"
     deleted: "Usuario eliminado exitosamente"
+    removed_from_project: "Usuario desvinculado del proyecto exitosamente"
     invitation_sent: "Invitación enviada a %{email}"
     added_to_project: "Usuario %{email} agregado al proyecto"
     already_exists: "El usuario ya existe en la plataforma"
@@ -146,3 +147,4 @@ es:
       update: "No tienes permiso para actualizar este usuario"
       destroy: "No tienes permiso para eliminar este usuario"
       invite: "No tienes permiso para invitar usuarios"
+      remove_from_project: "No tienes permiso para desvincular usuarios del proyecto"

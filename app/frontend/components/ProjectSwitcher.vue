@@ -65,6 +65,7 @@ watch(menu, (isOpen) => {
     <template v-slot:activator="{ props }">
       <v-btn
         v-bind="props"
+        data-testid="switcher-btn"
         variant="tonal"
         color="white"
         class="text-none"
@@ -77,10 +78,11 @@ watch(menu, (isOpen) => {
       </v-btn>
     </template>
 
-    <v-card class="rounded-xl" elevation="8">
+    <v-card class="rounded-xl" elevation="8" data-testid="switcher-menu">
       <v-card-text class="pa-3">
         <v-text-field
           v-model="search"
+          data-testid="switcher-input-search"
           :placeholder="t('projects.search')"
           prepend-inner-icon="mdi-magnify"
           variant="outlined"
@@ -104,6 +106,7 @@ watch(menu, (isOpen) => {
               :title="project.name"
               :subtitle="'/' + project.slug"
               :active="currentProject?.id === project.id"
+              :data-testid="`switcher-project-${project.slug}`"
               @click="switchProject(project.slug)"
               rounded="lg"
               color="primary"
@@ -131,6 +134,7 @@ watch(menu, (isOpen) => {
           color="primary"
           prepend-icon="mdi-plus"
           size="small"
+          data-testid="switcher-btn-new"
           @click="navigateTo('/projects/new')"
           class="text-none"
         >

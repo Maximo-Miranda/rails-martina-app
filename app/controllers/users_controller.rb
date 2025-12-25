@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   include RansackPagyIndex
 
-  before_action :set_user, only: %i[show update destroy]
+  before_action :set_user, only: %i[show update destroy remove_from_project]
 
   def index
     authorize User
@@ -19,7 +19,10 @@ class UsersController < ApplicationController
       users: users.as_json(only: %i[id email full_name created_at]),
       pagination: pagy_pagination(@pagy),
       filters: filters,
-      can_invite: policy(User).invite?
+      can_invite: policy(User).invite?,
+      can_remove_from_project: policy(User).remove_from_project?,
+      can_destroy: policy(User).destroy?,
+      current_user_id: current_user.id
     }
   end
 
@@ -69,6 +72,21 @@ class UsersController < ApplicationController
     redirect_to users_path, notice: I18n.t("users.deleted")
   end
 
+  def remove_from_project
+    authorize @user
+
+    # Quitar todos los roles del usuario en el proyecto actual
+    @user.roles.where(resource: current_project).destroy_all
+
+    # Si el proyecto actual era su current_project, limpiarlo
+    # (auto_assign_project en ApplicationController lo reasignará)
+    if @user.current_project_id == current_project.id
+      @user.update_column(:current_project_id, nil)
+    end
+
+    redirect_to users_path, notice: I18n.t("users.removed_from_project")
+  end
+
   private
 
   def set_user
@@ -80,7 +98,15 @@ class UsersController < ApplicationController
   end
 
   def invitation_params
-    params.permit(:email, :role, :invite_to_project)
+    params.permit(:email, :invite_to_project)
+  end
+
+  # Roles permitidos para asignar a usuarios en un proyecto
+  ALLOWED_INVITATION_ROLES = %w[coworker client].freeze
+
+  def safe_invitation_role
+    role = params[:role].to_s
+    ALLOWED_INVITATION_ROLES.include?(role) ? role : "coworker"
   end
 
   def user_json(user)
@@ -91,8 +117,7 @@ class UsersController < ApplicationController
 
   def invite_existing_user(user, invite_to_project)
     if invite_to_project && current_project
-      role = invitation_params[:role].presence || :coworker
-      user.add_role(role, current_project)
+      user.add_role(safe_invitation_role, current_project)
       redirect_to users_path, notice: I18n.t("users.added_to_project", email: user.email)
     else
       redirect_to users_path, alert: I18n.t("users.already_exists")
@@ -104,8 +129,7 @@ class UsersController < ApplicationController
 
     if user.persisted?
       if invite_to_project && current_project
-        role = invitation_params[:role].presence || :coworker
-        user.add_role(role, current_project)
+        user.add_role(safe_invitation_role, current_project)
         user.update!(current_project_id: current_project.id)
       end
       redirect_to users_path, notice: I18n.t("users.invitation_sent", email: email)

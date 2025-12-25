@@ -1,0 +1,33 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# Join table between users and roles (HABTM)
+
+# === GLOBAL ROLES ===
+super_admin_user_super_admin_role:
+  user_id: <%= ActiveRecord::FixtureSet.identify(:super_admin_user) %>
+  role_id: <%= ActiveRecord::FixtureSet.identify(:super_admin_role) %>
+
+admin_user_admin_role:
+  user_id: <%= ActiveRecord::FixtureSet.identify(:admin_user) %>
+  role_id: <%= ActiveRecord::FixtureSet.identify(:admin_role) %>
+
+# === ROLES EN TEST_PROJECT ===
+confirmed_user_owner_test_project:
+  user_id: <%= ActiveRecord::FixtureSet.identify(:confirmed_user) %>
+  role_id: <%= ActiveRecord::FixtureSet.identify(:owner_role_test_project) %>
+
+coworker_user_coworker_test_project:
+  user_id: <%= ActiveRecord::FixtureSet.identify(:coworker_user) %>
+  role_id: <%= ActiveRecord::FixtureSet.identify(:coworker_role_test_project) %>
+
+client_user_client_test_project:
+  user_id: <%= ActiveRecord::FixtureSet.identify(:client_user) %>
+  role_id: <%= ActiveRecord::FixtureSet.identify(:client_role_test_project) %>
+
+# === ROLES EN OTHER_PROJECT ===
+confirmed_user_owner_other_project:
+  user_id: <%= ActiveRecord::FixtureSet.identify(:confirmed_user) %>
+  role_id: <%= ActiveRecord::FixtureSet.identify(:owner_role_other_project) %>
+
+outsider_user_owner_other_project:
+  user_id: <%= ActiveRecord::FixtureSet.identify(:outsider_user) %>
+  role_id: <%= ActiveRecord::FixtureSet.identify(:owner_role_other_project) %>

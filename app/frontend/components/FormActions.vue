@@ -5,9 +5,11 @@ const props = withDefaults(
     primaryLoading?: boolean
     primaryDisabled?: boolean
     cancelLabel?: string
+    dataTestId?: string
   }>(),
   {
-    cancelLabel: 'Cancelar'
+    cancelLabel: 'Cancelar',
+    dataTestId: 'form'
   }
 )
 
@@ -18,7 +20,12 @@ defineEmits<{
 
 <template>
   <div class="d-flex justify-end gap-3">
-    <v-btn variant="text" :disabled="props.primaryLoading" @click="$emit('cancel')">
+    <v-btn
+      variant="text"
+      :disabled="props.primaryLoading"
+      :data-testid="`${props.dataTestId}-btn-cancel`"
+      @click="$emit('cancel')"
+    >
       {{ props.cancelLabel }}
     </v-btn>
     <v-btn
@@ -26,6 +33,7 @@ defineEmits<{
       type="submit"
       :loading="props.primaryLoading"
       :disabled="props.primaryDisabled || props.primaryLoading"
+      :data-testid="`${props.dataTestId}-btn-submit`"
     >
       {{ props.primaryLabel }}
     </v-btn>

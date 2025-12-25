@@ -45,6 +45,7 @@ const submit = () => {
         <v-form @submit.prevent="submit">
           <v-text-field
             v-model="form.email"
+            data-testid="users-input-email"
             :label="t('users.email')"
             :error-messages="form.errors.email || errors?.email"
             type="email"
@@ -55,6 +56,7 @@ const submit = () => {
 
           <v-checkbox
             v-model="inviteToProject"
+            data-testid="users-checkbox-invite-to-project"
             :label="t('users.invite_to_project', { project: current_project.name })"
             class="mb-2"
           />
@@ -62,6 +64,7 @@ const submit = () => {
           <v-select
             v-if="inviteToProject"
             v-model="selectedRole"
+            data-testid="users-select-role"
             :items="roles"
             :label="t('users.role')"
             variant="outlined"
@@ -73,6 +76,7 @@ const submit = () => {
           </v-alert>
 
           <FormActions
+            data-test-id="users-invite-form"
             :primary-label="t('users.send_invitation')"
             :primary-loading="form.processing"
             :primary-disabled="form.processing"

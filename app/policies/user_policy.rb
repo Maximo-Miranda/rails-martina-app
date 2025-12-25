@@ -2,41 +2,47 @@
 
 class UserPolicy < ApplicationPolicy
   def index?
-    super_admin? || owner?
+    global_admin? || owner?
   end
 
   def show?
-    super_admin? || owner? || record == user
+    global_admin? || owner? || record == user
   end
 
   def invite?
-    super_admin? || owner?
+    global_admin? || owner?
   end
 
   def update?
-    super_admin? || record == user
+    global_admin? || record == user
   end
 
   def destroy?
+    # Solo super_admin puede eliminar usuarios (soft-delete)
     super_admin? && record != user
+  end
+
+  def remove_from_project?
+    # Owner del proyecto o admin global pueden desvincular usuarios
+    # No permitir desvincularse a uno mismo
+    (global_admin? || owner?) && record != user
   end
 
   # Para mostrar/ocultar módulo usuarios en menú
   def show_menu?
-    super_admin? || owner?
+    global_admin? || owner?
   end
 
   class Scope < ApplicationPolicy::Scope
     def resolve
-      if user.super_admin?
+      if user.global_admin?
         scope.kept
       else
-        # Solo usuarios del proyecto actual
+        # Solo usuarios del proyecto actual (usando join correcto con Rolify)
         project = ActsAsTenant.current_tenant || user.current_project
         return scope.none unless project
 
-        user_ids = Role.where(resource: project).joins(:users).pluck("users.id")
-        scope.kept.where(id: user_ids)
+        scope.kept.joins(:roles).where(roles: { resource: project }).distinct
       end
     end
   end

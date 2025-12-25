@@ -1,16 +1,77 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-confirmed_user:
-  full_name: "Test User"
-  email: "test@example.com"
+# === GLOBAL ADMINS ===
+super_admin_user:
+  full_name: "Super Admin"
+  email: "super_admin@example.com"
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
   confirmed_at: <%= Time.current %>
   created_at: <%= Time.current %>
   updated_at: <%= Time.current %>
 
+admin_user:
+  full_name: "Admin User"
+  email: "admin@example.com"
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
+  confirmed_at: <%= Time.current %>
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+# === PROJECT USERS ===
+# Owner del test_project y other_project
+confirmed_user:
+  full_name: "Test User"
+  email: "test@example.com"
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
+  confirmed_at: <%= Time.current %>
+  current_project: test_project
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+# Coworker en test_project
+coworker_user:
+  full_name: "Coworker User"
+  email: "coworker@example.com"
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
+  confirmed_at: <%= Time.current %>
+  current_project: test_project
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+# Client en test_project
+client_user:
+  full_name: "Client User"
+  email: "client@example.com"
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
+  confirmed_at: <%= Time.current %>
+  current_project: test_project
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+# Owner de other_project (sin acceso a test_project)
+outsider_user:
+  full_name: "Outsider User"
+  email: "outsider@example.com"
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
+  confirmed_at: <%= Time.current %>
+  current_project: other_project
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+# Usuario sin confirmar
 unconfirmed_user:
   full_name: "Unconfirmed User"
   email: "unconfirmed@example.com"
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+# Usuario eliminado (soft delete)
+deleted_user:
+  full_name: "Deleted User"
+  email: "deleted@example.com"
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
+  confirmed_at: <%= Time.current %>
+  deleted_at: <%= Time.current %>
   created_at: <%= Time.current %>
   updated_at: <%= Time.current %>

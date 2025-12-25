@@ -7,11 +7,13 @@ const props = withDefaults(
     confirmLabel?: string
     cancelLabel?: string
     loading?: boolean
+    dataTestId?: string
   }>(),
   {
     confirmLabel: 'Confirmar',
     cancelLabel: 'Cancelar',
-    loading: false
+    loading: false,
+    dataTestId: 'confirm-dialog'
   }
 )
 
@@ -32,17 +34,28 @@ function close() {
     max-width="440"
     @update:model-value="(v) => emit('update:modelValue', v)"
   >
-    <v-card class="rounded-xl" elevation="0" border>
+    <v-card class="rounded-xl" elevation="0" border :data-testid="props.dataTestId">
       <v-card-title class="text-h6">{{ props.title }}</v-card-title>
       <v-card-text class="text-body-2 text-medium-emphasis">
         {{ props.text }}
       </v-card-text>
       <v-card-actions class="px-4 pb-4">
         <v-spacer />
-        <v-btn variant="text" :disabled="props.loading" @click="emit('cancel'); close()">
+        <v-btn
+          variant="text"
+          :disabled="props.loading"
+          :data-testid="`${props.dataTestId}-btn-cancel`"
+          @click="emit('cancel'); close()"
+        >
           {{ props.cancelLabel }}
         </v-btn>
-        <v-btn color="error" :loading="props.loading" :disabled="props.loading" @click="emit('confirm')">
+        <v-btn
+          color="error"
+          :loading="props.loading"
+          :disabled="props.loading"
+          :data-testid="`${props.dataTestId}-btn-confirm`"
+          @click="emit('confirm')"
+        >
           {{ props.confirmLabel }}
         </v-btn>
       </v-card-actions>

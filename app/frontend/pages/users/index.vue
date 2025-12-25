@@ -11,6 +11,9 @@ import type { PagyPagination } from '@/types'
 const props = defineProps<{
   users: User[]
   can_invite: boolean
+  can_remove_from_project: boolean
+  can_destroy: boolean
+  current_user_id: number
   pagination: PagyPagination
   filters: Record<string, unknown>
 }>()
@@ -22,9 +25,16 @@ const searchKey = 'full_name_or_email_cont'
 
 const search = ref<string | null>(String(props.filters?.[searchKey] ?? ''))
 const loading = ref(false)
+
+// Dialog para eliminar usuario (solo super_admin)
 const deleteDialog = ref(false)
 const deleteTargetId = ref<number | null>(null)
 const deleting = ref(false)
+
+// Dialog para desvincular usuario del proyecto (owner/admin)
+const unlinkDialog = ref(false)
+const unlinkTargetId = ref<number | null>(null)
+const unlinking = ref(false)
 
 const headers = computed(() => [
   { title: t('users.name'), key: 'full_name', sortable: true },
@@ -39,6 +49,10 @@ function parseSort(s: unknown): Array<{ key: string; order: 'asc' | 'desc' }> {
   if (!key || (order !== 'asc' && order !== 'desc')) return []
   return [{ key, order }]
 }
+
+// Helpers para verificar si se pueden mostrar acciones para un usuario específico
+const canUnlinkUser = (userId: number) => props.can_remove_from_project && userId !== props.current_user_id
+const canDeleteUser = (userId: number) => props.can_destroy && userId !== props.current_user_id
 
 const sortBy = ref(parseSort(props.filters?.s))
 
@@ -101,6 +115,24 @@ const confirmDeleteUser = () => {
     }
   })
 }
+
+const unlinkUser = (id: number) => {
+  unlinkTargetId.value = id
+  unlinkDialog.value = true
+}
+
+const confirmUnlinkUser = () => {
+  if (!unlinkTargetId.value) return
+
+  unlinking.value = true
+  router.delete(`/users/${unlinkTargetId.value}/remove_from_project` as string, {
+    onFinish: () => {
+      unlinking.value = false
+      unlinkDialog.value = false
+      unlinkTargetId.value = null
+    }
+  })
+}
 </script>
 
 <template>
@@ -112,6 +144,7 @@ const confirmDeleteUser = () => {
           color="primary"
           prepend-icon="mdi-account-plus"
           size="small"
+          data-testid="users-btn-invite"
           @click="navigateTo('/users/new_invitation')"
         >
           {{ t('users.invite') }}
@@ -123,6 +156,7 @@ const confirmDeleteUser = () => {
       <v-card-text class="pa-4">
         <v-text-field
           v-model="search"
+          data-testid="users-input-search"
           :label="t('users.search')"
           prepend-inner-icon="mdi-magnify"
           variant="outlined"
@@ -138,6 +172,7 @@ const confirmDeleteUser = () => {
       <v-divider />
 
       <v-data-table-server
+        data-testid="users-table"
         :headers="headers"
         :items="users"
         :items-length="pagination.count"
@@ -168,8 +203,32 @@ const confirmDeleteUser = () => {
 
         <template #item.actions="{ item }">
           <div class="d-flex justify-end align-center gap-2">
-            <v-btn icon="mdi-eye" variant="text" size="small" @click="navigateTo(`/users/${item.id}`)" />
-            <v-btn icon="mdi-delete" variant="text" size="small" color="error" @click="deleteUser(item.id)" />
+            <v-btn
+              icon="mdi-eye"
+              variant="text"
+              size="small"
+              :data-testid="`users-row-${item.id}-btn-view`"
+              @click="navigateTo(`/users/${item.id}`)"
+            />
+            <v-btn
+              v-if="canUnlinkUser(item.id)"
+              icon="mdi-account-remove"
+              variant="text"
+              size="small"
+              color="warning"
+              :data-testid="`users-row-${item.id}-btn-unlink`"
+              :title="t('users.remove_from_project')"
+              @click="unlinkUser(item.id)"
+            />
+            <v-btn
+              v-if="canDeleteUser(item.id)"
+              icon="mdi-delete"
+              variant="text"
+              size="small"
+              color="error"
+              :data-testid="`users-row-${item.id}-btn-delete`"
+              @click="deleteUser(item.id)"
+            />
           </div>
         </template>
 
@@ -182,8 +241,22 @@ const confirmDeleteUser = () => {
       </v-data-table-server>
     </v-card>
 
+    <!-- Dialog para desvincular usuario del proyecto -->
+    <ConfirmDialog
+      v-model="unlinkDialog"
+      data-test-id="users-dialog-unlink"
+      :title="t('common.confirm')"
+      :text="t('users.confirm_remove_from_project')"
+      :confirm-label="t('users.remove_from_project')"
+      :cancel-label="t('common.cancel')"
+      :loading="unlinking"
+      @confirm="confirmUnlinkUser"
+    />
+
+    <!-- Dialog para eliminar usuario (solo super_admin) -->
     <ConfirmDialog
       v-model="deleteDialog"
+      data-test-id="users-dialog-delete"
       :title="t('common.confirm')"
       :text="t('users.confirm_delete')"
       :confirm-label="t('common.delete')"

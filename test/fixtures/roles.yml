@@ -1,11 +1,53 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the "{}" from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+# === GLOBAL ROLES (resource_type y resource_id son NULL) ===
+super_admin_role:
+  name: "super_admin"
+  resource_type: ~
+  resource_id: ~
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+admin_role:
+  name: "admin"
+  resource_type: ~
+  resource_id: ~
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+# === ROLES DE PROYECTO (test_project) ===
+owner_role_test_project:
+  name: "owner"
+  resource_type: "Project"
+  resource_id: <%= ActiveRecord::FixtureSet.identify(:test_project) %>
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+coworker_role_test_project:
+  name: "coworker"
+  resource_type: "Project"
+  resource_id: <%= ActiveRecord::FixtureSet.identify(:test_project) %>
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+client_role_test_project:
+  name: "client"
+  resource_type: "Project"
+  resource_id: <%= ActiveRecord::FixtureSet.identify(:test_project) %>
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+# === ROLES DE PROYECTO (other_project) ===
+owner_role_other_project:
+  name: "owner"
+  resource_type: "Project"
+  resource_id: <%= ActiveRecord::FixtureSet.identify(:other_project) %>
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+coworker_role_other_project:
+  name: "coworker"
+  resource_type: "Project"
+  resource_id: <%= ActiveRecord::FixtureSet.identify(:other_project) %>
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
