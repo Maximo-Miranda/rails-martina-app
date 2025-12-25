@@ -14,8 +14,19 @@ class ProjectsController < ApplicationController
 
     @pagy, projects = pagy(:offset, @q.result(distinct: true), limit: pagy_limit(default: 10))
 
+    # Get permissions for all projects
+    permission_service = PermissionService.new(current_user)
+    projects_permissions = permission_service.projects_permissions(projects)
+
+    # Add permissions to each project
+    projects_with_permissions = projects.map do |project|
+      project.as_json(only: %i[id name slug description created_at]).merge(
+        projects_permissions[project.id] || {}
+      )
+    end
+
     render inertia: "projects/index", props: {
-      projects: projects.as_json(only: %i[id name slug description created_at]),
+      projects: projects_with_permissions,
       pagination: pagy_pagination(@pagy),
       filters: filters
     }

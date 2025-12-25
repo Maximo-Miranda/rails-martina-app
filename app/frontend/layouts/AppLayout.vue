@@ -3,6 +3,7 @@ import { ref, computed, watch } from 'vue'
 import { router, Link, usePage } from '@inertiajs/vue3'
 import { useTranslations } from '@/composables/useTranslations'
 import { useUser } from '@/composables/useUser'
+import { usePermissions } from '@/composables/usePermissions'
 import ProjectSwitcher from '@/components/ProjectSwitcher.vue'
 
 interface Flash {
@@ -13,6 +14,7 @@ interface Flash {
 
 const { t } = useTranslations()
 const { currentUser, isAuthenticated, userInitials, logout } = useUser()
+const { can } = usePermissions()
 const page = usePage()
 
 const drawer = ref(false)
@@ -21,7 +23,6 @@ const snackbar = ref(false)
 const snackbarMessage = ref('')
 const snackbarColor = ref('success')
 
-const permissions = computed(() => page.props.permissions as { can_manage_users: boolean } | null)
 const flash = computed(() => page.props.flash as Flash)
 
 // Show snackbar for flash messages
@@ -43,16 +44,31 @@ watch(flash, (newFlash) => {
 
 const navigationItems = computed(() => {
   const items = [
-    { title: t('navigation.dashboard'), icon: 'mdi-view-dashboard', href: '/dashboard' },
-    { title: t('navigation.projects'), icon: 'mdi-folder-outline', href: '/projects' },
+    {
+      title: t('navigation.dashboard'),
+      icon: 'mdi-view-dashboard',
+      href: '/dashboard',
+      visible: can.value.accessDashboard
+    },
+    {
+      title: t('navigation.projects'),
+      icon: 'mdi-folder-outline',
+      href: '/projects',
+      visible: can.value.accessProjects
+    },
   ]
 
   // Solo mostrar Users si tiene permiso
-  if (permissions.value?.can_manage_users) {
-    items.push({ title: t('navigation.users'), icon: 'mdi-account-group-outline', href: '/users' })
+  if (can.value.manageUsers) {
+    items.push({
+      title: t('navigation.users'),
+      icon: 'mdi-account-group-outline',
+      href: '/users',
+      visible: true
+    })
   }
 
-  return items
+  return items.filter(item => item.visible)
 })
 
 const navigateTo = (href: string) => {

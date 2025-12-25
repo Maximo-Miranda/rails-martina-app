@@ -3,6 +3,7 @@ import { computed, ref, watch } from 'vue'
 import { router } from '@inertiajs/vue3'
 import { useTranslations } from '@/composables/useTranslations'
 import { useNavigation } from '@/composables/useNavigation'
+import { usePermissions } from '@/composables/usePermissions'
 import PageHeader from '@/components/PageHeader.vue'
 import ConfirmDialog from '@/components/ConfirmDialog.vue'
 import type { Project } from '@/types'
@@ -16,6 +17,7 @@ const props = defineProps<{
 
 const { t } = useTranslations()
 const { navigateTo } = useNavigation()
+const { canProject } = usePermissions()
 
 const searchKey = 'name_or_slug_or_description_cont'
 
@@ -176,9 +178,32 @@ const confirmDeleteProject = () => {
             >
               {{ t('projects.switch') }}
             </v-btn>
-            <v-btn icon="mdi-eye" variant="text" size="small" :data-testid="`projects-row-${item.slug}-btn-view`" @click="navigateTo(`/projects/${item.slug}`)" />
-            <v-btn icon="mdi-pencil" variant="text" size="small" :data-testid="`projects-row-${item.slug}-btn-edit`" @click="navigateTo(`/projects/${item.slug}/edit`)" />
-            <v-btn icon="mdi-delete" variant="text" size="small" color="error" :data-testid="`projects-row-${item.slug}-btn-delete`" @click="deleteProject(item.slug)" />
+            <v-btn
+              icon="mdi-eye"
+              variant="text"
+              size="small"
+              :data-testid="`projects-row-${item.slug}-btn-view`"
+              @click="navigateTo(`/projects/${item.slug}`)"
+            />
+            <!-- Only show edit button if user has permission -->
+            <v-btn
+              v-if="canProject(item).edit"
+              icon="mdi-pencil"
+              variant="text"
+              size="small"
+              :data-testid="`projects-row-${item.slug}-btn-edit`"
+              @click="navigateTo(`/projects/${item.slug}/edit`)"
+            />
+            <!-- Only show delete button if user has permission -->
+            <v-btn
+              v-if="canProject(item).delete"
+              icon="mdi-delete"
+              variant="text"
+              size="small"
+              color="error"
+              :data-testid="`projects-row-${item.slug}-btn-delete`"
+              @click="deleteProject(item.slug)"
+            />
           </div>
         </template>
 

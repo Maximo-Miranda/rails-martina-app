@@ -10,6 +10,15 @@ admin_user_admin_role:
   user_id: <%= ActiveRecord::FixtureSet.identify(:admin_user) %>
   role_id: <%= ActiveRecord::FixtureSet.identify(:admin_role) %>
 
+# Global admins also get owner role in test_project for full access
+super_admin_user_owner_test_project:
+  user_id: <%= ActiveRecord::FixtureSet.identify(:super_admin_user) %>
+  role_id: <%= ActiveRecord::FixtureSet.identify(:owner_role_test_project) %>
+
+admin_user_owner_test_project:
+  user_id: <%= ActiveRecord::FixtureSet.identify(:admin_user) %>
+  role_id: <%= ActiveRecord::FixtureSet.identify(:owner_role_test_project) %>
+
 # === ROLES EN TEST_PROJECT ===
 confirmed_user_owner_test_project:
   user_id: <%= ActiveRecord::FixtureSet.identify(:confirmed_user) %>

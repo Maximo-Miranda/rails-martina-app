@@ -42,8 +42,9 @@ class UserPolicyTest < ActiveSupport::TestCase
       assert_includes scope, @owner       # owner en test_project
       assert_includes scope, @coworker    # coworker en test_project
       assert_includes scope, @client      # client en test_project
+      assert_includes scope, @super_admin # super_admin tiene rol en test_project
+      assert_includes scope, @admin       # admin tiene rol en test_project
       refute_includes scope, @outsider    # NO tiene rol en test_project
-      refute_includes scope, @super_admin # NO tiene rol en test_project
     end
   end
 

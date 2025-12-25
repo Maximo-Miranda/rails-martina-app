@@ -20,31 +20,73 @@ class UsersTest < ApplicationSystemTestCase
   test "super_admin can see users menu in navigation" do
     sign_in_with_form(@super_admin)
 
-    assert_selector "[data-testid='nav-item-users']"
+    assert_selector "[data-testid='nav-drawer']"
+
+    find("[data-testid='nav-hamburger']").click
+
+    within("[data-testid='nav-drawer']") do
+      assert_selector "[data-testid='nav-item-users']"
+    end
   end
 
   test "admin can see users menu in navigation" do
     sign_in_with_form(@admin)
 
-    assert_selector "[data-testid='nav-item-users']"
+    # Wait for the navigation to render
+    assert_selector "[data-testid='nav-drawer']"
+
+    # Open the drawer to see navigation items
+    find("[data-testid='nav-hamburger']").click
+
+    # Wait for the drawer to open and assert the users menu item
+    within("[data-testid='nav-drawer']") do
+      assert_selector "[data-testid='nav-item-users']"
+    end
   end
 
   test "owner can see users menu in navigation" do
     sign_in_with_form(@owner)
 
-    assert_selector "[data-testid='nav-item-users']"
+    # Wait for the navigation to render
+    assert_selector "[data-testid='nav-drawer']"
+
+    # Open the drawer to see navigation items
+    find("[data-testid='nav-hamburger']").click
+
+    # Wait for the drawer to open and assert the users menu item
+    within("[data-testid='nav-drawer']") do
+      assert_selector "[data-testid='nav-item-users']"
+    end
   end
 
   test "coworker cannot see users menu in navigation" do
     sign_in_with_form(@coworker)
 
-    assert_no_selector "[data-testid='nav-item-users']"
+    # Wait for the navigation to render
+    assert_selector "[data-testid='nav-drawer']"
+
+    # Open the drawer to see navigation items
+    find("[data-testid='nav-hamburger']").click
+
+    # Wait for the drawer to open and assert no users menu item
+    within("[data-testid='nav-drawer']") do
+      assert_no_selector "[data-testid='nav-item-users']"
+    end
   end
 
   test "client cannot see users menu in navigation" do
     sign_in_with_form(@client)
 
-    assert_no_selector "[data-testid='nav-item-users']"
+    # Wait for the navigation to render
+    assert_selector "[data-testid='nav-drawer']"
+
+    # Open the drawer to see navigation items
+    find("[data-testid='nav-hamburger']").click
+
+    # Wait for the drawer to open and assert no users menu item
+    within("[data-testid='nav-drawer']") do
+      assert_no_selector "[data-testid='nav-item-users']"
+    end
   end
 
   # =============================================================================
@@ -285,11 +327,28 @@ class UsersTest < ApplicationSystemTestCase
     assert_no_selector "[data-testid='users-row-#{@super_admin.id}-btn-delete']"
   end
 
-  private
+  # =============================================================================
+  # Tests: Global admin auto-assignment
+  # =============================================================================
 
-  def fill_in_field(selector, with:)
-    find(selector).fill_in with: with
+  test "global admin without current_project is auto-assigned to existing project" do
+    # Remove current_project from super_admin
+    @super_admin.update_column(:current_project_id, nil)
+
+    sign_in_with_form(@super_admin)
+
+    # Should NOT be redirected to new project page
+    assert_no_current_path new_project_path
+
+    # Should have access to dashboard/navigation
+    assert_selector "[data-testid='nav-drawer']"
+
+    # Verify current_project was auto-assigned
+    @super_admin.reload
+    assert_not_nil @super_admin.current_project_id
   end
+
+  private
 
   def t(key, **options)
     I18n.t(key, scope: :frontend, **options)

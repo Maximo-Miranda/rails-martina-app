@@ -23,9 +23,7 @@ class ApplicationController < ActionController::Base
       flash: flash.to_hash,
       current_user: current_user&.as_json(only: %i[id email full_name current_project_id]),
       current_project: current_project&.as_json(only: %i[id name slug]),
-      permissions: {
-        can_manage_users: current_user && policy(User).show_menu?
-      }
+      permissions: PermissionService.new(current_user, current_project).all_permissions
     }
   end
 
@@ -60,6 +58,12 @@ class ApplicationController < ActionController::Base
 
   def auto_assign_project
     project = current_user.last_accessible_project
+
+    if project.nil? && current_user.global_admin?
+      project = Project.create!(name: "Default Project", slug: "default-project-#{SecureRandom.hex(4)}")
+      current_user.add_role(:owner, project)
+    end
+
     return nil unless project
 
     had_previous = current_user.current_project_id.present?
