@@ -69,6 +69,17 @@ es:
         not_you_message: "Si no realizaste este cambio, contacta a nuestro equipo de soporte inmediatamente para proteger tu cuenta."
         footer: "Este es un mensaje de seguridad automático para mantenerte informado sobre la actividad de tu cuenta."
 
+      invitation_instructions:
+        subject: "Invitación para unirse a Martina"
+        title: "¡Bienvenido a Martina!"
+        greeting: "Hola %{name}"
+        instruction: "Has sido invitado a unirte a Martina. Haz clic en el botón de abajo para aceptar la invitación y configurar tu cuenta."
+        action: "Aceptar invitación"
+        alternative_link: "Si el botón no funciona, copia y pega este enlace en tu navegador:"
+        security_notice: "Nota de seguridad:"
+        security_message: "Este enlace expirará en unos días. Si no reconoces esta invitación, ignora este mensaje."
+        ignore: "Si no esperabas esta invitación, puedes ignorar este mensaje de forma segura."
+
     omniauth_callbacks:
       failure: 'No pudimos autenticarte desde %{kind} porque "%{reason}".'
       success: "Has iniciado sesión exitosamente desde tu cuenta de %{kind}."

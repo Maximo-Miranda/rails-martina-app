@@ -64,6 +64,16 @@ en:
         not_you: "Wasn't you?"
         not_you_message: "If you didn't make this change, please contact our support team immediately to protect your account."
         footer: "This is an automated security message to keep you informed about your account activity."
+      invitation_instructions:
+        subject: "Invitation to join Martina"
+        title: "Welcome to Martina!"
+        greeting: "Hi %{name}"
+        instruction: "You've been invited to join Martina. Click the button below to accept the invitation and set up your account."
+        action: "Accept invitation"
+        alternative_link: "If the button doesn't work, copy and paste this link into your browser:"
+        security_notice: "Security note:"
+        security_message: "This link will expire in a few days. If you don't recognize this invitation, please ignore this message."
+        ignore: "If you weren't expecting this invitation, you can safely ignore this message."
     omniauth_callbacks:
       failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
       success: "Successfully authenticated from %{kind} account."

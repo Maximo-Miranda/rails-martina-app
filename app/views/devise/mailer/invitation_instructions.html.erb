@@ -1,0 +1,70 @@
+<!-- Icon -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 24px;">
+  <tr>
+    <td align="center">
+      <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td style="width: 72px; height: 72px; background-color: #f3e8ff; border-radius: 50%; text-align: center; vertical-align: middle;">
+            <span style="font-size: 32px; color: #9333ea;">✨</span>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- Title -->
+<h1 style="margin: 0 0 12px 0; font-family: Google Sans, Roboto, Arial, sans-serif; font-size: 24px; font-weight: 400; color: #202124; text-align: center; line-height: 32px;">
+  <%= t('devise.mailer.invitation_instructions.title') %>
+</h1>
+<!-- Greeting -->
+<p style="margin: 0 0 24px 0; font-family: Roboto, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #5f6368; text-align: center;">
+  <%= t('devise.mailer.invitation_instructions.greeting', name: @resource.full_name || @resource.email) %>
+</p>
+<!-- Message -->
+<p style="margin: 0 0 32px 0; font-family: Roboto, Arial, sans-serif; font-size: 14px; line-height: 22px; color: #202124; text-align: center;">
+  <%= t('devise.mailer.invitation_instructions.instruction') %>
+</p>
+<!-- Action Button -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 32px;">
+  <tr>
+    <td align="center">
+      <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td style="border-radius: 4px; background-color: #1a73e8;">
+            <%= link_to accept_invitation_url(@resource, invitation_token: @token),
+                style: "display: inline-block; padding: 10px 24px; font-family: Google Sans, Roboto, Arial, sans-serif; font-size: 14px; font-weight: 500; color: #ffffff; text-decoration: none;" do %>
+              <%= t('devise.mailer.invitation_instructions.action') %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- Alternative Link Section -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 24px;">
+  <tr>
+    <td style="background-color: #f8f9fa; padding: 16px; border-radius: 8px;">
+      <p style="margin: 0 0 8px 0; font-family: Roboto, Arial, sans-serif; font-size: 12px; line-height: 16px; color: #5f6368;">
+        <%= t('devise.mailer.invitation_instructions.alternative_link') %>
+      </p>
+      <p style="margin: 0; font-family: Roboto, Arial, sans-serif; font-size: 12px; line-height: 16px; color: #1a73e8; word-break: break-all;">
+        <%= accept_invitation_url(@resource, invitation_token: @token) %>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- Security notice -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 24px;">
+  <tr>
+    <td style="background-color: #fef7e0; padding: 12px 16px; border-radius: 8px;">
+      <p style="margin: 0; font-family: Roboto, Arial, sans-serif; font-size: 12px; line-height: 18px; color: #5f6368;">
+        <span style="color: #ea8600; font-weight: 500;"><%= t('devise.mailer.invitation_instructions.security_notice') %></span> <%= t('devise.mailer.invitation_instructions.security_message') %>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- Footer notice -->
+<p style="margin: 0; font-family: Roboto, Arial, sans-serif; font-size: 12px; line-height: 18px; color: #5f6368; text-align: center;">
+  <%= t('devise.mailer.invitation_instructions.ignore') %>
+</p>
