@@ -5,6 +5,7 @@ import { useTranslations } from '@/composables/useTranslations'
 import { useUser } from '@/composables/useUser'
 import { usePermissions } from '@/composables/usePermissions'
 import { useGlobalLoading } from '@/composables/useGlobalLoading'
+import { useGlobalNotification } from '@/composables/useGlobalNotification'
 import ProjectSwitcher from '@/components/ProjectSwitcher.vue'
 import SafeLink from '@/components/SafeLink.vue'
 
@@ -18,6 +19,7 @@ const { t } = useTranslations()
 const { currentUser, isAuthenticated, userInitials, logout } = useUser()
 const { can } = usePermissions()
 const { isLoading } = useGlobalLoading()
+const { notification, clear: clearNotification } = useGlobalNotification()
 const page = usePage()
 
 const drawer = ref(false)
@@ -44,6 +46,16 @@ watch(flash, (newFlash) => {
     snackbar.value = true
   }
 }, { immediate: true })
+
+// Show snackbar for global notifications (e.g., from Inertia error handler)
+watch(notification, (newNotification) => {
+  if (newNotification) {
+    snackbarMessage.value = newNotification.message
+    snackbarColor.value = newNotification.color
+    snackbar.value = true
+    clearNotification()
+  }
+})
 
 const navigationItems = computed(() => {
   const items = [

@@ -1,6 +1,10 @@
 es:
   frontend:
 
+    errors:
+      unexpected: "Ha ocurrido un error inesperado. Por favor, intenta de nuevo."
+      network: "No se pudo conectar con el servidor. Verifica tu conexión e intenta de nuevo."
+
     common:
       save: "Guardar"
       create: "Crear"

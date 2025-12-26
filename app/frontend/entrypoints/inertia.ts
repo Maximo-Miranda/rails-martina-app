@@ -3,17 +3,31 @@ import { createApp, DefineComponent, h } from 'vue'
 import vuetify from '../plugins/vuetify'
 import AppLayout from '../layouts/AppLayout.vue'
 import AuthLayout from '../layouts/AuthLayout.vue'
+import { useGlobalNotification } from '../composables/useGlobalNotification'
+import { useTranslations } from '../composables/useTranslations'
 
-// Handle invalid responses (non-Inertia responses) as a defensive fallback.
-// This typically happens when session expires and the server returns a login page
-// instead of an Inertia response. Force a full page reload in such cases.
+// Handle 409 responses (session expired, account locked, etc.) with full page reload
+// Let other invalid responses show a user-friendly error message
 router.on('invalid', (event) => {
-  // Prevent the default modal dialog from showing
-  event.preventDefault()
+  const response = event.detail.response
+  if (response?.status === 409) {
+    event.preventDefault()
+    const location = response.headers?.['x-inertia-location'] as string | undefined
+    window.location.href = location ?? window.location.href
+  } else {
+    event.preventDefault()
+    const { show } = useGlobalNotification()
+    const { t } = useTranslations()
+    show(t('errors.unexpected'), 'error')
+  }
+})
 
-  // Force a full page reload to the current URL
-  // The server will redirect to login if needed
-  window.location.reload()
+// Handle network errors (connection refused, timeout, etc.)
+router.on('exception', (event) => {
+  event.preventDefault()
+  const { show } = useGlobalNotification()
+  const { t } = useTranslations()
+  show(t('errors.network'), 'error')
 })
 
 createInertiaApp({
