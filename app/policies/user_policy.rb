@@ -35,15 +35,10 @@ class UserPolicy < ApplicationPolicy
 
   class Scope < ApplicationPolicy::Scope
     def resolve
-      if user.global_admin?
-        scope.kept
-      else
-        # Solo usuarios del proyecto actual (usando join correcto con Rolify)
-        project = ActsAsTenant.current_tenant || user.current_project
-        return scope.none unless project
+      project = ActsAsTenant.current_tenant || user.current_project
+      return scope.none unless project
 
-        scope.kept.joins(:roles).where(roles: { resource: project }).distinct
-      end
+      scope.kept.joins(:roles).where(roles: { resource: project }).distinct
     end
   end
 end

@@ -16,35 +16,44 @@ class UserPolicyTest < ActiveSupport::TestCase
 
   # === Scope Tests ===
 
-  test "super_admin sees all kept users" do
-    scope = UserPolicy::Scope.new(@super_admin, User).resolve
+  test "super_admin sees only users in their project" do
+    ActsAsTenant.with_tenant(@test_project) do
+      scope = UserPolicy::Scope.new(@super_admin, User).resolve
 
-    assert_includes scope, @owner
-    assert_includes scope, @coworker
-    assert_includes scope, @outsider
-    assert_includes scope, @super_admin
-    refute_includes scope, users(:deleted_user)
+      assert_includes scope, @owner       # owner returned in active record collection (scope) for project test_project
+      assert_includes scope, @coworker    # coworker returned in active record collection (scope) for project test_project
+      assert_includes scope, @client      # client returned in active record collection (scope) for project test_project
+      assert_includes scope, @super_admin # super_admin returned in active record collection (scope) for project test_project
+      assert_includes scope, @admin       # admin returned in active record collection (scope) for project test_project
+      refute_includes scope, @outsider    # Not included since no role in test_project
+      refute_includes scope, users(:deleted_user)
+    end
   end
 
-  test "admin (global_admin) sees all kept users" do
-    scope = UserPolicy::Scope.new(@admin, User).resolve
+  test "admin (global_admin) sees only users in their project" do
+    ActsAsTenant.with_tenant(@test_project) do
+      scope = UserPolicy::Scope.new(@admin, User).resolve
 
-    assert_includes scope, @owner
-    assert_includes scope, @coworker
-    assert_includes scope, @outsider
-    refute_includes scope, users(:deleted_user)
+      assert_includes scope, @owner       # owner returned in active record collection (scope) for project test_project
+      assert_includes scope, @coworker    # coworker returned in active record collection (scope) for project test_project
+      assert_includes scope, @client      # client returned in active record collection (scope) for project test_project
+      assert_includes scope, @super_admin # super_admin returned in active record collection (scope) for project test_project
+      assert_includes scope, @admin       # admin returned in active record collection (scope) for project test_project
+      refute_includes scope, @outsider    # Not included since no role in test_project
+      refute_includes scope, users(:deleted_user)
+    end
   end
 
   test "owner sees only users in their project" do
     ActsAsTenant.with_tenant(@test_project) do
       scope = UserPolicy::Scope.new(@owner, User).resolve
 
-      assert_includes scope, @owner       # owner en test_project
-      assert_includes scope, @coworker    # coworker en test_project
-      assert_includes scope, @client      # client en test_project
-      assert_includes scope, @super_admin # super_admin tiene rol en test_project
-      assert_includes scope, @admin       # admin tiene rol en test_project
-      refute_includes scope, @outsider    # NO tiene rol en test_project
+      assert_includes scope, @owner       # owner returned in active record collection (scope) for project test_project
+      assert_includes scope, @coworker    # coworker returned in active record collection (scope) for project test_project
+      assert_includes scope, @client      # client returned in active record collection (scope) for project test_project
+      assert_includes scope, @super_admin # super_admin returned in active record collection (scope) for project test_project
+      assert_includes scope, @admin       # admin returned in active record collection (scope) for project test_project
+      refute_includes scope, @outsider    # Not included since no role in test_project
     end
   end
 
@@ -52,10 +61,10 @@ class UserPolicyTest < ActiveSupport::TestCase
     ActsAsTenant.with_tenant(@test_project) do
       scope = UserPolicy::Scope.new(@coworker, User).resolve
 
-      assert_includes scope, @owner
-      assert_includes scope, @coworker
-      assert_includes scope, @client
-      refute_includes scope, @outsider
+      assert_includes scope, @owner       # owner returned in active record collection (scope) for project test_project
+      assert_includes scope, @coworker    # coworker returned in active record collection (scope) for project test_project
+      assert_includes scope, @client      # client returned in active record collection (scope) for project test_project
+      refute_includes scope, @outsider    # Not included since no role in test_project
     end
   end
 
@@ -63,15 +72,14 @@ class UserPolicyTest < ActiveSupport::TestCase
     ActsAsTenant.with_tenant(@other_project) do
       scope = UserPolicy::Scope.new(@outsider, User).resolve
 
-      assert_includes scope, @owner       # owner también en other_project
-      assert_includes scope, @outsider    # owner en other_project
-      refute_includes scope, @coworker    # NO tiene rol en other_project
-      refute_includes scope, @client      # NO tiene rol en other_project
+      assert_includes scope, @owner       # owner returned in active record collection (scope) for project other_project
+      assert_includes scope, @outsider    # outsider returned in active record collection (scope) for project other_project
+      refute_includes scope, @coworker    # Not included since no role in other_project
+      refute_includes scope, @client      # Not included since no role in other_project
     end
   end
 
   test "returns none when no project context" do
-    # Usuario sin current_project y sin ActsAsTenant
     user_without_project = User.new(full_name: "No project", email: "noproj@test.com")
 
     ActsAsTenant.without_tenant do
@@ -94,19 +102,19 @@ class UserPolicyTest < ActiveSupport::TestCase
 
   test "show? allows global_admin, owner, or self" do
     ActsAsTenant.with_tenant(@test_project) do
-      # Super admin puede ver a cualquiera
+      # Super admin can view anyone
       assert UserPolicy.new(@super_admin, @coworker).show?
 
-      # Admin puede ver a cualquiera
+      # Admin can view anyone
       assert UserPolicy.new(@admin, @coworker).show?
 
-      # Owner puede ver usuarios del proyecto
+      # Owner can view users in the project
       assert UserPolicy.new(@owner, @coworker).show?
 
-      # Usuario puede verse a sí mismo
+      # User can view yourself
       assert UserPolicy.new(@coworker, @coworker).show?
 
-      # Coworker no puede ver a otros (no es owner ni global_admin)
+      # Coworker cannot view others (not owner or global_admin)
       refute UserPolicy.new(@coworker, @client).show?
     end
   end
@@ -122,26 +130,26 @@ class UserPolicyTest < ActiveSupport::TestCase
 
   test "destroy? only allows super_admin and not self" do
     assert UserPolicy.new(@super_admin, @coworker).destroy?
-    refute UserPolicy.new(@super_admin, @super_admin).destroy?  # No puede borrarse a sí mismo
-    refute UserPolicy.new(@admin, @coworker).destroy?           # Admin no puede eliminar
-    refute UserPolicy.new(@owner, @coworker).destroy?           # Owner no puede eliminar
+    refute UserPolicy.new(@super_admin, @super_admin).destroy?  # Cannot delete self
+    refute UserPolicy.new(@admin, @coworker).destroy?           # Admin cannot delete
+    refute UserPolicy.new(@owner, @coworker).destroy?           # Owner cannot delete
   end
 
   test "remove_from_project? allows global_admin or owner but not self" do
     ActsAsTenant.with_tenant(@test_project) do
-      # Super admin puede desvincular
+      # Super admin can remove from project
       assert UserPolicy.new(@super_admin, @coworker).remove_from_project?
 
-      # Admin puede desvincular
+      # Admin can remove from project
       assert UserPolicy.new(@admin, @coworker).remove_from_project?
 
-      # Owner puede desvincular
+      # Owner can remove from project
       assert UserPolicy.new(@owner, @coworker).remove_from_project?
 
-      # No puede desvincularse a sí mismo
+      # Cannot remove themselves
       refute UserPolicy.new(@owner, @owner).remove_from_project?
 
-      # Coworker no puede desvincular
+      # Coworker cannot remove from project
       refute UserPolicy.new(@coworker, @client).remove_from_project?
     end
   end
