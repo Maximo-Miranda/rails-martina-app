@@ -1,8 +1,20 @@
-import { createInertiaApp } from '@inertiajs/vue3'
+import { createInertiaApp, router } from '@inertiajs/vue3'
 import { createApp, DefineComponent, h } from 'vue'
 import vuetify from '../plugins/vuetify'
 import AppLayout from '../layouts/AppLayout.vue'
 import AuthLayout from '../layouts/AuthLayout.vue'
+
+// Handle invalid responses (non-Inertia responses) as a defensive fallback.
+// This typically happens when session expires and the server returns a login page
+// instead of an Inertia response. Force a full page reload in such cases.
+router.on('invalid', (event) => {
+  // Prevent the default modal dialog from showing
+  event.preventDefault()
+
+  // Force a full page reload to the current URL
+  // The server will redirect to login if needed
+  window.location.reload()
+})
 
 createInertiaApp({
   // Set default page title
