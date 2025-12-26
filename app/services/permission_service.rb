@@ -16,6 +16,7 @@ class PermissionService
     {
       # Global permissions (not scoped to a specific project)
       can_manage_users: policy(User).show_menu?,
+      can_invite_users: policy(User).invite?,
       can_manage_projects: policy(Project).index?,
       can_create_project: policy(Project).create?,
 
@@ -55,6 +56,27 @@ class PermissionService
 
     projects.each_with_object({}) do |project, hash|
       hash[project.id] = project_permissions(project)
+    end
+  end
+
+  # Method to get permissions for a specific user
+  def user_permissions(target_user)
+    return {} unless user && target_user
+
+    {
+      can_view: policy(target_user).show?,
+      can_edit: policy(target_user).update?,
+      can_delete: policy(target_user).destroy?,
+      can_remove_from_project: policy(target_user).remove_from_project?
+    }.compact
+  end
+
+  # Method to get permissions for multiple users (optimized)
+  def users_permissions(users)
+    return {} unless user && users
+
+    users.each_with_object({}) do |target_user, hash|
+      hash[target_user.id] = user_permissions(target_user)
     end
   end
 

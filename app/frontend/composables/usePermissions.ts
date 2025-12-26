@@ -4,6 +4,7 @@ import { usePage } from '@inertiajs/vue3'
 export interface Permissions {
   // Global permissions
   can_manage_users: boolean
+  can_invite_users: boolean
   can_manage_projects: boolean
   can_create_project: boolean
 
@@ -31,6 +32,21 @@ export interface ProjectPermissions {
   can_switch: boolean
 }
 
+export interface UserPermissions {
+  can_view: boolean
+  can_edit: boolean
+  can_delete: boolean
+  can_remove_from_project: boolean
+}
+
+// Interface for users with optional permission flags (from backend)
+export interface UserWithPermissions {
+  can_view?: boolean
+  can_edit?: boolean
+  can_delete?: boolean
+  can_remove_from_project?: boolean
+}
+
 // Interface for projects with optional permission flags (from backend)
 export interface ProjectWithPermissions {
   can_edit?: boolean
@@ -50,6 +66,7 @@ export function usePermissions() {
   const can = computed(() => ({
     // Global permissions
     manageUsers: permissions.value?.can_manage_users ?? false,
+    inviteUsers: permissions.value?.can_invite_users ?? false,
     manageProjects: permissions.value?.can_manage_projects ?? false,
     createProject: permissions.value?.can_create_project ?? false,
 
@@ -94,6 +111,15 @@ export function usePermissions() {
     switch: project.can_switch ?? false,
   })
 
+  // Helper for user-specific permissions (for users list, etc.)
+  // Accepts users with optional permission flags
+  const canUser = (user: UserWithPermissions) => ({
+    view: user.can_view ?? false,
+    edit: user.can_edit ?? false,
+    delete: user.can_delete ?? false,
+    removeFromProject: user.can_remove_from_project ?? false,
+  })
+
   return {
     permissions,
     can,
@@ -101,5 +127,6 @@ export function usePermissions() {
     hasAllPermissions,
     hasAnyOfPermissions,
     canProject,
+    canUser,
   }
 }

@@ -15,14 +15,21 @@ class UsersController < ApplicationController
 
     @pagy, users = pagy(:offset, @q.result(distinct: true), limit: pagy_limit(default: 10))
 
+    # Get permissions for all users
+    permission_service = PermissionService.new(current_user, current_project)
+    users_permissions = permission_service.users_permissions(users)
+
+    # Add permissions to each user
+    users_with_permissions = users.map do |user|
+      user.as_json(only: %i[id email full_name created_at]).merge(
+        users_permissions[user.id] || {}
+      )
+    end
+
     render inertia: "users/index", props: {
-      users: users.as_json(only: %i[id email full_name created_at]),
+      users: users_with_permissions,
       pagination: pagy_pagination(@pagy),
-      filters: filters,
-      can_invite: policy(User).invite?,
-      can_remove_from_project: policy(User).remove_from_project?,
-      can_destroy: policy(User).destroy?,
-      current_user_id: current_user.id
+      filters: filters
     }
   end
 

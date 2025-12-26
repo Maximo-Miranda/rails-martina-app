@@ -3,6 +3,7 @@ import { computed, ref, watch } from 'vue'
 import { router } from '@inertiajs/vue3'
 import { useTranslations } from '@/composables/useTranslations'
 import { useNavigation } from '@/composables/useNavigation'
+import { usePermissions } from '@/composables/usePermissions'
 import { useActionLoading } from '@/composables/useActionLoading'
 import PageHeader from '@/components/PageHeader.vue'
 import ConfirmDialog from '@/components/ConfirmDialog.vue'
@@ -11,16 +12,13 @@ import type { PagyPagination } from '@/types'
 
 const props = defineProps<{
   users: User[]
-  can_invite: boolean
-  can_remove_from_project: boolean
-  can_destroy: boolean
-  current_user_id: number
   pagination: PagyPagination
   filters: Record<string, unknown>
 }>()
 
 const { t } = useTranslations()
 const { navigateTo, isNavigating } = useNavigation()
+const { can, canUser } = usePermissions()
 const { isAnyLoading, startLoading, stopLoading } = useActionLoading()
 
 const searchKey = 'full_name_or_email_cont'
@@ -51,10 +49,6 @@ function parseSort(s: unknown): Array<{ key: string; order: 'asc' | 'desc' }> {
   if (!key || (order !== 'asc' && order !== 'desc')) return []
   return [{ key, order }]
 }
-
-// Helpers to check if actions can be shown for a specific user
-const canUnlinkUser = (userId: number) => props.can_remove_from_project && userId !== props.current_user_id
-const canDeleteUser = (userId: number) => props.can_destroy && userId !== props.current_user_id
 
 const sortBy = ref(parseSort(props.filters?.s))
 
@@ -146,7 +140,7 @@ const confirmUnlinkUser = () => {
     <PageHeader :title="t('users.title')" :subtitle="t('users.subtitle')">
       <template #actions>
         <v-btn
-          v-if="can_invite"
+          v-if="can.inviteUsers"
           color="primary"
           prepend-icon="mdi-account-plus"
           size="small"
@@ -219,7 +213,7 @@ const confirmUnlinkUser = () => {
               @click="navigateTo(`/users/${item.id}`)"
             />
             <v-btn
-              v-if="canUnlinkUser(item.id)"
+              v-if="canUser(item).removeFromProject"
               icon="mdi-account-remove"
               variant="text"
               size="small"
@@ -230,7 +224,7 @@ const confirmUnlinkUser = () => {
               @click="unlinkUser(item.id)"
             />
             <v-btn
-              v-if="canDeleteUser(item.id)"
+              v-if="canUser(item).delete"
               icon="mdi-delete"
               variant="text"
               size="small"

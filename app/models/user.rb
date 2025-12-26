@@ -34,16 +34,20 @@ class User < ApplicationRecord
     if global_admin?
       Project.kept.order(created_at: :desc)
     else
-      project_ids = roles
-        .where(resource_type: "Project")
-        .order(created_at: :desc)
-        .pluck(:resource_id)
-
-      Project.kept.where(id: project_ids).in_order_of(:id, project_ids)
+      owned_projects
     end
   end
 
+  def owned_projects
+    project_ids = roles
+      .where(resource_type: "Project")
+      .order(created_at: :desc)
+      .pluck(:resource_id)
+
+    Project.kept.where(id: project_ids).in_order_of(:id, project_ids)
+  end
+
   def last_accessible_project
-    accessible_projects.first
+    owned_projects.first
   end
 end

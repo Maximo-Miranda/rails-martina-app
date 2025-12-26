@@ -37,9 +37,13 @@ class ApplicationController < ActionController::Base
   private
 
   def current_project
-    return nil unless current_user
+    user = current_user
+    return nil unless user
 
-    current_user.accessible_projects.find_by(id: current_user.current_project_id)
+    # Security check: Only return the project if the user has access to it.
+    # For normal users: returns nil if the project was deleted or access was revoked.
+    # For super_admins: returns any project since they have access to all projects.
+    user.accessible_projects.find_by(id: user.current_project_id)
   end
   helper_method :current_project
 
@@ -59,9 +63,11 @@ class ApplicationController < ActionController::Base
   def auto_assign_project
     project = current_user.last_accessible_project
 
-    if project.nil? && current_user.global_admin?
-      project = Project.create!(name: "Default Project", slug: "default-project-#{SecureRandom.hex(4)}")
-      current_user.add_role(:owner, project)
+    if current_user.global_admin? && project.nil?
+      project = current_user.projects.create!(
+        name: "Default Project",
+        description: "Auto-created default project for #{current_user.full_name}"
+      )
     end
 
     return nil unless project
