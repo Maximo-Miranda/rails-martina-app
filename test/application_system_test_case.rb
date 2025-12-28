@@ -51,9 +51,9 @@ class ApplicationSystemTestCase < ActiveSupport::TestCase
 
   def before_setup
     super
-    # Use :inline adapter for system tests to execute jobs immediately
-    # This avoids issues with retry_on wait: when using :test adapter
-    ActiveJob::Base.queue_adapter = :inline
+    # Use :async adapter for system tests to support retry_on with wait:
+    # The :inline adapter doesn't support scheduling jobs for the future
+    ActiveJob::Base.queue_adapter = :async
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.start
     setup_fixtures

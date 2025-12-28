@@ -3,6 +3,8 @@
 require "application_system_test_case"
 
 class ProjectTest < ApplicationSystemTestCase
+  include VcrTestHelper
+
   # === Setup ===
   setup do
     @super_admin = users(:super_admin_user)
@@ -79,20 +81,22 @@ class ProjectTest < ApplicationSystemTestCase
   end
 
   test "authenticated user can create a new project" do
-    sign_in_with_form(@owner)
+    VCR.use_cassette("system/project_create") do
+      sign_in_with_form(@owner)
 
-    visit new_project_path
-    assert_selector "[data-testid='projects-input-name']"
+      visit new_project_path
+      assert_selector "[data-testid='projects-input-name']"
 
-    fill_in_field "[data-testid='projects-input-name'] input", with: "Mi Nuevo Proyecto"
-    fill_in_field "[data-testid='projects-input-description'] textarea", with: "Descripción del proyecto de prueba"
+      fill_in_field "[data-testid='projects-input-name'] input", with: "Mi Nuevo Proyecto"
+      fill_in_field "[data-testid='projects-input-description'] textarea", with: "Descripción del proyecto de prueba"
 
-    find("[data-testid='projects-form-btn-submit']").click
+      find("[data-testid='projects-form-btn-submit']").click
 
-    assert_current_path dashboard_path
+      assert_current_path dashboard_path
 
-    visit projects_path
-    assert_text "Mi Nuevo Proyecto"
+      visit projects_path
+      assert_text "Mi Nuevo Proyecto"
+    end
   end
 
   test "can navigate to new project from projects list" do
@@ -145,16 +149,18 @@ class ProjectTest < ApplicationSystemTestCase
   end
 
   test "owner can delete their project" do
-    sign_in_with_form(@owner)
+    VCR.use_cassette("system/project_delete") do
+      sign_in_with_form(@owner)
 
-    visit projects_path
+      visit projects_path
 
-    find("[data-testid='projects-row-#{@test_project.slug}-btn-delete']").click
+      find("[data-testid='projects-row-#{@test_project.slug}-btn-delete']").click
 
-    assert_selector "[data-testid='projects-dialog-delete-btn-confirm']"
-    find("[data-testid='projects-dialog-delete-btn-confirm']").click
+      assert_selector "[data-testid='projects-dialog-delete-btn-confirm']"
+      find("[data-testid='projects-dialog-delete-btn-confirm']").click
 
-    assert_no_text @test_project.name
+      assert_no_text @test_project.name
+    end
   end
 
   test "coworker cannot edit project where they are not owner" do
