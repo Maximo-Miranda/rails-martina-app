@@ -53,7 +53,7 @@ class ApplicationSystemTestCase < ActiveSupport::TestCase
     super
     # Use :async adapter for system tests to support retry_on with wait:
     # The :inline adapter doesn't support scheduling jobs for the future
-    ActiveJob::Base.queue_adapter = :async
+    # ActiveJob::Base.queue_adapter = :async
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.start
     setup_fixtures
