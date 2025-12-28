@@ -3,13 +3,19 @@
 require "vcr"
 require "json"
 
+# Ensure a test API key is available for VCR to work in CI
+# VCR will replace this with <GEMINI_API_KEY> in cassettes
+unless Rails.application.credentials.gemini_api_key
+  Rails.application.credentials.config[:gemini_api_key] = "test-gemini-api-key-for-vcr"
+end
+
 VCR.configure do |config|
   config.cassette_library_dir = Rails.root.join("test", "vcr_cassettes")
   config.hook_into :faraday
   config.ignore_localhost = true
 
   config.filter_sensitive_data("<GEMINI_API_KEY>") do
-    Rails.application.credentials.gemini_api_key
+    Rails.application.credentials.gemini_api_key || "test-api-key"
   end
 
   config.register_request_matcher :gemini_request do |request_1, request_2|
