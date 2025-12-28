@@ -53,7 +53,7 @@ class ApplicationSystemTestCase < ActiveSupport::TestCase
     super
     # Use :inline adapter for system tests to execute jobs immediately
     # This avoids issues with retry_on wait: when using :test adapter
-    # ActiveJob::Base.queue_adapter = :inline
+    ActiveJob::Base.queue_adapter = :inline
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.start
     setup_fixtures
