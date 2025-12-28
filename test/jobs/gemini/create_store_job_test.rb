@@ -12,7 +12,7 @@ class Gemini::CreateStoreJobTest < ActiveSupport::TestCase
   end
 
   test "creates store in Gemini API and updates local record" do
-    VCR.use_cassette("gemini/create_store_success") do
+    VCR.use_cassette("system/store_create") do
       Gemini::CreateStoreJob.perform_now(@pending_store.id)
     end
 
@@ -26,7 +26,7 @@ class Gemini::CreateStoreJobTest < ActiveSupport::TestCase
     events = []
     @event_store.subscribe(->(event) { events << event }, to: [ Gemini::StoreCreated ])
 
-    VCR.use_cassette("gemini/create_store_success") do
+    VCR.use_cassette("system/store_create") do
       Gemini::CreateStoreJob.perform_now(@pending_store.id)
     end
 

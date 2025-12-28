@@ -31,6 +31,12 @@ module Gemini
           req.params["force"] = "true"
         end
 
+        # 403 = "store doesn't exist or no permission" - treat as successful deletion (idempotent)
+        if response.status == 403
+          Rails.logger.info "[Gemini::Client] Store #{store_name} not found or no permission (403), treating as deleted"
+          return true
+        end
+
         raise ApiError.new("Failed to delete store: #{response.status}", status: response.status, body: response.body) unless response.success?
 
         true

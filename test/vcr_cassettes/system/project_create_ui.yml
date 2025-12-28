@@ -1,0 +1,51 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores?key=<GEMINI_API_KEY>
+    body:
+      encoding: UTF-8
+      string: '{"displayName":"Mi Nuevo Proyecto"}'
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json; charset=UTF-8
+      vary:
+      - Origin, X-Origin, Referer
+      content-encoding:
+      - gzip
+      date:
+      - Sun, 28 Dec 2025 03:30:47 GMT
+      server:
+      - scaffolding on HTTPServer2
+      x-xss-protection:
+      - '0'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+      server-timing:
+      - gfet4t7; dur=641
+      alt-svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      transfer-encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "name": "fileSearchStores/mi-nuevo-proyecto-013ialzbteav",
+          "displayName": "Mi Nuevo Proyecto",
+          "createTime": "2025-12-28T03:30:47.020245Z",
+          "updateTime": "2025-12-28T03:30:47.020245Z"
+        }
+  recorded_at: Sun, 28 Dec 2025 03:30:47 GMT
+recorded_with: VCR 6.4.0

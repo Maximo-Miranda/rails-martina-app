@@ -108,7 +108,7 @@ class GeminiFileSearchStoresTest < ApplicationSystemTestCase
   # =============================================================================
 
   test "super_admin can create a new global store" do
-    with_vcr_cassette("gemini/create_store_success") do
+    with_vcr_cassette("system/store_create") do
       sign_in_with_form(@super_admin)
 
       visit gemini_file_search_stores_path
@@ -136,7 +136,7 @@ class GeminiFileSearchStoresTest < ApplicationSystemTestCase
   end
 
   test "super_admin can delete a store" do
-    with_vcr_cassette("gemini/delete_store_success") do
+    with_vcr_lifecycle_cassette("system/store_delete_ui_lifecycle") do
       sign_in_with_form(@super_admin)
 
       ActiveJob::Base.queue_adapter = :inline
@@ -144,10 +144,11 @@ class GeminiFileSearchStoresTest < ApplicationSystemTestCase
       begin
         temp_store = GeminiFileSearchStore.create!(
           display_name: "Store to Delete",
-          status: :active,
-          gemini_store_name: "fileSearchStores/pending-store-nrrs0w3577vt",
+          status: :pending,
           project_id: nil
         )
+        Gemini::CreateStoreJob.perform_now(temp_store.id)
+        temp_store.reload
 
         visit gemini_file_search_stores_path
         assert_text temp_store.display_name

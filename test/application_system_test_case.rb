@@ -44,6 +44,7 @@ class ApplicationSystemTestCase < ActiveSupport::TestCase
   include Capybara::DSL
   include Capybara::Minitest::Assertions
   include Rails.application.routes.url_helpers
+  include ActiveJob::TestHelper
 
   self.use_transactional_tests = false
 
@@ -51,9 +52,6 @@ class ApplicationSystemTestCase < ActiveSupport::TestCase
 
   def before_setup
     super
-    # Use :async adapter for system tests to support retry_on with wait:
-    # The :inline adapter doesn't support scheduling jobs for the future
-    # ActiveJob::Base.queue_adapter = :async
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.start
     setup_fixtures

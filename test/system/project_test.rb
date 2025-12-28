@@ -81,7 +81,7 @@ class ProjectTest < ApplicationSystemTestCase
   end
 
   test "authenticated user can create a new project" do
-    VCR.use_cassette("system/project_create") do
+    VCR.use_cassette("system/project_create_ui") do
       sign_in_with_form(@owner)
 
       visit new_project_path
@@ -90,9 +90,11 @@ class ProjectTest < ApplicationSystemTestCase
       fill_in_field "[data-testid='projects-input-name'] input", with: "Mi Nuevo Proyecto"
       fill_in_field "[data-testid='projects-input-description'] textarea", with: "Descripción del proyecto de prueba"
 
-      find("[data-testid='projects-form-btn-submit']").click
-
-      assert_current_path dashboard_path
+      # Execute enqueued jobs (CreateStoreJob runs async via perform_later)
+      perform_enqueued_jobs do
+        find("[data-testid='projects-form-btn-submit']").click
+        assert_current_path dashboard_path
+      end
 
       visit projects_path
       assert_text "Mi Nuevo Proyecto"
@@ -149,7 +151,23 @@ class ProjectTest < ApplicationSystemTestCase
   end
 
   test "owner can delete their project" do
-    VCR.use_cassette("system/project_delete") do
+    # The test_project already has active_store associated (from fixtures)
+    # This test uses lifecycle cassette to create a real store that can be deleted
+    with_vcr_lifecycle_cassette("system/project_delete_ui_lifecycle") do
+      # First, ensure the project's store has a real gemini_store_name by creating it via API
+      store = @test_project.gemini_file_search_store || GeminiFileSearchStore.create!(
+        display_name: "Store for deletion test",
+        status: :pending,
+        project: @test_project
+      )
+
+      # If store doesn't have a real gemini_store_name, create one via API
+      if store.gemini_store_name.blank? || store.gemini_store_name.start_with?("corpora/abc")
+        store.update!(status: :pending, gemini_store_name: nil)
+        Gemini::CreateStoreJob.perform_now(store.id)
+        store.reload
+      end
+
       sign_in_with_form(@owner)
 
       visit projects_path
@@ -157,9 +175,12 @@ class ProjectTest < ApplicationSystemTestCase
       find("[data-testid='projects-row-#{@test_project.slug}-btn-delete']").click
 
       assert_selector "[data-testid='projects-dialog-delete-btn-confirm']"
-      find("[data-testid='projects-dialog-delete-btn-confirm']").click
 
-      assert_no_text @test_project.name
+      # Execute enqueued jobs (DeleteStoreJob runs async via perform_later)
+      perform_enqueued_jobs do
+        find("[data-testid='projects-dialog-delete-btn-confirm']").click
+        assert_no_text @test_project.name
+      end
     end
   end
 

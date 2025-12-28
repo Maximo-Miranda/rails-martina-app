@@ -5,7 +5,7 @@ http_interactions:
     uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores?key=<GEMINI_API_KEY>
     body:
       encoding: UTF-8
-      string: '{"displayName":"Mi Nuevo Proyecto"}'
+      string: '{"displayName":"Pending Store"}'
     headers:
       User-Agent:
       - Faraday v2.14.0
@@ -23,7 +23,7 @@ http_interactions:
       content-encoding:
       - gzip
       date:
-      - Sun, 28 Dec 2025 01:20:06 GMT
+      - Sun, 28 Dec 2025 03:31:40 GMT
       server:
       - scaffolding on HTTPServer2
       x-xss-protection:
@@ -33,7 +33,7 @@ http_interactions:
       x-content-type-options:
       - nosniff
       server-timing:
-      - gfet4t7; dur=665
+      - gfet4t7; dur=701
       alt-svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       transfer-encoding:
@@ -42,10 +42,10 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "name": "fileSearchStores/mi-nuevo-proyecto-rgov2imagii0",
-          "displayName": "Mi Nuevo Proyecto",
-          "createTime": "2025-12-28T01:20:06.486186Z",
-          "updateTime": "2025-12-28T01:20:06.486186Z"
+          "name": "fileSearchStores/pending-store-u5suhrwnp6zj",
+          "displayName": "Pending Store",
+          "createTime": "2025-12-28T03:31:40.806361Z",
+          "updateTime": "2025-12-28T03:31:40.806361Z"
         }
-  recorded_at: Sun, 28 Dec 2025 01:20:06 GMT
+  recorded_at: Sun, 28 Dec 2025 03:31:40 GMT
 recorded_with: VCR 6.4.0
