@@ -17,8 +17,25 @@ services:
       timeout: 5s
       retries: 5
 
+  # This service runs Qdrant vector database for storing embeddings repostiory code for Kilocode Plugin
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: martina_qdrant
+    restart: unless-stopped
+    ports:
+      - "6333:6333" # HTTP API
+      - "6334:6334" # gRPC API
+    expose:
+      - "6333"
+      - "6334"
+      - "6335" # cluster/internal (not published)
+    volumes:
+      - martina_qdrant_data:/qdrant/storage
+
 volumes:
   martina_postgres_data:
+    driver: local
+  martina_qdrant_data:
     driver: local
 
 networks:

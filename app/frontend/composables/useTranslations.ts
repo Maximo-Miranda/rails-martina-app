@@ -4,6 +4,10 @@ import { usePage } from '@inertiajs/vue3'
  * Translations structure (mirrors frontend.es.yml)
  */
 export interface Translations {
+  errors: {
+    unexpected: string
+    network: string
+  }
   common: {
     save: string
     cancel: string

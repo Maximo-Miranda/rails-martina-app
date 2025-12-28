@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { rules } from '@/utils/validation'
-import { useForm, Link } from '@inertiajs/vue3'
+import { useForm } from '@inertiajs/vue3'
 import { useTranslations } from '@/composables/useTranslations'
+import SafeLink from '@/components/SafeLink.vue'
 
 const { t } = useTranslations()
 
@@ -142,9 +143,9 @@ const submit = async () => {
 
       <div class="text-center">
         <span class="text-body-2 text-medium-emphasis">{{ t('auth.register.has_account') }}</span>
-        <Link href="/users/sign_in" class="text-decoration-none ml-1">
+        <SafeLink href="/users/sign_in" class="text-decoration-none ml-1">
           <span class="text-primary font-weight-medium">{{ t('auth.register.login_link') }}</span>
-        </Link>
+        </SafeLink>
       </div>
     </v-form>
   </v-card>

@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { rules } from '@/utils/validation'
-import { useForm, Link, usePage } from '@inertiajs/vue3'
+import { useForm, usePage } from '@inertiajs/vue3'
 import { useTranslations } from '@/composables/useTranslations'
+import SafeLink from '@/components/SafeLink.vue'
 
 const { t } = useTranslations()
 const page = usePage()
@@ -90,11 +91,11 @@ const submit = async () => {
           class="grow-0"
         />
 
-        <Link data-testid="link-forgot-password" href="/users/password/new" class="text-decoration-none">
+        <SafeLink data-testid="link-forgot-password" href="/users/password/new" class="text-decoration-none">
           <span class="text-primary text-body-2 font-weight-medium">
             {{ t('auth.login.forgot_password') }}
           </span>
-        </Link>
+        </SafeLink>
       </div>
 
       <v-btn
@@ -118,9 +119,9 @@ const submit = async () => {
 
       <div class="text-center">
         <span class="text-body-2 text-medium-emphasis">{{ t('auth.login.no_account') }}</span>
-        <Link data-testid="link-register" href="/users/sign_up" class="text-decoration-none ml-1">
+        <SafeLink data-testid="link-register" href="/users/sign_up" class="text-decoration-none ml-1">
           <span class="text-primary font-weight-medium">{{ t('auth.login.create_account') }}</span>
-        </Link>
+        </SafeLink>
       </div>
     </v-form>
   </v-card>

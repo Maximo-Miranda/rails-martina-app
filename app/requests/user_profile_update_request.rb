@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserProfileUpdateRequest
   include ActiveModel::Model
   include ActiveModel::Validations

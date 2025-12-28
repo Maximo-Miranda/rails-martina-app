@@ -1,0 +1,41 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+test_project:
+  name: "Test Project"
+  slug: "test-project"
+  description: "A test project for the confirmed user"
+  user: confirmed_user
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+other_project:
+  name: "Other Project"
+  slug: "other-project"
+  description: "Another test project"
+  user: confirmed_user
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+pending_project:
+  name: "Pending Project"
+  slug: "pending-project"
+  description: "Project with pending store"
+  user: confirmed_user
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+failed_project:
+  name: "Failed Project"
+  slug: "failed-project"
+  description: "Project with failed store"
+  user: confirmed_user
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+deleted_project:
+  name: "Deleted Project"
+  slug: "deleted-project"
+  description: "Project with deleted store"
+  user: confirmed_user
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>

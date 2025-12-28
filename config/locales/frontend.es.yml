@@ -1,8 +1,13 @@
 es:
   frontend:
 
+    errors:
+      unexpected: "Ha ocurrido un error inesperado. Por favor, intenta de nuevo."
+      network: "No se pudo conectar con el servidor. Verifica tu conexión e intenta de nuevo."
+
     common:
       save: "Guardar"
+      create: "Crear"
       cancel: "Cancelar"
       delete: "Eliminar"
       edit: "Editar"
@@ -12,6 +17,8 @@ es:
       or: "o"
       see_all: "Ver todo"
       times: "veces"
+      actions: "Acciones"
+      created_at: "Creado"
 
     validation:
       required: "Este campo es requerido"
@@ -23,6 +30,8 @@ es:
     navigation:
       dashboard: "Dashboard"
       projects: "Proyectos"
+      users: "Usuarios"
+      gemini_stores: "File Search Stores"
       tasks: "Tareas"
       reports: "Reportes"
       settings: "Configuración"
@@ -92,6 +101,14 @@ es:
         submit: "Enviar enlace"
         back_to_login: "Volver a iniciar sesión"
 
+      accept_invitation:
+        title: "Acepta tu invitación"
+        subtitle: "Completa tu registro para unirte al equipo"
+        full_name: "Nombre completo"
+        password: "Contraseña"
+        password_confirmation: "Confirmar contraseña"
+        submit: "Establecer contraseña"
+
       profile:
         title: "Mi Perfil"
         subtitle: "Administra tu información personal"
@@ -134,3 +151,83 @@ es:
       time:
         hours_ago: "Hace %{count} horas"
         yesterday: "Ayer"
+
+    projects:
+      title: "Proyectos"
+      subtitle: "Administra tus proyectos y espacios de trabajo"
+      new: "Nuevo proyecto"
+      new_description: "Crea un nuevo espacio de trabajo para tu equipo"
+      edit: "Editar proyecto"
+      edit_description: "Modifica la información del proyecto"
+      name: "Nombre del proyecto"
+      description: "Descripción"
+      slug: "Slug"
+      no_description: "Sin descripción"
+      switch: "Cambiar"
+      select: "Seleccionar proyecto"
+      search: "Buscar proyecto..."
+      no_results: "No se encontraron proyectos"
+      confirm_delete: "¿Estás seguro de eliminar este proyecto?"
+      empty_title: "No tienes proyectos"
+      empty_description: "Crea tu primer proyecto para comenzar a trabajar"
+      create_first: "Crear proyecto"
+
+    users:
+      title: "Usuarios"
+      subtitle: "Gestiona los miembros del proyecto"
+      invite: "Invitar usuario"
+      invite_title: "Invitar usuario"
+      invite_description: "Invita a un nuevo usuario a la plataforma o al proyecto actual"
+      name: "Nombre"
+      email: "Correo electrónico"
+      role: "Rol"
+      joined: "Fecha de registro"
+      search: "Buscar usuario..."
+      roles_in_project: "Roles en el proyecto"
+      no_roles: "Sin roles asignados"
+      empty: "No hay usuarios en este proyecto"
+      confirm_delete: "¿Estás seguro de eliminar este usuario? Esta acción no se puede deshacer."
+      confirm_remove_from_project: "¿Estás seguro de desvincular este usuario del proyecto? El usuario no será eliminado, solo perderá acceso a este proyecto."
+      remove_from_project: "Desvincular"
+      invite_to_project: "Invitar al proyecto %{project}"
+      invite_platform_only: "El usuario será invitado solo a la plataforma, sin acceso a ningún proyecto específico."
+      send_invitation: "Enviar invitación"
+
+    gemini_stores:
+      title: "File Search Stores"
+      subtitle: "Administra los stores de Gemini File Search"
+      new: "Nuevo store"
+      new_description: "Crea un nuevo store global de File Search"
+      edit: "Editar store"
+      edit_description: "Modifica la información del store"
+      display_name: "Nombre"
+      gemini_name: "ID de Gemini"
+      status: "Estado"
+      error_message: "Mensaje de error"
+      documents_count: "Documentos"
+      documents: "documentos"
+      size: "Tamaño"
+      search: "Buscar store..."
+      details: "Detalles del store"
+      timestamps: "Fechas"
+      updated_at: "Actualizado"
+      pending_sync: "Pendiente de sincronización"
+      pending_message: "Este store está siendo creado en Gemini. Por favor espera unos segundos."
+      failed_message: "Hubo un error al crear este store. Revisa los logs para más detalles."
+      confirm_delete: "¿Estás seguro de eliminar este store? Esta acción eliminará el store en Gemini y no se puede deshacer."
+      empty_title: "No hay stores"
+      empty_description: "Crea tu primer store global para comenzar"
+      statuses:
+        pending: "Pendiente"
+        active: "Activo"
+        failed: "Error"
+        deleted: "Eliminado"
+
+    roles:
+      owner: "Propietario"
+      coworker: "Colaborador"
+      client: "Cliente"
+      super_admin: "Super Admin"
+      admin: "Administrador"
+      blog_admin: "Admin Blog"
+      blog_writer: "Escritor Blog"

@@ -6,3 +6,80 @@ inherit_gem: { rubocop-rails-omakase: rubocop.yml }
 # # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`
 # Layout/SpaceInsideArrayLiteralBrackets:
 #   Enabled: false
+
+# Enforce frozen string literals
+Style/FrozenStringLiteralComment:
+  Enabled: true
+  EnforcedStyle: always
+
+# Enforce empty line after magic comments
+  Enabled: true
+
+# ==============================================================================
+# COMMUNITY RECOMMENDED RULES (Readability & Consistency)
+# ==============================================================================
+
+# Increase line length to 120 (Standard for modern screens)
+Layout/LineLength:
+  Max: 120
+
+# Enforce double quotes everywhere (Standard in Rails)
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+# Enforce Ruby 1.9 hash syntax: { key: value }
+Style/HashSyntax:
+  Enabled: true
+  EnforcedStyle: ruby19
+
+# Cleaner Git diffs: require trailing commas in multiline hashes/arrays
+Style/TrailingCommaInHashLiteral:
+  Enabled: true
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInArrayLiteral:
+  Enabled: true
+  EnforcedStyleForMultiline: comma
+
+# Prefer %i[...] for arrays of symbols
+Style/SymbolArray:
+  Enabled: true
+  EnforcedStyle: percent
+
+# ==============================================================================
+# SECURITY & ROBUSTNESS
+# ==============================================================================
+
+# Freeze mutable constants (arrays/hashes) to prevent accidental modification
+Style/MutableConstant:
+  Enabled: true
+  EnforcedStyle: strict
+
+# ==============================================================================
+# PERFORMANCE & BEST PRACTICES
+# ==============================================================================
+
+# Reduce nesting by returning early (Flatten code structure)
+Style/GuardClause:
+  Enabled: true
+
+# Use standard method names (map vs collect, select vs find_all)
+Style/CollectionMethods:
+  Enabled: true
+  PreferredMethods:
+    collect: "map"
+    collect!: "map!"
+    inject: "reduce"
+    detect: "find"
+    find_all: "select"
+
+# Prefer %w[...] for arrays of strings
+Style/WordArray:
+  Enabled: true
+  EnforcedStyle: percent
+  MinSize: 2
+
+# Add underscores to large numbers (e.g., 1_000_000) for readability
+Style/NumericLiterals:
+  Enabled: true

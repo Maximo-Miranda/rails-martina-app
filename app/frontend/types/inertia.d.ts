@@ -1,13 +1,13 @@
 import type { Flash, User } from './index'
 
-// Documentación oficial: https://inertiajs.com/docs/v2/data-props/flash-data#typescript
-// Usar declaration merging con InertiaConfig para tipar props globales
+// Official documentation: https://inertiajs.com/docs/v2/data-props/flash-data#typescript
+// Use declaration merging with InertiaConfig to type global props
 declare module '@inertiajs/core' {
   export interface InertiaConfig {
-    // Flash data type (según documentación oficial)
+    // Flash data type (per official documentation)
     flashDataType: Flash
 
-    // Shared props type (para page.props)
+    // Shared props type (for page.props)
     sharedDataType: {
       current_user: User | null
       errors?: Record<string, string[]>

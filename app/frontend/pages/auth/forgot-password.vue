@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { useForm, Link } from '@inertiajs/vue3'
+import { useForm } from '@inertiajs/vue3'
 import { ref } from 'vue'
 import { rules } from '@/utils/validation'
 import { useTranslations } from '@/composables/useTranslations'
+import SafeLink from '@/components/SafeLink.vue'
 
 const { t } = useTranslations()
 
@@ -13,7 +14,7 @@ const form = useForm({
 const submitted = ref(false)
 const formRef = ref<HTMLFormElement | null>(null)
 
-// Reglas de validación
+// Validation rules
 const emailRules = [
   rules.required(t('validation.required')),
   rules.email(t('validation.email_invalid')),
@@ -32,9 +33,9 @@ const submit = async () => {
 </script>
 
 <template>
-  <!-- Tarjeta centrada con diseño moderno -->
+  <!-- Centered card with modern design -->
   <v-card class="pa-6 pa-sm-8 rounded-xl" elevation="2">
-    <!-- Estado inicial - formulario -->
+    <!-- Initial state - form -->
     <template v-if="!submitted">
       <div class="text-center mb-6">
         <v-icon color="primary" size="48" class="mb-4">mdi-lock-reset</v-icon>
@@ -79,7 +80,7 @@ const submit = async () => {
         </div>
 
         <div class="text-center">
-          <Link href="/users/sign_in" class="text-decoration-none">
+          <SafeLink href="/users/sign_in" class="text-decoration-none">
             <v-btn
               variant="text"
               color="primary"
@@ -88,12 +89,12 @@ const submit = async () => {
             >
               {{ t('auth.forgot_password.back_to_login') }}
             </v-btn>
-          </Link>
+          </SafeLink>
         </div>
       </v-form>
     </template>
 
-    <!-- Estado de éxito - correo enviado -->
+    <!-- Success state - email sent -->
     <template v-else>
       <div class="text-center">
         <v-icon color="success" size="64" class="mb-4">mdi-email-check-outline</v-icon>
@@ -116,7 +117,7 @@ const submit = async () => {
           </template>
         </v-alert>
 
-        <Link href="/users/sign_in" class="text-decoration-none">
+        <SafeLink href="/users/sign_in" class="text-decoration-none">
           <v-btn
             color="primary"
             size="large"
@@ -126,7 +127,7 @@ const submit = async () => {
           >
             {{ t('auth.forgot_password.back_to_login') }}
           </v-btn>
-        </Link>
+        </SafeLink>
       </div>
     </template>
   </v-card>

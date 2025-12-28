@@ -7,6 +7,7 @@ es:
   activerecord:
     models:
       user: "usuario"
+      project: "proyecto"
     errors:
       models:
         user:
@@ -22,6 +23,11 @@ es:
               too_short: "La contraseña debe tener al menos %{count} caracteres"
             password_confirmation:
               confirmation: "Las contraseñas no coinciden"
+        project:
+          attributes:
+            name:
+              blank: "El nombre del proyecto es requerido"
+              taken: "Ya tienes un proyecto con este nombre"
   activemodel:
     errors:
       models:
@@ -111,3 +117,54 @@ es:
       update:
         profile_updated: "Perfil actualizado correctamente"
         error: "No se pudo actualizar el perfil. Por favor revisa los errores."
+    updated: "Usuario actualizado exitosamente"
+    deleted: "Usuario eliminado exitosamente"
+    removed_from_project: "Usuario desvinculado del proyecto exitosamente"
+    invitation_sent: "Invitación enviada a %{email}"
+    added_to_project: "Usuario %{email} agregado al proyecto"
+    already_exists: "El usuario ya existe en la plataforma"
+
+  projects:
+    created: "Proyecto creado exitosamente"
+    updated: "Proyecto actualizado exitosamente"
+    deleted: "Proyecto eliminado exitosamente"
+    switched: "Cambiaste al proyecto %{name}"
+    auto_switched: "Ahora estás en el proyecto %{name}"
+    create_first: "Debes crear un proyecto para continuar"
+
+  gemini_stores:
+    created: "Store de Gemini creado exitosamente"
+    updated: "Store de Gemini actualizado exitosamente"
+    deleted: "Store de Gemini eliminado exitosamente"
+    not_found: "Store de Gemini no encontrado"
+
+  # Pundit authorization messages
+  pundit:
+    default:
+      not_authorized: "No tienes permiso para realizar esta acción"
+      index: "No tienes permiso para ver este listado"
+      show: "No tienes permiso para ver este recurso"
+      new: "No tienes permiso para crear este recurso"
+      create: "No tienes permiso para crear este recurso"
+      edit: "No tienes permiso para editar este recurso"
+      update: "No tienes permiso para actualizar este recurso"
+      destroy: "No tienes permiso para eliminar este recurso"
+    project_policy:
+      edit: "No tienes permiso para editar este proyecto"
+      update: "No tienes permiso para actualizar este proyecto"
+      destroy: "No tienes permiso para eliminar este proyecto"
+    user_policy:
+      index: "No tienes permiso para ver la lista de usuarios"
+      show: "No tienes permiso para ver este usuario"
+      update: "No tienes permiso para actualizar este usuario"
+      destroy: "No tienes permiso para eliminar este usuario"
+      invite: "No tienes permiso para invitar usuarios"
+      remove_from_project: "No tienes permiso para desvincular usuarios del proyecto"
+    gemini_file_search_store_policy:
+      index: "No tienes permiso para ver los stores de Gemini"
+      show: "No tienes permiso para ver este store de Gemini"
+      new: "No tienes permiso para crear stores de Gemini"
+      create: "No tienes permiso para crear stores de Gemini"
+      edit: "No tienes permiso para editar este store de Gemini"
+      update: "No tienes permiso para actualizar este store de Gemini"
+      destroy: "No tienes permiso para eliminar este store de Gemini"

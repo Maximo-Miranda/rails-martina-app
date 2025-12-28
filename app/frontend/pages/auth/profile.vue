@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { useForm, Link } from '@inertiajs/vue3'
+import { useForm } from '@inertiajs/vue3'
 import { ref, computed } from 'vue'
 import { rules } from '@/utils/validation'
 import { useTranslations } from '@/composables/useTranslations'
+import SafeLink from '@/components/SafeLink.vue'
 
 const { t } = useTranslations()
 
@@ -31,7 +32,7 @@ const showConfirmPassword = ref(false)
 const formRef = ref<HTMLFormElement | null>(null)
 const changePassword = ref(false)
 
-// Reglas de validación
+// Validation rules
 const nameRules = [
   rules.required(t('validation.required')),
   rules.minLength(3, t('validation.min_length', { count: 3 })),
@@ -63,7 +64,7 @@ const confirmPasswordRules = computed(() => {
   ]
 })
 
-// Limpiar campos de contraseña cuando se desactiva
+// Clear password fields when disabled
 const togglePasswordChange = () => {
   if (!changePassword.value) {
     form.current_password = ''
@@ -84,7 +85,7 @@ const submit = async () => {
   <v-container class="py-8" style="max-width: 800px;">
     <!-- Header -->
     <div class="d-flex align-center mb-6">
-      <Link href="/dashboard">
+      <SafeLink href="/dashboard">
         <v-btn
           icon
           variant="text"
@@ -92,7 +93,7 @@ const submit = async () => {
         >
           <v-icon>mdi-arrow-left</v-icon>
         </v-btn>
-      </Link>
+      </SafeLink>
       <div>
         <h1 class="text-h4 font-weight-bold">{{ t('auth.profile.title') }}</h1>
         <p class="text-body-2 text-medium-emphasis mt-1">
@@ -102,7 +103,7 @@ const submit = async () => {
     </div>
 
     <v-form ref="formRef" @submit.prevent="submit" validate-on="blur lazy">
-      <!-- Información personal -->
+      <!-- Personal information -->
       <v-card class="mb-6 rounded-xl" elevation="2">
         <v-card-title class="d-flex align-center pa-4 bg-grey-lighten-4">
           <v-icon color="primary" class="mr-3">mdi-account-circle</v-icon>
@@ -136,7 +137,7 @@ const submit = async () => {
         </v-card-text>
       </v-card>
 
-      <!-- Actividad de la cuenta -->
+      <!-- Account activity -->
       <v-card class="mb-6 rounded-xl" elevation="2">
         <v-card-title class="d-flex align-center pa-4 bg-grey-lighten-4">
           <v-icon color="primary" class="mr-3">mdi-shield-account</v-icon>
@@ -188,7 +189,7 @@ const submit = async () => {
         </v-card-text>
       </v-card>
 
-      <!-- Cambiar contraseña -->
+      <!-- Change password -->
       <v-card class="mb-6 rounded-xl" elevation="2">
         <v-card-title class="d-flex align-center justify-space-between pa-4 bg-grey-lighten-4">
           <div class="d-flex align-center">
@@ -271,7 +272,7 @@ const submit = async () => {
         </v-expand-transition>
       </v-card>
 
-      <!-- Botones de acción -->
+      <!-- Action buttons -->
       <div class="d-flex justify-end">
         <Link href="/dashboard">
           <v-btn

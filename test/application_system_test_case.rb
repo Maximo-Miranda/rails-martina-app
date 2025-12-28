@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "test_helper"
 require "capybara"
 require "capybara/minitest"
@@ -16,15 +18,14 @@ def ensure_vite_built!
     false
   end
 
-  unless vite_built
+  return if vite_built
     success = system("bin/vite build --mode test")
     abort("Vite build failed!") unless success
-  end
 end
 
 ensure_vite_built!
 
-BROWSER = ENV.fetch("BROWSER", "firefox").to_sym
+BROWSER = ENV.fetch("BROWSER", "firefox").to_sym.freeze
 
 Capybara.register_driver(:playwright) do |app|
   Capybara::Playwright::Driver.new(app,
@@ -43,6 +44,7 @@ class ApplicationSystemTestCase < ActiveSupport::TestCase
   include Capybara::DSL
   include Capybara::Minitest::Assertions
   include Rails.application.routes.url_helpers
+  include ActiveJob::TestHelper
 
   self.use_transactional_tests = false
 

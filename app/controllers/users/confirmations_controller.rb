@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Users::ConfirmationsController < Devise::ConfirmationsController
   rate_limit to: 5, within: 3.minutes, only: :create
   def new
@@ -10,7 +12,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     unless request.valid?
       flash.now[:alert] = t(".error")
       render inertia: "auth/resend-confirmation", props: {
-        errors: request.errors.messages
+        errors: request.errors.messages,
       }
       return
     end
@@ -23,7 +25,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     else
       flash.now[:alert] = t(".error")
       render inertia: "auth/resend-confirmation", props: {
-        errors: resource.errors.messages
+        errors: resource.errors.messages,
       }
     end
   end
@@ -39,7 +41,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
       flash.now[:alert] = t(".error")
       render inertia: "auth/confirmation", props: {
         confirmation_token: params[:confirmation_token],
-        errors: resource.errors.messages
+        errors: resource.errors.messages,
       }
     end
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserRegistrationRequest
   include ActiveModel::Model
   include ActiveModel::Validations
@@ -17,8 +19,7 @@ class UserRegistrationRequest
   def passwords_match
     return if password.blank? || password_confirmation.blank?
 
-    if password != password_confirmation
+    return unless password != password_confirmation
       errors.add(:password_confirmation, :confirmation)
-    end
   end
 end

@@ -18,7 +18,7 @@ export function useUser() {
   })
 
   const firstName = computed(() =>
-    currentUser.value?.full_name?.split(' ')[0] || 'Usuario'
+    currentUser.value?.full_name?.split(' ')[0] || 'User'
   )
 
   const logout = () => router.delete('/users/sign_out')

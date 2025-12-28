@@ -141,3 +141,51 @@ en:
       update:
         profile_updated: "Profile updated successfully"
         error: "Could not update profile. Please check the errors."
+    updated: "User updated successfully"
+    deleted: "User deleted successfully"
+    invitation_sent: "Invitation sent to %{email}"
+    added_to_project: "User %{email} added to project"
+    already_exists: "User already exists on the platform"
+
+  projects:
+    created: "Project created successfully"
+    updated: "Project updated successfully"
+    deleted: "Project deleted successfully"
+    switched: "Switched to project %{name}"
+    create_first: "You must create a project to continue"
+
+  gemini_stores:
+    created: "Gemini store created successfully"
+    updated: "Gemini store updated successfully"
+    deleted: "Gemini store deleted successfully"
+    not_found: "Gemini store not found"
+
+  # Pundit authorization messages
+  pundit:
+    default:
+      not_authorized: "You are not authorized to perform this action"
+      index: "You are not authorized to view this list"
+      show: "You are not authorized to view this resource"
+      new: "You are not authorized to create this resource"
+      create: "You are not authorized to create this resource"
+      edit: "You are not authorized to edit this resource"
+      update: "You are not authorized to update this resource"
+      destroy: "You are not authorized to delete this resource"
+    project_policy:
+      edit: "You are not authorized to edit this project"
+      update: "You are not authorized to update this project"
+      destroy: "You are not authorized to delete this project"
+    user_policy:
+      index: "You are not authorized to view the user list"
+      show: "You are not authorized to view this user"
+      update: "You are not authorized to update this user"
+      destroy: "You are not authorized to delete this user"
+      invite: "You are not authorized to invite users"
+    gemini_file_search_store_policy:
+      index: "You are not authorized to view Gemini stores"
+      show: "You are not authorized to view this Gemini store"
+      new: "You are not authorized to create Gemini stores"
+      create: "You are not authorized to create Gemini stores"
+      edit: "You are not authorized to edit this Gemini store"
+      update: "You are not authorized to update this Gemini store"
+      destroy: "You are not authorized to delete this Gemini store"
