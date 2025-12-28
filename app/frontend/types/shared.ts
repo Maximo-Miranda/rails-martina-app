@@ -14,6 +14,7 @@ export interface PagyPagination {
 export interface Permissions {
   // Global permissions
   can_manage_users: boolean
+  can_invite_users: boolean
   can_manage_projects: boolean
   can_create_project: boolean
 
@@ -29,6 +30,7 @@ export interface Permissions {
   can_access_dashboard: boolean
   can_access_projects: boolean
   can_access_users: boolean
+  can_access_gemini_stores: boolean
 
   // Feature flags
   can_view_analytics: boolean

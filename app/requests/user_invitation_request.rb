@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserInvitationRequest
   include ActiveModel::Model
   include ActiveModel::Validations

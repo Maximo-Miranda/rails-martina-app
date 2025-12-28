@@ -20,6 +20,7 @@ export interface Permissions {
   can_access_dashboard: boolean
   can_access_projects: boolean
   can_access_users: boolean
+  can_access_gemini_stores: boolean
 
   // Feature flags
   can_view_analytics: boolean
@@ -82,6 +83,7 @@ export function usePermissions() {
     accessDashboard: permissions.value?.can_access_dashboard ?? false,
     accessProjects: permissions.value?.can_access_projects ?? false,
     accessUsers: permissions.value?.can_access_users ?? false,
+    accessGeminiStores: permissions.value?.can_access_gemini_stores ?? false,
 
     // Feature flags
     viewAnalytics: permissions.value?.can_view_analytics ?? false,

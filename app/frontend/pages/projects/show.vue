@@ -33,6 +33,7 @@ const { navigateTo, isNavigating } = useNavigation()
           <div class="text-body-2 text-medium-emphasis">/{{ project.slug }}</div>
         </div>
         <v-btn
+          v-if="project.can_edit"
           icon="mdi-pencil"
           variant="text"
           color="primary"

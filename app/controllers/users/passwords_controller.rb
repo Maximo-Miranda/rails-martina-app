@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Users::PasswordsController < Devise::PasswordsController
   rate_limit to: 5, within: 3.minutes, only: :create, name: "password-reset-request"
   rate_limit to: 5, within: 1.minute, only: :update, name: "password-update"
@@ -11,7 +13,7 @@ class Users::PasswordsController < Devise::PasswordsController
     unless request.valid?
       flash.now[:alert] = t(".error")
       render inertia: "auth/forgot-password", props: {
-        errors: request.errors.messages
+        errors: request.errors.messages,
       }
       return
     end
@@ -24,7 +26,7 @@ class Users::PasswordsController < Devise::PasswordsController
     else
       flash.now[:alert] = t(".error")
       render inertia: "auth/forgot-password", props: {
-        errors: resource.errors.messages
+        errors: resource.errors.messages,
       }
     end
   end
@@ -32,7 +34,7 @@ class Users::PasswordsController < Devise::PasswordsController
   # GET /users/password/edit?reset_password_token=abcdef
   def edit
     render inertia: "auth/reset-password", props: {
-      reset_password_token: params[:reset_password_token]
+      reset_password_token: params[:reset_password_token],
     }
   end
 
@@ -43,7 +45,7 @@ class Users::PasswordsController < Devise::PasswordsController
       flash.now[:alert] = t(".error")
       render inertia: "auth/reset-password", props: {
         reset_password_token: resource_params[:reset_password_token] || params.dig(:user, :reset_password_token) || "",
-        errors: request.errors.messages
+        errors: request.errors.messages,
       }
       return
     end
@@ -59,7 +61,7 @@ class Users::PasswordsController < Devise::PasswordsController
       flash.now[:alert] = t(".error")
       render inertia: "auth/reset-password", props: {
         reset_password_token: resource_params[:reset_password_token] || "",
-        errors: resource.errors.messages
+        errors: resource.errors.messages,
       }
     end
   end

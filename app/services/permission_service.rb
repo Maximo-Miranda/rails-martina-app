@@ -8,8 +8,6 @@ class PermissionService
     @current_project = current_project
   end
 
-  # Returns a hash of all permissions for the current user
-  # This is cached by InertiaRails.once to avoid redundant evaluations
   def all_permissions
     return {} unless user
 
@@ -32,25 +30,24 @@ class PermissionService
       can_access_dashboard: true,
       can_access_projects: true,
       can_access_users: policy(User).show_menu?,
+      can_access_gemini_stores: gemini_store_policy.show_menu?,
 
       # Feature flags (can be extended)
       can_view_analytics: user.global_admin?,
-      can_access_admin_panel: user.super_admin?
+      can_access_admin_panel: user.super_admin?,
     }.compact
   end
 
-  # Method to get permissions for a specific project
   def project_permissions(project)
     return {} unless user && project
 
     {
       can_edit: policy(project).update?,
       can_delete: policy(project).destroy?,
-      can_switch: policy(project).switch?
+      can_switch: policy(project).switch?,
     }.compact
   end
 
-  # Method to get permissions for multiple projects (optimized)
   def projects_permissions(projects)
     return {} unless user && projects
 
@@ -59,7 +56,6 @@ class PermissionService
     end
   end
 
-  # Method to get permissions for a specific user
   def user_permissions(target_user)
     return {} unless user && target_user
 
@@ -67,11 +63,10 @@ class PermissionService
       can_view: policy(target_user).show?,
       can_edit: policy(target_user).update?,
       can_delete: policy(target_user).destroy?,
-      can_remove_from_project: policy(target_user).remove_from_project?
+      can_remove_from_project: policy(target_user).remove_from_project?,
     }.compact
   end
 
-  # Method to get permissions for multiple users (optimized)
   def users_permissions(users)
     return {} unless user && users
 
@@ -82,19 +77,20 @@ class PermissionService
 
   private
 
-  # Helper to get a policy for a given record
   def policy(record)
     return NullPolicy.new(user) if record.nil?
     Pundit.policy!(user, record)
   end
 
-  # Helper specifically for project policies
   def project_policy(record)
     return NullPolicy.new(user) if record.nil?
     Pundit.policy!(user, record)
   end
 
-  # Null object pattern for nil records
+  def gemini_store_policy
+    Pundit.policy!(user, GeminiFileSearchStore)
+  end
+
   class NullPolicy
     attr_reader :user
 

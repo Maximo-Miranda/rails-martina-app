@@ -5,18 +5,18 @@ class CreateDefaultUsers < ActiveRecord::Migration[8.1]
     {
       email: "maximo.miranda@martinalawyer.co",
       full_name: "Maximo Miranda",
-      role: "super_admin"
+      role: "super_admin",
     },
     {
       email: "maximo.miranda@wudok.com",
       full_name: "Maximo Miranda",
-      role: "admin"
+      role: "admin",
     },
     {
       email: "maximomirandah@gmail.com",
       full_name: "Maximo Miranda",
-      role: "blog_admin"
-    }
+      role: "blog_admin",
+    },
   ].freeze
 
   def up

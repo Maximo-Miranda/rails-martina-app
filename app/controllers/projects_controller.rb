@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProjectsController < ApplicationController
   include RansackPagyIndex
 
@@ -14,11 +16,9 @@ class ProjectsController < ApplicationController
 
     @pagy, projects = pagy(:offset, @q.result(distinct: true), limit: pagy_limit(default: 10))
 
-    # Get permissions for all projects
     permission_service = PermissionService.new(current_user)
     projects_permissions = permission_service.projects_permissions(projects)
 
-    # Add permissions to each project
     projects_with_permissions = projects.map do |project|
       project.as_json(only: %i[id name slug description created_at]).merge(
         projects_permissions[project.id] || {}
@@ -28,11 +28,10 @@ class ProjectsController < ApplicationController
     render inertia: "projects/index", props: {
       projects: projects_with_permissions,
       pagination: pagy_pagination(@pagy),
-      filters: filters
+      filters: filters,
     }
   end
 
-  # Endpoint para búsqueda en el dropdown (JSON)
   def search
     scope = policy_scope(Project)
     @q, = build_ransack(
@@ -46,13 +45,18 @@ class ProjectsController < ApplicationController
 
     render json: {
       projects: projects.as_json(only: %i[id name slug]),
-      pagination: pagy_pagination(@pagy)
+      pagination: pagy_pagination(@pagy),
     }
   end
 
   def show
     authorize @project
-    render inertia: "projects/show", props: { project: @project.as_json(only: %i[id name slug description created_at]) }
+    permission_service = PermissionService.new(current_user)
+    project_permissions = permission_service.project_permissions(@project)
+
+    render inertia: "projects/show", props: {
+      project: @project.as_json(only: %i[id name slug description created_at]).merge(project_permissions),
+    }
   end
 
   def new
@@ -67,11 +71,22 @@ class ProjectsController < ApplicationController
 
     if @project.save
       current_user.update!(current_project_id: @project.id)
+
+      Rails.configuration.event_store.publish(
+        Projects::ProjectCreated.new(data: {
+          project_id: @project.id,
+          user_id: current_user.id,
+          name: @project.name,
+          slug: @project.slug,
+        }),
+        stream_name: "Project$#{@project.id}"
+      )
+
       redirect_to dashboard_path, notice: I18n.t("projects.created")
     else
       render inertia: "projects/form", props: {
         project: @project.as_json(only: %i[id name description]),
-        errors: @project.errors.as_json
+        errors: @project.errors.as_json,
       }
     end
   end
@@ -89,7 +104,7 @@ class ProjectsController < ApplicationController
     else
       render inertia: "projects/form", props: {
         project: @project.as_json(only: %i[id name slug description]),
-        errors: @project.errors.as_json
+        errors: @project.errors.as_json,
       }
     end
   end
@@ -97,6 +112,15 @@ class ProjectsController < ApplicationController
   def destroy
     authorize @project
     @project.discard
+
+    Rails.configuration.event_store.publish(
+      Projects::ProjectDiscarded.new(data: {
+        project_id: @project.id,
+        user_id: current_user.id,
+        gemini_store_id: @project.gemini_file_search_store&.id,
+      }),
+      stream_name: "Project$#{@project.id}"
+    )
 
     redirect_to projects_path, notice: I18n.t("projects.deleted")
   end

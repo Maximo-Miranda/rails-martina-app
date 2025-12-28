@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   include RansackPagyIndex
 
@@ -29,7 +31,7 @@ class UsersController < ApplicationController
     render inertia: "users/index", props: {
       users: users_with_permissions,
       pagination: pagy_pagination(@pagy),
-      filters: filters
+      filters: filters,
     }
   end
 
@@ -41,7 +43,7 @@ class UsersController < ApplicationController
   def new_invitation
     authorize User, :invite?
     render inertia: "users/invite", props: {
-      current_project: current_project.as_json(only: %i[id name slug])
+      current_project: current_project.as_json(only: %i[id name slug]),
     }
   end
 
@@ -57,7 +59,7 @@ class UsersController < ApplicationController
     unless @invitation_request.valid?
       render inertia: "users/invite", props: {
         current_project: current_project.as_json(only: %i[id name slug]),
-        errors: @invitation_request.errors.as_json
+        errors: @invitation_request.errors.as_json,
       }
       return
     end
@@ -85,7 +87,7 @@ class UsersController < ApplicationController
     unless @update_request.valid?
       render inertia: "users/show", props: {
         user: user_json(@user),
-        errors: @update_request.errors.as_json
+        errors: @update_request.errors.as_json,
       }
       return
     end
@@ -95,7 +97,7 @@ class UsersController < ApplicationController
     else
       render inertia: "users/show", props: {
         user: user_json(@user),
-        errors: @user.errors.as_json
+        errors: @user.errors.as_json,
       }
     end
   end
@@ -151,7 +153,7 @@ class UsersController < ApplicationController
     else
       render inertia: "users/invite", props: {
         current_project: current_project.as_json(only: %i[id name slug]),
-        errors: user.errors.as_json
+        errors: user.errors.as_json,
       }
     end
   end

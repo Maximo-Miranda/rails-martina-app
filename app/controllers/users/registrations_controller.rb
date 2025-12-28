@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Users::RegistrationsController < Devise::RegistrationsController
   rate_limit to: 5, within: 1.minute, only: :create
   before_action :configure_account_update_params, only: [ :update ]
@@ -36,14 +38,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
       flash.now[:alert] = t(".error")
       render inertia: "auth/register", props: {
-        errors: resource.errors.messages
+        errors: resource.errors.messages,
       }
     end
   end
 
   def edit
     render inertia: "auth/profile", props: {
-      user: user_props
+      user: user_props,
     }
   end
 
@@ -54,7 +56,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       flash.now[:alert] = t(".error")
       render inertia: "auth/profile", props: {
         user: user_props,
-        errors: request.errors.messages
+        errors: request.errors.messages,
       }
       return
     end
@@ -73,7 +75,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       flash.now[:alert] = t(".error")
       render inertia: "auth/profile", props: {
         user: user_props,
-        errors: resource.errors.messages
+        errors: resource.errors.messages,
       }
     end
   end
@@ -99,7 +101,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       email: resource.email,
       created_at: resource.created_at.strftime("%d/%m/%Y"),
       last_sign_in_at: resource.last_sign_in_at&.strftime("%d/%m/%Y %H:%M"),
-      sign_in_count: resource.sign_in_count
+      sign_in_count: resource.sign_in_count,
     }
   end
 end

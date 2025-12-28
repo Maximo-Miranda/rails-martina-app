@@ -154,6 +154,12 @@ en:
     switched: "Switched to project %{name}"
     create_first: "You must create a project to continue"
 
+  gemini_stores:
+    created: "Gemini store created successfully"
+    updated: "Gemini store updated successfully"
+    deleted: "Gemini store deleted successfully"
+    not_found: "Gemini store not found"
+
   # Pundit authorization messages
   pundit:
     default:
@@ -175,3 +181,11 @@ en:
       update: "You are not authorized to update this user"
       destroy: "You are not authorized to delete this user"
       invite: "You are not authorized to invite users"
+    gemini_file_search_store_policy:
+      index: "You are not authorized to view Gemini stores"
+      show: "You are not authorized to view this Gemini store"
+      new: "You are not authorized to create Gemini stores"
+      create: "You are not authorized to create Gemini stores"
+      edit: "You are not authorized to edit this Gemini store"
+      update: "You are not authorized to update this Gemini store"
+      destroy: "You are not authorized to delete this Gemini store"

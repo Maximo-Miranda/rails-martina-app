@@ -1,4 +1,14 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
+  # Rails Event Store Browser (super_admin only)
+  authenticate :user, ->(user) { user.has_role?(:super_admin) } do
+    mount RubyEventStore::Browser::App.for(
+      event_store_locator: -> { Rails.configuration.event_store },
+      host: nil
+    ) => "/res"
+  end
+
   get "pages/landing"
   # Redirect to localhost from 127.0.0.1 to use same IP address with Vite server
   constraints(host: "127.0.0.1") do
@@ -17,18 +27,16 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "pages#landing"
 
-  # Devise routes for User model with custom controllers
   devise_for :users, controllers: {
     registrations: "users/registrations",
     sessions: "users/sessions",
     passwords: "users/passwords",
     confirmations: "users/confirmations",
-    invitations: "users/invitations"
+    invitations: "users/invitations",
   }
 
   get "dashboard", to: "home#index", as: :dashboard
 
-  # Projects (tenant)
   resources :projects do
     collection do
       get :search
@@ -38,7 +46,6 @@ Rails.application.routes.draw do
     end
   end
 
-  # Users management
   resources :users, except: %i[new create] do
     member do
       delete :remove_from_project
@@ -48,4 +55,6 @@ Rails.application.routes.draw do
       post :invite
     end
   end
+
+  resources :gemini_file_search_stores
 end

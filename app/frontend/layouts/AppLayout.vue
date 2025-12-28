@@ -83,6 +83,16 @@ const navigationItems = computed(() => {
     })
   }
 
+  // Only show Gemini Stores if user has permission (admin/super_admin)
+  if (can.value.accessGeminiStores) {
+    items.push({
+      title: t('navigation.gemini_stores'),
+      icon: 'mdi-database-search',
+      href: '/gemini_file_search_stores',
+      visible: true
+    })
+  }
+
   return items.filter(item => item.visible)
 })
 

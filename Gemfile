@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
@@ -60,6 +62,10 @@ group :test do
   gem "capybara-playwright-driver"
   gem "minitest", "~> 5.27"
   gem "database_cleaner-active_record"
+
+  # HTTP mocking
+  gem "vcr", "~> 6.4"
+  gem "webmock", "~> 3.26"
 end
 
 # Inertia.js integration for Rails
@@ -100,3 +106,9 @@ gem "pagy", "~> 43.2"
 
 # Search
 gem "ransack", "~> 4.4"
+
+# Event Sourcing
+gem "rails_event_store", "~> 2.18"
+
+# HTTP client
+gem "faraday", "~> 2.14"

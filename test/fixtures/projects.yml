@@ -15,3 +15,27 @@ other_project:
   user: confirmed_user
   created_at: <%= Time.current %>
   updated_at: <%= Time.current %>
+
+pending_project:
+  name: "Pending Project"
+  slug: "pending-project"
+  description: "Project with pending store"
+  user: confirmed_user
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+failed_project:
+  name: "Failed Project"
+  slug: "failed-project"
+  description: "Project with failed store"
+  user: confirmed_user
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+deleted_project:
+  name: "Deleted Project"
+  slug: "deleted-project"
+  description: "Project with deleted store"
+  user: confirmed_user
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>

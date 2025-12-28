@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Project < ApplicationRecord
   include Discard::Model
   extend FriendlyId
@@ -8,10 +10,10 @@ class Project < ApplicationRecord
   friendly_id :name, use: :slugged
 
   belongs_to :user
+  has_one :gemini_file_search_store, dependent: :nullify
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: { scope: :user_id }
 
-  # Asignar rol owner al creador
   after_create :assign_owner_role
 
   def self.ransackable_attributes(_auth_object = nil)

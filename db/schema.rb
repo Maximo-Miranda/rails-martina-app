@@ -10,11 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_24_141325) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_27_020418) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
+  end
+
+  create_table "event_store_events", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.binary "data", null: false
+    t.uuid "event_id", null: false
+    t.string "event_type", null: false
+    t.binary "metadata"
+    t.datetime "valid_at"
+    t.index ["created_at"], name: "index_event_store_events_on_created_at"
+    t.index ["event_id"], name: "index_event_store_events_on_event_id", unique: true
+    t.index ["event_type"], name: "index_event_store_events_on_event_type"
+    t.index ["valid_at"], name: "index_event_store_events_on_valid_at"
+  end
+
+  create_table "event_store_events_in_streams", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.uuid "event_id", null: false
+    t.integer "position"
+    t.string "stream", null: false
+    t.index ["created_at"], name: "index_event_store_events_in_streams_on_created_at"
+    t.index ["event_id"], name: "index_event_store_events_in_streams_on_event_id"
+    t.index ["stream", "event_id"], name: "index_event_store_events_in_streams_on_stream_and_event_id", unique: true
+    t.index ["stream", "position"], name: "index_event_store_events_in_streams_on_stream_and_position", unique: true
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -28,6 +52,23 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_24_141325) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "gemini_file_search_stores", force: :cascade do |t|
+    t.integer "active_documents_count", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at"
+    t.string "display_name", null: false
+    t.text "error_message"
+    t.string "gemini_store_name"
+    t.jsonb "metadata", default: {}
+    t.bigint "project_id"
+    t.bigint "size_bytes", default: 0, null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.index ["deleted_at"], name: "index_gemini_file_search_stores_on_deleted_at"
+    t.index ["gemini_store_name"], name: "index_gemini_file_search_stores_on_gemini_store_name", unique: true
+    t.index ["project_id"], name: "index_gemini_file_search_stores_on_project_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "deleted_at"
@@ -37,6 +78,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_24_141325) do
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.index ["deleted_at"], name: "index_projects_on_deleted_at"
+    t.index ["name", "user_id"], name: "index_projects_on_name_and_user_id", unique: true
     t.index ["slug"], name: "index_projects_on_slug", unique: true
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
@@ -100,6 +142,8 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_24_141325) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "event_store_events_in_streams", "event_store_events", column: "event_id", primary_key: "event_id"
+  add_foreign_key "gemini_file_search_stores", "projects"
   add_foreign_key "projects", "users"
   add_foreign_key "users", "projects", column: "current_project_id"
 end

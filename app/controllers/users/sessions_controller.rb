@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Users::SessionsController < Devise::SessionsController
   rate_limit to: 10, within: 3.minutes, only: :create
   def new
@@ -24,7 +26,7 @@ class Users::SessionsController < Devise::SessionsController
     else
       flash.now[:alert] = t(".invalid_credentials")
       render inertia: "auth/login", props: {
-        errors: { email: [ t(".invalid_credentials") ] }
+        errors: { email: [ t(".invalid_credentials") ] },
       }
     end
   end

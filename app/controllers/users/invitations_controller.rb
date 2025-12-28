@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 class Users::InvitationsController < Devise::InvitationsController
   include InertiaRails::Controller
 
   def new
     render inertia: "auth/accept-invitation", props: {
-      invitation_token: params[:invitation_token]
+      invitation_token: params[:invitation_token],
     }
   end
 
   def edit
     render inertia: "auth/accept-invitation", props: {
-      invitation_token: params[:invitation_token]
+      invitation_token: params[:invitation_token],
     }
   end
 

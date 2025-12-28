@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "boot"
 
 require "rails/all"
@@ -26,7 +28,7 @@ module RailsMartinaApp
 
     # Configuración de i18n - Español Colombia (default), Inglés disponible
     config.i18n.default_locale = :es
-    config.i18n.available_locales = [ :es, :en ]
+    config.i18n.available_locales = %i[es en]
     config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**", "*.{rb,yml}")]
   end
 end

@@ -1,0 +1,61 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# Store active linked to test_project
+active_store:
+  project: test_project
+  gemini_store_name: "corpora/abc123"
+  display_name: "Test Project Store"
+  status: 1  # active
+  error_message:
+  active_documents_count: 5
+  size_bytes: 1024000
+  metadata:
+  deleted_at:
+
+# Store pending linked to pending_project
+pending_store:
+  project: pending_project
+  gemini_store_name:
+  display_name: "Pending Store"
+  status: 0  # pending
+  error_message:
+  active_documents_count: 0
+  size_bytes: 0
+  metadata:
+  deleted_at:
+
+# Store failed linked to failed_project
+failed_store:
+  project: failed_project
+  gemini_store_name:
+  display_name: "Failed Store"
+  status: 2  # failed
+  error_message: "API Error: Rate limit exceeded"
+  active_documents_count: 0
+  size_bytes: 0
+  metadata:
+  deleted_at:
+
+# Store global (no project)
+global_store:
+  project:
+  gemini_store_name: "corpora/global123"
+  display_name: "Global Knowledge Base"
+  status: 1  # active
+  error_message:
+  active_documents_count: 10
+  size_bytes: 2048000
+  metadata:
+  deleted_at:
+
+# Store deleted linked to deleted_project (soft delete)
+deleted_store:
+  project: deleted_project
+  gemini_store_name: "corpora/deleted456"
+  display_name: "Deleted Store"
+  status: 3  # deleted
+  error_message:
+  active_documents_count: 0
+  size_bytes: 0
+  metadata:
+  deleted_at: <%= Time.current %>
