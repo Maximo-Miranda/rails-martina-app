@@ -89,6 +89,7 @@ jobs:
       - name: Run tests
         env:
           RAILS_ENV: test
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
         run: bin/rails db:test:prepare test
 
@@ -154,6 +155,7 @@ jobs:
       - name: Run System Tests (${{ matrix.browser }})
         env:
           RAILS_ENV: test
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
           HEADLESS: true
           BROWSER: ${{ matrix.browser }}
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
