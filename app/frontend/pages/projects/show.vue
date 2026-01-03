@@ -14,16 +14,21 @@ const { navigateTo, isNavigating } = useNavigation()
 <template>
   <v-container class="py-6" style="max-width: 600px;">
     <!-- Back button -->
-    <v-btn
-      variant="text"
-      prepend-icon="mdi-arrow-left"
-      class="mb-4 px-0"
-      data-testid="projects-btn-back"
-      :disabled="isNavigating"
-      @click="navigateTo('/projects')"
-    >
-      {{ t('common.back') }}
-    </v-btn>
+    <v-tooltip location="bottom" :text="t('tooltips.back')" max-width="300px">
+      <template #activator="{ props }">
+        <v-btn
+          v-bind="props"
+          variant="text"
+          prepend-icon="mdi-arrow-left"
+          class="mb-4 px-0"
+          data-testid="projects-btn-back"
+          :disabled="isNavigating"
+          @click="navigateTo('/projects')"
+        >
+          {{ t('common.back') }}
+        </v-btn>
+      </template>
+    </v-tooltip>
 
     <v-card class="rounded-xl" elevation="0" border>
       <!-- Header with title and edit button -->
@@ -32,17 +37,21 @@ const { navigateTo, isNavigating } = useNavigation()
           <div class="text-h5 font-weight-bold">{{ project.name }}</div>
           <div class="text-body-2 text-medium-emphasis">/{{ project.slug }}</div>
         </div>
-        <v-btn
-          v-if="project.can_edit"
-          icon="mdi-pencil"
-          variant="text"
-          color="primary"
-          size="small"
-          class="mt-n1"
-          data-testid="projects-btn-edit"
-          :disabled="isNavigating"
-          @click="navigateTo(`/projects/${project.slug}/edit`)"
-        />
+        <v-tooltip v-if="project.can_edit" location="top" :text="t('tooltips.edit')" max-width="300px">
+          <template #activator="{ props }">
+            <v-btn
+              v-bind="props"
+              icon="mdi-pencil"
+              variant="text"
+              color="primary"
+              size="small"
+              class="mt-n1"
+              data-testid="projects-btn-edit"
+              :disabled="isNavigating"
+              @click="navigateTo(`/projects/${project.slug}/edit`)"
+            />
+          </template>
+        </v-tooltip>
       </div>
 
       <v-card-text class="pa-6">

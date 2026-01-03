@@ -219,7 +219,7 @@ const formatDate = (dateString: string) => {
 
         <template #item.actions="{ item }">
           <div class="d-flex justify-end gap-1">
-            <v-tooltip location="top" :text="t('gemini_stores.manage_documents')">
+            <v-tooltip location="top" :text="t('gemini_stores.manage_documents')" max-width="300px">
               <template #activator="{ props }">
                 <v-btn
                   v-bind="props"
@@ -235,37 +235,52 @@ const formatDate = (dateString: string) => {
                 </v-btn>
               </template>
             </v-tooltip>
-            <v-btn
-              icon
-              size="small"
-              variant="text"
-              :data-testid="`gemini-store-btn-show-${item.id}`"
-              :disabled="isAnyLoading || isNavigating"
-              @click="navigateTo(`/gemini_file_search_stores/${item.id}`)"
-            >
-              <v-icon size="small">mdi-eye</v-icon>
-            </v-btn>
-            <v-btn
-              icon
-              size="small"
-              variant="text"
-              :data-testid="`gemini-store-btn-edit-${item.id}`"
-              :disabled="isAnyLoading || isNavigating || item.status === 'deleted'"
-              @click="navigateTo(`/gemini_file_search_stores/${item.id}/edit`)"
-            >
-              <v-icon size="small">mdi-pencil</v-icon>
-            </v-btn>
-            <v-btn
-              icon
-              size="small"
-              variant="text"
-              color="error"
-              :data-testid="`gemini-store-btn-delete-${item.id}`"
-              :disabled="isAnyLoading || isNavigating || item.status === 'deleted'"
-              @click="deleteStore(item.id)"
-            >
-              <v-icon size="small">mdi-delete</v-icon>
-            </v-btn>
+            <v-tooltip location="top" :text="t('tooltips.view')" max-width="300px">
+              <template #activator="{ props }">
+                <v-btn
+                  v-bind="props"
+                  icon
+                  size="small"
+                  variant="text"
+                  :data-testid="`gemini-store-btn-show-${item.id}`"
+                  :disabled="isAnyLoading || isNavigating"
+                  @click="navigateTo(`/gemini_file_search_stores/${item.id}`)"
+                >
+                  <v-icon size="small">mdi-eye</v-icon>
+                </v-btn>
+              </template>
+            </v-tooltip>
+            <v-tooltip location="top" :text="t('tooltips.edit')" max-width="300px">
+              <template #activator="{ props }">
+                <v-btn
+                  v-bind="props"
+                  icon
+                  size="small"
+                  variant="text"
+                  :data-testid="`gemini-store-btn-edit-${item.id}`"
+                  :disabled="isAnyLoading || isNavigating || item.status === 'deleted'"
+                  @click="navigateTo(`/gemini_file_search_stores/${item.id}/edit`)"
+                >
+                  <v-icon size="small">mdi-pencil</v-icon>
+                </v-btn>
+              </template>
+            </v-tooltip>
+            <v-tooltip location="top" :text="t('tooltips.delete')" max-width="300px">
+              <template #activator="{ props }">
+                <v-btn
+                  v-bind="props"
+                  icon
+                  size="small"
+                  variant="text"
+                  color="error"
+                  :data-testid="`gemini-store-btn-delete-${item.id}`"
+                  :disabled="isAnyLoading || isNavigating || item.status === 'deleted'"
+                  @click="deleteStore(item.id)"
+                >
+                  <v-icon size="small">mdi-delete</v-icon>
+                </v-btn>
+              </template>
+            </v-tooltip>
           </div>
         </template>
 

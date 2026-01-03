@@ -219,6 +219,7 @@ const storeCapacityPercent = computed(() => {
           rounded="lg"
           hide-details
           clearable
+          :disabled="loading || isNavigating"
           style="max-width: 520px;"
         />
       </v-card-text>
@@ -274,29 +275,42 @@ const storeCapacityPercent = computed(() => {
         </template>
 
         <template #item.actions="{ item }">
-          <v-btn
-            icon="mdi-eye"
-            size="small"
-            variant="text"
-            :data-testid="`${testIdPrefix}-btn-show-${item.id}`"
-            :disabled="isAnyLoading || isNavigating"
-            @click="navigateTo(routes.show(item.id, store.id))"
-          />
-          <v-btn
-            v-if="canDeleteDocument"
-            icon="mdi-delete"
-            size="small"
-            variant="text"
-            color="error"
-            :data-testid="`${testIdPrefix}-btn-delete-${item.id}`"
-            :disabled="isAnyLoading || item.status === 'deleted'"
-            @click="deleteDocument(item.id)"
-          />
+          <v-tooltip location="top" :text="t('tooltips.view')" max-width="300px">
+            <template #activator="{ props }">
+              <v-btn
+                v-bind="props"
+                icon="mdi-eye"
+                size="small"
+                variant="text"
+                :data-testid="`${testIdPrefix}-btn-show-${item.id}`"
+                :disabled="isAnyLoading || isNavigating"
+                @click="navigateTo(routes.show(item.id, store.id))"
+              />
+            </template>
+          </v-tooltip>
+          <v-tooltip v-if="canDeleteDocument" location="top" :text="t('tooltips.delete')" max-width="300px">
+            <template #activator="{ props }">
+              <v-btn
+                v-bind="props"
+                icon="mdi-delete"
+                size="small"
+                variant="text"
+                color="error"
+                :data-testid="`${testIdPrefix}-btn-delete-${item.id}`"
+                :disabled="isAnyLoading || item.status === 'deleted'"
+                @click="deleteDocument(item.id)"
+              />
+            </template>
+          </v-tooltip>
         </template>
 
         <template #no-data>
           <div class="text-center pa-8">
-            <v-icon icon="mdi-file-document-outline" size="64" color="grey-lighten-1" class="mb-4" />
+            <v-tooltip location="top" :text="t('tooltips.empty_documents')" max-width="300px">
+              <template #activator="{ props }">
+                <v-icon v-bind="props" icon="mdi-file-document-outline" size="64" color="grey-lighten-1" class="mb-4" />
+              </template>
+            </v-tooltip>
             <p class="text-grey">{{ t('documents.no_documents') }}</p>
           </div>
         </template>

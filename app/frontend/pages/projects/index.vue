@@ -120,7 +120,14 @@ const confirmDeleteProject = () => {
   <v-container class="py-6">
     <PageHeader :title="t('projects.title')" :subtitle="t('projects.subtitle')">
       <template #actions>
-        <v-btn color="primary" prepend-icon="mdi-plus" size="small" data-testid="projects-btn-new" :disabled="isAnyLoading || isNavigating" @click="navigateTo('/projects/new')">
+        <v-btn
+          color="primary"
+          prepend-icon="mdi-plus"
+          size="small"
+          data-testid="projects-btn-new"
+          :disabled="isAnyLoading || isNavigating"
+          @click="navigateTo('/projects/new')"
+        >
           {{ t('projects.new') }}
         </v-btn>
       </template>
@@ -139,6 +146,7 @@ const confirmDeleteProject = () => {
           rounded="lg"
           hide-details
           clearable
+          :disabled="loading || isNavigating"
           style="max-width: 520px;"
         />
       </v-card-text>
@@ -187,41 +195,58 @@ const confirmDeleteProject = () => {
             >
               {{ t('projects.switch') }}
             </v-btn>
-            <v-btn
-              icon="mdi-eye"
-              variant="text"
-              size="small"
-              :disabled="isAnyLoading || isNavigating"
-              :data-testid="`projects-row-${item.slug}-btn-view`"
-              @click="navigateTo(`/projects/${item.slug}`)"
-            />
+            <v-tooltip location="top" :text="t('tooltips.view')" max-width="300px">
+              <template #activator="{ props }">
+                <v-btn
+                  v-bind="props"
+                  icon="mdi-eye"
+                  variant="text"
+                  size="small"
+                  :disabled="isAnyLoading || isNavigating"
+                  :data-testid="`projects-row-${item.slug}-btn-view`"
+                  @click="navigateTo(`/projects/${item.slug}`)"
+                />
+              </template>
+            </v-tooltip>
             <!-- Only show edit button if user has permission -->
-            <v-btn
-              v-if="canProject(item).edit"
-              icon="mdi-pencil"
-              variant="text"
-              size="small"
-              :disabled="isAnyLoading || isNavigating"
-              :data-testid="`projects-row-${item.slug}-btn-edit`"
-              @click="navigateTo(`/projects/${item.slug}/edit`)"
-            />
+            <v-tooltip v-if="canProject(item).edit" location="top" :text="t('tooltips.edit')" max-width="300px">
+              <template #activator="{ props }">
+                <v-btn
+                  v-bind="props"
+                  icon="mdi-pencil"
+                  variant="text"
+                  size="small"
+                  :disabled="isAnyLoading || isNavigating"
+                  :data-testid="`projects-row-${item.slug}-btn-edit`"
+                  @click="navigateTo(`/projects/${item.slug}/edit`)"
+                />
+              </template>
+            </v-tooltip>
             <!-- Only show delete button if user has permission -->
-            <v-btn
-              v-if="canProject(item).delete"
-              icon="mdi-delete"
-              variant="text"
-              size="small"
-              color="error"
-              :disabled="isAnyLoading || isNavigating"
-              :data-testid="`projects-row-${item.slug}-btn-delete`"
-              @click="deleteProject(item.slug)"
-            />
+            <v-tooltip v-if="canProject(item).delete" location="top" :text="t('tooltips.delete')" max-width="300px">
+              <template #activator="{ props }">
+                <v-btn
+                  v-bind="props"
+                  icon="mdi-delete"
+                  variant="text"
+                  size="small"
+                  color="error"
+                  :disabled="isAnyLoading || isNavigating"
+                  :data-testid="`projects-row-${item.slug}-btn-delete`"
+                  @click="deleteProject(item.slug)"
+                />
+              </template>
+            </v-tooltip>
           </div>
         </template>
 
         <template #no-data>
           <div class="text-center pa-8">
-            <v-icon size="48" color="grey-lighten-1" class="mb-4">mdi-folder-outline</v-icon>
+            <v-tooltip location="top" :text="t('tooltips.empty_projects')" max-width="300px">
+              <template #activator="{ props }">
+                <v-icon v-bind="props" size="48" color="grey-lighten-1" class="mb-4">mdi-folder-outline</v-icon>
+              </template>
+            </v-tooltip>
             <p class="text-body-1 text-medium-emphasis">{{ t('projects.empty_title') }}</p>
           </div>
         </template>

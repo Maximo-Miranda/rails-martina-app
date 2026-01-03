@@ -48,10 +48,21 @@ const formatDate = (dateString: string) => {
 <template>
   <v-container class="py-6" style="max-width: 600px;" data-testid="gemini-store-detail">
     <!-- Back button -->
-    <v-btn variant="text" prepend-icon="mdi-arrow-left" class="mb-4 px-0" data-testid="gemini-store-btn-back"
-      :disabled="isNavigating" @click="navigateTo('/gemini_file_search_stores')">
-      {{ t('common.back') }}
-    </v-btn>
+    <v-tooltip location="bottom" :text="t('tooltips.back')" max-width="300px">
+      <template #activator="{ props }">
+        <v-btn
+          v-bind="props"
+          variant="text"
+          prepend-icon="mdi-arrow-left"
+          class="mb-4 px-0"
+          data-testid="gemini-store-btn-back"
+          :disabled="isNavigating"
+          @click="navigateTo('/gemini_file_search_stores')"
+        >
+          {{ t('common.back') }}
+        </v-btn>
+      </template>
+    </v-tooltip>
 
     <v-card class="rounded-xl" elevation="0" border>
       <!-- Header with title and edit button -->
@@ -64,24 +75,41 @@ const formatDate = (dateString: string) => {
             {{ store.gemini_store_name || t('gemini_stores.pending_sync') }}
           </div>
         </div>
-        <v-btn v-if="store.status !== 'deleted'" icon="mdi-pencil" variant="text" color="primary" size="small"
-          class="mt-n1" data-testid="gemini-store-btn-edit" :disabled="isNavigating"
-          @click="navigateTo(`/gemini_file_search_stores/${store.id}/edit`)" />
+        <v-tooltip v-if="store.status !== 'deleted'" location="top" :text="t('tooltips.edit')" max-width="300px">
+          <template #activator="{ props }">
+            <v-btn
+              v-bind="props"
+              icon="mdi-pencil"
+              variant="text"
+              color="primary"
+              size="small"
+              class="mt-n1"
+              data-testid="gemini-store-btn-edit"
+              :disabled="isNavigating"
+              @click="navigateTo(`/gemini_file_search_stores/${store.id}/edit`)"
+            />
+          </template>
+        </v-tooltip>
       </div>
 
       <v-card-text class="pa-6">
         <!-- Actions -->
         <div class="mb-6">
-          <v-btn
-            v-if="store.status === 'active'"
-            color="primary"
-            prepend-icon="mdi-file-document-multiple"
-            data-testid="gemini-store-btn-documents"
-            :disabled="isNavigating"
-            @click="navigateTo(`/documents?scope=global&store_id=${store.id}`)"
-          >
-            {{ t('gemini_stores.manage_documents') }}
-          </v-btn>
+          <v-tooltip location="top" :text="t('gemini_stores.manage_documents')" max-width="300px">
+            <template #activator="{ props }">
+              <v-btn
+                v-bind="props"
+                v-if="store.status === 'active'"
+                color="primary"
+                prepend-icon="mdi-file-document-multiple"
+                data-testid="gemini-store-btn-documents"
+                :disabled="isNavigating"
+                @click="navigateTo(`/documents?scope=global&store_id=${store.id}`)"
+              >
+                {{ t('gemini_stores.manage_documents') }}
+              </v-btn>
+            </template>
+          </v-tooltip>
         </div>
 
         <!-- Status -->
@@ -108,7 +136,11 @@ const formatDate = (dateString: string) => {
           <v-col cols="6">
             <div class="text-overline text-medium-emphasis mb-1">{{ t('gemini_stores.documents_count') }}</div>
             <div class="d-flex align-center">
-              <v-icon color="primary" size="small" class="mr-2">mdi-file-document-multiple</v-icon>
+              <v-tooltip location="top" :text="t('tooltips.documents_icon')" max-width="300px">
+                <template #activator="{ props }">
+                  <v-icon v-bind="props" color="primary" size="small" class="mr-2">mdi-file-document-multiple</v-icon>
+                </template>
+              </v-tooltip>
               <span class="text-body-1" data-testid="gemini-store-documents">
                 {{ store.active_documents_count }}
               </span>
@@ -117,7 +149,11 @@ const formatDate = (dateString: string) => {
           <v-col cols="6">
             <div class="text-overline text-medium-emphasis mb-1">{{ t('gemini_stores.size') }}</div>
             <div class="d-flex align-center">
-              <v-icon color="primary" size="small" class="mr-2">mdi-harddisk</v-icon>
+              <v-tooltip location="top" :text="t('tooltips.storage_icon')" max-width="300px">
+                <template #activator="{ props }">
+                  <v-icon v-bind="props" color="primary" size="small" class="mr-2">mdi-harddisk</v-icon>
+                </template>
+              </v-tooltip>
               <span class="text-body-1" data-testid="gemini-store-size">
                 {{ formatBytes(store.size_bytes) }}
               </span>
