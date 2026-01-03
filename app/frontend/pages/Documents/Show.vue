@@ -226,7 +226,7 @@ const hasMetadata = computed(() => {
           <v-btn
             v-if="document.file_url"
             :href="document.file_url"
-            :download="document.original_filename"
+            :download="document.display_name"
             color="primary"
             variant="outlined"
             prepend-icon="mdi-download"

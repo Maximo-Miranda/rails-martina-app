@@ -21,6 +21,8 @@ const props = defineProps<{
   supportedContentTypes: string[]
   maxFileSize: number
   metadataKeys: string[]
+  canCreateDocument: boolean
+  canDeleteDocument: boolean
 }>()
 
 const { t } = useTranslations()
@@ -28,6 +30,10 @@ const { navigateTo, isNavigating } = useNavigation()
 const { isAnyLoading, startLoading, stopLoading } = useActionLoading()
 const { formatContentType, getContentTypeIcon, formatBytes } = useFileFormat()
 const { isGlobal, routes, testIdPrefix } = useDocumentContext()
+
+// Permission check
+const canCreateDocument = computed(() => props.canCreateDocument)
+const canDeleteDocument = computed(() => props.canDeleteDocument)
 
 // Enable real-time updates via Action Cable
 useDocumentNotifications()
@@ -151,6 +157,7 @@ const storeCapacityPercent = computed(() => {
     <PageHeader :title="pageTitle" :subtitle="pageSubtitle">
       <template #actions>
         <v-btn
+          v-if="canCreateDocument"
           color="primary"
           prepend-icon="mdi-upload"
           size="small"
@@ -276,6 +283,7 @@ const storeCapacityPercent = computed(() => {
             @click="navigateTo(routes.show(item.id, store.id))"
           />
           <v-btn
+            v-if="canDeleteDocument"
             icon="mdi-delete"
             size="small"
             variant="text"

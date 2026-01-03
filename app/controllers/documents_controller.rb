@@ -39,6 +39,8 @@ class DocumentsController < ApplicationController
       supportedContentTypes: Document::SUPPORTED_CONTENT_TYPES.keys,
       maxFileSize: Document::MAX_FILE_SIZE,
       metadataKeys: Document::METADATA_KEYS,
+      canCreateDocument: policy(authorization_record).create?,
+      canDeleteDocument: policy(authorization_record).destroy?,
     }
   end
 
