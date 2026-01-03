@@ -17,7 +17,7 @@ class OnStoreCreationRequestedTest < ActiveSupport::TestCase
       display_name: @pending_store.display_name,
     })
 
-    assert_enqueued_with(job: Gemini::CreateStoreJob, args: [ @pending_store.id ]) do
+    assert_enqueued_with(job: Gemini::CreateStoreJob, args: [ @pending_store.id, nil ]) do
       GeminiFileSearchStores::OnStoreCreationRequested.new.call(event)
     end
   end

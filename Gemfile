@@ -112,3 +112,5 @@ gem "rails_event_store", "~> 2.18"
 
 # HTTP client
 gem "faraday", "~> 2.14"
+
+gem "noticed", "~> 3.0"

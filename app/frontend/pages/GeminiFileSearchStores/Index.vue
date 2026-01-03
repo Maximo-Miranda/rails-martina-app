@@ -4,6 +4,8 @@ import { router } from '@inertiajs/vue3'
 import { useTranslations } from '@/composables/useTranslations'
 import { useNavigation } from '@/composables/useNavigation'
 import { useActionLoading } from '@/composables/useActionLoading'
+import { useGeminiStoreNotifications } from '@/composables/useGeminiStoreNotifications'
+import { useFileFormat } from '@/composables/useFileFormat'
 import PageHeader from '@/components/PageHeader.vue'
 import ConfirmDialog from '@/components/ConfirmDialog.vue'
 import type { PagyPagination } from '@/types'
@@ -28,6 +30,10 @@ const props = defineProps<{
 const { t } = useTranslations()
 const { navigateTo, isNavigating } = useNavigation()
 const { isAnyLoading, startLoading, stopLoading } = useActionLoading()
+const { formatBytes } = useFileFormat()
+
+// Enable real-time updates via Action Cable
+useGeminiStoreNotifications()
 
 const searchKey = 'display_name_or_gemini_store_name_cont'
 
@@ -122,14 +128,6 @@ const getStatusColor = (status: string) => {
   }
 }
 
-const formatBytes = (bytes: number) => {
-  if (bytes === 0) return '0 B'
-  const k = 1024
-  const sizes = ['B', 'KB', 'MB', 'GB']
-  const i = Math.floor(Math.log(bytes) / Math.log(k))
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
-}
-
 const formatDate = (dateString: string) => {
   return new Date(dateString).toLocaleDateString()
 }
@@ -221,6 +219,22 @@ const formatDate = (dateString: string) => {
 
         <template #item.actions="{ item }">
           <div class="d-flex justify-end gap-1">
+            <v-tooltip location="top" :text="t('gemini_stores.manage_documents')">
+              <template #activator="{ props }">
+                <v-btn
+                  v-bind="props"
+                  icon
+                  size="small"
+                  variant="text"
+                  color="primary"
+                  :data-testid="`gemini-store-btn-documents-${item.id}`"
+                  :disabled="isAnyLoading || isNavigating || item.status !== 'active'"
+                  @click="navigateTo(`/documents?scope=global&store_id=${item.id}`)"
+                >
+                  <v-icon size="small">mdi-file-document-multiple</v-icon>
+                </v-btn>
+              </template>
+            </v-tooltip>
             <v-btn
               icon
               size="small"

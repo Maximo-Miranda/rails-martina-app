@@ -3,7 +3,7 @@
 module GeminiFileSearchStores
   class OnStoreDeletionRequested
     def call(event)
-      Gemini::DeleteStoreJob.perform_later(event.data[:store_id])
+      Gemini::DeleteStoreJob.perform_later(event.data[:store_id], event.data[:user_id])
     end
   end
 end

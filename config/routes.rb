@@ -57,4 +57,9 @@ Rails.application.routes.draw do
   end
 
   resources :gemini_file_search_stores
+
+  # Documents (both global and project-scoped via tenant)
+  # Global scope: /documents?scope=global&store_id=X (admin only)
+  # Project scope: /documents (uses current_project tenant)
+  resources :documents, only: %i[index show new create destroy]
 end

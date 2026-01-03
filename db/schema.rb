@@ -10,11 +10,64 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_27_020418) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_02_211026) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.bigint "record_id", null: false
+    t.string "record_type", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.bigint "byte_size", null: false
+    t.string "checksum"
+    t.string "content_type"
+    t.datetime "created_at", null: false
+    t.string "filename", null: false
+    t.string "key", null: false
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
   create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
+  end
+
+  create_table "documents", force: :cascade do |t|
+    t.string "content_type", null: false
+    t.datetime "created_at", null: false
+    t.jsonb "custom_metadata", default: {}
+    t.datetime "deleted_at"
+    t.string "display_name", null: false
+    t.text "error_message"
+    t.string "file_hash", null: false
+    t.string "gemini_document_path"
+    t.bigint "gemini_file_search_store_id", null: false
+    t.bigint "project_id"
+    t.string "remote_id"
+    t.bigint "size_bytes", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.bigint "uploaded_by_id", null: false
+    t.index ["deleted_at"], name: "index_documents_on_deleted_at"
+    t.index ["file_hash", "gemini_file_search_store_id"], name: "idx_documents_hash_store_unique", unique: true, where: "(deleted_at IS NULL)"
+    t.index ["gemini_file_search_store_id"], name: "index_documents_on_gemini_file_search_store_id"
+    t.index ["project_id"], name: "index_documents_on_project_id"
+    t.index ["remote_id"], name: "index_documents_on_remote_id", unique: true, where: "(remote_id IS NOT NULL)"
+    t.index ["status"], name: "index_documents_on_status"
+    t.index ["uploaded_by_id"], name: "index_documents_on_uploaded_by_id"
   end
 
   create_table "event_store_events", force: :cascade do |t|
@@ -66,7 +119,32 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_27_020418) do
     t.datetime "updated_at", null: false
     t.index ["deleted_at"], name: "index_gemini_file_search_stores_on_deleted_at"
     t.index ["gemini_store_name"], name: "index_gemini_file_search_stores_on_gemini_store_name", unique: true
+    t.index ["project_id", "display_name"], name: "index_gemini_file_search_stores_on_project_id_and_display_name", unique: true
     t.index ["project_id"], name: "index_gemini_file_search_stores_on_project_id"
+  end
+
+  create_table "noticed_events", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "notifications_count"
+    t.jsonb "params"
+    t.bigint "record_id"
+    t.string "record_type"
+    t.string "type"
+    t.datetime "updated_at", null: false
+    t.index ["record_type", "record_id"], name: "index_noticed_events_on_record"
+  end
+
+  create_table "noticed_notifications", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "event_id", null: false
+    t.datetime "read_at", precision: nil
+    t.bigint "recipient_id", null: false
+    t.string "recipient_type", null: false
+    t.datetime "seen_at", precision: nil
+    t.string "type"
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_noticed_notifications_on_event_id"
+    t.index ["recipient_type", "recipient_id"], name: "index_noticed_notifications_on_recipient"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -142,6 +220,11 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_27_020418) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "documents", "gemini_file_search_stores"
+  add_foreign_key "documents", "projects"
+  add_foreign_key "documents", "users", column: "uploaded_by_id"
   add_foreign_key "event_store_events_in_streams", "event_store_events", column: "event_id", primary_key: "event_id"
   add_foreign_key "gemini_file_search_stores", "projects"
   add_foreign_key "projects", "users"

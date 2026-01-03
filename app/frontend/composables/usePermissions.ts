@@ -21,6 +21,8 @@ export interface Permissions {
   can_access_projects: boolean
   can_access_users: boolean
   can_access_gemini_stores: boolean
+  can_access_documents: boolean
+  can_access_project_documents: boolean
 
   // Feature flags
   can_view_analytics: boolean
@@ -84,6 +86,8 @@ export function usePermissions() {
     accessProjects: permissions.value?.can_access_projects ?? false,
     accessUsers: permissions.value?.can_access_users ?? false,
     accessGeminiStores: permissions.value?.can_access_gemini_stores ?? false,
+    accessDocuments: permissions.value?.can_access_documents ?? false,
+    accessProjectDocuments: permissions.value?.can_access_project_documents ?? false,
 
     // Feature flags
     viewAnalytics: permissions.value?.can_view_analytics ?? false,

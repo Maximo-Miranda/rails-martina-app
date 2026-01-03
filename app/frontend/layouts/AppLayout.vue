@@ -58,6 +58,8 @@ watch(notification, (newNotification) => {
 })
 
 const navigationItems = computed(() => {
+  const currentProject = page.props.current_project as { id: number; name: string; slug: string } | null
+
   const items = [
     {
       title: t('navigation.dashboard'),
@@ -72,6 +74,16 @@ const navigationItems = computed(() => {
       visible: can.value.accessProjects
     },
   ]
+
+  // Show Project Documents if user has permission (super_admin, admin, or project owner/coworker)
+  if (can.value.accessProjectDocuments && currentProject) {
+    items.push({
+      title: t('navigation.project_documents'),
+      icon: 'mdi-file-document-edit-outline',
+      href: '/documents',
+      visible: true
+    })
+  }
 
   // Only show Users if user has permission
   if (can.value.manageUsers) {
@@ -89,6 +101,16 @@ const navigationItems = computed(() => {
       title: t('navigation.gemini_stores'),
       icon: 'mdi-database-search',
       href: '/gemini_file_search_stores',
+      visible: true
+    })
+  }
+
+  // Only show Global Documents if user has permission (admin/super_admin)
+  if (can.value.accessDocuments) {
+    items.push({
+      title: t('navigation.documents'),
+      icon: 'mdi-file-cabinet',
+      href: '/documents?scope=global',
       visible: true
     })
   }

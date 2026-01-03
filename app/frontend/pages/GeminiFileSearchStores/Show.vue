@@ -70,6 +70,20 @@ const formatDate = (dateString: string) => {
       </div>
 
       <v-card-text class="pa-6">
+        <!-- Actions -->
+        <div class="mb-6">
+          <v-btn
+            v-if="store.status === 'active'"
+            color="primary"
+            prepend-icon="mdi-file-document-multiple"
+            data-testid="gemini-store-btn-documents"
+            :disabled="isNavigating"
+            @click="navigateTo(`/documents?scope=global&store_id=${store.id}`)"
+          >
+            {{ t('gemini_stores.manage_documents') }}
+          </v-btn>
+        </div>
+
         <!-- Status -->
         <div class="mb-6">
           <div class="text-overline text-medium-emphasis mb-2">{{ t('gemini_stores.status') }}</div>

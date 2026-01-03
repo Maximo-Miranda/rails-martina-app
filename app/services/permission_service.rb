@@ -31,6 +31,8 @@ class PermissionService
       can_access_projects: true,
       can_access_users: policy(User).show_menu?,
       can_access_gemini_stores: gemini_store_policy.show_menu?,
+      can_access_documents: DocumentPolicy.show_menu?(user),
+      can_access_project_documents: DocumentPolicy.show_project_menu?(user, current_project),
 
       # Feature flags (can be extended)
       can_view_analytics: user.global_admin?,

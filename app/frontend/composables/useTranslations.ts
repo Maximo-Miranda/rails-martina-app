@@ -30,6 +30,10 @@ export interface Translations {
   navigation: {
     dashboard: string
     projects: string
+    users: string
+    gemini_stores: string
+    documents: string
+    project_documents: string
     tasks: string
     reports: string
     settings: string
@@ -37,6 +41,10 @@ export interface Translations {
     logout: string
     login: string
     register: string
+    user_menu: {
+      profile: string
+      logout: string
+    }
   }
   auth: {
     login: {
