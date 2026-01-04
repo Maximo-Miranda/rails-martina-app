@@ -6,7 +6,6 @@ class Document < ApplicationRecord
 
   self.discard_column = :deleted_at
 
-  # === Constantes ===
   MAX_FILE_SIZE = 100.megabytes.freeze
   MAX_STORE_SIZE = 20.gigabytes.freeze
 
@@ -25,7 +24,6 @@ class Document < ApplicationRecord
 
   METADATA_KEYS = %w[category tags author document_date language version notes].freeze
 
-  # === Enums ===
   enum :status, {
     pending: 0,
     processing: 1,
@@ -34,12 +32,10 @@ class Document < ApplicationRecord
     deleted: 4,
   }, default: :pending
 
-  # === Associations ===
   belongs_to :gemini_file_search_store
   belongs_to :uploaded_by, class_name: "User"
   has_one_attached :file
 
-  # === Validations ===
   validates :display_name, presence: true
   validates :content_type, presence: true, inclusion: { in: SUPPORTED_CONTENT_TYPES.keys }
   validates :size_bytes, presence: true, numericality: { less_than_or_equal_to: MAX_FILE_SIZE }
@@ -49,17 +45,14 @@ class Document < ApplicationRecord
   validate :store_has_capacity, on: :create
   validate :file_attached, on: :create
 
-  # === Callbacks ===
   before_validation :compute_file_hash, on: :create, if: -> { file.attached? && file_hash.blank? }
   before_validation :set_file_metadata, on: :create, if: -> { file.attached? }
 
-  # === Scopes ===
   scope :global, -> { where(project_id: nil) }
   scope :for_project, ->(project) { where(project: project) }
   scope :for_store, ->(store) { where(gemini_file_search_store: store) }
   scope :synced, -> { where.not(remote_id: nil).active }
 
-  # === Class Methods ===
   def self.ransackable_attributes(_auth_object = nil)
     %w[id display_name content_type status created_at]
   end
@@ -72,7 +65,6 @@ class Document < ApplicationRecord
     SUPPORTED_CONTENT_TYPES[content_type]
   end
 
-  # === Instance Methods ===
   def global?
     project_id.nil?
   end
