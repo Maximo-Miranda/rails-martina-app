@@ -2,3 +2,4 @@
 export * from './user'
 export * from './flash'
 export * from './project'
+export * from './document'

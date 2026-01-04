@@ -14,7 +14,7 @@ module Gemini
       handle_failure(store, exception) if store
     end
 
-    def perform(store_id)
+    def perform(store_id, user_id = nil)
       store = GeminiFileSearchStore.find_by(id: store_id)
       return unless store
       return if store.active?
@@ -34,6 +34,7 @@ module Gemini
           project_id: store.project_id,
           gemini_store_name: gemini_store_name,
           display_name: store.display_name,
+          user_id: user_id,
         }),
         stream_name: "GeminiFileSearchStore$#{store.id}"
       )
@@ -54,6 +55,7 @@ module Gemini
           store_id: store.id,
           project_id: store.project_id,
           error_message: error.message,
+          user_id: job.arguments.second,
         }),
         stream_name: "GeminiFileSearchStore$#{store.id}"
       )

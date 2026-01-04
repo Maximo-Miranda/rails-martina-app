@@ -55,6 +55,7 @@ class GeminiFileSearchStoresController < ApplicationController
           store_id: @store.id,
           project_id: nil,
           display_name: @store.display_name,
+          user_id: current_user.id,
         }),
         stream_name: "GeminiFileSearchStore$#{@store.id}"
       )
@@ -99,6 +100,7 @@ class GeminiFileSearchStoresController < ApplicationController
         store_id: @store.id,
         project_id: nil,
         gemini_store_name: @store.gemini_store_name,
+        user_id: current_user.id,
       }),
       stream_name: "GeminiFileSearchStore$#{@store.id}"
     )

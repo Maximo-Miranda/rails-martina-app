@@ -204,41 +204,57 @@ const confirmUnlinkUser = () => {
 
         <template #item.actions="{ item }">
           <div class="d-flex justify-end align-center gap-2">
-            <v-btn
-              icon="mdi-eye"
-              variant="text"
-              size="small"
-              :disabled="isAnyLoading || isNavigating"
-              :data-testid="`users-row-${item.id}-btn-view`"
-              @click="navigateTo(`/users/${item.id}`)"
-            />
-            <v-btn
-              v-if="canUser(item).removeFromProject"
-              icon="mdi-account-remove"
-              variant="text"
-              size="small"
-              color="warning"
-              :disabled="isAnyLoading || isNavigating"
-              :data-testid="`users-row-${item.id}-btn-unlink`"
-              :title="t('users.remove_from_project')"
-              @click="unlinkUser(item.id)"
-            />
-            <v-btn
-              v-if="canUser(item).delete"
-              icon="mdi-delete"
-              variant="text"
-              size="small"
-              color="error"
-              :disabled="isAnyLoading || isNavigating"
-              :data-testid="`users-row-${item.id}-btn-delete`"
-              @click="deleteUser(item.id)"
-            />
+            <v-tooltip location="top" :text="t('tooltips.view')" max-width="300px">
+              <template #activator="{ props }">
+                <v-btn
+                  v-bind="props"
+                  icon="mdi-eye"
+                  variant="text"
+                  size="small"
+                  :disabled="isAnyLoading || isNavigating"
+                  :data-testid="`users-row-${item.id}-btn-view`"
+                  @click="navigateTo(`/users/${item.id}`)"
+                />
+              </template>
+            </v-tooltip>
+            <v-tooltip v-if="canUser(item).removeFromProject" location="top" :text="t('tooltips.unlink_user')" max-width="300px">
+              <template #activator="{ props }">
+                <v-btn
+                  v-bind="props"
+                  icon="mdi-account-remove"
+                  variant="text"
+                  size="small"
+                  color="warning"
+                  :disabled="isAnyLoading || isNavigating"
+                  :data-testid="`users-row-${item.id}-btn-unlink`"
+                  @click="unlinkUser(item.id)"
+                />
+              </template>
+            </v-tooltip>
+            <v-tooltip v-if="canUser(item).delete" location="top" :text="t('tooltips.delete')" max-width="300px">
+              <template #activator="{ props }">
+                <v-btn
+                  v-bind="props"
+                  icon="mdi-delete"
+                  variant="text"
+                  size="small"
+                  color="error"
+                  :disabled="isAnyLoading || isNavigating"
+                  :data-testid="`users-row-${item.id}-btn-delete`"
+                  @click="deleteUser(item.id)"
+                />
+              </template>
+            </v-tooltip>
           </div>
         </template>
 
         <template #no-data>
           <div class="text-center pa-8">
-            <v-icon size="48" color="grey-lighten-1" class="mb-4">mdi-account-group-outline</v-icon>
+            <v-tooltip location="top" :text="t('tooltips.empty_users')" max-width="300px">
+              <template #activator="{ props }">
+                <v-icon v-bind="props" size="48" color="grey-lighten-1" class="mb-4">mdi-account-group-outline</v-icon>
+              </template>
+            </v-tooltip>
             <p class="text-body-1 text-medium-emphasis">{{ t('users.empty') }}</p>
           </div>
         </template>

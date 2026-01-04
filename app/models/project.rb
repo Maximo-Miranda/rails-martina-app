@@ -11,6 +11,7 @@ class Project < ApplicationRecord
 
   belongs_to :user
   has_one :gemini_file_search_store, dependent: :nullify
+  has_many :documents, dependent: :destroy
 
   validates :name, presence: true, uniqueness: { scope: :user_id }
 

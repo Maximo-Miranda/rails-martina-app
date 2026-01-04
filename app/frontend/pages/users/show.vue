@@ -15,16 +15,21 @@ const { navigateTo, isNavigating } = useNavigation()
 <template>
   <v-container class="py-6" style="max-width: 600px;">
     <!-- Back button -->
-    <v-btn
-      variant="text"
-      prepend-icon="mdi-arrow-left"
-      class="mb-4 px-0"
-      data-testid="users-btn-back"
-      :disabled="isNavigating"
-      @click="navigateTo('/users')"
-    >
-      {{ t('common.back') }}
-    </v-btn>
+    <v-tooltip location="bottom" :text="t('tooltips.back')" max-width="300px">
+      <template #activator="{ props }">
+        <v-btn
+          v-bind="props"
+          variant="text"
+          prepend-icon="mdi-arrow-left"
+          class="mb-4 px-0"
+          data-testid="users-btn-back"
+          :disabled="isNavigating"
+          @click="navigateTo('/users')"
+        >
+          {{ t('common.back') }}
+        </v-btn>
+      </template>
+    </v-tooltip>
 
     <v-card class="rounded-xl" elevation="0" border>
       <v-card-text class="pa-6">

@@ -6,18 +6,33 @@ defineProps<{
 </script>
 
 <template>
-  <div class="d-flex flex-column flex-sm-row align-start align-sm-center justify-space-between mb-6">
-    <div class="mb-4 mb-sm-0">
-      <h1 class="text-h5 text-sm-h4 font-weight-bold mb-1">{{ title }}</h1>
+  <div class="d-flex flex-column flex-sm-row align-start align-sm-center justify-space-between mb-6 page-header">
+    <div class="mb-4 mb-sm-0 page-header__content">
+      <h1 class="text-h5 text-sm-h4 font-weight-bold mb-1 page-header__title">{{ title }}</h1>
       <p v-if="subtitle" class="text-body-2 text-sm-body-1 text-medium-emphasis">{{ subtitle }}</p>
     </div>
-    <div class="d-flex align-center gap-2 w-100 w-sm-auto">
+    <div class="d-flex align-center gap-2 w-100 w-sm-auto shrink-0">
       <slot name="actions" />
     </div>
   </div>
 </template>
 
 <style scoped>
+.page-header {
+  gap: 1rem;
+}
+
+.page-header__content {
+  min-width: 0;
+  flex: 1;
+}
+
+.page-header__title {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
 @media (max-width: 599px) {
   :deep(.v-btn) {
     width: 100%;

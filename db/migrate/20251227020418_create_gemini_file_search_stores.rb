@@ -16,6 +16,7 @@ class CreateGeminiFileSearchStores < ActiveRecord::Migration[8.1]
       t.timestamps
     end
     add_index :gemini_file_search_stores, :gemini_store_name, unique: true
+    add_index :gemini_file_search_stores, %i[project_id display_name], unique: true
     add_index :gemini_file_search_stores, :deleted_at
   end
 end

@@ -31,6 +31,52 @@ Rails.configuration.to_prepare do
       ->(event) { GeminiFileSearchStores::OnStoreDeletionRequested.new.call(event) },
       to: [ Gemini::StoreDeletionRequested ]
     )
+
+    store.subscribe(
+      ->(event) { GeminiFileSearchStores::OnStoreCreated.new.call(event) },
+      to: [ Gemini::StoreCreated ]
+    )
+
+    store.subscribe(
+      ->(event) { GeminiFileSearchStores::OnStoreCreationFailed.new.call(event) },
+      to: [ Gemini::StoreCreationFailed ]
+    )
+
+    store.subscribe(
+      ->(event) { GeminiFileSearchStores::OnStoreDeleted.new.call(event) },
+      to: [ Gemini::StoreDeleted ]
+    )
+
+    store.subscribe(
+      ->(event) { GeminiFileSearchStores::OnStoreDeletionFailed.new.call(event) },
+      to: [ Gemini::StoreDeletionFailed ]
+    )
+
+    # Document events
+    store.subscribe(
+      ->(event) { Documents::OnUploadRequested.new.call(event) },
+      to: [ Documents::UploadRequested ]
+    )
+
+    store.subscribe(
+      ->(event) { Documents::OnUploaded.new.call(event) },
+      to: [ Documents::Uploaded ]
+    )
+
+    store.subscribe(
+      ->(event) { Documents::OnUploadFailed.new.call(event) },
+      to: [ Documents::UploadFailed ]
+    )
+
+    store.subscribe(
+      ->(event) { Documents::OnDeletionRequested.new.call(event) },
+      to: [ Documents::DeletionRequested ]
+    )
+
+    store.subscribe(
+      ->(event) { Documents::OnDeleted.new.call(event) },
+      to: [ Documents::Deleted ]
+    )
   end
 end
 

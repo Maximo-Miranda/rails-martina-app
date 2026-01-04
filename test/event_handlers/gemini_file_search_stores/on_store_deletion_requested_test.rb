@@ -17,7 +17,7 @@ class OnStoreDeletionRequestedTest < ActiveSupport::TestCase
       gemini_store_name: @active_store.gemini_store_name,
     })
 
-    assert_enqueued_with(job: Gemini::DeleteStoreJob, args: [ @active_store.id ]) do
+    assert_enqueued_with(job: Gemini::DeleteStoreJob, args: [ @active_store.id, nil ]) do
       GeminiFileSearchStores::OnStoreDeletionRequested.new.call(event)
     end
   end

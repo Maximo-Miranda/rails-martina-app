@@ -28,6 +28,16 @@ es:
             name:
               blank: "El nombre del proyecto es requerido"
               taken: "Ya tienes un proyecto con este nombre"
+        document:
+          attributes:
+            display_name:
+              blank: "El nombre del documento es requerido"
+            file_hash:
+              duplicate_in_store: "Este archivo ya existe en el store. No se permiten duplicados."
+            content_type:
+              inclusion: "Tipo de archivo no soportado"
+            size_bytes:
+              less_than_or_equal_to: "El archivo excede el tamaño máximo permitido"
   activemodel:
     errors:
       models:
@@ -138,6 +148,12 @@ es:
     deleted: "Store de Gemini eliminado exitosamente"
     not_found: "Store de Gemini no encontrado"
 
+  documents:
+    created: "Documento subido exitosamente. Se procesará en segundo plano."
+    deleted: "Documento eliminado exitosamente"
+    not_found: "Documento no encontrado"
+    no_store_for_project: "Este proyecto no tiene un almacén de documentos configurado. Por favor, crea uno primero."
+
   # Pundit authorization messages
   pundit:
     default:
@@ -168,3 +184,32 @@ es:
       edit: "No tienes permiso para editar este store de Gemini"
       update: "No tienes permiso para actualizar este store de Gemini"
       destroy: "No tienes permiso para eliminar este store de Gemini"
+    document_policy:
+      index: "No tienes permiso para ver los documentos"
+      show: "No tienes permiso para ver este documento"
+      new: "No tienes permiso para subir documentos"
+      create: "No tienes permiso para subir documentos"
+      destroy: "No tienes permiso para eliminar este documento"
+
+  notifiers:
+    document_uploaded_notifier:
+      notification:
+        message: "El documento '%{name}' se ha procesado exitosamente"
+    document_upload_failed_notifier:
+      notification:
+        message: "Error al procesar el documento '%{name}'"
+    document_deleted_notifier:
+      notification:
+        message: "El documento '%{name}' se ha eliminado exitosamente"
+    gemini_store_created_notifier:
+      notification:
+        message: "El store '%{name}' se ha creado exitosamente"
+    gemini_store_creation_failed_notifier:
+      notification:
+        message: "Error al crear el store '%{name}'"
+    gemini_store_deleted_notifier:
+      notification:
+        message: "El store '%{name}' se ha eliminado exitosamente"
+    gemini_store_deletion_failed_notifier:
+      notification:
+        message: "Error al eliminar el store '%{name}'"
