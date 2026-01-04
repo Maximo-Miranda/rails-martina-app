@@ -1,0 +1,150 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores?key=<GEMINI_API_KEY>
+    body:
+      encoding: UTF-8
+      string: '{"displayName":"Test Project Store"}'
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json; charset=UTF-8
+      vary:
+      - Origin, X-Origin, Referer
+      content-encoding:
+      - gzip
+      date:
+      - Sun, 04 Jan 2026 20:01:20 GMT
+      server:
+      - scaffolding on HTTPServer2
+      x-xss-protection:
+      - '0'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+      server-timing:
+      - gfet4t7; dur=604
+      alt-svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      transfer-encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "name": "fileSearchStores/test-project-store-gor7nz5icflx",
+          "displayName": "Test Project Store",
+          "createTime": "2026-01-04T20:01:20.497123Z",
+          "updateTime": "2026-01-04T20:01:20.497123Z"
+        }
+  recorded_at: Sun, 04 Jan 2026 20:01:20 GMT
+- request:
+    method: post
+    uri: https://generativelanguage.googleapis.com/upload/v1beta/fileSearchStores/test-project-store-gor7nz5icflx:uploadToFileSearchStore?displayName=Documento+proyecto+04f726&key=<GEMINI_API_KEY>
+    body:
+      encoding: ASCII-8BIT
+      string: 'Contenido de prueba para documento.
+
+        '
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Content-Type:
+      - text/plain
+      X-Goog-Upload-Protocol:
+      - raw
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json; charset=UTF-8
+      x-guploader-uploadid:
+      - AHVrFxP5MPtEoKopUFn0JzrcJRXUpAiZwjllMCz8tTGQBGZbuFbNseLzpofBbpOBLQAb28Oyup0Qlxw
+      vary:
+      - Origin, X-Origin, Referer
+      content-length:
+      - '486'
+      date:
+      - Sun, 04 Jan 2026 20:01:24 GMT
+      server:
+      - UploadServer
+      alt-svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "name": "fileSearchStores/test-project-store-gor7nz5icflx/upload/operations/documento-proyecto-04f726-p44wbwldw76b",
+          "response": {
+            "@type": "type.googleapis.com/google.ai.generativelanguage.v1main.UploadToFileSearchStoreResponse",
+            "parent": "fileSearchStores/test-project-store-gor7nz5icflx",
+            "documentName": "fileSearchStores/test-project-store-gor7nz5icflx/documents/documento-proyecto-04f726-p44wbwldw76b",
+            "mimeType": "text/plain",
+            "sizeBytes": "36"
+          }
+        }
+  recorded_at: Sun, 04 Jan 2026 20:01:24 GMT
+- request:
+    method: get
+    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/test-project-store-gor7nz5icflx/upload/operations/documento-proyecto-04f726-p44wbwldw76b?key=<GEMINI_API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json; charset=UTF-8
+      vary:
+      - Origin, X-Origin, Referer
+      content-encoding:
+      - gzip
+      date:
+      - Sun, 04 Jan 2026 20:01:24 GMT
+      server:
+      - scaffolding on HTTPServer2
+      x-xss-protection:
+      - '0'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+      server-timing:
+      - gfet4t7; dur=658
+      alt-svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      transfer-encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "name": "fileSearchStores/test-project-store-gor7nz5icflx/upload/operations/documento-proyecto-04f726-p44wbwldw76b",
+          "done": true,
+          "response": {
+            "@type": "type.googleapis.com/google.ai.generativelanguage.v1main.UploadToFileSearchStoreResponse",
+            "parent": "fileSearchStores/test-project-store-gor7nz5icflx",
+            "documentName": "fileSearchStores/test-project-store-gor7nz5icflx/documents/documento-proyecto-04f726-p44wbwldw76b",
+            "mimeType": "text/plain",
+            "sizeBytes": "36"
+          }
+        }
+  recorded_at: Sun, 04 Jan 2026 20:01:24 GMT
+recorded_with: VCR 6.4.0

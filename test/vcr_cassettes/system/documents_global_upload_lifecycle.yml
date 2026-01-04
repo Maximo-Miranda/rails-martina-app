@@ -1,0 +1,150 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores?key=<GEMINI_API_KEY>
+    body:
+      encoding: UTF-8
+      string: '{"displayName":"Global Knowledge Base"}'
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json; charset=UTF-8
+      vary:
+      - Origin, X-Origin, Referer
+      content-encoding:
+      - gzip
+      date:
+      - Sun, 04 Jan 2026 19:51:26 GMT
+      server:
+      - scaffolding on HTTPServer2
+      x-xss-protection:
+      - '0'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+      server-timing:
+      - gfet4t7; dur=710
+      alt-svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      transfer-encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "name": "fileSearchStores/global-knowledge-base-fi2c7hzdyfn9",
+          "displayName": "Global Knowledge Base",
+          "createTime": "2026-01-04T19:51:26.595577Z",
+          "updateTime": "2026-01-04T19:51:26.595577Z"
+        }
+  recorded_at: Sun, 04 Jan 2026 19:51:26 GMT
+- request:
+    method: post
+    uri: https://generativelanguage.googleapis.com/upload/v1beta/fileSearchStores/global-knowledge-base-fi2c7hzdyfn9:uploadToFileSearchStore?displayName=Documento+global+1d40e0&key=<GEMINI_API_KEY>
+    body:
+      encoding: ASCII-8BIT
+      string: 'Contenido de prueba para documento.
+
+        '
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Content-Type:
+      - text/plain
+      X-Goog-Upload-Protocol:
+      - raw
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json; charset=UTF-8
+      x-guploader-uploadid:
+      - AHVrFxOj5itxlDT8kKJSklYmUKqXbSBP3H8oN2CtyAutakjKTFtFN8tiiLOQLEbQ2kawKyEr
+      vary:
+      - Origin, X-Origin, Referer
+      content-length:
+      - '491'
+      date:
+      - Sun, 04 Jan 2026 19:51:33 GMT
+      server:
+      - UploadServer
+      alt-svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "name": "fileSearchStores/global-knowledge-base-fi2c7hzdyfn9/upload/operations/documento-global-1d40e0-6nvv1qxzfupp",
+          "response": {
+            "@type": "type.googleapis.com/google.ai.generativelanguage.v1main.UploadToFileSearchStoreResponse",
+            "parent": "fileSearchStores/global-knowledge-base-fi2c7hzdyfn9",
+            "documentName": "fileSearchStores/global-knowledge-base-fi2c7hzdyfn9/documents/documento-global-1d40e0-6nvv1qxzfupp",
+            "mimeType": "text/plain",
+            "sizeBytes": "36"
+          }
+        }
+  recorded_at: Sun, 04 Jan 2026 19:51:33 GMT
+- request:
+    method: get
+    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/global-knowledge-base-fi2c7hzdyfn9/upload/operations/documento-global-1d40e0-6nvv1qxzfupp?key=<GEMINI_API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json; charset=UTF-8
+      vary:
+      - Origin, X-Origin, Referer
+      content-encoding:
+      - gzip
+      date:
+      - Sun, 04 Jan 2026 19:51:33 GMT
+      server:
+      - scaffolding on HTTPServer2
+      x-xss-protection:
+      - '0'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+      server-timing:
+      - gfet4t7; dur=364
+      alt-svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      transfer-encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "name": "fileSearchStores/global-knowledge-base-fi2c7hzdyfn9/upload/operations/documento-global-1d40e0-6nvv1qxzfupp",
+          "done": true,
+          "response": {
+            "@type": "type.googleapis.com/google.ai.generativelanguage.v1main.UploadToFileSearchStoreResponse",
+            "parent": "fileSearchStores/global-knowledge-base-fi2c7hzdyfn9",
+            "documentName": "fileSearchStores/global-knowledge-base-fi2c7hzdyfn9/documents/documento-global-1d40e0-6nvv1qxzfupp",
+            "mimeType": "text/plain",
+            "sizeBytes": "36"
+          }
+        }
+  recorded_at: Sun, 04 Jan 2026 19:51:33 GMT
+recorded_with: VCR 6.4.0

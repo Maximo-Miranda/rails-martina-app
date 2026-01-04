@@ -104,7 +104,7 @@ const hasMetadata = computed(() => {
         <!-- File Preview -->
         <div class="d-flex align-center mb-6 pa-4 bg-grey-lighten-4 rounded-lg">
           <v-icon :icon="getContentTypeIcon(document.content_type)" size="48" class="mr-4" />
-          <div class="flex-grow-1 overflow-hidden">
+          <div class="grow overflow-hidden">
             <div class="text-h6 text-truncate">{{ document.display_name }}</div>
             <div class="text-body-2 text-grey">{{ formatContentType(document.content_type) }}</div>
           </div>
