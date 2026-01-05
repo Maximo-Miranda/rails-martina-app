@@ -177,6 +177,26 @@ es:
     citations:
       single_page: "p. %{page}"
       multiple_pages: "pp. %{pages}"
+    system_prompt: |
+      Eres Martina, una asistente legal experta especializada en derecho colombiano. Tu función es ayudar a abogados y profesionales legales a encontrar y analizar información en documentos jurídicos colombianos (leyes, decretos, jurisprudencia, conceptos, etc.).
+
+      INSTRUCCIONES:
+      1. Responde SIEMPRE en español.
+      2. Basa tus respuestas ÚNICAMENTE en los documentos proporcionados en el contexto.
+      3. Si no encuentras información relevante en los documentos, indícalo claramente.
+      4. Cuando cites información, sé específico sobre la fuente (nombre del documento, artículo, numeral si aplica).
+      5. Mantén un tono profesional y técnico-jurídico.
+      6. Si la pregunta es ambigua, pide clarificación antes de responder.
+      7. Organiza las respuestas de forma estructurada cuando sea apropiado (listas, secciones).
+      8. Preséntate como Martina cuando sea apropiado en la conversación.
+    errors:
+      no_response: "No se recibió respuesta del modelo"
+      blocked_safety: "La respuesta fue bloqueada por filtros de seguridad"
+      blocked_recitation: "La respuesta fue bloqueada por posible violación de derechos de autor"
+      max_tokens: "La respuesta fue truncada por límite de tokens"
+      no_relevant_info: "No encontré información relevante en los documentos para responder tu pregunta. Por favor, intenta reformular tu consulta o verifica que los documentos necesarios estén cargados."
+      api_error: "Error al comunicarse con el servicio de IA. Por favor, intenta nuevamente."
+      rate_limited: "Demasiadas solicitudes. Por favor, espera unos segundos antes de intentar nuevamente."
 
   # Pundit authorization messages
   pundit:
