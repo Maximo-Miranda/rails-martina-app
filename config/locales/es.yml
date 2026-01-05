@@ -38,6 +38,16 @@ es:
               inclusion: "Tipo de archivo no soportado"
             size_bytes:
               less_than_or_equal_to: "El archivo excede el tamaño máximo permitido"
+        chat:
+          attributes:
+            base:
+              max_chats_reached: "Has alcanzado el límite de %{count} chats por proyecto"
+            gemini_file_search_store:
+              not_synced: "El store de documentos no está sincronizado. Por favor, espera a que termine de procesarse."
+        message:
+          attributes:
+            user:
+              required_for_user_role: "El usuario es requerido para mensajes del usuario"
   activemodel:
     errors:
       models:
@@ -154,6 +164,20 @@ es:
     not_found: "Documento no encontrado"
     no_store_for_project: "Este proyecto no tiene un almacén de documentos configurado. Por favor, crea uno primero."
 
+  chats:
+    created: "Chat creado exitosamente"
+    deleted: "Chat eliminado exitosamente"
+    not_found: "Chat no encontrado"
+    message_sent: "Mensaje enviado"
+    message_failed: "Error al enviar el mensaje"
+    no_store_for_project: "Este proyecto no tiene un almacén de documentos configurado. Por favor, crea uno primero."
+    store_not_synced: "El almacén de documentos no está listo. Por favor, espera a que termine de sincronizarse."
+    max_chats_reached: "Has alcanzado el límite máximo de chats para este proyecto"
+    default_title: "Nueva conversación"
+    citations:
+      single_page: "p. %{page}"
+      multiple_pages: "pp. %{pages}"
+
   # Pundit authorization messages
   pundit:
     default:
@@ -190,6 +214,12 @@ es:
       new: "No tienes permiso para subir documentos"
       create: "No tienes permiso para subir documentos"
       destroy: "No tienes permiso para eliminar este documento"
+    chat_policy:
+      index: "No tienes permiso para ver los chats"
+      show: "No tienes permiso para ver este chat"
+      create: "No tienes permiso para crear chats"
+      destroy: "No tienes permiso para eliminar este chat"
+      send_message: "No tienes permiso para enviar mensajes en este chat"
 
   notifiers:
     document_uploaded_notifier:

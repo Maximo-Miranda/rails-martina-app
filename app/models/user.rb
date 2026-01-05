@@ -10,6 +10,7 @@ class User < ApplicationRecord
          :confirmable, :lockable, :trackable, :timeoutable
 
   has_many :projects, dependent: :destroy
+  has_many :chats, dependent: :destroy
   belongs_to :current_project, class_name: "Project", optional: true
 
   validates :full_name, presence: true

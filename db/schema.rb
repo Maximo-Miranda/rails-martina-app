@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_02_211026) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_04_185621) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -40,6 +40,25 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_02_211026) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "chats", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at"
+    t.bigint "gemini_file_search_store_id", null: false
+    t.integer "messages_count", default: 0, null: false
+    t.bigint "project_id", null: false
+    t.integer "status", default: 0, null: false
+    t.string "title"
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["deleted_at"], name: "index_chats_on_deleted_at"
+    t.index ["gemini_file_search_store_id"], name: "index_chats_on_gemini_file_search_store_id"
+    t.index ["project_id", "user_id"], name: "index_chats_on_project_and_user"
+    t.index ["project_id"], name: "index_chats_on_project_id"
+    t.index ["status"], name: "index_chats_on_status"
+    t.index ["user_id", "created_at"], name: "index_chats_on_user_and_created_at"
+    t.index ["user_id"], name: "index_chats_on_user_id"
   end
 
   create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
@@ -121,6 +140,38 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_02_211026) do
     t.index ["gemini_store_name"], name: "index_gemini_file_search_stores_on_gemini_store_name", unique: true
     t.index ["project_id", "display_name"], name: "index_gemini_file_search_stores_on_project_id_and_display_name", unique: true
     t.index ["project_id"], name: "index_gemini_file_search_stores_on_project_id"
+  end
+
+  create_table "message_citations", force: :cascade do |t|
+    t.decimal "confidence_score", precision: 5, scale: 4
+    t.datetime "created_at", null: false
+    t.bigint "document_id", null: false
+    t.bigint "message_id", null: false
+    t.integer "pages", default: [], array: true
+    t.text "text_snippet"
+    t.datetime "updated_at", null: false
+    t.index ["document_id"], name: "index_message_citations_on_document_id"
+    t.index ["message_id", "document_id"], name: "index_message_citations_uniqueness", unique: true
+    t.index ["message_id"], name: "index_message_citations_on_message_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.bigint "chat_id", null: false
+    t.text "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at"
+    t.jsonb "grounding_metadata", default: {}
+    t.datetime "processing_started_at"
+    t.integer "role", null: false
+    t.integer "status", default: 0, null: false
+    t.integer "token_count", default: 0
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["chat_id", "created_at"], name: "index_messages_on_chat_and_created_at"
+    t.index ["chat_id"], name: "index_messages_on_chat_id"
+    t.index ["deleted_at"], name: "index_messages_on_deleted_at"
+    t.index ["status"], name: "index_messages_on_status"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "noticed_events", force: :cascade do |t|
@@ -222,11 +273,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_02_211026) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "chats", "gemini_file_search_stores"
+  add_foreign_key "chats", "projects"
+  add_foreign_key "chats", "users"
   add_foreign_key "documents", "gemini_file_search_stores"
   add_foreign_key "documents", "projects"
   add_foreign_key "documents", "users", column: "uploaded_by_id"
   add_foreign_key "event_store_events_in_streams", "event_store_events", column: "event_id", primary_key: "event_id"
   add_foreign_key "gemini_file_search_stores", "projects"
+  add_foreign_key "message_citations", "documents"
+  add_foreign_key "message_citations", "messages"
+  add_foreign_key "messages", "chats"
+  add_foreign_key "messages", "users"
   add_foreign_key "projects", "users"
   add_foreign_key "users", "projects", column: "current_project_id"
 end
