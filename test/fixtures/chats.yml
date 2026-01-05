@@ -1,0 +1,49 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# Chat activo del confirmed_user en test_project
+user_chat:
+  project: test_project
+  user: confirmed_user
+  gemini_file_search_store: active_store
+  title: "Consulta sobre contratos"
+  status: 0  # active
+  messages_count: 2
+  deleted_at:
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+# Chat activo del coworker_user en test_project (chats privados por usuario)
+coworker_chat:
+  project: test_project
+  user: coworker_user
+  gemini_file_search_store: active_store
+  title: "Análisis de normativa"
+  status: 0  # active
+  messages_count: 0
+  deleted_at:
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+# Chat archivado del confirmed_user
+archived_chat:
+  project: test_project
+  user: confirmed_user
+  gemini_file_search_store: active_store
+  title: "Chat antiguo"
+  status: 1  # archived
+  messages_count: 0
+  deleted_at:
+  created_at: <%= 1.week.ago %>
+  updated_at: <%= 1.week.ago %>
+
+# Chat eliminado (soft delete)
+deleted_chat:
+  project: test_project
+  user: confirmed_user
+  gemini_file_search_store: active_store
+  title: "Chat eliminado"
+  status: 0  # active
+  messages_count: 0
+  deleted_at: <%= Time.current %>
+  created_at: <%= 2.weeks.ago %>
+  updated_at: <%= 2.weeks.ago %>

@@ -23,7 +23,7 @@ http_interactions:
       content-encoding:
       - gzip
       date:
-      - Sun, 28 Dec 2025 04:34:42 GMT
+      - Mon, 05 Jan 2026 00:41:26 GMT
       server:
       - scaffolding on HTTPServer2
       x-xss-protection:
@@ -33,7 +33,7 @@ http_interactions:
       x-content-type-options:
       - nosniff
       server-timing:
-      - gfet4t7; dur=660
+      - gfet4t7; dur=751
       alt-svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       transfer-encoding:
@@ -42,15 +42,15 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "name": "fileSearchStores/store-to-delete-5t6k5za9uz9o",
+          "name": "fileSearchStores/store-to-delete-fiwk9hawmhhr",
           "displayName": "Store to Delete",
-          "createTime": "2025-12-28T04:34:42.440089Z",
-          "updateTime": "2025-12-28T04:34:42.440089Z"
+          "createTime": "2026-01-05T00:41:26.744824Z",
+          "updateTime": "2026-01-05T00:41:26.744824Z"
         }
-  recorded_at: Sun, 28 Dec 2025 04:34:42 GMT
+  recorded_at: Mon, 05 Jan 2026 00:41:26 GMT
 - request:
     method: delete
-    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/store-to-delete-5t6k5za9uz9o?force=true&key=<GEMINI_API_KEY>
+    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/store-to-delete-fiwk9hawmhhr?force=true&key=<GEMINI_API_KEY>
     body:
       encoding: US-ASCII
       string: ''
@@ -69,7 +69,7 @@ http_interactions:
       content-encoding:
       - gzip
       date:
-      - Sun, 28 Dec 2025 04:34:44 GMT
+      - Mon, 05 Jan 2026 00:41:28 GMT
       server:
       - scaffolding on HTTPServer2
       x-xss-protection:
@@ -79,7 +79,7 @@ http_interactions:
       x-content-type-options:
       - nosniff
       server-timing:
-      - gfet4t7; dur=1115
+      - gfet4t7; dur=818
       alt-svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       transfer-encoding:
@@ -87,5 +87,5 @@ http_interactions:
     body:
       encoding: UTF-8
       string: "{}\n"
-  recorded_at: Sun, 28 Dec 2025 04:34:44 GMT
+  recorded_at: Mon, 05 Jan 2026 00:41:28 GMT
 recorded_with: VCR 6.4.0

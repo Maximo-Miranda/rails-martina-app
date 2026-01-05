@@ -13,6 +13,8 @@ class GeminiFileSearchStore < ApplicationRecord
     deleted: 3,
   }, default: :pending
 
+  has_many :chats, dependent: :restrict_with_error
+
   validates :display_name, presence: true
   validates :gemini_store_name, uniqueness: true, allow_nil: true
 
