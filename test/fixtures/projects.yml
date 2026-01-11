@@ -39,3 +39,11 @@ deleted_project:
   user: confirmed_user
   created_at: <%= Time.current %>
   updated_at: <%= Time.current %>
+
+empty_store_project:
+  name: "Empty Store Project"
+  slug: "empty-store-project"
+  description: "Project with active store but no documents"
+  user: confirmed_user
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>

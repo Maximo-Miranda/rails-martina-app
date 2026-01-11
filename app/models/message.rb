@@ -27,6 +27,8 @@ class Message < ApplicationRecord
   validates :content, presence: true
   validate :user_required_for_user_role
 
+  after_create :auto_generate_chat_title, if: :should_generate_title?
+
   scope :for_context, -> { kept.order(:created_at).limit(Chat::MAX_HISTORY_MESSAGES) }
   scope :user_messages, -> { where(role: :user_role) }
   scope :assistant_messages, -> { where(role: :assistant_role) }
@@ -48,29 +50,23 @@ class Message < ApplicationRecord
     role_assistant_role?
   end
 
-  # Returns role name for API/Gemini format
   def gemini_role
     role_user_role? ? "user" : "model"
-  end
-
-  def citations_with_urls
-    message_citations.includes(document: { file_attachment: :blob }).map do |citation|
-      {
-        id: citation.id,
-        document_id: citation.document_id,
-        display_name: citation.document.display_name,
-        file_url: citation.document_file_url,
-        pages: citation.pages,
-        text_snippet: citation.text_snippet,
-        confidence_score: citation.confidence_score,
-      }
-    end
   end
 
   private
 
   def user_required_for_user_role
     return unless role_user_role? && user_id.blank?
-      errors.add(:user, :required_for_user_role)
+
+    errors.add(:user, :required_for_user_role)
+  end
+
+  def should_generate_title?
+    role_user_role? && chat.title.blank?
+  end
+
+  def auto_generate_chat_title
+    chat.generate_title_from_first_message
   end
 end

@@ -5,13 +5,12 @@ require "faraday"
 module Gemini
   class ChatService
     BASE_URL = "https://generativelanguage.googleapis.com/v1beta"
-    MODEL_ID = "gemini-2.5-flash"
+    MODEL_ID = "gemini-3-flash-preview"
 
-    DEFAULT_TEMPERATURE = 0.1
-    DEFAULT_TOP_K = 64
+    DEFAULT_TEMPERATURE = 0.0
+    DEFAULT_TOP_K = 40
     DEFAULT_TOP_P = 0.95
     DEFAULT_MAX_OUTPUT_TOKENS = 8192
-    FILE_SEARCH_TOP_K = 50
 
     class ChatError < StandardError
       attr_reader :status, :body, :finish_reason
@@ -83,9 +82,8 @@ module Gemini
       def build_tools(store_name)
         [
           {
-            file_search: {
-              file_search_store_names: [ store_name ],
-              topK: FILE_SEARCH_TOP_K,
+            fileSearch: {
+              fileSearchStoreNames: [ store_name ],
             },
           },
         ]

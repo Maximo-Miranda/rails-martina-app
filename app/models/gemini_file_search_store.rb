@@ -13,6 +13,7 @@ class GeminiFileSearchStore < ApplicationRecord
     deleted: 3,
   }, default: :pending
 
+  has_many :documents, dependent: :restrict_with_error
   has_many :chats, dependent: :restrict_with_error
 
   validates :display_name, presence: true
@@ -38,5 +39,11 @@ class GeminiFileSearchStore < ApplicationRecord
 
   def synced?
     gemini_store_name.present? && active?
+  end
+
+  def recalculate_documents_count!
+    count = documents.kept.active.count
+    size = documents.kept.active.sum(:size_bytes)
+    update!(active_documents_count: count, size_bytes: size)
   end
 end

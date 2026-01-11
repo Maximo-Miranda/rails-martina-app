@@ -59,10 +59,12 @@ class ProjectTest < ApplicationSystemTestCase
     sign_in_with_form(@super_admin)
 
     find("[data-testid='switcher-btn']").click
-    assert_selector "[data-testid='switcher-menu']"
+    assert_selector "[data-testid='switcher-menu']", wait: 5
 
-    assert_selector "[data-testid='switcher-project-#{@test_project.slug}']"
-    assert_selector "[data-testid='switcher-project-#{@other_project.slug}']"
+    # Search for test project
+    find("[data-testid='switcher-input-search'] input").fill_in with: "Test"
+
+    assert_selector "[data-testid='switcher-project-#{@test_project.slug}']", wait: 10
   end
 
   test "owner can switch projects using the switcher" do

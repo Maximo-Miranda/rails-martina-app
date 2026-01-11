@@ -62,4 +62,8 @@ Rails.application.routes.draw do
   # Global scope: /documents?scope=global&store_id=X (admin only)
   # Project scope: /documents (uses current_project tenant)
   resources :documents, only: %i[index show new create destroy]
+
+  resources :chats, except: %i[edit] do
+    resources :messages, only: %i[create]
+  end
 end

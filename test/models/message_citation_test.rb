@@ -187,4 +187,23 @@ class MessageCitationTest < ActiveSupport::TestCase
 
     assert_nil citation.pages_formatted
   end
+
+  test "to_api_hash returns correct structure" do
+    citation = MessageCitation.create!(
+      message: @message,
+      document: @document,
+      pages: [ 1, 2 ],
+      text_snippet: "Sample text",
+      confidence_score: 0.85
+    )
+
+    hash = citation.to_api_hash
+
+    assert_equal citation.id, hash[:id]
+    assert_equal @document.id, hash[:document_id]
+    assert_equal @document.display_name, hash[:document_name]
+    assert_equal [ 1, 2 ], hash[:pages]
+    assert_equal "Sample text", hash[:text_snippet]
+    assert_in_delta 0.85, hash[:confidence_score], 0.001
+  end
 end

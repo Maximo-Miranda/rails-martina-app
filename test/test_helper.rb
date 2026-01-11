@@ -5,6 +5,7 @@ require_relative "../config/environment"
 require "rails/test_help"
 require_relative "support/inertia_test_helper"
 require_relative "support/vcr_setup"
+require "mocha/minitest"
 
 module ActiveSupport
   class TestCase

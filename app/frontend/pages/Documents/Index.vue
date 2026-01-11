@@ -20,7 +20,6 @@ const props = defineProps<{
   filters: Record<string, unknown>
   supportedContentTypes: string[]
   maxFileSize: number
-  metadataKeys: string[]
   canCreateDocument: boolean
   canDeleteDocument: boolean
 }>()

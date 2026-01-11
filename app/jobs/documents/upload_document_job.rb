@@ -13,50 +13,47 @@ module Documents
 
       document.update!(status: :processing)
 
-      tempfile = download_to_tempfile(document)
-
-      begin
-        result = Gemini::DocumentService.upload(
-          file_path: tempfile.path,
-          store_remote_id: document.gemini_file_search_store.gemini_store_name,
-          display_name: document.display_name,
-          mime_type: document.content_type,
-          custom_metadata: document.custom_metadata
-        )
-
-        document.update!(
-          status: :active,
-          remote_id: result[:remote_id],
-          gemini_document_path: result[:gemini_document_path],
-          error_message: nil
-        )
-
-        update_store_counters(document)
+      with_tempfile(document) do |tempfile|
+        result = upload_to_gemini(document, tempfile)
+        mark_as_active(document, result)
         publish_success_event(document, result)
-      rescue => e
-        handle_failure(document, e)
-        raise # Re-raise for retry mechanism
-      ensure
-        tempfile&.close
-        tempfile&.unlink
       end
+    rescue => e
+      handle_failure(document, e)
+      raise
     end
 
     private
 
-    def download_to_tempfile(document)
+    def with_tempfile(document)
       extension = Document.extension_for_content_type(document.content_type) || ""
       tempfile = Tempfile.new([ document.file_hash, extension ])
       tempfile.binmode
       tempfile.write(document.file.download)
       tempfile.rewind
-      tempfile
+      yield tempfile
+    ensure
+      tempfile&.close
+      tempfile&.unlink
     end
 
-    def update_store_counters(document)
-      store = document.gemini_file_search_store
-      store.increment!(:active_documents_count)
-      store.increment!(:size_bytes, document.size_bytes)
+    def upload_to_gemini(document, tempfile)
+      Gemini::DocumentService.upload(
+        file_path: tempfile.path,
+        store_remote_id: document.gemini_file_search_store.gemini_store_name,
+        display_name: document.display_name,
+        mime_type: document.content_type,
+        custom_metadata: document.custom_metadata
+      )
+    end
+
+    def mark_as_active(document, result)
+      document.update!(
+        status: :active,
+        remote_id: result[:remote_id],
+        gemini_document_path: result[:gemini_document_path],
+        error_message: nil
+      )
     end
 
     def publish_success_event(document, result)
@@ -74,10 +71,7 @@ module Documents
     def handle_failure(document, error)
       Rails.logger.error("[UploadDocumentJob] Failed for document #{document.id}: #{error.message}")
 
-      document.update!(
-        status: :failed,
-        error_message: error.message
-      )
+      document.update!(status: :failed, error_message: error.message)
 
       Rails.configuration.event_store.publish(
         Documents::UploadFailed.new(data: {

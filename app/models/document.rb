@@ -22,8 +22,6 @@ class Document < ApplicationRecord
     "text/csv" => ".csv",
   }.freeze
 
-  METADATA_KEYS = %w[category tags author document_date language version notes].freeze
-
   enum :status, {
     pending: 0,
     processing: 1,
@@ -47,6 +45,9 @@ class Document < ApplicationRecord
 
   before_validation :compute_file_hash, on: :create, if: -> { file.attached? && file_hash.blank? }
   before_validation :set_file_metadata, on: :create, if: -> { file.attached? }
+  after_save :recalculate_store_counters, if: :status_affects_counter?
+  after_discard :recalculate_store_counters
+  after_discard :publish_deletion_event
 
   scope :global, -> { where(project_id: nil) }
   scope :for_project, ->(project) { where(project: project) }
@@ -115,12 +116,44 @@ class Document < ApplicationRecord
 
     current_size = gemini_file_search_store.size_bytes || 0
     return unless current_size + size_bytes.to_i > MAX_STORE_SIZE
-      errors.add(:base, :store_capacity_exceeded,
-        available: ActiveSupport::NumberHelper.number_to_human_size(MAX_STORE_SIZE - current_size),
-        required: ActiveSupport::NumberHelper.number_to_human_size(size_bytes))
+
+    errors.add(:base, :store_capacity_exceeded,
+      available: ActiveSupport::NumberHelper.number_to_human_size(MAX_STORE_SIZE - current_size),
+      required: ActiveSupport::NumberHelper.number_to_human_size(size_bytes))
   end
 
   def file_attached
     errors.add(:file, :blank) unless file.attached?
+  end
+
+  def status_affects_counter?
+    became_active? || was_active?
+  end
+
+  def became_active?
+    saved_change_to_status? && active?
+  end
+
+  def was_active?
+    saved_change_to_status? && status_before_last_save == "active"
+  end
+
+  def recalculate_store_counters
+    gemini_file_search_store&.recalculate_documents_count!
+  end
+
+  def publish_deletion_event
+    return unless remote_id.present? # Solo si está sincronizado con Gemini
+
+    update_column(:status, Document.statuses[:deleted])
+
+    Rails.configuration.event_store.publish(
+      Documents::DeletionRequested.new(data: {
+        document_id: id,
+        remote_id: remote_id,
+        gemini_document_path: gemini_document_path,
+      }),
+      stream_name: "Document$#{id}"
+    )
   end
 end

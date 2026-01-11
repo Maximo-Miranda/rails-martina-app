@@ -42,14 +42,13 @@ class Gemini::ChatServiceTest < ActiveSupport::TestCase
 
     # Verify tools
     assert payload[:tools].present?
-    file_search = payload[:tools].first[:file_search]
+    file_search = payload[:tools].first[:fileSearch]
     assert_not_nil file_search
-    assert_includes file_search[:file_search_store_names], store_name
-    assert_equal 50, file_search[:topK]
+    assert_includes file_search[:fileSearchStoreNames], store_name
 
     # Verify generation config
     config = payload[:generationConfig]
-    assert_equal 0.1, config[:temperature]
+    assert_equal 0.0, config[:temperature]
     assert_equal 8192, config[:maxOutputTokens]
   end
 

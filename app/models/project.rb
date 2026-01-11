@@ -14,9 +14,10 @@ class Project < ApplicationRecord
   has_many :documents, dependent: :destroy
   has_many :chats, dependent: :destroy
 
-  validates :name, presence: true, uniqueness: { scope: :user_id }
+  validates :name, presence: true, uniqueness: { scope: :user_id, conditions: -> { where(deleted_at: nil) } }
 
   after_create :assign_owner_role
+  after_discard :discard_associations
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[id name slug description created_at]
@@ -30,5 +31,10 @@ class Project < ApplicationRecord
 
   def assign_owner_role
     user.add_role(:owner, self)
+  end
+
+  def discard_associations
+    chats.discard_all
+    documents.discard_all
   end
 end

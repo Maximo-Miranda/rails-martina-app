@@ -56,6 +56,19 @@ class ChatTest < ActiveSupport::TestCase
     assert_includes chat.errors.attribute_names, :gemini_file_search_store
   end
 
+  test "store must have documents" do
+    empty_store = gemini_file_search_stores(:empty_active_store)
+    chat = Chat.new(
+      project: projects(:empty_store_project),
+      user: @user,
+      gemini_file_search_store: empty_store
+    )
+
+    assert chat.invalid?
+    assert_includes chat.errors.attribute_names, :gemini_file_search_store
+    assert chat.errors[:gemini_file_search_store].any? { |msg| msg.include?("no tiene documentos") }
+  end
+
   test "enforces max chats per project limit" do
     Chat.where(project: @project).destroy_all
 

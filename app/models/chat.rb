@@ -2,6 +2,7 @@
 
 class Chat < ApplicationRecord
   include Discard::Model
+  acts_as_tenant :project
 
   self.discard_column = :deleted_at
 
@@ -24,6 +25,7 @@ class Chat < ApplicationRecord
   validates :gemini_file_search_store_id, presence: true
   validate :max_chats_per_project, on: :create
   validate :store_must_be_synced, on: :create
+  validate :store_must_have_documents, on: :create
 
   scope :for_user, ->(user) { where(user: user) }
   scope :for_project, ->(project) { where(project: project) }
@@ -81,13 +83,23 @@ class Chat < ApplicationRecord
 
     count = Chat.kept.where(project_id: project_id).count
     return unless count >= MAX_CHATS_PER_PROJECT
-      errors.add(:base, :max_chats_reached, count: MAX_CHATS_PER_PROJECT)
+
+    errors.add(:base, :max_chats_reached, count: MAX_CHATS_PER_PROJECT)
   end
 
   def store_must_be_synced
     return unless gemini_file_search_store
-
     return if gemini_file_search_store.synced?
-      errors.add(:gemini_file_search_store, :not_synced)
+
+    errors.add(:gemini_file_search_store, :not_synced)
+  end
+
+  def store_must_have_documents
+    return unless gemini_file_search_store
+
+    real_count = gemini_file_search_store.documents.kept.active.count
+    return if real_count > 0
+
+    errors.add(:gemini_file_search_store, :no_documents)
   end
 end

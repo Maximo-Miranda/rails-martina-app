@@ -23,7 +23,7 @@ http_interactions:
       content-encoding:
       - gzip
       date:
-      - Mon, 05 Jan 2026 00:41:40 GMT
+      - Sun, 11 Jan 2026 21:26:58 GMT
       server:
       - scaffolding on HTTPServer2
       x-xss-protection:
@@ -33,7 +33,7 @@ http_interactions:
       x-content-type-options:
       - nosniff
       server-timing:
-      - gfet4t7; dur=298
+      - gfet4t7; dur=732
       alt-svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       transfer-encoding:
@@ -42,15 +42,15 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "name": "fileSearchStores/global-knowledge-base-9w0tfect1rzu",
+          "name": "fileSearchStores/global-knowledge-base-ky00vjlzibvr",
           "displayName": "Global Knowledge Base",
-          "createTime": "2026-01-05T00:41:40.796135Z",
-          "updateTime": "2026-01-05T00:41:40.796135Z"
+          "createTime": "2026-01-11T21:26:58.636020Z",
+          "updateTime": "2026-01-11T21:26:58.636020Z"
         }
-  recorded_at: Mon, 05 Jan 2026 00:41:40 GMT
+  recorded_at: Sun, 11 Jan 2026 21:26:58 GMT
 - request:
     method: post
-    uri: https://generativelanguage.googleapis.com/upload/v1beta/fileSearchStores/global-knowledge-base-9w0tfect1rzu:uploadToFileSearchStore?displayName=Documento+global+e3288f&key=<GEMINI_API_KEY>
+    uri: https://generativelanguage.googleapis.com/upload/v1beta/fileSearchStores/global-knowledge-base-ky00vjlzibvr:uploadToFileSearchStore?displayName=Documento+global+979bce&key=<GEMINI_API_KEY>
     body:
       encoding: ASCII-8BIT
       string: 'Contenido de prueba para documento.
@@ -71,13 +71,13 @@ http_interactions:
       content-type:
       - application/json; charset=UTF-8
       x-guploader-uploadid:
-      - AHVrFxMovqoScn7GplNeoJ42CB6_km0IILMqmXGwbrxZlufK1PWvipQ9xXWSAISHVNlpIC2XuMSLzas
+      - AJRbA5WdnJUwCJBOPRGlGZ2WPjSu3gjfDFiDM0cbYSe0e409fJIn_kxBfV5S3hx7HkFNLdM
       vary:
       - Origin, X-Origin, Referer
       content-length:
       - '491'
       date:
-      - Mon, 05 Jan 2026 00:41:44 GMT
+      - Sun, 11 Jan 2026 21:27:02 GMT
       server:
       - UploadServer
       alt-svc:
@@ -86,19 +86,19 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "name": "fileSearchStores/global-knowledge-base-9w0tfect1rzu/upload/operations/documento-global-e3288f-rm9pjmq03220",
+          "name": "fileSearchStores/global-knowledge-base-ky00vjlzibvr/upload/operations/documento-global-979bce-baqv2q61rz3g",
           "response": {
             "@type": "type.googleapis.com/google.ai.generativelanguage.v1main.UploadToFileSearchStoreResponse",
-            "parent": "fileSearchStores/global-knowledge-base-9w0tfect1rzu",
-            "documentName": "fileSearchStores/global-knowledge-base-9w0tfect1rzu/documents/documento-global-e3288f-rm9pjmq03220",
+            "parent": "fileSearchStores/global-knowledge-base-ky00vjlzibvr",
+            "documentName": "fileSearchStores/global-knowledge-base-ky00vjlzibvr/documents/documento-global-979bce-baqv2q61rz3g",
             "mimeType": "text/plain",
             "sizeBytes": "36"
           }
         }
-  recorded_at: Mon, 05 Jan 2026 00:41:44 GMT
+  recorded_at: Sun, 11 Jan 2026 21:27:02 GMT
 - request:
     method: get
-    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/global-knowledge-base-9w0tfect1rzu/upload/operations/documento-global-e3288f-rm9pjmq03220?key=<GEMINI_API_KEY>
+    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/global-knowledge-base-ky00vjlzibvr/upload/operations/documento-global-979bce-baqv2q61rz3g?key=<GEMINI_API_KEY>
     body:
       encoding: US-ASCII
       string: ''
@@ -117,7 +117,7 @@ http_interactions:
       content-encoding:
       - gzip
       date:
-      - Mon, 05 Jan 2026 00:41:45 GMT
+      - Sun, 11 Jan 2026 21:27:03 GMT
       server:
       - scaffolding on HTTPServer2
       x-xss-protection:
@@ -127,7 +127,7 @@ http_interactions:
       x-content-type-options:
       - nosniff
       server-timing:
-      - gfet4t7; dur=758
+      - gfet4t7; dur=735
       alt-svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       transfer-encoding:
@@ -136,15 +136,15 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "name": "fileSearchStores/global-knowledge-base-9w0tfect1rzu/upload/operations/documento-global-e3288f-rm9pjmq03220",
+          "name": "fileSearchStores/global-knowledge-base-ky00vjlzibvr/upload/operations/documento-global-979bce-baqv2q61rz3g",
           "done": true,
           "response": {
             "@type": "type.googleapis.com/google.ai.generativelanguage.v1main.UploadToFileSearchStoreResponse",
-            "parent": "fileSearchStores/global-knowledge-base-9w0tfect1rzu",
-            "documentName": "fileSearchStores/global-knowledge-base-9w0tfect1rzu/documents/documento-global-e3288f-rm9pjmq03220",
+            "parent": "fileSearchStores/global-knowledge-base-ky00vjlzibvr",
+            "documentName": "fileSearchStores/global-knowledge-base-ky00vjlzibvr/documents/documento-global-979bce-baqv2q61rz3g",
             "mimeType": "text/plain",
             "sizeBytes": "36"
           }
         }
-  recorded_at: Mon, 05 Jan 2026 00:41:45 GMT
+  recorded_at: Sun, 11 Jan 2026 21:27:03 GMT
 recorded_with: VCR 6.4.0

@@ -162,4 +162,57 @@ class MessageTest < ActiveSupport::TestCase
     assert message.discarded?
     assert_not_nil message.deleted_at
   end
+
+  # === CALLBACKS ===
+
+  test "first user message auto-generates chat title" do
+    store = gemini_file_search_stores(:active_store)
+    chat = Chat.create!(
+      project: @chat.project,
+      user: @user,
+      gemini_file_search_store: store,
+      title: nil
+    )
+
+    Message.create!(
+      chat: chat,
+      user: @user,
+      role: :user_role,
+      content: "¿Cuáles son los requisitos del contrato?"
+    )
+
+    assert chat.reload.title.present?
+    assert_includes chat.title, "requisitos"
+  end
+
+  test "second user message does not change chat title" do
+    original_title = @chat.title
+
+    Message.create!(
+      chat: @chat,
+      user: @user,
+      role: :user_role,
+      content: "Otra pregunta diferente"
+    )
+
+    assert_equal original_title, @chat.reload.title
+  end
+
+  test "assistant message does not trigger title generation" do
+    store = gemini_file_search_stores(:active_store)
+    chat = Chat.create!(
+      project: @chat.project,
+      user: @user,
+      gemini_file_search_store: store,
+      title: nil
+    )
+
+    Message.create!(
+      chat: chat,
+      role: :assistant_role,
+      content: "Respuesta del asistente"
+    )
+
+    assert_nil chat.reload.title
+  end
 end

@@ -18,6 +18,17 @@ class MessageCitation < ApplicationRecord
     %w[message document]
   end
 
+  def to_api_hash
+    {
+      id: id,
+      document_id: document_id,
+      document_name: document&.display_name,
+      pages: pages,
+      text_snippet: text_snippet,
+      confidence_score: confidence_score,
+    }
+  end
+
   def document_file_url
     return nil unless document.file.attached?
 

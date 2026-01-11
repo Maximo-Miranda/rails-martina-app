@@ -137,7 +137,7 @@ class Gemini::CitationExtractorTest < ActiveSupport::TestCase
         {
           "segment" => { "text" => "Low confidence" },
           "groundingChunkIndices" => [ 1 ],
-          "confidenceScores" => [ 0.45 ], # Below 0.7 threshold
+          "confidenceScores" => [ 0.05 ], # Below 0.1 threshold
         },
       ],
     }

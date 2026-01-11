@@ -19,6 +19,7 @@ en:
       times: "times"
       actions: "Actions"
       created_at: "Created"
+      no_results: "No results found"
 
     tooltips:
       upload: "Upload document"

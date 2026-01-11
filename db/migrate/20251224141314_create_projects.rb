@@ -12,7 +12,7 @@ class CreateProjects < ActiveRecord::Migration[8.1]
       t.timestamps
     end
     add_index :projects, :slug, unique: true
-    add_index :projects, %i[name user_id], unique: true
+    add_index :projects, %i[name user_id], unique: true, where: "deleted_at IS NULL"
     add_index :projects, :deleted_at
   end
 end

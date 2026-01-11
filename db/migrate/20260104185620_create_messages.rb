@@ -7,6 +7,8 @@ class CreateMessages < ActiveRecord::Migration[8.1]
       t.references :user, foreign_key: true
       t.integer :role, null: false
       t.text :content, null: false
+      t.text :error_message
+      t.string :finish_reason
       t.jsonb :grounding_metadata, default: {}
       t.integer :status, default: 0, null: false
       t.integer :token_count, default: 0

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_04_185621) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_05_013541) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -160,6 +160,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_04_185621) do
     t.text "content", null: false
     t.datetime "created_at", null: false
     t.datetime "deleted_at"
+    t.text "error_message"
+    t.string "finish_reason"
     t.jsonb "grounding_metadata", default: {}
     t.datetime "processing_started_at"
     t.integer "role", null: false
@@ -207,7 +209,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_04_185621) do
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.index ["deleted_at"], name: "index_projects_on_deleted_at"
-    t.index ["name", "user_id"], name: "index_projects_on_name_and_user_id", unique: true
+    t.index ["name", "user_id"], name: "index_projects_on_name_and_user_id", unique: true, where: "(deleted_at IS NULL)"
     t.index ["slug"], name: "index_projects_on_slug", unique: true
     t.index ["user_id"], name: "index_projects_on_user_id"
   end

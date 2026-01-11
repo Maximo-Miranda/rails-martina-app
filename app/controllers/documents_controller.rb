@@ -18,7 +18,7 @@ class DocumentsController < ApplicationController
       }
     end
 
-    base_scope = policy_scope(Document).for_store(@store).kept
+    base_scope = policy_scope(Document).for_store(@store).kept.where.not(status: :deleted)
     scoped_documents = global_scope? ? base_scope.global : base_scope
 
     @q, filters = build_ransack(
@@ -38,7 +38,6 @@ class DocumentsController < ApplicationController
       filters: filters,
       supportedContentTypes: Document::SUPPORTED_CONTENT_TYPES.keys,
       maxFileSize: Document::MAX_FILE_SIZE,
-      metadataKeys: Document::METADATA_KEYS,
       canCreateDocument: policy(authorization_record).create?,
       canDeleteDocument: policy(authorization_record).destroy?,
     }
@@ -71,7 +70,6 @@ class DocumentsController < ApplicationController
       store: store_json(@store),
       supportedContentTypes: Document::SUPPORTED_CONTENT_TYPES.keys,
       maxFileSize: Document::MAX_FILE_SIZE,
-      metadataKeys: Document::METADATA_KEYS,
     }
   end
 
@@ -94,7 +92,6 @@ class DocumentsController < ApplicationController
         errors: @document.errors.as_json,
         supportedContentTypes: Document::SUPPORTED_CONTENT_TYPES.keys,
         maxFileSize: Document::MAX_FILE_SIZE,
-        metadataKeys: Document::METADATA_KEYS,
       }
     end
   end
@@ -102,16 +99,7 @@ class DocumentsController < ApplicationController
   def destroy
     authorize @document
 
-    @document.update!(status: :deleted)
-
-    Rails.configuration.event_store.publish(
-      Documents::DeletionRequested.new(data: {
-        document_id: @document.id,
-        remote_id: @document.remote_id,
-        gemini_document_path: @document.gemini_document_path,
-      }),
-      stream_name: "Document$#{@document.id}"
-    )
+    @document.discard
 
     is_global = @document.project_id.nil?
     redirect_to documents_path(

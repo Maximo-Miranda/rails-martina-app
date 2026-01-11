@@ -23,7 +23,7 @@ http_interactions:
       content-encoding:
       - gzip
       date:
-      - Mon, 05 Jan 2026 00:41:34 GMT
+      - Sun, 11 Jan 2026 21:27:08 GMT
       server:
       - scaffolding on HTTPServer2
       x-xss-protection:
@@ -33,7 +33,7 @@ http_interactions:
       x-content-type-options:
       - nosniff
       server-timing:
-      - gfet4t7; dur=548
+      - gfet4t7; dur=653
       alt-svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       transfer-encoding:
@@ -42,15 +42,15 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "name": "fileSearchStores/test-project-store-zy8z9e8ay4w3",
+          "name": "fileSearchStores/test-project-store-3xb1e4ehvrpz",
           "displayName": "Test Project Store",
-          "createTime": "2026-01-05T00:41:34.436394Z",
-          "updateTime": "2026-01-05T00:41:34.436394Z"
+          "createTime": "2026-01-11T21:27:08.625826Z",
+          "updateTime": "2026-01-11T21:27:08.625826Z"
         }
-  recorded_at: Mon, 05 Jan 2026 00:41:34 GMT
+  recorded_at: Sun, 11 Jan 2026 21:27:08 GMT
 - request:
     method: post
-    uri: https://generativelanguage.googleapis.com/upload/v1beta/fileSearchStores/test-project-store-zy8z9e8ay4w3:uploadToFileSearchStore?displayName=Documento+proyecto+4e4b75&key=<GEMINI_API_KEY>
+    uri: https://generativelanguage.googleapis.com/upload/v1beta/fileSearchStores/test-project-store-3xb1e4ehvrpz:uploadToFileSearchStore?displayName=Documento+proyecto+3a5d57&key=<GEMINI_API_KEY>
     body:
       encoding: ASCII-8BIT
       string: 'Contenido de prueba para documento.
@@ -71,13 +71,13 @@ http_interactions:
       content-type:
       - application/json; charset=UTF-8
       x-guploader-uploadid:
-      - AHVrFxPIwN5w1FGiob28q06jp2f8-eMujRvXACPUCXaQ55P8larjMv0B7y4qGUOca7oSzP5ZAS1bV4U
+      - AJRbA5Wz63BcJcRFxna3QJqxQRy6XbjvqWqYgGsPI8dZY5zZItxNDleieHUK8OuqedkbblYr
       vary:
       - Origin, X-Origin, Referer
       content-length:
       - '486'
       date:
-      - Mon, 05 Jan 2026 00:41:38 GMT
+      - Sun, 11 Jan 2026 21:27:12 GMT
       server:
       - UploadServer
       alt-svc:
@@ -86,19 +86,19 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "name": "fileSearchStores/test-project-store-zy8z9e8ay4w3/upload/operations/documento-proyecto-4e4b75-rzpgo0183dj1",
+          "name": "fileSearchStores/test-project-store-3xb1e4ehvrpz/upload/operations/documento-proyecto-3a5d57-eyd2okkwh1wj",
           "response": {
             "@type": "type.googleapis.com/google.ai.generativelanguage.v1main.UploadToFileSearchStoreResponse",
-            "parent": "fileSearchStores/test-project-store-zy8z9e8ay4w3",
-            "documentName": "fileSearchStores/test-project-store-zy8z9e8ay4w3/documents/documento-proyecto-4e4b75-rzpgo0183dj1",
+            "parent": "fileSearchStores/test-project-store-3xb1e4ehvrpz",
+            "documentName": "fileSearchStores/test-project-store-3xb1e4ehvrpz/documents/documento-proyecto-3a5d57-eyd2okkwh1wj",
             "mimeType": "text/plain",
             "sizeBytes": "36"
           }
         }
-  recorded_at: Mon, 05 Jan 2026 00:41:38 GMT
+  recorded_at: Sun, 11 Jan 2026 21:27:12 GMT
 - request:
     method: get
-    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/test-project-store-zy8z9e8ay4w3/upload/operations/documento-proyecto-4e4b75-rzpgo0183dj1?key=<GEMINI_API_KEY>
+    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/test-project-store-3xb1e4ehvrpz/upload/operations/documento-proyecto-3a5d57-eyd2okkwh1wj?key=<GEMINI_API_KEY>
     body:
       encoding: US-ASCII
       string: ''
@@ -117,7 +117,7 @@ http_interactions:
       content-encoding:
       - gzip
       date:
-      - Mon, 05 Jan 2026 00:41:39 GMT
+      - Sun, 11 Jan 2026 21:27:13 GMT
       server:
       - scaffolding on HTTPServer2
       x-xss-protection:
@@ -127,7 +127,7 @@ http_interactions:
       x-content-type-options:
       - nosniff
       server-timing:
-      - gfet4t7; dur=655
+      - gfet4t7; dur=789
       alt-svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       transfer-encoding:
@@ -136,15 +136,15 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "name": "fileSearchStores/test-project-store-zy8z9e8ay4w3/upload/operations/documento-proyecto-4e4b75-rzpgo0183dj1",
+          "name": "fileSearchStores/test-project-store-3xb1e4ehvrpz/upload/operations/documento-proyecto-3a5d57-eyd2okkwh1wj",
           "done": true,
           "response": {
             "@type": "type.googleapis.com/google.ai.generativelanguage.v1main.UploadToFileSearchStoreResponse",
-            "parent": "fileSearchStores/test-project-store-zy8z9e8ay4w3",
-            "documentName": "fileSearchStores/test-project-store-zy8z9e8ay4w3/documents/documento-proyecto-4e4b75-rzpgo0183dj1",
+            "parent": "fileSearchStores/test-project-store-3xb1e4ehvrpz",
+            "documentName": "fileSearchStores/test-project-store-3xb1e4ehvrpz/documents/documento-proyecto-3a5d57-eyd2okkwh1wj",
             "mimeType": "text/plain",
             "sizeBytes": "36"
           }
         }
-  recorded_at: Mon, 05 Jan 2026 00:41:39 GMT
+  recorded_at: Sun, 11 Jan 2026 21:27:13 GMT
 recorded_with: VCR 6.4.0
