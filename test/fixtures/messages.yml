@@ -1,0 +1,71 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# Primer mensaje del usuario en user_chat
+user_message_one:
+  chat: user_chat
+  user: confirmed_user
+  role: 0  # user_role
+  content: "¿Cuáles son los requisitos para un contrato de arrendamiento en Colombia?"
+  grounding_metadata: {}
+  status: 2  # completed
+  token_count: 25
+  processing_started_at:
+  deleted_at:
+  created_at: <%= 5.minutes.ago %>
+  updated_at: <%= 5.minutes.ago %>
+
+# Respuesta del modelo en user_chat
+model_response_one:
+  chat: user_chat
+  user:
+  role: 1  # assistant_role
+  content: "Según la legislación colombiana, los requisitos para un contrato de arrendamiento incluyen..."
+  grounding_metadata: '{"groundingChunks": [{"retrievedContext": {"title": "Ley 820 de 2003.pdf", "text": "El contrato de arrendamiento..."}}]}'
+  status: 2  # completed
+  token_count: 150
+  processing_started_at: <%= 5.minutes.ago %>
+  deleted_at:
+  created_at: <%= 4.minutes.ago %>
+  updated_at: <%= 4.minutes.ago %>
+
+# Mensaje pendiente (esperando respuesta)
+pending_message:
+  chat: user_chat
+  user: confirmed_user
+  role: 0  # user_role
+  content: "¿Y cuáles son las obligaciones del arrendatario?"
+  grounding_metadata: {}
+  status: 0  # pending
+  token_count: 0
+  processing_started_at:
+  deleted_at:
+  created_at: <%= 1.minute.ago %>
+  updated_at: <%= 1.minute.ago %>
+
+# Mensaje en procesamiento
+processing_message:
+  chat: coworker_chat
+  user:
+  role: 1  # assistant_role
+  content: ""
+  grounding_metadata: {}
+  status: 1  # processing
+  token_count: 0
+  processing_started_at: <%= 30.seconds.ago %>
+  deleted_at:
+  created_at: <%= 30.seconds.ago %>
+  updated_at: <%= 30.seconds.ago %>
+
+# Mensaje fallido
+failed_message:
+  chat: coworker_chat
+  user:
+  role: 1  # assistant_role
+  content: "Error al procesar la solicitud"
+  grounding_metadata: {}
+  status: 3  # failed
+  token_count: 0
+  processing_started_at: <%= 10.minutes.ago %>
+  deleted_at:
+  created_at: <%= 10.minutes.ago %>
+  updated_at: <%= 10.minutes.ago %>

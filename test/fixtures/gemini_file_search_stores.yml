@@ -59,3 +59,15 @@ deleted_store:
   size_bytes: 0
   metadata:
   deleted_at: <%= Time.current %>
+
+# Store active but with no documents
+empty_active_store:
+  project: empty_store_project
+  gemini_store_name: "corpora/empty789"
+  display_name: "Empty Active Store"
+  status: 1  # active
+  error_message:
+  active_documents_count: 0
+  size_bytes: 0
+  metadata:
+  deleted_at:

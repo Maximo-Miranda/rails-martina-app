@@ -55,7 +55,7 @@ module Gemini
           store_id: store.id,
           project_id: store.project_id,
           error_message: error.message,
-          user_id: job.arguments.second,
+          user_id: arguments.second,
         }),
         stream_name: "GeminiFileSearchStore$#{store.id}"
       )

@@ -32,6 +32,7 @@ export interface Permissions {
   can_access_users: boolean
   can_access_gemini_stores: boolean
   can_access_documents: boolean
+  can_access_chats: boolean
 
   // Feature flags
   can_view_analytics: boolean

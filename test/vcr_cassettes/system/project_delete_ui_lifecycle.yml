@@ -23,7 +23,7 @@ http_interactions:
       content-encoding:
       - gzip
       date:
-      - Sun, 28 Dec 2025 04:34:33 GMT
+      - Mon, 12 Jan 2026 04:02:36 GMT
       server:
       - scaffolding on HTTPServer2
       x-xss-protection:
@@ -33,7 +33,7 @@ http_interactions:
       x-content-type-options:
       - nosniff
       server-timing:
-      - gfet4t7; dur=626
+      - gfet4t7; dur=660
       alt-svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       transfer-encoding:
@@ -42,15 +42,123 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "name": "fileSearchStores/test-project-store-h4toxcglzkpd",
+          "name": "fileSearchStores/test-project-store-ph9xiu3hvyb0",
           "displayName": "Test Project Store",
-          "createTime": "2025-12-28T04:34:33.144891Z",
-          "updateTime": "2025-12-28T04:34:33.144891Z"
+          "createTime": "2026-01-12T04:02:36.007164Z",
+          "updateTime": "2026-01-12T04:02:36.007164Z"
         }
-  recorded_at: Sun, 28 Dec 2025 04:34:33 GMT
+  recorded_at: Mon, 12 Jan 2026 04:02:36 GMT
 - request:
     method: delete
-    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/test-project-store-h4toxcglzkpd?force=true&key=<GEMINI_API_KEY>
+    uri: https://generativelanguage.googleapis.com/v1beta/corpora/abc123/documents/doc_abc123?force=true&key=<GEMINI_API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      content-type:
+      - text/html
+      date:
+      - Mon, 12 Jan 2026 04:02:37 GMT
+      server:
+      - scaffolding on HTTPServer2
+      content-length:
+      - '0'
+      x-xss-protection:
+      - '0'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+      server-timing:
+      - gfet4t7; dur=499
+      alt-svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Mon, 12 Jan 2026 04:02:37 GMT
+- request:
+    method: delete
+    uri: https://generativelanguage.googleapis.com/v1beta/corpora/abc123/documents/doc_def456?force=true&key=<GEMINI_API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      content-type:
+      - text/html
+      date:
+      - Mon, 12 Jan 2026 04:02:38 GMT
+      server:
+      - scaffolding on HTTPServer2
+      content-length:
+      - '0'
+      x-xss-protection:
+      - '0'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+      server-timing:
+      - gfet4t7; dur=499
+      alt-svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Mon, 12 Jan 2026 04:02:38 GMT
+- request:
+    method: delete
+    uri: https://generativelanguage.googleapis.com/v1beta/corpora/abc123/documents/doc_ghi789?force=true&key=<GEMINI_API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      content-type:
+      - text/html
+      date:
+      - Mon, 12 Jan 2026 04:02:39 GMT
+      server:
+      - scaffolding on HTTPServer2
+      content-length:
+      - '0'
+      x-xss-protection:
+      - '0'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+      server-timing:
+      - gfet4t7; dur=504
+      alt-svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Mon, 12 Jan 2026 04:02:39 GMT
+- request:
+    method: delete
+    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/test-project-store-ph9xiu3hvyb0?force=true&key=<GEMINI_API_KEY>
     body:
       encoding: US-ASCII
       string: ''
@@ -69,7 +177,7 @@ http_interactions:
       content-encoding:
       - gzip
       date:
-      - Sun, 28 Dec 2025 04:34:35 GMT
+      - Mon, 12 Jan 2026 04:02:40 GMT
       server:
       - scaffolding on HTTPServer2
       x-xss-protection:
@@ -79,7 +187,7 @@ http_interactions:
       x-content-type-options:
       - nosniff
       server-timing:
-      - gfet4t7; dur=777
+      - gfet4t7; dur=805
       alt-svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       transfer-encoding:
@@ -87,5 +195,5 @@ http_interactions:
     body:
       encoding: UTF-8
       string: "{}\n"
-  recorded_at: Sun, 28 Dec 2025 04:34:35 GMT
+  recorded_at: Mon, 12 Jan 2026 04:02:40 GMT
 recorded_with: VCR 6.4.0

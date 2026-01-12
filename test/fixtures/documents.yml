@@ -1,0 +1,100 @@
+# frozen_string_literal: true
+
+# == Schema Information
+#
+# Table name: documents
+#
+#  id                         :bigint           not null, primary key
+#  content_type               :string           not null
+#  custom_metadata            :jsonb
+#  deleted_at                 :datetime
+#  display_name               :string           not null
+#  error_message              :text
+#  file_hash                  :string           not null
+#  gemini_document_path       :string
+#  project_id                 :bigint
+#  remote_id                  :string
+#  size_bytes                 :bigint           not null
+#  status                     :integer          default("pending"), not null
+#  created_at                 :datetime         not null
+#  updated_at                 :datetime         not null
+#  gemini_file_search_store_id :bigint          not null
+#  uploaded_by_id             :bigint           not null
+#
+
+ley_1564_2012:
+  display_name: "Ley 1564 de 2012 - Código General del Proceso"
+  content_type: "application/pdf"
+  size_bytes: 2500000
+  file_hash: "abc123hash001"
+  status: 2 # active
+  remote_id: "files/doc_abc123"
+  gemini_document_path: "corpora/abc123/documents/doc_abc123"
+  gemini_file_search_store: active_store
+  uploaded_by: confirmed_user
+  project: test_project
+  custom_metadata:
+    category: "Legislación"
+    tags: ["procesal", "civil"]
+
+decreto_1069_2015:
+  display_name: "Decreto 1069 de 2015 - Decreto Único Reglamentario Justicia"
+  content_type: "application/pdf"
+  size_bytes: 3200000
+  file_hash: "def456hash002"
+  status: 2 # active
+  remote_id: "files/doc_def456"
+  gemini_document_path: "corpora/abc123/documents/doc_def456"
+  gemini_file_search_store: active_store
+  uploaded_by: confirmed_user
+  project: test_project
+  custom_metadata:
+    category: "Decretos"
+    tags: ["reglamentario", "justicia"]
+
+sentencia_c_083_1995:
+  display_name: "Sentencia C-083/95 - Corte Constitucional"
+  content_type: "application/pdf"
+  size_bytes: 850000
+  file_hash: "ghi789hash003"
+  status: 2 # active
+  remote_id: "files/doc_ghi789"
+  gemini_document_path: "corpora/abc123/documents/doc_ghi789"
+  gemini_file_search_store: active_store
+  uploaded_by: confirmed_user
+  project: test_project
+  custom_metadata:
+    category: "Jurisprudencia"
+    tags: ["constitucional", "precedente"]
+
+pending_document:
+  display_name: "Documento Pendiente"
+  content_type: "application/pdf"
+  size_bytes: 500000
+  file_hash: "pending123hash"
+  status: 0 # pending
+  gemini_file_search_store: active_store
+  uploaded_by: confirmed_user
+  project: test_project
+
+failed_document:
+  display_name: "Documento Fallido"
+  content_type: "application/pdf"
+  size_bytes: 500000
+  file_hash: "failed456hash"
+  status: 3 # failed
+  error_message: "Error al procesar el documento"
+  gemini_file_search_store: active_store
+  uploaded_by: confirmed_user
+  project: test_project
+
+deleted_document:
+  display_name: "Documento Eliminado"
+  content_type: "application/pdf"
+  size_bytes: 500000
+  file_hash: "deleted789hash"
+  status: 4 # deleted
+  deleted_at: <%= 1.day.ago %>
+  gemini_file_search_store: active_store
+  uploaded_by: confirmed_user
+  project: test_project

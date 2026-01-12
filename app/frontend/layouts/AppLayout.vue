@@ -60,7 +60,7 @@ watch(notification, (newNotification) => {
 const navigationItems = computed(() => {
   const currentProject = page.props.current_project as { id: number; name: string; slug: string } | null
 
-  const items = [
+  return [
     {
       title: t('navigation.dashboard'),
       icon: 'mdi-view-dashboard',
@@ -73,49 +73,37 @@ const navigationItems = computed(() => {
       href: '/projects',
       visible: can.value.accessProjects
     },
-  ]
-
-  // Show Project Documents if user has permission (super_admin, admin, or project owner/coworker)
-  if (can.value.accessProjectDocuments && currentProject) {
-    items.push({
+    {
       title: t('navigation.project_documents'),
       icon: 'mdi-file-document-edit-outline',
       href: '/documents',
-      visible: true
-    })
-  }
-
-  // Only show Users if user has permission
-  if (can.value.manageUsers) {
-    items.push({
+      visible: can.value.accessProjectDocuments && !!currentProject
+    },
+    {
+      title: t('navigation.chats'),
+      icon: 'mdi-chat-outline',
+      href: '/chats',
+      visible: can.value.accessChats && !!currentProject
+    },
+    {
       title: t('navigation.users'),
       icon: 'mdi-account-group-outline',
       href: '/users',
-      visible: true
-    })
-  }
-
-  // Only show Gemini Stores if user has permission (admin/super_admin)
-  if (can.value.accessGeminiStores) {
-    items.push({
+      visible: can.value.manageUsers
+    },
+    {
       title: t('navigation.gemini_stores'),
       icon: 'mdi-database-search',
       href: '/gemini_file_search_stores',
-      visible: true
-    })
-  }
-
-  // Only show Global Documents if user has permission (admin/super_admin)
-  if (can.value.accessDocuments) {
-    items.push({
+      visible: can.value.accessGeminiStores
+    },
+    {
       title: t('navigation.documents'),
       icon: 'mdi-file-cabinet',
       href: '/documents?scope=global',
-      visible: true
-    })
-  }
-
-  return items.filter(item => item.visible)
+      visible: can.value.accessDocuments
+    },
+  ].filter(item => item.visible)
 })
 
 const navigateTo = (href: string) => {
@@ -310,14 +298,15 @@ const navigateTo = (href: string) => {
       :color="snackbarColor"
       :timeout="4000"
       location="top"
-      class="mt-4"
+      class="mt-4 flash-snackbar"
+      multi-line
     >
-      <div class="d-flex align-center">
+      <div class="d-flex align-center flash-content">
         <v-icon
           :icon="snackbarColor === 'success' ? 'mdi-check-circle' : 'mdi-alert-circle'"
-          class="mr-2"
+          class="mr-2 shrink-0"
         />
-        {{ snackbarMessage }}
+        <span class="flash-message">{{ snackbarMessage }}</span>
       </div>
       <template v-slot:actions>
         <v-btn
@@ -330,3 +319,29 @@ const navigateTo = (href: string) => {
     </v-snackbar>
   </v-app>
 </template>
+
+<style scoped>
+.flash-snackbar :deep(.v-snackbar__content) {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.flash-content {
+  min-width: 0;
+  width: 100%;
+}
+
+.flash-message {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.4;
+}
+
+@media (max-width: 600px) {
+  .flash-snackbar :deep(.v-snackbar__wrapper) {
+    margin-left: 8px;
+    margin-right: 8px;
+    max-width: calc(100vw - 16px);
+  }
+}
+</style>

@@ -126,6 +126,16 @@ class DocumentTest < ActiveSupport::TestCase
     assert document.valid?
   end
 
+  test "store capacity validation skips when store is blank" do
+    document = build_document(file_hash: "no-store-test")
+    document.gemini_file_search_store = nil
+
+    # Should fail for other reasons but not raise error on capacity check
+    assert document.invalid?
+    errors = document.errors.details[:base].map { |e| e[:error] }
+    refute_includes errors, :store_capacity_exceeded
+  end
+
   test "duplicate_exists? detects kept duplicates" do
     existing = build_document(file_hash: "dup-check")
     existing.save!
@@ -145,8 +155,13 @@ class DocumentTest < ActiveSupport::TestCase
     synced_document = build_document(file_hash: "synced-hash", remote_id: "remote-1", status: :active)
     assert synced_document.synced?
 
+    # Not synced when status is not active
     synced_document.status = :pending
     refute synced_document.synced?
+
+    # Not synced when remote_id is nil
+    not_synced = build_document(file_hash: "not-synced", status: :active, remote_id: nil)
+    refute not_synced.synced?
   end
 
   test "store_available_bytes reflects remaining capacity" do
@@ -180,5 +195,85 @@ class DocumentTest < ActiveSupport::TestCase
   test "ransackable attributes and associations" do
     assert_equal %w[id display_name content_type status created_at], Document.ransackable_attributes
     assert_equal %w[project gemini_file_search_store uploaded_by], Document.ransackable_associations
+  end
+
+  test "recalculates store counter when document becomes active" do
+    empty_store = gemini_file_search_stores(:empty_active_store)
+    document = Document.new(
+      gemini_file_search_store: empty_store,
+      uploaded_by: @user,
+      project: empty_store.project,
+      file_hash: "counter-active-test"
+    )
+    document.file.attach(build_blob)
+    document.save!
+
+    assert_equal 0, empty_store.reload.active_documents_count
+
+    document.update!(status: :active, remote_id: "remote-counter-1")
+
+    assert_equal 1, empty_store.reload.active_documents_count
+  end
+
+  test "recalculates store counter when active document changes to deleted" do
+    empty_store = gemini_file_search_stores(:empty_active_store)
+    document = Document.new(
+      gemini_file_search_store: empty_store,
+      uploaded_by: @user,
+      project: empty_store.project,
+      file_hash: "counter-deleted-test",
+      status: :active,
+      remote_id: "remote-counter-2"
+    )
+    document.file.attach(build_blob)
+    document.save!
+
+    assert_equal 1, empty_store.reload.active_documents_count
+
+    document.update!(status: :deleted)
+
+    assert_equal 0, empty_store.reload.active_documents_count
+  end
+
+  test "recalculates store counter when active document is discarded" do
+    empty_store = gemini_file_search_stores(:empty_active_store)
+    document = Document.new(
+      gemini_file_search_store: empty_store,
+      uploaded_by: @user,
+      project: empty_store.project,
+      file_hash: "counter-discard-test",
+      status: :active,
+      remote_id: "remote-counter-3"
+    )
+    document.file.attach(build_blob)
+    document.save!
+
+    assert_equal 1, empty_store.reload.active_documents_count
+
+    document.discard!
+
+    assert_equal 0, empty_store.reload.active_documents_count
+  end
+
+  test "does not recalculate store counter for non-active status changes" do
+    empty_store = gemini_file_search_stores(:empty_active_store)
+    document = Document.new(
+      gemini_file_search_store: empty_store,
+      uploaded_by: @user,
+      project: empty_store.project,
+      file_hash: "counter-no-change-test"
+    )
+    document.file.attach(build_blob)
+    document.save!
+
+    assert_equal 0, empty_store.reload.active_documents_count
+
+    document.update!(status: :processing)
+
+    assert_equal 0, empty_store.reload.active_documents_count
+
+    document.update!(status: :failed)
+
+    assert_equal 0, empty_store.reload.active_documents_count
   end
 end

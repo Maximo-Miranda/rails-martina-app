@@ -61,6 +61,7 @@ group :test do
   gem "capybara"
   gem "capybara-playwright-driver"
   gem "minitest", "~> 5.27"
+  gem "mocha", "~> 3.0"
   gem "database_cleaner-active_record"
 
   # HTTP mocking

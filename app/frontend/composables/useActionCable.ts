@@ -1,15 +1,25 @@
 import { ref } from 'vue'
 import { createConsumer, type Consumer, type Subscription } from '@rails/actioncable'
 
-let consumer: Consumer | null = null
-const subscriptions = new Map<string, Subscription>()
-
-function getConsumer(): Consumer {
-  if (!consumer) {
-    consumer = createConsumer()
-  }
-  return consumer
+interface SubscriptionCallbacks<T = unknown> {
+  received?: (data: T) => void
+  connected?: () => void
+  disconnected?: () => void
 }
+
+interface SubscriptionEntry {
+  subscription: Subscription
+  callbacks: SubscriptionCallbacks
+}
+
+// Singleton consumer and cache of subscriptions
+let consumer: Consumer | null = null
+const subscriptions = new Map<string, SubscriptionEntry>()
+
+const getConsumer = (): Consumer => (consumer ??= createConsumer())
+
+const buildKey = (channel: string, params: Record<string, unknown>): string =>
+  `${channel}:${JSON.stringify(params)}`
 
 export function useActionCable() {
   const connected = ref(false)
@@ -17,53 +27,46 @@ export function useActionCable() {
   function subscribe<T>(
     channelName: string,
     params: Record<string, unknown> = {},
-    callbacks: {
-      received?: (data: T) => void
-      connected?: () => void
-      disconnected?: () => void
-    } = {}
+    callbacks: SubscriptionCallbacks<T> = {}
   ): Subscription {
-    const key = `${channelName}:${JSON.stringify(params)}`
+    const key = buildKey(channelName, params)
+    const existing = subscriptions.get(key)
 
-    if (subscriptions.has(key)) {
-      return subscriptions.get(key)!
+    if (existing) {
+      existing.callbacks = callbacks as unknown as SubscriptionCallbacks
+      return existing.subscription
     }
+
+    const callbacksRef = callbacks as unknown as SubscriptionCallbacks
 
     const subscription = getConsumer().subscriptions.create(
       { channel: channelName, ...params },
       {
-        received: (data: T) => {
-          callbacks.received?.(data)
-        },
+        received: (data: unknown) => callbacksRef.received?.(data),
         connected: () => {
           connected.value = true
-          callbacks.connected?.()
+          callbacksRef.connected?.()
         },
         disconnected: () => {
           connected.value = false
-          callbacks.disconnected?.()
+          callbacksRef.disconnected?.()
         }
       }
     )
 
-    subscriptions.set(key, subscription)
+    subscriptions.set(key, { subscription, callbacks: callbacksRef })
     return subscription
   }
 
   function unsubscribe(channelName: string, params: Record<string, unknown> = {}): void {
-    const key = `${channelName}:${JSON.stringify(params)}`
-    const subscription = subscriptions.get(key)
+    const key = buildKey(channelName, params)
+    const entry = subscriptions.get(key)
 
-    if (subscription) {
-      subscription.unsubscribe()
+    if (entry) {
+      entry.subscription.unsubscribe()
       subscriptions.delete(key)
     }
   }
 
-  return {
-    connected,
-    subscribe,
-    unsubscribe,
-    getConsumer
-  }
+  return { connected, subscribe, unsubscribe, getConsumer }
 }

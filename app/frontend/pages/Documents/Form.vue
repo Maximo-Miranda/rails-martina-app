@@ -22,7 +22,6 @@ const props = defineProps<{
   errors?: Record<string, string[]>
   supportedContentTypes: string[]
   maxFileSize: number
-  metadataKeys: string[]
 }>()
 
 const { t } = useTranslations()
@@ -71,33 +70,28 @@ const validateFile = (file: File): boolean => {
   return true
 }
 
+const processFile = (file: File) => {
+  if (validateFile(file)) {
+    selectedFile.value = file
+    formData.file = file
+    if (!formData.display_name) {
+      formData.display_name = file.name
+    }
+  }
+}
+
 const handleFileSelect = (event: Event) => {
   const input = event.target as HTMLInputElement
-  if (input.files && input.files[0]) {
-    const file = input.files[0]
-    if (validateFile(file)) {
-      selectedFile.value = file
-      formData.file = file
-      if (!formData.display_name) {
-        formData.display_name = file.name
-      }
-    }
+  if (input.files?.[0]) {
+    processFile(input.files[0])
   }
 }
 
 const handleDrop = (event: DragEvent) => {
   event.preventDefault()
   dragOver.value = false
-
-  if (event.dataTransfer?.files && event.dataTransfer.files[0]) {
-    const file = event.dataTransfer.files[0]
-    if (validateFile(file)) {
-      selectedFile.value = file
-      formData.file = file
-      if (!formData.display_name) {
-        formData.display_name = file.name
-      }
-    }
+  if (event.dataTransfer?.files?.[0]) {
+    processFile(event.dataTransfer.files[0])
   }
 }
 
@@ -214,17 +208,17 @@ const submit = () => {
               </template>
 
               <template v-else>
-                <div class="d-flex align-center justify-center">
-                  <v-icon :icon="getContentTypeIcon(selectedFile.type)" size="32" class="mr-3" />
-                  <div class="text-left">
-                    <div class="font-weight-medium">{{ selectedFile.name }}</div>
+                <div class="selected-file-container">
+                  <v-icon :icon="getContentTypeIcon(selectedFile.type)" size="32" class="shrink-0 mr-3" />
+                  <div class="file-info">
+                    <div class="file-name font-weight-medium">{{ selectedFile.name }}</div>
                     <div class="text-caption text-grey">{{ formatBytes(selectedFile.size) }}</div>
                   </div>
                   <v-btn
                     icon="mdi-close"
                     size="small"
                     variant="text"
-                    class="ml-4"
+                    class="shrink-0 ml-2"
                     :data-testid="`${testIdPrefix}-remove-file`"
                     @click.stop="removeFile"
                   />
@@ -345,6 +339,7 @@ const submit = () => {
   border: 2px dashed #e0e0e0;
   cursor: pointer;
   transition: all 0.2s ease;
+  overflow: hidden;
 }
 
 .upload-zone:hover {
@@ -359,5 +354,26 @@ const submit = () => {
 
 .upload-zone.has-error {
   border-color: #d32f2f;
+}
+
+.selected-file-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+}
+
+.file-info {
+  text-align: left;
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+}
+
+.file-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 </style>

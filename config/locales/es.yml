@@ -38,6 +38,21 @@ es:
               inclusion: "Tipo de archivo no soportado"
             size_bytes:
               less_than_or_equal_to: "El archivo excede el tamaño máximo permitido"
+        chat:
+          attributes:
+            base:
+              max_chats_reached: "Has alcanzado el límite de %{count} chats por proyecto"
+            gemini_file_search_store:
+              not_synced: "El store de documentos no está sincronizado. Por favor, espera a que termine de procesarse."
+              no_documents: "El store de documentos no tiene documentos activos. Por favor, sube al menos un documento."
+            global_stores:
+              too_many: "No puedes seleccionar más de %{count} stores globales"
+              must_be_global: "El store '%{name}' no es un store global"
+              must_be_active: "El store global '%{name}' no está activo"
+        message:
+          attributes:
+            user:
+              required_for_user_role: "El usuario es requerido para mensajes del usuario"
   activemodel:
     errors:
       models:
@@ -153,6 +168,70 @@ es:
     deleted: "Documento eliminado exitosamente"
     not_found: "Documento no encontrado"
     no_store_for_project: "Este proyecto no tiene un almacén de documentos configurado. Por favor, crea uno primero."
+    errors:
+      not_global: "Solo se pueden generar URLs temporales para documentos globales"
+      no_file: "El documento no tiene archivo adjunto"
+
+  chats:
+    create:
+      success: "Chat creado exitosamente"
+    update:
+      success: "Chat actualizado exitosamente"
+    destroy:
+      success: "Chat eliminado exitosamente"
+    errors:
+      no_project: "Debes seleccionar un proyecto para acceder a los chats"
+      store_not_synced: "El almacén de documentos no está listo. Por favor, espera a que termine de sincronizarse."
+      no_response: "No se recibió respuesta del modelo"
+      blocked_safety: "La respuesta fue bloqueada por filtros de seguridad"
+      blocked_recitation: "La respuesta fue bloqueada por posible violación de derechos de autor"
+      max_tokens: "La respuesta fue truncada por límite de tokens"
+      no_relevant_info: "No encontré información relevante en los documentos para responder tu pregunta. Por favor, intenta reformular tu consulta o verifica que los documentos necesarios estén cargados."
+      api_error: "Error al procesar tu mensaje en '%{chat_title}'. Por favor, intenta nuevamente"
+      rate_limited: "Demasiadas solicitudes. Por favor, espera unos segundos antes de intentar nuevamente."
+      unexpected_error: "Error inesperado al procesar tu mensaje en '%{chat_title}'. Por favor, intenta nuevamente"
+    not_found: "Chat no encontrado"
+    message_sent: "Mensaje enviado"
+    message_failed: "Error al enviar el mensaje"
+    no_store_for_project: "Este proyecto no tiene un almacén de documentos configurado. Por favor, crea uno primero."
+    max_chats_reached: "Has alcanzado el límite máximo de chats para este proyecto"
+    default_title: "Nueva conversación"
+    citations:
+      single_page: "p. %{page}"
+      multiple_pages: "pp. %{pages}"
+    system_prompt: |
+      <role>
+      Eres Martina, una asistente legal experta especializada en análisis de documentos.
+      </role>
+
+      <constraints>
+      1. Eres un asistente estrictamente fundamentado, limitado a la información proporcionada en los documentos.
+      2. En tus respuestas, confía ÚNICAMENTE en los hechos que se mencionan directamente en los documentos.
+      3. NO debes acceder ni utilizar tu propio conocimiento o sentido común para responder.
+      4. No asumas ni inferas de los hechos proporcionados; simplemente repórtalos exactamente como aparecen.
+      5. Tu respuesta debe ser factual y completamente fiel al texto proporcionado, sin dejar lugar a especulación o interpretación.
+      6. Trata los documentos proporcionados como el límite absoluto de la verdad.
+      7. Si la respuesta exacta no está explícitamente escrita en los documentos, debes indicar que la información no está disponible.
+      </constraints>
+
+      <conversation_rules>
+      REGLA CRÍTICA: En conversaciones de múltiples turnos, SOLO responde al ÚLTIMO mensaje del usuario.
+      - Los mensajes anteriores en el historial son SOLO para contexto de la conversación.
+      - NO repitas respuestas a preguntas anteriores.
+      - NO incluyas información de turnos anteriores a menos que sea directamente relevante para la pregunta actual.
+      - Cada respuesta debe abordar ÚNICAMENTE la pregunta más reciente.
+      </conversation_rules>
+
+      <output_format>
+      - Responde SIEMPRE en español.
+      - NO menciones nombres de archivos ni números de página (el sistema los muestra automáticamente).
+      - Integra la información de manera fluida y natural.
+      - Sé conciso y directo.
+      </output_format>
+    channel:
+      unauthorized: "No autorizado"
+      message_empty: "El mensaje no puede estar vacío"
+      message_not_found: "Mensaje no encontrado"
 
   # Pundit authorization messages
   pundit:
@@ -190,6 +269,12 @@ es:
       new: "No tienes permiso para subir documentos"
       create: "No tienes permiso para subir documentos"
       destroy: "No tienes permiso para eliminar este documento"
+    chat_policy:
+      index: "No tienes permiso para ver los chats"
+      show: "No tienes permiso para ver este chat"
+      create: "No tienes permiso para crear chats"
+      destroy: "No tienes permiso para eliminar este chat"
+      send_message: "No tienes permiso para enviar mensajes en este chat"
 
   notifiers:
     document_uploaded_notifier:

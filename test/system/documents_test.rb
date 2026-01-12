@@ -66,12 +66,13 @@ class DocumentsTest < ApplicationSystemTestCase
     assert_selector "[data-testid='global-documents-btn-delete-#{document.id}']"
 
     document_id = document.id
+    document_name = document.display_name
     find("[data-testid='global-documents-btn-delete-#{document_id}']").click
     assert_selector "[data-testid='global-documents-delete-dialog']"
     find("[data-testid='global-documents-delete-dialog-btn-confirm']").click
 
-    assert_text "Eliminado", wait: 5
-    assert_selector "[data-testid='global-documents-btn-delete-#{document_id}'][disabled]", wait: 5
+    # Document should disappear from the list after deletion
+    assert_no_text document_name, wait: 5
   end
 
   test "owner can upload document to project store" do
@@ -119,11 +120,13 @@ class DocumentsTest < ApplicationSystemTestCase
     navigate_to_project_documents
 
     document_id = document.id
+    document_name = document.display_name
     find("[data-testid='project-documents-btn-delete-#{document_id}']").click
     assert_selector "[data-testid='project-documents-delete-dialog']"
     find("[data-testid='project-documents-delete-dialog-btn-confirm']").click
 
-    assert_text "Eliminado", wait: 5
+    # Document should disappear from the list after deletion
+    assert_no_text document_name, wait: 5
   end
 
   test "client can view project documents but cannot upload or delete" do
