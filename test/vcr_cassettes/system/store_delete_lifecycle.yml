@@ -23,7 +23,7 @@ http_interactions:
       content-encoding:
       - gzip
       date:
-      - Sun, 11 Jan 2026 21:55:33 GMT
+      - Mon, 12 Jan 2026 01:39:31 GMT
       server:
       - scaffolding on HTTPServer2
       x-xss-protection:
@@ -33,7 +33,7 @@ http_interactions:
       x-content-type-options:
       - nosniff
       server-timing:
-      - gfet4t7; dur=678
+      - gfet4t7; dur=691
       alt-svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       transfer-encoding:
@@ -42,15 +42,15 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "name": "fileSearchStores/lifecycle-test-store-r9tsgqvkr7om",
+          "name": "fileSearchStores/lifecycle-test-store-zdvk36abd0de",
           "displayName": "Lifecycle Test Store",
-          "createTime": "2026-01-11T21:55:33.095307Z",
-          "updateTime": "2026-01-11T21:55:33.095307Z"
+          "createTime": "2026-01-12T01:39:31.444857Z",
+          "updateTime": "2026-01-12T01:39:31.444857Z"
         }
-  recorded_at: Sun, 11 Jan 2026 21:55:33 GMT
+  recorded_at: Mon, 12 Jan 2026 01:39:31 GMT
 - request:
     method: delete
-    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/lifecycle-test-store-r9tsgqvkr7om?force=true&key=<GEMINI_API_KEY>
+    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/lifecycle-test-store-zdvk36abd0de?force=true&key=<GEMINI_API_KEY>
     body:
       encoding: US-ASCII
       string: ''
@@ -69,7 +69,7 @@ http_interactions:
       content-encoding:
       - gzip
       date:
-      - Sun, 11 Jan 2026 21:55:34 GMT
+      - Mon, 12 Jan 2026 01:39:32 GMT
       server:
       - scaffolding on HTTPServer2
       x-xss-protection:
@@ -79,7 +79,7 @@ http_interactions:
       x-content-type-options:
       - nosniff
       server-timing:
-      - gfet4t7; dur=872
+      - gfet4t7; dur=949
       alt-svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       transfer-encoding:
@@ -87,5 +87,5 @@ http_interactions:
     body:
       encoding: UTF-8
       string: "{}\n"
-  recorded_at: Sun, 11 Jan 2026 21:55:34 GMT
+  recorded_at: Mon, 12 Jan 2026 01:39:32 GMT
 recorded_with: VCR 6.4.0

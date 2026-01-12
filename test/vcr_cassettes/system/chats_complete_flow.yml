@@ -1,0 +1,321 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores?key=<GEMINI_API_KEY>
+    body:
+      encoding: UTF-8
+      string: '{"displayName":"Test Project Store"}'
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json; charset=UTF-8
+      vary:
+      - Origin, X-Origin, Referer
+      content-encoding:
+      - gzip
+      date:
+      - Mon, 12 Jan 2026 01:42:10 GMT
+      server:
+      - scaffolding on HTTPServer2
+      x-xss-protection:
+      - '0'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+      server-timing:
+      - gfet4t7; dur=675
+      alt-svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      transfer-encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "name": "fileSearchStores/test-project-store-x9e2xcnt7f4k",
+          "displayName": "Test Project Store",
+          "createTime": "2026-01-12T01:42:10.143189Z",
+          "updateTime": "2026-01-12T01:42:10.143189Z"
+        }
+  recorded_at: Mon, 12 Jan 2026 01:42:10 GMT
+- request:
+    method: post
+    uri: https://generativelanguage.googleapis.com/upload/v1beta/fileSearchStores/test-project-store-x9e2xcnt7f4k:uploadToFileSearchStore?displayName=Ley+1564+CGP+-+Extracto&key=<GEMINI_API_KEY>
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        TEVZIDE1NjQgREUgMjAxMiAtIEPDk0RJR08gR0VORVJBTCBERUwgUFJPQ0VTTwoKVMONVFVMTyBJClBSSU5DSVBJT1MgR0VORVJBTEVTCgpBUlTDjUNVTE8gMS4gT0JKRVRPLiBFc3RlIGPDs2RpZ28gcmVndWxhIGxhIGFjdGl2aWRhZCBwcm9jZXNhbCBlbiBsb3MgYXN1bnRvcyBjaXZpbGVzLCBjb21lcmNpYWxlcywgZGUgZmFtaWxpYSB5IGFncmFyaW9zLiBTZSBhcGxpY2EsIGFkZW3DoXMsIGEgdG9kb3MgbG9zIGFzdW50b3MgZGUgY3VhbHF1aWVyIGp1cmlzZGljY2nDs24gbyBlc3BlY2lhbGlkYWQgeSBhIGxhcyBhY3R1YWNpb25lcyBkZSBwYXJ0aWN1bGFyZXMgeSBhdXRvcmlkYWRlcyBhZG1pbmlzdHJhdGl2YXMsIGN1YW5kbyBlamVyemFuIGZ1bmNpb25lcyBqdXJpc2RpY2Npb25hbGVzLCBlbiBjdWFudG8gbm8gZXN0w6luIHJlZ3VsYWRvcyBleHByZXNhbWVudGUgZW4gb3RyYXMgbGV5ZXMuCgpBUlTDjUNVTE8gMi4gQUNDRVNPIEEgTEEgSlVTVElDSUEuIFRvZGEgcGVyc29uYSBvIGdydXBvIGRlIHBlcnNvbmFzIHRpZW5lIGRlcmVjaG8gYSBsYSB0dXRlbGEganVyaXNkaWNjaW9uYWwgZWZlY3RpdmEgcGFyYSBlbCBlamVyY2ljaW8gZGUgc3VzIGRlcmVjaG9zIHkgbGEgZGVmZW5zYSBkZSBzdXMgaW50ZXJlc2VzLCBjb24gc3VqZWNpw7NuIGEgdW4gZGViaWRvIHByb2Nlc28gZGUgZHVyYWNpw7NuIHJhem9uYWJsZS4gTG9zIHTDqXJtaW5vcyBwcm9jZXNhbGVzIHNlIG9ic2VydmFyw6FuIGNvbiBkaWxpZ2VuY2lhIHkgc3UgaW5jdW1wbGltaWVudG8gaW5qdXN0aWZpY2FkbyBzZXLDoSBzYW5jaW9uYWRvLgoKQVJUw41DVUxPIDMuIFBST0NFU08gT1JBTCBZIFBPUiBBVURJRU5DSUFTLiBMYXMgYWN0dWFjaW9uZXMgc2UgY3VtcGxpcsOhbiBlbiBmb3JtYSBvcmFsLCBww7pibGljYSB5IGVuIGF1ZGllbmNpYXMsIHNhbHZvIGxhcyBxdWUgZXhwcmVzYW1lbnRlIHNlIGF1dG9yaWNlIHJlYWxpemFyIHBvciBlc2NyaXRvIG8gZXN0w6luIGFtcGFyYWRhcyBwb3IgcmVzZXJ2YS4KCkFSVMONQ1VMTyA4Mi4gUkVRVUlTSVRPUyBERSBMQSBERU1BTkRBLiBTYWx2byBkaXNwb3NpY2nDs24gZW4gY29udHJhcmlvLCBsYSBkZW1hbmRhIGNvbiBxdWUgc2UgcHJvbXVldmEgdG9kbyBwcm9jZXNvIGRlYmVyw6EgcmV1bmlyIGxvcyBzaWd1aWVudGVzIHJlcXVpc2l0b3M6CjEuIExhIGRlc2lnbmFjacOzbiBkZWwganVleiBhIHF1aWVuIHNlIGRpcmlqYS4KMi4gRWwgbm9tYnJlLCBlZGFkIHkgZG9taWNpbGlvIGRlbCBkZW1hbmRhbnRlIHkgZGVsIGRlbWFuZGFkbzsgc2kgc2UgaWdub3JhIGVsIGRlbCBkZW1hbmRhZG8sIHNlIGluZGljYXLDoSBlc3RhIGNpcmN1bnN0YW5jaWEgYmFqbyBqdXJhbWVudG8gcXVlIHNlIGVudGVuZGVyw6EgcHJlc3RhZG8gcG9yIGxhIHByZXNlbnRhY2nDs24gZGUgbGEgZGVtYW5kYS4KMy4gRWwgbm9tYnJlIGRlbCBhcG9kZXJhZG8ganVkaWNpYWwgZGVsIGRlbWFuZGFudGUsIHNpIGZ1ZXJlIGVsIGNhc28uCjQuIExvIHF1ZSBzZSBwcmV0ZW5kYSwgZXhwcmVzYWRvIGNvbiBwcmVjaXNpw7NuIHkgY2xhcmlkYWQuCjUuIExvcyBoZWNob3MgcXVlIHNpcnZhbiBkZSBmdW5kYW1lbnRvIGEgbGFzIHByZXRlbnNpb25lcywgZGViaWRhbWVudGUgZGV0ZXJtaW5hZG9zLCBjbGFzaWZpY2Fkb3MgeSBudW1lcmFkb3MuCjYuIExvcyBmdW5kYW1lbnRvcyBkZSBkZXJlY2hvLgo3LiBMYSBjdWFudMOtYSBkZWwgcHJvY2VzbywgY3VhbmRvIHNlYSBuZWNlc2FyaWEgcGFyYSBkZXRlcm1pbmFyIGxhIGNvbXBldGVuY2lhLgo4LiBMYSBpbmRpY2FjacOzbiBkZWwgbHVnYXIsIGxhIGRpcmVjY2nDs24gZsOtc2ljYSB5IGVsZWN0csOzbmljYSBkb25kZSBlbCBkZW1hbmRhbnRlIHkgZWwgZGVtYW5kYWRvIHJlY2liaXLDoW4gbm90aWZpY2FjaW9uZXMgcGVyc29uYWxlcy4KOS4gTG9zIGRlbcOhcyBxdWUgZXhpamEgbGEgbGV5IHBhcmEgZWwgY2Fzby4KCkFSVMONQ1VMTyA4My4gQU5FWE9TIERFIExBIERFTUFOREEuIEEgbGEgZGVtYW5kYSBzZSBhY29tcGHDsWFyw6E6CjEuIEVsIHBvZGVyIHBhcmEgaW5pY2lhciBlbCBwcm9jZXNvLCBjdWFuZG8gc2UgYWN0w7plIHBvciBtZWRpbyBkZSBhcG9kZXJhZG8uCjIuIExhIHBydWViYSBkZSBsYSBleGlzdGVuY2lhIHkgcmVwcmVzZW50YWNpw7NuIGRlIGxhcyBwYXJ0ZXMgeSBkZSBsYSBjYWxpZGFkIGVuIGxhIHF1ZSBhY3TDumFuLCBzaSBhIGVsbG8gaHViaWVyZSBsdWdhci4KMy4gTGEgcHJ1ZWJhIGRvY3VtZW50YWwgcXVlIGVzdHV2aWVyZSBlbiBwb2RlciBkZWwgZGVtYW5kYW50ZS4KNC4gTGFzIHBydWViYXMgYW50aWNpcGFkYXMgcXVlIHNlIGVuY3VlbnRyZW4gZW4gcG9kZXIgZGVsIGRlbWFuZGFudGUuCjUuIExvcyBkZW3DoXMgcXVlIGxhIGxleSBleGlqYS4KCkFSVMONQ1VMTyA5MC4gSU5BRE1JU0nDk04gWSBSRUNIQVpPIERFIExBIERFTUFOREEuIEVsIGp1ZXogZGVjbGFyYXLDoSBpbmFkbWlzaWJsZSBsYSBkZW1hbmRhOgoxLiBDdWFuZG8gbm8gcmXDum5hIGxvcyByZXF1aXNpdG9zIGZvcm1hbGVzLgoyLiBDdWFuZG8gbm8gc2UgYWNvbXBhw7FlbiBsb3MgYW5leG9zIG9yZGVuYWRvcyBwb3IgbGEgbGV5LgozLiBDdWFuZG8gZWwgZGVtYW5kYW50ZSBzZWEgaW5jYXBheiB5IG5vIGFjdMO6ZSBwb3IgY29uZHVjdG8gZGUgc3UgcmVwcmVzZW50YW50ZS4KNC4gQ3VhbmRvIHF1aWVuIGZvcm11bGUgbGEgZGVtYW5kYSBjYXJlemNhIGRlIGRlcmVjaG8gZGUgcG9zdHVsYWNpw7NuIHBhcmEgYWRlbGFudGFyIGVsIHJlc3BlY3Rpdm8gcHJvY2Vzby4KNS4gQ3VhbmRvIG5vIGNvbnRlbmdhIGVsIGp1cmFtZW50byBlc3RpbWF0b3Jpbywgc2llbmRvIG5lY2VzYXJpby4KNi4gQ3VhbmRvIG5vIHNlIGFjcmVkaXRlIHF1ZSBzZSBhZ290w7MgbGEgY29uY2lsaWFjacOzbiBwcmVqdWRpY2lhbCBjb21vIHJlcXVpc2l0byBkZSBwcm9jZWRpYmlsaWRhZC4KCkVsIGp1ZXogc2XDsWFsYXLDoSBjb24gcHJlY2lzacOzbiBsb3MgZGVmZWN0b3MgZGUgcXVlIGFkb2xlemNhIGxhIGRlbWFuZGEsIHBhcmEgcXVlIGVsIGRlbWFuZGFudGUgbG9zIHN1YnNhbmUgZW4gZWwgdMOpcm1pbm8gZGUgY2luY28gZMOtYXMuCg==
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Content-Type:
+      - text/plain
+      X-Goog-Upload-Protocol:
+      - raw
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json; charset=UTF-8
+      x-guploader-uploadid:
+      - AJRbA5Xt7mf5zjsyiLXJ9JEcIv4-ijVDvHANn7sErzUd4A5XrgrTmhsj69XSYD2Jo8Ps4xHJ
+      vary:
+      - Origin, X-Origin, Referer
+      content-length:
+      - '480'
+      date:
+      - Mon, 12 Jan 2026 01:42:11 GMT
+      server:
+      - UploadServer
+      alt-svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "name": "fileSearchStores/test-project-store-x9e2xcnt7f4k/upload/operations/ley-1564-cgp-extracto-ax9bwfiv4uha",
+          "response": {
+            "@type": "type.googleapis.com/google.ai.generativelanguage.v1main.UploadToFileSearchStoreResponse",
+            "parent": "fileSearchStores/test-project-store-x9e2xcnt7f4k",
+            "documentName": "fileSearchStores/test-project-store-x9e2xcnt7f4k/documents/ley-1564-cgp-extracto-ax9bwfiv4uha",
+            "mimeType": "text/plain",
+            "sizeBytes": "3091"
+          }
+        }
+  recorded_at: Mon, 12 Jan 2026 01:42:11 GMT
+- request:
+    method: get
+    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/test-project-store-x9e2xcnt7f4k/upload/operations/ley-1564-cgp-extracto-ax9bwfiv4uha?key=<GEMINI_API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json; charset=UTF-8
+      vary:
+      - Origin, X-Origin, Referer
+      content-encoding:
+      - gzip
+      date:
+      - Mon, 12 Jan 2026 01:42:12 GMT
+      server:
+      - scaffolding on HTTPServer2
+      x-xss-protection:
+      - '0'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+      server-timing:
+      - gfet4t7; dur=672
+      alt-svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      transfer-encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "name": "fileSearchStores/test-project-store-x9e2xcnt7f4k/upload/operations/ley-1564-cgp-extracto-ax9bwfiv4uha",
+          "done": true,
+          "response": {
+            "@type": "type.googleapis.com/google.ai.generativelanguage.v1main.UploadToFileSearchStoreResponse",
+            "parent": "fileSearchStores/test-project-store-x9e2xcnt7f4k",
+            "documentName": "fileSearchStores/test-project-store-x9e2xcnt7f4k/documents/ley-1564-cgp-extracto-ax9bwfiv4uha",
+            "mimeType": "text/plain",
+            "sizeBytes": "3091"
+          }
+        }
+  recorded_at: Mon, 12 Jan 2026 01:42:12 GMT
+- request:
+    method: post
+    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=<GEMINI_API_KEY>
+    body:
+      encoding: UTF-8
+      string: '{"systemInstruction":{"parts":[{"text":"Eres Martina, una asistente
+        legal experta especializada en análisis de documentos. Tu función es ayudar
+        a profesionales a encontrar y analizar información EXCLUSIVAMENTE en los documentos
+        proporcionados.\n\nREGLAS OBLIGATORIAS:\n1. SIEMPRE busca la información en
+        los documentos proporcionados ANTES de responder.\n2. Responde ÚNICAMENTE
+        con información que encuentres en los documentos. NO inventes ni asumas información.\n3.
+        Si NO encuentras la información en ningún documento, di claramente: \"No encontré
+        esta información en los documentos disponibles.\"\n4. Responde SIEMPRE en
+        español.\n\nFORMATO DE RESPUESTA:\n- No menciones explícitamente el nombre
+        del archivo o número de página en el texto de tu respuesta, ya que el sistema
+        lo mostrará automáticamente.\n- Integra la información de manera fluida en
+        tu respuesta.\n"}]},"contents":[{"role":"user","parts":[{"text":"¿Cuáles son
+        los requisitos de la demanda según el artículo 82 del CGP?"}]},{"role":"user","parts":[{"text":"¿Cuáles
+        son los requisitos de la demanda según el artículo 82 del CGP?"}]}],"tools":[{"fileSearch":{"fileSearchStoreNames":["fileSearchStores/test-project-store-x9e2xcnt7f4k"]}}],"generationConfig":{"temperature":0.0,"topK":40,"topP":0.95,"maxOutputTokens":8192,"responseMimeType":"text/plain"}}'
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json; charset=UTF-8
+      vary:
+      - Origin, X-Origin, Referer
+      content-encoding:
+      - gzip
+      date:
+      - Mon, 12 Jan 2026 01:42:19 GMT
+      server:
+      - scaffolding on HTTPServer2
+      x-xss-protection:
+      - '0'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+      server-timing:
+      - gfet4t7; dur=5162
+      alt-svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      transfer-encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "candidates": [
+            {
+              "content": {
+                "parts": [
+                  {
+                    "text": "De acuerdo con el artículo 82 del Código General del Proceso (CGP), salvo disposición en contrario, toda demanda debe cumplir con los siguientes requisitos:\n\n1.  **Designación del juez:** Se debe indicar el juez a quien se dirige la demanda.\n2.  **Identificación de las partes:** El nombre, edad y domicilio tanto del demandante como del demandado. En caso de ignorar el domicilio del demandado, se debe manifestar esta circunstancia bajo juramento, el cual se entiende prestado con la sola presentación de la demanda.\n3.  **Apoderado judicial:** El nombre del apoderado judicial del demandante, si es el caso.\n4.  **Pretensiones:** Lo que se pretenda, expresado con precisión y claridad.\n5.  **Hechos:** Los hechos que sirven de fundamento a las pretensiones, los cuales deben estar debidamente determinados, clasificados y numerados.\n6.  **Fundamentos de derecho:** Las normas jurídicas en que se apoya la demanda.\n7.  **Cuantía:** La indicación de la cuantía del proceso, cuando sea necesaria para determinar la competencia del juez.\n8.  **Notificaciones:** La indicación del lugar, dirección física y electrónica donde el demandante, su apoderado y el demandado recibirán notificaciones personales.\n9.  **Otros requisitos:** Los demás que exija la ley para casos específicos.",
+                    "thoughtSignature": "EsUHCsIHAXLI2nwNdC6bbgVMkZ9pwJJUOsBsQd5UhYcetJ2Vf0KBFmNy1z4UXON9SaVoLa6xo3JDYc2OESYYLR9X0H6I7kiKXiOp4X0ZAznUvJWzrj7Vp/Hx0GuFQNmCD3FBMukAwjE4UZSKYC+ehnaJpPP2cgXV5mktQSCme9ZDzi9GzIpD3ZwXyQvfTAJfn9Nd/o2uJJNaALxKSY0ImAK+eKoBMWwch2ZB1Ymbu0OWQvJl5NO3waoZeivwAYta4TKFHhEyWi4q833tdEZmQdLoWrW6hjEVoWsSimwFMBmr/HJU9YXok6wacIDTza7iYhZmxjHY/qRX6iT/EexQa4dpQpkc5f+wLdFTacDPkf10Ty/kym3bfow99jmH8by3UVaTh+bAhOuRQkkEnlZkEnon6PmcqvIuQtLsJl9Z8WZob9d8Ftlnw54rK/sEa2up3UbLbLB2bV71lI7Ya0+WDyRdrp7PWVLpSAdWPqOguQrncqyr6YXdyrrq0F/UYqdQL9Qo6vVPr0ZW7RV2z9y5PONo8s5r/LrQ+yHMddVIgyQSFOlnTYKxFkbT0pyBSlCAftrYtiDCSA12cy2/MVf+Gifi0HBvbKJgh4DexWQPhGkMNGO5h5uN/7MwhZJB8eFgLY4B3pSN+x0M0ey3/lWbWjpG9nBOpzgm5xlv7MUgEn8OZ1pvcI1JmK2cOFhs3RvXEpW8fC+09f7EtlkfYp8284W/51vbHkdiXBwNEBJD6yrR+FE5IbT5KhLGmeyZPs5/yJOh4p5PpiLiRw4qF+Of8GADsPIfqBH2QMS3Q0EGeG2RXE5Auagn5bFnXqRgYw0P05uEjOi7Z9B8A6465Bzlmng4zOiJoKSc0fLclq1JH1El3liS8QxwQnZr0RVjw4Ufb4VVTPB9DAnvw37/pG/K1BH/mhwb039womC5LChB4AixCgDgNgoVPlZvqWqJGsBj0wAv/kLNZ40EI9FUOFCm8inreKU7A3TA87a2LpkwjnbgLSAgNwSEjYJ42KyUCWdPwc4qX7XdiLLG7ZoWbmPSazAkbeeXHsG5jpvFu80d3Hk4m43orvIr/qIKFjC8WlRBOHTK725utGosEwIGXkP8uR7IHSF6AROn7GZKsW4dN2TrnpdsSTiLNqb8iS2UG2BtTyTHZWsoNoraX/Xz7RhstfMkzZjD1ETK5+do+tkG7mgkjJ7fyrxCRAMf2Oq+mt//ppKddk4qcytxGsq7mf6zw6M4TBijrYz2yZr8wxWMuigP2FFVabCreG7vUtLmOAZjuWlTip45k0Q="
+                  }
+                ],
+                "role": "model"
+              },
+              "finishReason": "STOP",
+              "index": 0,
+              "groundingMetadata": {
+                "groundingChunks": [
+                  {
+                    "retrievedContext": {
+                      "title": "Ley 1564 CGP - Extracto",
+                      "text": "LEY 1564 DE 2012 - CÓDIGO GENERAL DEL PROCESO\n\nTÍTULO I\nPRINCIPIOS GENERALES\n\nARTÍCULO 1. OBJETO. Este código regula la actividad procesal en los asuntos civiles, comerciales, de familia y agrarios. Se aplica, además, a todos los asuntos de cualquier jurisdicción o especialidad y a las actuaciones de particulares y autoridades administrativas, cuando ejerzan funciones jurisdiccionales, en cuanto no estén regulados expresamente en otras leyes.\n\nARTÍCULO 2. ACCESO A LA JUSTICIA. Toda persona o grupo de personas tiene derecho a la tutela jurisdiccional efectiva para el ejercicio de sus derechos y la defensa de sus intereses, con sujeción a un debido proceso de duración razonable. Los términos procesales se observarán con diligencia y su incumplimiento injustificado será sancionado.\n\nARTÍCULO 3. PROCESO ORAL Y POR AUDIENCIAS. Las actuaciones se cumplirán en forma oral, pública y en audiencias, salvo las que expresamente se autorice realizar por escrito o estén amparadas por reserva.\n\nARTÍCULO 82. REQUISITOS DE LA DEMANDA. Salvo disposición en contrario, la demanda con que se promueva todo proceso deberá reunir los siguientes requisitos:\n1. La designación del juez a quien se dirija.\n2. El nombre, edad y domicilio del demandante y del demandado; si se ignora el del demandado, se indicará esta circunstancia bajo juramento que se entenderá",
+                      "fileSearchStore": "fileSearchStores/test-project-store-x9e2xcnt7f4k"
+                    }
+                  },
+                  {
+                    "retrievedContext": {
+                      "title": "Ley 1564 CGP - Extracto",
+                      "text": "del demandante y del demandado; si se ignora el del demandado, se indicará esta circunstancia bajo juramento que se entenderá prestado por la presentación de la demanda.\n3. El nombre del apoderado judicial del demandante, si fuere el caso.\n4. Lo que se pretenda, expresado con precisión y claridad.\n5. Los hechos que sirvan de fundamento a las pretensiones, debidamente determinados, clasificados y numerados.\n6. Los fundamentos de derecho.\n7. La cuantía del proceso, cuando sea necesaria para determinar la competencia.\n8. La indicación del lugar, la dirección física y electrónica donde el demandante y el demandado recibirán notificaciones personales.\n9. Los demás que exija la ley para el caso.\n\nARTÍCULO 83. ANEXOS DE LA DEMANDA. A la demanda se acompañará:\n1. El poder para iniciar el proceso, cuando se actúe por medio de apoderado.\n2. La prueba de la existencia y representación de las partes y de la calidad en la que actúan, si a ello hubiere lugar.\n3. La prueba documental que estuviere en poder del demandante.\n4. Las pruebas anticipadas que se encuentren en poder del demandante.\n5. Los demás que la ley exija.\n\nARTÍCULO 90. INADMISIÓN Y RECHAZO DE LA DEMANDA. El juez declarará inadmisible la demanda:\n1. Cuando no reúna los requisitos formales.\n2. Cuando no se acompañen los anexos ordenados",
+                      "fileSearchStore": "fileSearchStores/test-project-store-x9e2xcnt7f4k"
+                    }
+                  },
+                  {
+                    "retrievedContext": {
+                      "title": "Ley 1564 CGP - Extracto",
+                      "text": "DEMANDA. El juez declarará inadmisible la demanda:\n1. Cuando no reúna los requisitos formales.\n2. Cuando no se acompañen los anexos ordenados por la ley.\n3. Cuando el demandante sea incapaz y no actúe por conducto de su representante.\n4. Cuando quien formule la demanda carezca de derecho de postulación para adelantar el respectivo proceso.\n5. Cuando no contenga el juramento estimatorio, siendo necesario.\n6. Cuando no se acredite que se agotó la conciliación prejudicial como requisito de procedibilidad.\n\nEl juez señalará con precisión los defectos de que adolezca la demanda, para que el demandante los subsane en el término de cinco días.\n",
+                      "fileSearchStore": "fileSearchStores/test-project-store-x9e2xcnt7f4k"
+                    }
+                  }
+                ],
+                "groundingSupports": [
+                  {
+                    "segment": {
+                      "startIndex": 161,
+                      "endIndex": 245,
+                      "text": "1.  **Designación del juez:** Se debe indicar el juez a quien se dirige la demanda."
+                    },
+                    "groundingChunkIndices": [
+                      0
+                    ]
+                  },
+                  {
+                    "segment": {
+                      "startIndex": 246,
+                      "endIndex": 353,
+                      "text": "2.  **Identificación de las partes:** El nombre, edad y domicilio tanto del demandante como del demandado."
+                    },
+                    "groundingChunkIndices": [
+                      0
+                    ]
+                  },
+                  {
+                    "segment": {
+                      "startIndex": 354,
+                      "endIndex": 524,
+                      "text": "En caso de ignorar el domicilio del demandado, se debe manifestar esta circunstancia bajo juramento, el cual se entiende prestado con la sola presentación de la demanda."
+                    },
+                    "groundingChunkIndices": [
+                      1,
+                      0
+                    ]
+                  },
+                  {
+                    "segment": {
+                      "startIndex": 696,
+                      "endIndex": 842,
+                      "text": "5.  **Hechos:** Los hechos que sirven de fundamento a las pretensiones, los cuales deben estar debidamente determinados, clasificados y numerados."
+                    },
+                    "groundingChunkIndices": [
+                      1
+                    ]
+                  },
+                  {
+                    "segment": {
+                      "startIndex": 843,
+                      "endIndex": 924,
+                      "text": "6.  **Fundamentos de derecho:** Las normas jurídicas en que se apoya la demanda."
+                    },
+                    "groundingChunkIndices": [
+                      1,
+                      0
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "usageMetadata": {
+            "promptTokenCount": 273,
+            "candidatesTokenCount": 305,
+            "totalTokenCount": 2551,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 273
+              }
+            ],
+            "toolUsePromptTokenCount": 1569,
+            "toolUsePromptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 1569
+              }
+            ],
+            "thoughtsTokenCount": 404
+          },
+          "modelVersion": "gemini-3-flash-preview",
+          "responseId": "e1FkacjFIo-4mtkPyfzxwAY"
+        }
+  recorded_at: Mon, 12 Jan 2026 01:42:19 GMT
+recorded_with: VCR 6.4.0

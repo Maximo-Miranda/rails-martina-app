@@ -5,7 +5,7 @@ http_interactions:
     uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores?key=<GEMINI_API_KEY>
     body:
       encoding: UTF-8
-      string: '{"displayName":"Chat Test Store 2c064cd0"}'
+      string: '{"displayName":"Chat Test Store faf9c0ec"}'
     headers:
       User-Agent:
       - Faraday v2.14.0
@@ -23,7 +23,7 @@ http_interactions:
       content-encoding:
       - gzip
       date:
-      - Mon, 05 Jan 2026 04:49:01 GMT
+      - Mon, 12 Jan 2026 01:39:36 GMT
       server:
       - scaffolding on HTTPServer2
       x-xss-protection:
@@ -33,7 +33,7 @@ http_interactions:
       x-content-type-options:
       - nosniff
       server-timing:
-      - gfet4t7; dur=695
+      - gfet4t7; dur=644
       alt-svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       transfer-encoding:
@@ -42,15 +42,15 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "name": "fileSearchStores/chat-test-store-2c064cd0-tdnfusffmyht",
-          "displayName": "Chat Test Store 2c064cd0",
-          "createTime": "2026-01-05T04:49:01.194877Z",
-          "updateTime": "2026-01-05T04:49:01.194877Z"
+          "name": "fileSearchStores/chat-test-store-faf9c0ec-f1yzx69fv6a4",
+          "displayName": "Chat Test Store faf9c0ec",
+          "createTime": "2026-01-12T01:39:36.500079Z",
+          "updateTime": "2026-01-12T01:39:36.500079Z"
         }
-  recorded_at: Mon, 05 Jan 2026 04:49:01 GMT
+  recorded_at: Mon, 12 Jan 2026 01:39:36 GMT
 - request:
     method: post
-    uri: https://generativelanguage.googleapis.com/upload/v1beta/fileSearchStores/chat-test-store-2c064cd0-tdnfusffmyht:uploadToFileSearchStore?displayName=Sentencia+C-016-98+6d342d84&key=<GEMINI_API_KEY>
+    uri: https://generativelanguage.googleapis.com/upload/v1beta/fileSearchStores/chat-test-store-faf9c0ec-f1yzx69fv6a4:uploadToFileSearchStore?displayName=Sentencia+C-016-98+9e21f1b1&key=<GEMINI_API_KEY>
     body:
       encoding: ASCII-8BIT
       string: !binary |-
@@ -70,13 +70,13 @@ http_interactions:
       content-type:
       - application/json; charset=UTF-8
       x-guploader-uploadid:
-      - AHVrFxM2Tfjzop-rp8tWLQTzYe_OICqXJqFYln3EWCEmEh_s8EtwiYVFbnL_vlKjFuUivqbD
+      - AJRbA5UoTGf-Wi-7Zbd0itBX6YpBas0ez8kLGDbvLxxno5CLKxOGfdaAn_YGdkOPd5J4s2o1
       vary:
       - Origin, X-Origin, Referer
       content-length:
       - '513'
       date:
-      - Mon, 05 Jan 2026 04:49:04 GMT
+      - Mon, 12 Jan 2026 01:39:39 GMT
       server:
       - UploadServer
       alt-svc:
@@ -85,19 +85,19 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "name": "fileSearchStores/chat-test-store-2c064cd0-tdnfusffmyht/upload/operations/sentencia-c01698-6d342d84-ti51ae7smura",
+          "name": "fileSearchStores/chat-test-store-faf9c0ec-f1yzx69fv6a4/upload/operations/sentencia-c01698-9e21f1b1-w9pxnusg9byl",
           "response": {
             "@type": "type.googleapis.com/google.ai.generativelanguage.v1main.UploadToFileSearchStoreResponse",
-            "parent": "fileSearchStores/chat-test-store-2c064cd0-tdnfusffmyht",
-            "documentName": "fileSearchStores/chat-test-store-2c064cd0-tdnfusffmyht/documents/sentencia-c01698-6d342d84-ti51ae7smura",
+            "parent": "fileSearchStores/chat-test-store-faf9c0ec-f1yzx69fv6a4",
+            "documentName": "fileSearchStores/chat-test-store-faf9c0ec-f1yzx69fv6a4/documents/sentencia-c01698-9e21f1b1-w9pxnusg9byl",
             "mimeType": "application/pdf",
             "sizeBytes": "202571"
           }
         }
-  recorded_at: Mon, 05 Jan 2026 04:49:04 GMT
+  recorded_at: Mon, 12 Jan 2026 01:39:39 GMT
 - request:
     method: get
-    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/chat-test-store-2c064cd0-tdnfusffmyht/upload/operations/sentencia-c01698-6d342d84-ti51ae7smura?key=<GEMINI_API_KEY>
+    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/chat-test-store-faf9c0ec-f1yzx69fv6a4/upload/operations/sentencia-c01698-9e21f1b1-w9pxnusg9byl?key=<GEMINI_API_KEY>
     body:
       encoding: US-ASCII
       string: ''
@@ -116,7 +116,7 @@ http_interactions:
       content-encoding:
       - gzip
       date:
-      - Mon, 05 Jan 2026 04:49:05 GMT
+      - Mon, 12 Jan 2026 01:39:40 GMT
       server:
       - scaffolding on HTTPServer2
       x-xss-protection:
@@ -126,7 +126,7 @@ http_interactions:
       x-content-type-options:
       - nosniff
       server-timing:
-      - gfet4t7; dur=871
+      - gfet4t7; dur=664
       alt-svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       transfer-encoding:
@@ -135,17 +135,17 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "name": "fileSearchStores/chat-test-store-2c064cd0-tdnfusffmyht/upload/operations/sentencia-c01698-6d342d84-ti51ae7smura",
+          "name": "fileSearchStores/chat-test-store-faf9c0ec-f1yzx69fv6a4/upload/operations/sentencia-c01698-9e21f1b1-w9pxnusg9byl",
           "done": true,
           "response": {
             "@type": "type.googleapis.com/google.ai.generativelanguage.v1main.UploadToFileSearchStoreResponse",
-            "parent": "fileSearchStores/chat-test-store-2c064cd0-tdnfusffmyht",
-            "documentName": "fileSearchStores/chat-test-store-2c064cd0-tdnfusffmyht/documents/sentencia-c01698-6d342d84-ti51ae7smura",
+            "parent": "fileSearchStores/chat-test-store-faf9c0ec-f1yzx69fv6a4",
+            "documentName": "fileSearchStores/chat-test-store-faf9c0ec-f1yzx69fv6a4/documents/sentencia-c01698-9e21f1b1-w9pxnusg9byl",
             "mimeType": "application/pdf",
             "sizeBytes": "202571"
           }
         }
-  recorded_at: Mon, 05 Jan 2026 04:49:05 GMT
+  recorded_at: Mon, 12 Jan 2026 01:39:40 GMT
 - request:
     method: post
     uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=<GEMINI_API_KEY>
@@ -166,7 +166,7 @@ http_interactions:
         la sentencia C-016-98?"}]},{"role":"model","parts":[{"text":"La sentencia
         C-016-98 de la Corte Constitucional analiza la constitucionalidad de normas
         relacionadas con allanamientos y registros domiciliarios."}]},{"role":"user","parts":[{"text":"¿Cuál
-        fue la decisión final de la Corte?"}]}],"tools":[{"fileSearch":{"fileSearchStoreNames":["fileSearchStores/chat-test-store-2c064cd0-tdnfusffmyht"]}}],"generationConfig":{"temperature":0.0,"topK":40,"topP":0.95,"maxOutputTokens":8192,"responseMimeType":"text/plain"}}'
+        fue la decisión final de la Corte?"}]}],"tools":[{"fileSearch":{"fileSearchStoreNames":["fileSearchStores/chat-test-store-faf9c0ec-f1yzx69fv6a4"]}}],"generationConfig":{"temperature":0.0,"topK":40,"topP":0.95,"maxOutputTokens":8192,"responseMimeType":"text/plain"}}'
     headers:
       User-Agent:
       - Faraday v2.14.0
@@ -184,7 +184,7 @@ http_interactions:
       content-encoding:
       - gzip
       date:
-      - Mon, 05 Jan 2026 04:49:13 GMT
+      - Mon, 12 Jan 2026 01:39:46 GMT
       server:
       - scaffolding on HTTPServer2
       x-xss-protection:
@@ -194,7 +194,7 @@ http_interactions:
       x-content-type-options:
       - nosniff
       server-timing:
-      - gfet4t7; dur=7583
+      - gfet4t7; dur=6622
       alt-svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       transfer-encoding:
@@ -208,8 +208,8 @@ http_interactions:
               "content": {
                 "parts": [
                   {
-                    "text": "La decisión final de la Corte Constitucional en la sentencia C-016-98 fue la siguiente:\n\n1.  **Estarse a lo resuelto** (cosa juzgada) respecto a la expresión \"...pero es renovable indefinidamente\" del artículo 46 del Código Sustantivo del Trabajo, conforme a la sentencia C-588 de 1995.\n2.  **Estarse a lo resuelto** por la Corte Suprema de Justicia en relación con las palabras \"y así sucesivamente\" del numeral 2 del artículo 46 del mismo código.\n3.  **Declarar EXEQUIBLES** (ajustadas a la Constitución):\n    *   La expresión \"por tiempo determinado\" del artículo 45 del Código Sustantivo del Trabajo.\n    *   El artículo 46 del mismo código (subrogado por el artículo 3 de la Ley 50 de 1990), con excepción de lo ya fallado.\n    *   El literal c) del artículo 61 del Código Sustantivo del Trabajo (subrogado por el artículo 5 de la Ley 50 de 1990).\n\nEn resumen, la Corte determinó que los contratos de trabajo a término fijo no son inconstitucionales por sí mismos, siempre que se respeten los derechos mínimos y la estabilidad laboral de los trabajadores.",
-                    "thoughtSignature": "EusQCugQAXLI2nxtIEGy8zP+WSt1UDN+lGYl2q3c6i9x83GCsuWFc3VEi+DpjSMRF/8lmgHBUu+0LpfinLrCTjp/9Js+vP3cW6x3YH6zGjpDs2lT/GnmW/T6BeRdBlbEx+XREcck3FvUPu5O9Nstok1gE87DJ3qSB21E7tQyQoj4A61OJUQx08FRlc7LpoL7wIEEdiHQoZsJLxZ9jNyfFsFaoT2tjG9NEPJ59tozEm+pKmOUB22/vxM90aejMJeKl9PxE//NcLhdwwAocpyTACsZrMd+3XswEieLktwyL9BwFmRSTxTxOz2IfmnWJtZUNmUNczDz+uhDdTEg5Wl3w8s7ktHoLH4WKXOVwG74HQypag4T3QcUk24z5ux8rcMekkM9UHrdMmP0roOy7yS1D0cQM17KSXhuRO4jdIrymhO6DtKmLIQRwO6yOgDWbVYJwLMl1GUZU93Tj8q3E483FDyqbQ3g+RbTrYVHv7V0gQR55q/N19tUqY80At4LlDRJsyuckHJ/9Nb29831QmQzUE9lsD0AYUiIo3tRQV5LTwKQnPeRH/F1mWPbDfSDIgfW71hjaydPoZwphXuLTl+jBmPusTk7IDdlsa3PSi6NrDv9a4rFFyLf2yeOdOVllUcuqr9K1LfHSOin9kRhGw898xcpLNvin7B4J/ko6CWDTqL9LR/mbJnF2f4pUr+R8+Bi2A/Phemk3OfSso74ad2E74ap8te/S4BERp4izMSExrLrUE4bbqQCjlwRXSeJPaNZfW2gME27dlIul/vQdJCHbDLbOp9BIOhjPLgPS1P6lFd33+7wrqMpUC3ZxUD8xq2Wq7s/siF6C62A0lrsPUpsvLSBBk4ouLd89+t6BYaGMHxEEgc/114O+zIYZl5EDxHMmiA4Mk9MJX+S+aoLB7Z+mgdsvQXXU7h6jlCn5Sij2uonJw/VIlFP98xTKPOHytkNNqMy6HlCFkdGKdIVFWo05X5dSmYl4kcW58aiAISFmpNSs7adoMil7eMCIhn3Vl8h45YooOXMhruGJx4hBeHqq3VSYpIOW/Ov1RpYfwN9WHUJREwBfE0SjTaAdLJrNkqSSXsuPGW0au+xaXxPoLJFjNsx1KV69z+acMgBCoQMcV7aaxCDPz7zyMMRMAFH+cjaiuCcdJuALv08/pGt1TA9BAkoXaomIo6Ua9/6/Amt8kx21qfqyvXofHd2zFGY+0OYo+boo7+kfZGZgAqAVNhYVyRiMoCyyzj6UjKWwb+L8J5Qj5QEYMCUILMogKFPG7+iG3JQ0AlYB3yCFwyEjYhAp9TPlFm5XKql98sZgF0wz55RE1rwlsGkcb68LLn/nJgildfK3ZxTYiHAbmRsqF1xFsU7nyxWMA5zl0VVxhlH07Xun7kFEEDD3BCRnNWPvY3WWPpW/M9n6aHiiJ5ZmKCREIqqJt7BEBx4oIpmb7sTjblps/i5QVZyNZimJap2aVX6sPQnI94t2L5cR5VfoXX+wjWVJxMsxKr001grW7RzEeoh7HDS8DNVsDz3Q/ejMsFA0KzaDmgfROK/KMbN8r8BLa3OerDaAgl/wVEm72+I9ZldKQ45a5Mnjn6wPhUpyYFfQpV2K+ZItI2XSWjKj3KkpdIJKOf88BYG/h6L5BE9gvPtVJDHhO93rFwtBrnUZa2adTSmY01MSqysjfQplxFi5u0jL6Httdxc58XWybn8BXliXLMv31sd6tv5oF8qoC5znW7jz2h+3doAjbIR/exBPTvMSFMaQy9vLJtSG+rU33DDS1OuPNPtUziG1SMy+w2tS3qr0BARJIuYqATNJlbobzWOKBAmP/unUZ08wfvDp7FOPMb4iE16qe4XMSnTrl4iP+J1fq1W1++fnz8yZnD81mwkIGKoZwvxqP+CFfEcFVmP2d1az0BeSVMIQdpD1wH+KQcRJdY7jxRF7TmW/l0ONMIfCXs1Hnuwtewg4iBtks9d/HlPeJPOih8RIxu+wXb7V3T5Lkpn9roi3VAXZk75CSnwi4ikABsrNwzkqyDrNawFjNwthdcELYyQXLELKfEsn/lLp/uqG0erBKmJG4HuC2doTBEMv83p09fNDpmfRp+qTGPRTzEcFe8Yvo8U1nxI7PqJhMOiPtaG8TS04EXUQX/I1K95HcJoCuKd6A/WKrS4+nCBC9Bez4asxRbsLGDNggExtVRCbLv3zGp+/GGIGyOlckgnGOY4cQIKAcbJHtCJFdcHE/YiwUVEz5E5SEB5aL0rfq0ZPwK9rhwEmn9Wii2C/DSYAIttIq+XmyZ7f7zPpcZyecIiuNZfADtIZ4tHgyUD332sEho9hZKjtKpwZbLQ/S90s7mw7k3VArVXmB83dh0v6Qy4AKTHkfMf5zsZlg/Y4ucZ4AgwoNbMs/YKsI/RhY+GFbDRaWiOx9U/yesJzvL4OhzGlgw4dWwP40L7SsArVJ6HCcJBfg5xZe5tkPLkH5vwkTAjfMX1u1iOA0LaCNz45V3h/1xEq6vHqTFCYor8lzqXOu/on2A2hYrxM3BvdhxXFmtdIKaFm4RAetxmN0LGie/N+64y49rc4eAwQr8vPm74ACH0IHE3X4IUhOk3AveIrsx/CMWLVY3Wx1gGo+jToKP5KfPJSbi/38z5zPHw5o6RTnF16Oa6TSWg5v3TEyDtfXHhF3k2Sj7ZZK36EHuDFiYeggBAhSTYB1HsAypDz674HDSqwHhYo+8pwlMe9owDN68wh1fymZUF4CRO7PHyxTySowxthoQPeIfZguY0+82YAEhYoDiQHULxYhY791OZ3qgz5cDdhCstZmF+nvOS8D+/Z+yXf2CRx7Xug0hs80Z/ZAbD4/WzNBNaBaJ0WAAfEsIVpMdWZ7y/QKPWMmCKaf9wR3VZVF9WUg=="
+                    "text": "La decisión final de la Corte Constitucional en la sentencia C-016-98 fue la siguiente:\n\n1.  **Estarse a lo resuelto** en la Sentencia C-588 de 1995 respecto a la expresión \"...pero es renovable indefinidamente\" del artículo 46 del Código Sustantivo del Trabajo.\n2.  **Estarse a lo resuelto** por la Corte Suprema de Justicia (Sentencia 109 de 1991) en relación con las palabras \"y así sucesivamente\" del numeral 2 del artículo 46 del Código Sustantivo del Trabajo.\n3.  **Declarar EXEQUIBLES** (ajustados a la Constitución):\n    *   La expresión \"por tiempo determinado\" del artículo 45 del Código Sustantivo del Trabajo.\n    *   El artículo 46 del mismo Código (subrogado por el artículo 3 de la Ley 50 de 1990), con excepción de lo ya fallado anteriormente.\n    *   El literal c) del artículo 61 de dicho Código (subrogado por el artículo 5 de la Ley 50 de 1990).\n\nCabe precisar que esta sentencia trata sobre la constitucionalidad de los **contratos de trabajo a término fijo** y no sobre allanamientos, como se mencionó anteriormente. La Corte determinó que esta modalidad contractual no es contraria a la Constitución, siempre que no se utilice para desconocer la estabilidad y los derechos mínimos de los trabajadores.",
+                    "thoughtSignature": "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"
                   }
                 ],
                 "role": "model"
@@ -220,37 +220,37 @@ http_interactions:
                 "groundingChunks": [
                   {
                     "retrievedContext": {
-                      "title": "Sentencia C-016-98 6d342d84",
+                      "title": "Sentencia C-016-98 9e21f1b1",
                       "text": "necesitan una mayor\n extensión de tiempo se formalicen.\n\nPor lo dicho, esta Corporación declarará exequibles las normas del Código\n Sustantivo del Trabajo impugnadas por el actor.\n\nEn mérito de lo expuesto, la Corte Constitucional, administrando justicia en\n nombre del pueblo y por mandato de la Constitución,\n\nRESUELVE:\n\nPrimero.- ESTESE a lo resuelto por la Corte en relación con las palabras\n \"...pero es renovable indefinidamente\", del artículo 46 del Código Sustantivo\n del Trabajo (Sentencia C-588 del 7 de diciembre de 1995).\n\nSegundo.- ESTESE a lo resuelto por la Corte Suprema de Justicia (Sentencia\n 109 del 19 de septiembre de 1991) respecto de las palabras \"y así\n sucesivamente\", del artículo 46 del Código Sustantivo del Trabajo, numeral 2,\n subrogado por el 3 de la Ley 50 de 1990.\n\nTercero.- Declarar EXEQUIBLES, las expresiones \"por tiempo determinado\"\n del artículo 45 del Código Sustantivo del Trabajo; el artículo 46 del mismo\n Código, subrogado por el 3 de la Ley 50 de 1990, excepto lo ya fallado; y el\n literal c) del artículo 61 de dicho Código, subrogado por el 5 de la Ley 50 de\n 1990.\n\nCópiese, notifiquese, comuníquese, insértese en la Gaceta de la Corte\n Constitucional, cúmplase y archívese el expediente.\n\nΑΝΤΟΝΙΟ BARRERA CARBONELL\n Presidente\n\n\n--- PAGE 13 ---\n\nJORGE ARANGO MEJЛА\n Magistrado\n\nEDUARDO",
-                      "fileSearchStore": "fileSearchStores/chat-test-store-2c064cd0-tdnfusffmyht"
+                      "fileSearchStore": "fileSearchStores/chat-test-store-faf9c0ec-f1yzx69fv6a4"
                     }
                   },
                   {
                     "retrievedContext": {
-                      "title": "Sentencia C-016-98 6d342d84",
-                      "text": "derecho, que\n ameriten que esta Corporación la expulse del ordenamiento jurídico.\n\nCuarta. Los contratos de trabajo a término fijo no son per se\n\n\n--- PAGE 8 ---\n\ninconstitucionales.\n\nEl argumento central esgrimido por el actor y por quienes coadyuvan la\n demanda, en busca de la declaración de inexequibilidad de las disposiciones\n acusadas, parte del supuesto de que, al permitir que se pacten contratos de\n trabajo fijando un término de vigencia, la ley contraría el artículo 53 de\n la Constitución, que garantiza, como derecho mínimo e inalienable de los\n trabajadores, la estabilidad en el empleo.\n\nYa en anteriores oportunidades, esta Corporación ha señalado que \"los\n contratos de trabajo a término fijo no son per se inconstitucionales, siempre\n que de acuerdo con el principio de la autonomía de la voluntad provengan del\n acuerdo entre los empleadores y los trabajadores y no de la imposición del\n legislador\"\n\nAhora bien, como se dijo antes, ese acuerdo de voluntades está restringido por\n la normativa constitucional y por la regulación legal que rige la materia, las\n cuales se superponen a la voluntad de las partes; es así como, por ejemplo,\n las partes están impedidas para acordar condiciones de trabajo que vulneren o\n transgredan sus derechos fundamentales, y en el caso específico que",
-                      "fileSearchStore": "fileSearchStores/chat-test-store-2c064cd0-tdnfusffmyht"
+                      "title": "Sentencia C-016-98 9e21f1b1",
+                      "text": "La competencia y el objeto de control.\n\nEsta Corte es competente para decidir en definitiva sobre la constitucionalidad\n de la norma acusada, de conformidad con lo dispuesto en el artículo 241,\n numeral 5 de la Constitución Política.\n\nCosa juzgada constitucional\n\nLa Corte Constitucional, mediante Sentencia C-588 del 7 de diciembre de\n 1995 (M.P.: Dr. Antonio Barrera Carbonell), declaró exequibles las expresiones\n \"...pero es renovable indefinidamente\", incluidas en el artículo 46 del Código\n Sustantivo del Trabajo, norma que ahora se demanda en su totalidad.\n\nAl respecto, entonces, habrá de acatarse lo resuelto, en cumplimiento del\n artículo 243 de la Constitución Política en cuanto operó el fenómeno de la cosa\n juzgada.\n\nOcurre lo propio con las palabras \"...y así sucesivamente\", del artículo 3,\n numeral 2, de la Ley 50 de 1990, que subrogó el artículo 46 del Código\n Sustantivo del Trabajo. Ellas fueron declaradas exequibles, ya bajo la vigencia\n de la Constitución Política de 1991, por la Corte Suprema de Justicia, cuando\n todavía ejercía la función de control constitucional, mediante Sentencia 109 del\n 19 de septiembre de 1991 (M.P.: Dr. Simón Rodríguez Rodríguez).\n\nSegunda.- Materia de la demanda.\n\nLa demanda del actor pretende la declaratoria, por parte de esta Corporación,\n de la inconstitucionalidad de los apartes demandados de los",
+                      "fileSearchStore": "fileSearchStores/chat-test-store-faf9c0ec-f1yzx69fv6a4"
                     }
                   },
                   {
                     "retrievedContext": {
-                      "title": "Sentencia C-016-98 6d342d84",
-                      "text": "bajo las\n normas constitucionales de orden público que son exigibles más allá del texto\n legal enjuiciado.\n\nEsta modalidad contractual no es de por sí contraria a la Constitución Política\n -como ya varias veces lo ha recordado la Corte-, pero no se debe admitir\n sin mayor análisis que ella pueda usarse, con base en el solo pacto entre el\n empleador y el empleado, como un medio idóneo -impuesto por el primero al\n segundo, a partir de su condición de parte débil dentro de la relación laboral-\n para disponer arbitraria y unilateralmente de su estabilidad y de los derechos\n mínimos que la Constitución le otorga.\n\n2. Nuestro criterio al respecto es el mismo que consignara el H. Magistrado\n\n\n--- PAGE 15 ---\n\nAlejandro Martínez Caballero en aclaración de voto relativa a la Sentencia\n C-003 del 22 de enero de 1998, sobre el contrato a término fijo con entidades\n públicas:\n\n\"Se parte de una previa aclaración: la autonomía propia de la\n vinculación civil difiere de la vinculación laboral porque en la\n primera el contrato se basa en la igualdad formal de las partes,\n mientras en la segunda el contrato es realidad, o sea, lo acorde con\n las condiciones reales de la prestación del servicio.\n\nEs la propia Constitución la",
-                      "fileSearchStore": "fileSearchStores/chat-test-store-2c064cd0-tdnfusffmyht"
-                    }
-                  },
-                  {
-                    "retrievedContext": {
-                      "title": "Sentencia C-016-98 6d342d84",
+                      "title": "Sentencia C-016-98 9e21f1b1",
                       "text": "la Gaceta de la Corte\n Constitucional, cúmplase y archívese el expediente.\n\nΑΝΤΟΝΙΟ BARRERA CARBONELL\n Presidente\n\n\n--- PAGE 13 ---\n\nJORGE ARANGO MEJЛА\n Magistrado\n\nEDUARDO CIFUENTES MUÑOZ\n Magistrado\n\nCARLOS GAVIRIA DIAZ\n Magistrado\n\nHERNANDO HERRERA VERGARA\n Magistrado\n\nJOSE GREGORIO HERNANDEZ GALINDO\n\nMagistrado\n\nALEJANDRO MARTINEZ CABALLERO\n Magistrado\n\nFABIO MORON DIAZ\n\nMagistrado\n\nVLADIMIRO NARANJO MESA\n Magistrado\n\nMARTHA VICTORIA SACHICA DE MONCALEANO\n\nSecretaria General\n\n\n--- PAGE 14 ---\n\nSalvamento de voto a la Sentencia C-016/98\n\nCONTRATO DE TRABAJO A TERMINO FIJO-No es per se\n inconstitucional/CONTRATO DE TRABAJO A TERMINO FIJO-\n Necesidad de sentencia condicionada (Salvamento de voto)\n\nNo compartimos la decisión de declarar la exequibilidad incondicionada del\n articulo impugnado. Estimamos que ha debido ella supeditarse a que se\n entendiera que si, dada la naturaleza de la labor contratada, se llegare a\n establecer que un contrato a término fijo disfraza en realidad una relación\n laboral que no exige lapso determinado, debe hacerse caso omiso de lo\n pactado y tener tal contrato por celebrado a término indefinido, con todas las\n consecuencias salariales y prestacionales correspondientes.\n\nReferencia: Expediente D-1739\n\nLos suscritos magistrados salvamos voto en el asunto de la referencia. Con el\n debido respeto, expresamos inmediatamente las razones que sustentan nuestra\n discrepancia:\n\n1. La disposición preconstitucional demandada, que consagró el contrato de\n trabajo a término fijo y las reglas que le son aplicables, no es contraria\n a la Constitución",
-                      "fileSearchStore": "fileSearchStores/chat-test-store-2c064cd0-tdnfusffmyht"
+                      "fileSearchStore": "fileSearchStores/chat-test-store-faf9c0ec-f1yzx69fv6a4"
                     }
                   },
                   {
                     "retrievedContext": {
-                      "title": "Sentencia C-016-98 6d342d84",
+                      "title": "Sentencia C-016-98 9e21f1b1",
+                      "text": "bajo las\n normas constitucionales de orden público que son exigibles más allá del texto\n legal enjuiciado.\n\nEsta modalidad contractual no es de por sí contraria a la Constitución Política\n -como ya varias veces lo ha recordado la Corte-, pero no se debe admitir\n sin mayor análisis que ella pueda usarse, con base en el solo pacto entre el\n empleador y el empleado, como un medio idóneo -impuesto por el primero al\n segundo, a partir de su condición de parte débil dentro de la relación laboral-\n para disponer arbitraria y unilateralmente de su estabilidad y de los derechos\n mínimos que la Constitución le otorga.\n\n2. Nuestro criterio al respecto es el mismo que consignara el H. Magistrado\n\n\n--- PAGE 15 ---\n\nAlejandro Martínez Caballero en aclaración de voto relativa a la Sentencia\n C-003 del 22 de enero de 1998, sobre el contrato a término fijo con entidades\n públicas:\n\n\"Se parte de una previa aclaración: la autonomía propia de la\n vinculación civil difiere de la vinculación laboral porque en la\n primera el contrato se basa en la igualdad formal de las partes,\n mientras en la segunda el contrato es realidad, o sea, lo acorde con\n las condiciones reales de la prestación del servicio.\n\nEs la propia Constitución la",
+                      "fileSearchStore": "fileSearchStores/chat-test-store-faf9c0ec-f1yzx69fv6a4"
+                    }
+                  },
+                  {
+                    "retrievedContext": {
+                      "title": "Sentencia C-016-98 9e21f1b1",
                       "text": "--- PAGE 1 ---\n\nSentencia C-016/98\n\nCONTRATO CIVIL Y CONTRATO LABORAL-Diferencias\n\nEsa distinción, entre el contrato civil y el contrato laboral, se ha ido afianzando\n a través del tiempo y encuentra origen en el reconocimiento de la situación de\n asimetría en la que se encuentran las partes, la cual no permite presumir que\n el acuerdo de voluntades se produzca a partir del ejercicio no interferido ni\n restringido de la autonomía de cada una de ellas, como si ocurre en el contrato\n civil, y en la evolución misma de las sociedades que reivindican el trabajo como\n un valor y un principio esencial del Estado, y como un derecho fundamental\n de las personas de cuya realización efectiva depende el desarrollo de la misma\n en condiciones de dignidad. En efecto, a diferencia de lo que ocurre con el\n contrato civil, el contrato de trabajo es la fuente de la relación laboral, cumple\n una función reguladora complementaria de las condiciones establecidas en la\n Constitución y en la ley, condiciones que las partes no están en capacidad\n de transgredir, empeorar o desconocer, pues ello implicaría la nulidad de sus\n cláusulas.\n\nAUTONOΜΙΑ EN MATERIA LABORAL-Límites\n\nLa restricción de la autonomía de las partes para establecer las condiciones\n que regirán su relación",
-                      "fileSearchStore": "fileSearchStores/chat-test-store-2c064cd0-tdnfusffmyht"
+                      "fileSearchStore": "fileSearchStores/chat-test-store-faf9c0ec-f1yzx69fv6a4"
                     }
                   }
                 ],
@@ -258,17 +258,29 @@ http_interactions:
                   {
                     "segment": {
                       "startIndex": 90,
-                      "endIndex": 290,
-                      "text": "1.  **Estarse a lo resuelto** (cosa juzgada) respecto a la expresión \"...pero es renovable indefinidamente\" del artículo 46 del Código Sustantivo del Trabajo, conforme a la sentencia C-588 de 1995."
+                      "endIndex": 266,
+                      "text": "1.  **Estarse a lo resuelto** en la Sentencia C-588 de 1995 respecto a la expresión \"...pero es renovable indefinidamente\" del artículo 46 del Código Sustantivo del Trabajo."
                     },
                     "groundingChunkIndices": [
-                      0
+                      0,
+                      1
                     ]
                   },
                   {
                     "segment": {
-                      "startIndex": 521,
-                      "endIndex": 616,
+                      "startIndex": 267,
+                      "endIndex": 473,
+                      "text": "2.  **Estarse a lo resuelto** por la Corte Suprema de Justicia (Sentencia 109 de 1991) en relación con las palabras \"y así sucesivamente\" del numeral 2 del artículo 46 del Código Sustantivo del Trabajo."
+                    },
+                    "groundingChunkIndices": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "segment": {
+                      "startIndex": 538,
+                      "endIndex": 633,
                       "text": "*   La expresión \"por tiempo determinado\" del artículo 45 del Código Sustantivo del Trabajo."
                     },
                     "groundingChunkIndices": [
@@ -277,9 +289,20 @@ http_interactions:
                   },
                   {
                     "segment": {
-                      "startIndex": 621,
-                      "endIndex": 744,
-                      "text": "*   El artículo 46 del mismo código (subrogado por el artículo 3 de la Ley 50 de 1990), con excepción de lo ya fallado."
+                      "startIndex": 638,
+                      "endIndex": 775,
+                      "text": "*   El artículo 46 del mismo Código (subrogado por el artículo 3 de la Ley 50 de 1990), con excepción de lo ya fallado anteriormente."
+                    },
+                    "groundingChunkIndices": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "segment": {
+                      "startIndex": 780,
+                      "endIndex": 884,
+                      "text": "*   El literal c) del artículo 61 de dicho Código (subrogado por el artículo 5 de la Ley 50 de 1990)."
                     },
                     "groundingChunkIndices": [
                       0
@@ -287,23 +310,22 @@ http_interactions:
                   },
                   {
                     "segment": {
-                      "startIndex": 749,
-                      "endIndex": 871,
-                      "text": "*   El literal c) del artículo 61 del Código Sustantivo del Trabajo (subrogado por el artículo 5 de la Ley 50 de 1990)."
+                      "startIndex": 886,
+                      "endIndex": 1059,
+                      "text": "Cabe precisar que esta sentencia trata sobre la constitucionalidad de los **contratos de trabajo a término fijo** y no sobre allanamientos, como se mencionó anteriormente."
                     },
                     "groundingChunkIndices": [
-                      0
-                    ]
-                  },
-                  {
-                    "segment": {
-                      "startIndex": 873,
-                      "endIndex": 1083,
-                      "text": "En resumen, la Corte determinó que los contratos de trabajo a término fijo no son inconstitucionales por sí mismos, siempre que se respeten los derechos mínimos y la estabilidad laboral de los trabajadores."
-                    },
-                    "groundingChunkIndices": [
-                      1,
                       2
+                    ]
+                  },
+                  {
+                    "segment": {
+                      "startIndex": 1060,
+                      "endIndex": 1248,
+                      "text": "La Corte determinó que esta modalidad contractual no es contraria a la Constitución, siempre que no se utilice para desconocer la estabilidad y los derechos mínimos de los trabajadores."
+                    },
+                    "groundingChunkIndices": [
+                      3
                     ]
                   }
                 ]
@@ -311,26 +333,26 @@ http_interactions:
             }
           ],
           "usageMetadata": {
-            "promptTokenCount": 292,
-            "candidatesTokenCount": 291,
-            "totalTokenCount": 4562,
+            "promptTokenCount": 301,
+            "candidatesTokenCount": 327,
+            "totalTokenCount": 4404,
             "promptTokensDetails": [
               {
                 "modality": "TEXT",
-                "tokenCount": 292
+                "tokenCount": 301
               }
             ],
-            "toolUsePromptTokenCount": 2837,
+            "toolUsePromptTokenCount": 2914,
             "toolUsePromptTokensDetails": [
               {
                 "modality": "TEXT",
-                "tokenCount": 2837
+                "tokenCount": 2914
               }
             ],
-            "thoughtsTokenCount": 1142
+            "thoughtsTokenCount": 862
           },
           "modelVersion": "gemini-3-flash-preview",
-          "responseId": "yUJbadauCv7fz7IPgvO9uQg"
+          "responseId": "4lBkaf3HNoOfqtsPuaDzuQ8"
         }
-  recorded_at: Mon, 05 Jan 2026 04:49:13 GMT
+  recorded_at: Mon, 12 Jan 2026 01:39:47 GMT
 recorded_with: VCR 6.4.0

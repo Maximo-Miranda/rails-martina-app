@@ -23,7 +23,7 @@ http_interactions:
       content-encoding:
       - gzip
       date:
-      - Sun, 11 Jan 2026 21:27:31 GMT
+      - Mon, 12 Jan 2026 01:42:02 GMT
       server:
       - scaffolding on HTTPServer2
       x-xss-protection:
@@ -33,7 +33,7 @@ http_interactions:
       x-content-type-options:
       - nosniff
       server-timing:
-      - gfet4t7; dur=646
+      - gfet4t7; dur=665
       alt-svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       transfer-encoding:
@@ -42,10 +42,10 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "name": "fileSearchStores/mi-nuevo-proyecto-198hne7pyr95",
+          "name": "fileSearchStores/mi-nuevo-proyecto-jy5ubqtk49yb",
           "displayName": "Mi Nuevo Proyecto",
-          "createTime": "2026-01-11T21:27:31.902437Z",
-          "updateTime": "2026-01-11T21:27:31.902437Z"
+          "createTime": "2026-01-12T01:42:02.568873Z",
+          "updateTime": "2026-01-12T01:42:02.568873Z"
         }
-  recorded_at: Sun, 11 Jan 2026 21:27:31 GMT
+  recorded_at: Mon, 12 Jan 2026 01:42:02 GMT
 recorded_with: VCR 6.4.0

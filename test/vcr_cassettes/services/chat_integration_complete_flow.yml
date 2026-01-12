@@ -5,7 +5,7 @@ http_interactions:
     uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores?key=<GEMINI_API_KEY>
     body:
       encoding: UTF-8
-      string: '{"displayName":"Chat Integration Test Store 94b8fd10"}'
+      string: '{"displayName":"Chat Integration Test Store af8b6183"}'
     headers:
       User-Agent:
       - Faraday v2.14.0
@@ -23,7 +23,7 @@ http_interactions:
       content-encoding:
       - gzip
       date:
-      - Mon, 05 Jan 2026 04:49:14 GMT
+      - Mon, 12 Jan 2026 01:40:13 GMT
       server:
       - scaffolding on HTTPServer2
       x-xss-protection:
@@ -33,7 +33,7 @@ http_interactions:
       x-content-type-options:
       - nosniff
       server-timing:
-      - gfet4t7; dur=658
+      - gfet4t7; dur=713
       alt-svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       transfer-encoding:
@@ -42,15 +42,15 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "name": "fileSearchStores/chat-integration-test-store-b94scoj72hvc",
-          "displayName": "Chat Integration Test Store 94b8fd10",
-          "createTime": "2026-01-05T04:49:14.174904Z",
-          "updateTime": "2026-01-05T04:49:14.174904Z"
+          "name": "fileSearchStores/chat-integration-test-store-sjff1isv044z",
+          "displayName": "Chat Integration Test Store af8b6183",
+          "createTime": "2026-01-12T01:40:13.548033Z",
+          "updateTime": "2026-01-12T01:40:13.548033Z"
         }
-  recorded_at: Mon, 05 Jan 2026 04:49:14 GMT
+  recorded_at: Mon, 12 Jan 2026 01:40:13 GMT
 - request:
     method: post
-    uri: https://generativelanguage.googleapis.com/upload/v1beta/fileSearchStores/chat-integration-test-store-b94scoj72hvc:uploadToFileSearchStore?displayName=Sentencia+C-016-98+b1bc1bb5&key=<GEMINI_API_KEY>
+    uri: https://generativelanguage.googleapis.com/upload/v1beta/fileSearchStores/chat-integration-test-store-sjff1isv044z:uploadToFileSearchStore?displayName=Sentencia+C-016-98+00c1b043&key=<GEMINI_API_KEY>
     body:
       encoding: ASCII-8BIT
       string: !binary |-
@@ -70,13 +70,13 @@ http_interactions:
       content-type:
       - application/json; charset=UTF-8
       x-guploader-uploadid:
-      - AHVrFxNgxuYrvSPa-RlqbCggnvClW_6UKERoIKSx1hiMqzHNS54eBcH1CnBM65fVCt3XBouO
+      - AJRbA5XjrmO53XvWOBU0TNrnMe8dUyy1g78K6Pzx4hGxhBMM7eMRCjOPskk4aGzEhV1xnzOyKmHxFCA
       vary:
       - Origin, X-Origin, Referer
       content-length:
       - '522'
       date:
-      - Mon, 05 Jan 2026 04:49:17 GMT
+      - Mon, 12 Jan 2026 01:40:15 GMT
       server:
       - UploadServer
       alt-svc:
@@ -85,19 +85,19 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "name": "fileSearchStores/chat-integration-test-store-b94scoj72hvc/upload/operations/sentencia-c01698-b1bc1bb5-ysep90n0gk9y",
+          "name": "fileSearchStores/chat-integration-test-store-sjff1isv044z/upload/operations/sentencia-c01698-00c1b043-vajyhzkyyitg",
           "response": {
             "@type": "type.googleapis.com/google.ai.generativelanguage.v1main.UploadToFileSearchStoreResponse",
-            "parent": "fileSearchStores/chat-integration-test-store-b94scoj72hvc",
-            "documentName": "fileSearchStores/chat-integration-test-store-b94scoj72hvc/documents/sentencia-c01698-b1bc1bb5-ysep90n0gk9y",
+            "parent": "fileSearchStores/chat-integration-test-store-sjff1isv044z",
+            "documentName": "fileSearchStores/chat-integration-test-store-sjff1isv044z/documents/sentencia-c01698-00c1b043-vajyhzkyyitg",
             "mimeType": "application/pdf",
             "sizeBytes": "202571"
           }
         }
-  recorded_at: Mon, 05 Jan 2026 04:49:17 GMT
+  recorded_at: Mon, 12 Jan 2026 01:40:16 GMT
 - request:
     method: get
-    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/chat-integration-test-store-b94scoj72hvc/upload/operations/sentencia-c01698-b1bc1bb5-ysep90n0gk9y?key=<GEMINI_API_KEY>
+    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/chat-integration-test-store-sjff1isv044z/upload/operations/sentencia-c01698-00c1b043-vajyhzkyyitg?key=<GEMINI_API_KEY>
     body:
       encoding: US-ASCII
       string: ''
@@ -116,7 +116,7 @@ http_interactions:
       content-encoding:
       - gzip
       date:
-      - Mon, 05 Jan 2026 04:49:18 GMT
+      - Mon, 12 Jan 2026 01:40:16 GMT
       server:
       - scaffolding on HTTPServer2
       x-xss-protection:
@@ -126,7 +126,7 @@ http_interactions:
       x-content-type-options:
       - nosniff
       server-timing:
-      - gfet4t7; dur=871
+      - gfet4t7; dur=666
       alt-svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       transfer-encoding:
@@ -135,17 +135,17 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "name": "fileSearchStores/chat-integration-test-store-b94scoj72hvc/upload/operations/sentencia-c01698-b1bc1bb5-ysep90n0gk9y",
+          "name": "fileSearchStores/chat-integration-test-store-sjff1isv044z/upload/operations/sentencia-c01698-00c1b043-vajyhzkyyitg",
           "done": true,
           "response": {
             "@type": "type.googleapis.com/google.ai.generativelanguage.v1main.UploadToFileSearchStoreResponse",
-            "parent": "fileSearchStores/chat-integration-test-store-b94scoj72hvc",
-            "documentName": "fileSearchStores/chat-integration-test-store-b94scoj72hvc/documents/sentencia-c01698-b1bc1bb5-ysep90n0gk9y",
+            "parent": "fileSearchStores/chat-integration-test-store-sjff1isv044z",
+            "documentName": "fileSearchStores/chat-integration-test-store-sjff1isv044z/documents/sentencia-c01698-00c1b043-vajyhzkyyitg",
             "mimeType": "application/pdf",
             "sizeBytes": "202571"
           }
         }
-  recorded_at: Mon, 05 Jan 2026 04:49:18 GMT
+  recorded_at: Mon, 12 Jan 2026 01:40:16 GMT
 - request:
     method: post
     uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=<GEMINI_API_KEY>
@@ -163,7 +163,7 @@ http_interactions:
         del archivo o número de página en el texto de tu respuesta, ya que el sistema
         lo mostrará automáticamente.\n- Integra la información de manera fluida en
         tu respuesta.\n"}]},"contents":[{"role":"user","parts":[{"text":"¿Cuál es
-        el tema principal de la sentencia C-016-98 y qué derechos fundamentales analiza?"}]}],"tools":[{"fileSearch":{"fileSearchStoreNames":["fileSearchStores/chat-integration-test-store-b94scoj72hvc"]}}],"generationConfig":{"temperature":0.0,"topK":40,"topP":0.95,"maxOutputTokens":8192,"responseMimeType":"text/plain"}}'
+        el tema principal de la sentencia C-016-98 y qué derechos fundamentales analiza?"}]}],"tools":[{"fileSearch":{"fileSearchStoreNames":["fileSearchStores/chat-integration-test-store-sjff1isv044z"]}}],"generationConfig":{"temperature":0.0,"topK":40,"topP":0.95,"maxOutputTokens":8192,"responseMimeType":"text/plain"}}'
     headers:
       User-Agent:
       - Faraday v2.14.0
@@ -181,7 +181,7 @@ http_interactions:
       content-encoding:
       - gzip
       date:
-      - Mon, 05 Jan 2026 04:49:26 GMT
+      - Mon, 12 Jan 2026 01:40:23 GMT
       server:
       - scaffolding on HTTPServer2
       x-xss-protection:
@@ -191,7 +191,7 @@ http_interactions:
       x-content-type-options:
       - nosniff
       server-timing:
-      - gfet4t7; dur=7697
+      - gfet4t7; dur=6461
       alt-svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       transfer-encoding:
@@ -205,8 +205,8 @@ http_interactions:
               "content": {
                 "parts": [
                   {
-                    "text": "El tema principal de la **Sentencia C-016-98** es la distinción entre el **contrato civil y el contrato laboral**, centrándose especialmente en la constitucionalidad del **contrato de trabajo a término fijo**. La Corte analiza cómo la autonomía de la voluntad, que es amplia en el derecho civil, se encuentra restringida en el ámbito laboral debido a la asimetría entre las partes (empleador y trabajador). El fallo establece que el contrato de trabajo no solo es un acuerdo de voluntades, sino una fuente de relación laboral que debe respetar los límites impuestos por la Constitución y la ley para proteger a la parte más débil.\n\nEn cuanto a los **derechos fundamentales** que analiza, la sentencia destaca los siguientes:\n\n*   **Derecho al trabajo:** Analizado en su triple dimensión como valor del Preámbulo, principio fundante del Estado (Art. 1) y derecho fundamental subjetivo (Art. 25). Se enfatiza que toda persona tiene derecho a un trabajo en condiciones dignas y justas.\n*   **Estabilidad laboral:** Se examina como una expresión de la protección al trabajador, vinculada tanto a la Constitución como a tratados internacionales (como el Pacto de Derechos Económicos, Sociales y Culturales). La Corte señala que la permanencia en el empleo no debe depender exclusivamente de la voluntad unilateral del empleador si subsisten las causas que dieron origen a la relación laboral.\n*   **Principios mínimos fundamentales del trabajo:** Basados en el artículo 53 de la Constitución, los cuales son de obligatorio cumplimiento para el legislador y las partes, e incluyen la irrenunciabilidad a los beneficios mínimos y la primacía de la realidad sobre las formalidades.\n*   **Derecho a la dignidad humana:** Como eje central para el desarrollo efectivo de las personas a través del trabajo.\n\nLa sentencia concluye que, aunque el contrato a término fijo no es inconstitucional por sí mismo, su uso no puede ser arbitrario ni servir para desconocer la estabilidad y los derechos mínimos que la Constitución otorga a los trabajadores.",
-                    "thoughtSignature": "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"
+                    "text": "El tema principal de la **Sentencia C-016-98** es el análisis de la constitucionalidad del **contrato de trabajo a término fijo** y la distinción fundamental entre el **contrato civil y el contrato laboral**. La Corte examina cómo la autonomía de la voluntad en materia laboral tiene límites específicos debido a la asimetría entre las partes (empleador y trabajador), a diferencia de lo que ocurre en el ámbito civil.\n\nLos derechos fundamentales y principios que analiza esta sentencia incluyen:\n\n*   **Derecho al trabajo:** Es analizado en su triple dimensión: como un valor (Preámbulo), como un principio fundante del Estado (Art. 1) y como un **derecho fundamental subjetivo** (Arts. 25 y 53). Se destaca que toda persona tiene derecho a un trabajo en condiciones dignas y justas.\n*   **Principio de estabilidad laboral:** La sentencia lo identifica como una manifestación del derecho al trabajo, específicamente el derecho a conservar el empleo mientras subsistan las causas que le dieron origen y no exista una justa causa para la terminación.\n*   **Dignidad humana:** Se establece como un límite infranqueable para los contratos y acuerdos de trabajo, los cuales no pueden menoscabarla.\n*   **Igualdad y protección a la parte débil:** Reconoce la situación de desigualdad en la relación laboral, lo que justifica que el Estado intervenga para proteger los derechos mínimos del trabajador.\n*   **Libertad:** Se menciona junto con la dignidad y los derechos de los trabajadores como elementos que no pueden ser vulnerados por la ley o los contratos.\n\nEn resumen, la sentencia concluye que, aunque el contrato a término fijo no es inconstitucional por sí mismo, su aplicación no puede utilizarse para desconocer la estabilidad laboral ni los derechos mínimos consagrados en la Constitución.",
+                    "thoughtSignature": "EosKCogKAXLI2nxYR4METuXXIeypf3FyKqJx9vSutnGrMQN+zFPtPXY9fU0fdY0YiK31xY3m7EsYb6gybkGaRlLuXoa6WVBbx/SEmFGzOwP8JaguYj4zkBXuRj9nO/SIvpSoDhvrWY1FpxvT1gAhE87Kh0kwuTywef7deNfy+Cu6n838rF0+eHd091/0m6oI/er1L4s6WDlwXJR1jCRX2StnFBtySkko+p4wuQQkGiirx26n2pKmoazrbXmrZlOZ6DX/X5kRDzOrM+Ib2GS6M1pqiUKes47hajMxQSQtd+9znHqFb6rj4RUwDot7Gun4zY1df/ctP1N1a+T2rQlxXiqIiYJkPxuwOpgAS48v9NlojozYB2kPd854zRsIiAL25Npqp5Bl7rtrvJU1dAkWmalwaH4LKm8HSawXSQLtbzw1aBo/gzM1Hk/RsSOaZ5/lz9AGfJ8UPII+P3gaGracH9tnimhH954LhX4JsUABzypWdUkFfBjuXAwNWw52GoDadraQd+RbMPG8SWxhuaERnClOKCskTY/T0duHFh9LqHobirGgpEj9izwoy6vv0rsRcNeUUJUM1+sxyNGgCLGgmQRiJAIPJUWrB4yEH2a859PILJ3+AkqSiORB6xrMgzMq9AsFzuNGo1Q4NzhwKd2W6KQku8W64+681y3NhQMiOPnos2O4a1EHRScrBEbUW/eLY5RqmvMItEFg4bJfA3a9r8hA3gDhTYVff4O0jO8QnrkrNdgB3Dzi3VNh8O+UluIF9iBwGlZVEBIl4jYs2J0udkBmcrmg7mFYyxtBliXkHbwHrkm3bPIcDMFeLKHtiDpj2CRnqlCrSFmw0topkf60MJO4MnMo6duydZyVFRmLPxnkajSe5nsjUUXvzRSZ9eZGfXUP+tK8Bcuubw7xLtT1NaFt/0pS/UlFWrXKnVXF5b62uHNTLVaFDUc3f6FSBmNnhloAXx9/CW1ubrdCRgcbgBOciykw4HZtBz6N+lkaS9Ajy0QGpvElKa/Ue2ovZo/Q8eoWE6bSLY/Cu1/bli0iexgB+sZJi6FKrWcwRxjO1pgaEyDxJFxsKZM9E5eyDxwyfRXGAFSbRbW1l6J2FE6fz5bhqVcKYpwOI2G0LETgASkSJ/06VwNOCh66+SdW1I/Re0cRJKiJ4XQE78my8Fs39MqlLT4AYxHprUW27Z7jAW5wZ1ZPbaKvBqeou3TzsI8eP3cEhxHjCVHUFl5ke1fJPc6sYPXqAN6h/D0pkqsYTYdpcCzzGWIiwqyO65PY2JZzltCYlyLcKJ5ayOuuqgyToGQkNGJwOgEzKLzoRL0Jlc9iP5wow7s6zEZek0MPKkXrj/CTUAqwKweaftphMP/uL7X6ZvW1KCCa+aG1Yj5C2N4u/9TwkgWMpA3DJR2kqkPEYKSGHJ7GjGGic2o6zjl7+iM6ZbDj8IJxcr9GQ0yjpdIIHkresvto+F39j7U/uqSgP3ySFNHinQW6YdWRoGncE3IdPDRg7jelYb8NZnw0GdUci2xmGdOIykOhQdd6ot+nt9czgpKl3P6xOLyEGdZp3twNDHsK8KVI4CIZs2rJFBdhdO+Fcu5/YikKBWATe09iP1Mi4b+Id7D+yl64ZaEVRJsrsNd22guwav82eD7R8UVzOU8C8Qangh9FFUpaBWYPRcEIDKHpZR1182u5t+om4ehRx1ZAvLrPMs3/FK9AuidPHP9gOygaysAiAWiT8Q=="
                   }
                 ],
                 "role": "model"
@@ -217,86 +217,57 @@ http_interactions:
                 "groundingChunks": [
                   {
                     "retrievedContext": {
-                      "title": "Sentencia C-016-98 b1bc1bb5",
+                      "title": "Sentencia C-016-98 00c1b043",
                       "text": "--- PAGE 1 ---\n\nSentencia C-016/98\n\nCONTRATO CIVIL Y CONTRATO LABORAL-Diferencias\n\nEsa distinción, entre el contrato civil y el contrato laboral, se ha ido afianzando\n a través del tiempo y encuentra origen en el reconocimiento de la situación de\n asimetría en la que se encuentran las partes, la cual no permite presumir que\n el acuerdo de voluntades se produzca a partir del ejercicio no interferido ni\n restringido de la autonomía de cada una de ellas, como si ocurre en el contrato\n civil, y en la evolución misma de las sociedades que reivindican el trabajo como\n un valor y un principio esencial del Estado, y como un derecho fundamental\n de las personas de cuya realización efectiva depende el desarrollo de la misma\n en condiciones de dignidad. En efecto, a diferencia de lo que ocurre con el\n contrato civil, el contrato de trabajo es la fuente de la relación laboral, cumple\n una función reguladora complementaria de las condiciones establecidas en la\n Constitución y en la ley, condiciones que las partes no están en capacidad\n de transgredir, empeorar o desconocer, pues ello implicaría la nulidad de sus\n cláusulas.\n\nAUTONOΜΙΑ EN MATERIA LABORAL-Límites\n\nLa restricción de la autonomía de las partes para establecer las condiciones\n que regirán su relación",
-                      "fileSearchStore": "fileSearchStores/chat-integration-test-store-b94scoj72hvc"
+                      "fileSearchStore": "fileSearchStores/chat-integration-test-store-sjff1isv044z"
                     }
                   },
                   {
                     "retrievedContext": {
-                      "title": "Sentencia C-016-98 b1bc1bb5",
-                      "text": "propio destino y para labrarlo el trabajo es uno de los principales\n instrumentos.\n\nEl Constituyente de 1991 le dio una triple dimensión al concepto de\n TRABAJO. En el Preámbulo es valor, en el artículo 1 es principio\n fundante y en los artículos 25 y 53 aparece como un derecho\n fundamental subjetivo. De ahí que \"Toda persona tiene derecho a un\n trabajo en condiciones dignas y justas\" (art. 25 C.P.). Condiciones\n de dignidad y justicia que desarrolla el artículo 53 al establecer unos\n principios mínimos fundamentales que debe respetar la legislación\n laboral porque son vinculantes. La protección de los artículos 25 y\n 53 cobija la prestación misma del servicio laboral y esta protección\n se otorga con independencia del acto que le dio origen.\n\nEsto es muy diferente a la autonomía de la voluntad, o sea, la\n competencia de los particulares para realizar actos jurídicos con\n sujeción a las normas que lo regulan, en cuanto a validez y eficacia.\n En virtud de la autonomía los contratos civiles o comerciales\n legalmente celebrados tienen el carácter de ley para las partes. Ese\n principio de la autonomía es, pues, propio del derecho privado y sólo\n residualmente entra en el campo del derecho público.\n\n\n--- PAGE 16 ---\n\nEs que",
-                      "fileSearchStore": "fileSearchStores/chat-integration-test-store-b94scoj72hvc"
-                    }
-                  },
-                  {
-                    "retrievedContext": {
-                      "title": "Sentencia C-016-98 b1bc1bb5",
-                      "text": "es, pues, propio del derecho privado y sólo\n residualmente entra en el campo del derecho público.\n\n\n--- PAGE 16 ---\n\nEs que no es justo dejar la permanencia de las relaciones de trabajo\n en manos del patrono, y que sea éste quien permita la prórroga,\n ya que el principio de duración es consecuencia de la naturaleza\n de la relación individual de trabajo, en tanto subsistan las causas\n que motivaron el contrato. Lo anterior en virtud de que los efectos\n jurídicos que derivan del derecho al trabajo se producen no por el\n simple acuerdo de voluntad -como ocurre en el derecho civil- sino\n porque el trabajador cumple efectivamente su obligación de prestar\n el servicio.\n\nLa permanencia en el trabajo no depende de ese principio\n autonómico, de simple contenido legal, sino que se sustenta en el\n derecho a trabajar establecido en los artículos 54 (\"El Estado debe\n propiciar la ubicación laboral de las personas en edad de trabajar\") y\n 334 de la Constitución (\"El Estado, de manera especial, intervendrá\n para dar pleno empleo a los recursos humanos\").\n\nAsí mismo, la estabilidad es expresión del artículo 7 del Pacto\n de Derechos Económicos, Sociales y Culturales, ratificado por\n Colombia y que tiene un efecto interpretativo sobre los derechos\n",
-                      "fileSearchStore": "fileSearchStores/chat-integration-test-store-b94scoj72hvc"
-                    }
-                  },
-                  {
-                    "retrievedContext": {
-                      "title": "Sentencia C-016-98 b1bc1bb5",
-                      "text": "la Gaceta de la Corte\n Constitucional, cúmplase y archívese el expediente.\n\nΑΝΤΟΝΙΟ BARRERA CARBONELL\n Presidente\n\n\n--- PAGE 13 ---\n\nJORGE ARANGO MEJЛА\n Magistrado\n\nEDUARDO CIFUENTES MUÑOZ\n Magistrado\n\nCARLOS GAVIRIA DIAZ\n Magistrado\n\nHERNANDO HERRERA VERGARA\n Magistrado\n\nJOSE GREGORIO HERNANDEZ GALINDO\n\nMagistrado\n\nALEJANDRO MARTINEZ CABALLERO\n Magistrado\n\nFABIO MORON DIAZ\n\nMagistrado\n\nVLADIMIRO NARANJO MESA\n Magistrado\n\nMARTHA VICTORIA SACHICA DE MONCALEANO\n\nSecretaria General\n\n\n--- PAGE 14 ---\n\nSalvamento de voto a la Sentencia C-016/98\n\nCONTRATO DE TRABAJO A TERMINO FIJO-No es per se\n inconstitucional/CONTRATO DE TRABAJO A TERMINO FIJO-\n Necesidad de sentencia condicionada (Salvamento de voto)\n\nNo compartimos la decisión de declarar la exequibilidad incondicionada del\n articulo impugnado. Estimamos que ha debido ella supeditarse a que se\n entendiera que si, dada la naturaleza de la labor contratada, se llegare a\n establecer que un contrato a término fijo disfraza en realidad una relación\n laboral que no exige lapso determinado, debe hacerse caso omiso de lo\n pactado y tener tal contrato por celebrado a término indefinido, con todas las\n consecuencias salariales y prestacionales correspondientes.\n\nReferencia: Expediente D-1739\n\nLos suscritos magistrados salvamos voto en el asunto de la referencia. Con el\n debido respeto, expresamos inmediatamente las razones que sustentan nuestra\n discrepancia:\n\n1. La disposición preconstitucional demandada, que consagró el contrato de\n trabajo a término fijo y las reglas que le son aplicables, no es contraria\n a la Constitución",
-                      "fileSearchStore": "fileSearchStores/chat-integration-test-store-b94scoj72hvc"
-                    }
-                  },
-                  {
-                    "retrievedContext": {
-                      "title": "Sentencia C-016-98 b1bc1bb5",
+                      "title": "Sentencia C-016-98 00c1b043",
                       "text": "bajo las\n normas constitucionales de orden público que son exigibles más allá del texto\n legal enjuiciado.\n\nEsta modalidad contractual no es de por sí contraria a la Constitución Política\n -como ya varias veces lo ha recordado la Corte-, pero no se debe admitir\n sin mayor análisis que ella pueda usarse, con base en el solo pacto entre el\n empleador y el empleado, como un medio idóneo -impuesto por el primero al\n segundo, a partir de su condición de parte débil dentro de la relación laboral-\n para disponer arbitraria y unilateralmente de su estabilidad y de los derechos\n mínimos que la Constitución le otorga.\n\n2. Nuestro criterio al respecto es el mismo que consignara el H. Magistrado\n\n\n--- PAGE 15 ---\n\nAlejandro Martínez Caballero en aclaración de voto relativa a la Sentencia\n C-003 del 22 de enero de 1998, sobre el contrato a término fijo con entidades\n públicas:\n\n\"Se parte de una previa aclaración: la autonomía propia de la\n vinculación civil difiere de la vinculación laboral porque en la\n primera el contrato se basa en la igualdad formal de las partes,\n mientras en la segunda el contrato es realidad, o sea, lo acorde con\n las condiciones reales de la prestación del servicio.\n\nEs la propia Constitución la",
-                      "fileSearchStore": "fileSearchStores/chat-integration-test-store-b94scoj72hvc"
+                      "fileSearchStore": "fileSearchStores/chat-integration-test-store-sjff1isv044z"
+                    }
+                  },
+                  {
+                    "retrievedContext": {
+                      "title": "Sentencia C-016-98 00c1b043",
+                      "text": "propio destino y para labrarlo el trabajo es uno de los principales\n instrumentos.\n\nEl Constituyente de 1991 le dio una triple dimensión al concepto de\n TRABAJO. En el Preámbulo es valor, en el artículo 1 es principio\n fundante y en los artículos 25 y 53 aparece como un derecho\n fundamental subjetivo. De ahí que \"Toda persona tiene derecho a un\n trabajo en condiciones dignas y justas\" (art. 25 C.P.). Condiciones\n de dignidad y justicia que desarrolla el artículo 53 al establecer unos\n principios mínimos fundamentales que debe respetar la legislación\n laboral porque son vinculantes. La protección de los artículos 25 y\n 53 cobija la prestación misma del servicio laboral y esta protección\n se otorga con independencia del acto que le dio origen.\n\nEsto es muy diferente a la autonomía de la voluntad, o sea, la\n competencia de los particulares para realizar actos jurídicos con\n sujeción a las normas que lo regulan, en cuanto a validez y eficacia.\n En virtud de la autonomía los contratos civiles o comerciales\n legalmente celebrados tienen el carácter de ley para las partes. Ese\n principio de la autonomía es, pues, propio del derecho privado y sólo\n residualmente entra en el campo del derecho público.\n\n\n--- PAGE 16 ---\n\nEs que",
+                      "fileSearchStore": "fileSearchStores/chat-integration-test-store-sjff1isv044z"
+                    }
+                  },
+                  {
+                    "retrievedContext": {
+                      "title": "Sentencia C-016-98 00c1b043",
+                      "text": "ejercicio de\n las funciones que le corresponden, pero esto no se puede confundir\n con el otorgamiento de facultades omnímodas al nominador para\n prescindir del trabajador, sin relación alguna de causalidad. (Ver\n Sentencia C-479 del 13 de agosto de 1992. Ms. Ps.: Drs. José\n Gregorio Hernández Galindo y Alejandro Martínez Caballero).\n (...)\n\nLa doctrina ha dicho que el derecho al trabajo presenta sin duda\n alguna varias formas de manifestarse: se puede hablar por un lado\n del derecho a adquirir un empleo y por otro el derecho a conservarlo.\n\nEl derecho a conservar el empleo se traduce en la fórmula \"todo\n trabajador tiene derecho a conservar el empleo, salvo que haya una\n causa justa para privarlo de él\". Este concepto se identifica con el de\n la estabilidad.\n\n\n--- PAGE 17 ---\n\nEl principio de estabilidad impide que la autonomía de la voluntad\n produzca sus efectos en toda su plenitud. Esa estabilidad significa\n que en cuanto subsistan las causas y la materia que le dieron origen\n a la relación laboral, ésta se mantiene porque el principio tiene como\n fundamento la Constitución Política:\n\nArt. 53. ...La ley, los contratos, los acuerdos y convenios de trabajo,\n no pueden menoscabar la libertad, la dignidad humana ni los\n derechos de los trabajadores\".\n\nLa",
+                      "fileSearchStore": "fileSearchStores/chat-integration-test-store-sjff1isv044z"
+                    }
+                  },
+                  {
+                    "retrievedContext": {
+                      "title": "Sentencia C-016-98 00c1b043",
+                      "text": "la Gaceta de la Corte\n Constitucional, cúmplase y archívese el expediente.\n\nΑΝΤΟΝΙΟ BARRERA CARBONELL\n Presidente\n\n\n--- PAGE 13 ---\n\nJORGE ARANGO MEJЛА\n Magistrado\n\nEDUARDO CIFUENTES MUÑOZ\n Magistrado\n\nCARLOS GAVIRIA DIAZ\n Magistrado\n\nHERNANDO HERRERA VERGARA\n Magistrado\n\nJOSE GREGORIO HERNANDEZ GALINDO\n\nMagistrado\n\nALEJANDRO MARTINEZ CABALLERO\n Magistrado\n\nFABIO MORON DIAZ\n\nMagistrado\n\nVLADIMIRO NARANJO MESA\n Magistrado\n\nMARTHA VICTORIA SACHICA DE MONCALEANO\n\nSecretaria General\n\n\n--- PAGE 14 ---\n\nSalvamento de voto a la Sentencia C-016/98\n\nCONTRATO DE TRABAJO A TERMINO FIJO-No es per se\n inconstitucional/CONTRATO DE TRABAJO A TERMINO FIJO-\n Necesidad de sentencia condicionada (Salvamento de voto)\n\nNo compartimos la decisión de declarar la exequibilidad incondicionada del\n articulo impugnado. Estimamos que ha debido ella supeditarse a que se\n entendiera que si, dada la naturaleza de la labor contratada, se llegare a\n establecer que un contrato a término fijo disfraza en realidad una relación\n laboral que no exige lapso determinado, debe hacerse caso omiso de lo\n pactado y tener tal contrato por celebrado a término indefinido, con todas las\n consecuencias salariales y prestacionales correspondientes.\n\nReferencia: Expediente D-1739\n\nLos suscritos magistrados salvamos voto en el asunto de la referencia. Con el\n debido respeto, expresamos inmediatamente las razones que sustentan nuestra\n discrepancia:\n\n1. La disposición preconstitucional demandada, que consagró el contrato de\n trabajo a término fijo y las reglas que le son aplicables, no es contraria\n a la Constitución",
+                      "fileSearchStore": "fileSearchStores/chat-integration-test-store-sjff1isv044z"
                     }
                   }
                 ],
                 "groundingSupports": [
                   {
                     "segment": {
-                      "startIndex": 213,
-                      "endIndex": 413,
-                      "text": "La Corte analiza cómo la autonomía de la voluntad, que es amplia en el derecho civil, se encuentra restringida en el ámbito laboral debido a la asimetría entre las partes (empleador y trabajador)."
+                      "startIndex": 212,
+                      "endIndex": 427,
+                      "text": "La Corte examina cómo la autonomía de la voluntad en materia laboral tiene límites específicos debido a la asimetría entre las partes (empleador y trabajador), a diferencia de lo que ocurre en el ámbito civil."
                     },
                     "groundingChunkIndices": [
-                      0
-                    ]
-                  },
-                  {
-                    "segment": {
-                      "startIndex": 738,
-                      "endIndex": 862,
-                      "text": "*   **Derecho al trabajo:** Analizado en su triple dimensión como valor del Preámbulo, principio fundante del Estado (Art."
-                    },
-                    "groundingChunkIndices": [
+                      0,
                       1
                     ]
                   },
                   {
                     "segment": {
-                      "startIndex": 863,
-                      "endIndex": 903,
-                      "text": "1) y derecho fundamental subjetivo (Art."
-                    },
-                    "groundingChunkIndices": [
-                      1
-                    ]
-                  },
-                  {
-                    "segment": {
-                      "startIndex": 909,
-                      "endIndex": 996,
-                      "text": "Se enfatiza que toda persona tiene derecho a un trabajo en condiciones dignas y justas."
-                    },
-                    "groundingChunkIndices": [
-                      1
-                    ]
-                  },
-                  {
-                    "segment": {
-                      "startIndex": 997,
-                      "endIndex": 1220,
-                      "text": "*   **Estabilidad laboral:** Se examina como una expresión de la protección al trabajador, vinculada tanto a la Constitución como a tratados internacionales (como el Pacto de Derechos Económicos, Sociales y Culturales)."
+                      "startIndex": 507,
+                      "endIndex": 644,
+                      "text": "*   **Derecho al trabajo:** Es analizado en su triple dimensión: como un valor (Preámbulo), como un principio fundante del Estado (Art."
                     },
                     "groundingChunkIndices": [
                       2
@@ -304,22 +275,72 @@ http_interactions:
                   },
                   {
                     "segment": {
-                      "startIndex": 1221,
-                      "endIndex": 1407,
-                      "text": "La Corte señala que la permanencia en el empleo no debe depender exclusivamente de la voluntad unilateral del empleador si subsisten las causas que dieron origen a la relación laboral."
+                      "startIndex": 645,
+                      "endIndex": 698,
+                      "text": "1) y como un **derecho fundamental subjetivo** (Arts."
                     },
                     "groundingChunkIndices": [
-                      2,
+                      2
+                    ]
+                  },
+                  {
+                    "segment": {
+                      "startIndex": 699,
+                      "endIndex": 708,
+                      "text": "25 y 53)."
+                    },
+                    "groundingChunkIndices": [
+                      2
+                    ]
+                  },
+                  {
+                    "segment": {
+                      "startIndex": 709,
+                      "endIndex": 795,
+                      "text": "Se destaca que toda persona tiene derecho a un trabajo en condiciones dignas y justas."
+                    },
+                    "groundingChunkIndices": [
+                      2
+                    ]
+                  },
+                  {
+                    "segment": {
+                      "startIndex": 796,
+                      "endIndex": 1063,
+                      "text": "*   **Principio de estabilidad laboral:** La sentencia lo identifica como una manifestación del derecho al trabajo, específicamente el derecho a conservar el empleo mientras subsistan las causas que le dieron origen y no exista una justa causa para la terminación."
+                    },
+                    "groundingChunkIndices": [
                       3
                     ]
                   },
                   {
                     "segment": {
-                      "startIndex": 1699,
-                      "endIndex": 1820,
-                      "text": "*   **Derecho a la dignidad humana:** Como eje central para el desarrollo efectivo de las personas a través del trabajo."
+                      "startIndex": 1064,
+                      "endIndex": 1208,
+                      "text": "*   **Dignidad humana:** Se establece como un límite infranqueable para los contratos y acuerdos de trabajo, los cuales no pueden menoscabarla."
                     },
                     "groundingChunkIndices": [
+                      3
+                    ]
+                  },
+                  {
+                    "segment": {
+                      "startIndex": 1416,
+                      "endIndex": 1574,
+                      "text": "*   **Libertad:** Se menciona junto con la dignidad y los derechos de los trabajadores como elementos que no pueden ser vulnerados por la ley o los contratos."
+                    },
+                    "groundingChunkIndices": [
+                      3
+                    ]
+                  },
+                  {
+                    "segment": {
+                      "startIndex": 1576,
+                      "endIndex": 1819,
+                      "text": "En resumen, la sentencia concluye que, aunque el contrato a término fijo no es inconstitucional por sí mismo, su aplicación no puede utilizarse para desconocer la estabilidad laboral ni los derechos mínimos consagrados en la Constitución."
+                    },
+                    "groundingChunkIndices": [
+                      1,
                       0
                     ]
                   }
@@ -328,26 +349,26 @@ http_interactions:
             }
           ],
           "usageMetadata": {
-            "promptTokenCount": 286,
-            "candidatesTokenCount": 434,
-            "totalTokenCount": 4136,
+            "promptTokenCount": 264,
+            "candidatesTokenCount": 388,
+            "totalTokenCount": 3908,
             "promptTokensDetails": [
               {
                 "modality": "TEXT",
-                "tokenCount": 286
+                "tokenCount": 264
               }
             ],
-            "toolUsePromptTokenCount": 2678,
+            "toolUsePromptTokenCount": 2690,
             "toolUsePromptTokensDetails": [
               {
                 "modality": "TEXT",
-                "tokenCount": 2678
+                "tokenCount": 2690
               }
             ],
-            "thoughtsTokenCount": 738
+            "thoughtsTokenCount": 566
           },
           "modelVersion": "gemini-3-flash-preview",
-          "responseId": "1kJbacTmCY-kmtkPhLiMoQs"
+          "responseId": "B1FkacrzGJjhz7IPkqmG-Ak"
         }
-  recorded_at: Mon, 05 Jan 2026 04:49:26 GMT
+  recorded_at: Mon, 12 Jan 2026 01:40:23 GMT
 recorded_with: VCR 6.4.0

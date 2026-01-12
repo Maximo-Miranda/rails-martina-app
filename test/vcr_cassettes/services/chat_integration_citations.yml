@@ -5,7 +5,7 @@ http_interactions:
     uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores?key=<GEMINI_API_KEY>
     body:
       encoding: UTF-8
-      string: '{"displayName":"Chat Test Store 4fc09e14"}'
+      string: '{"displayName":"Chat Test Store bb01d46b"}'
     headers:
       User-Agent:
       - Faraday v2.14.0
@@ -23,7 +23,7 @@ http_interactions:
       content-encoding:
       - gzip
       date:
-      - Mon, 05 Jan 2026 04:48:43 GMT
+      - Mon, 12 Jan 2026 01:39:47 GMT
       server:
       - scaffolding on HTTPServer2
       x-xss-protection:
@@ -33,7 +33,7 @@ http_interactions:
       x-content-type-options:
       - nosniff
       server-timing:
-      - gfet4t7; dur=690
+      - gfet4t7; dur=648
       alt-svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       transfer-encoding:
@@ -42,15 +42,15 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "name": "fileSearchStores/chat-test-store-4fc09e14-oi0jx7wzeu71",
-          "displayName": "Chat Test Store 4fc09e14",
-          "createTime": "2026-01-05T04:48:43.931787Z",
-          "updateTime": "2026-01-05T04:48:43.931787Z"
+          "name": "fileSearchStores/chat-test-store-bb01d46b-wm02xossio59",
+          "displayName": "Chat Test Store bb01d46b",
+          "createTime": "2026-01-12T01:39:47.857878Z",
+          "updateTime": "2026-01-12T01:39:47.857878Z"
         }
-  recorded_at: Mon, 05 Jan 2026 04:48:43 GMT
+  recorded_at: Mon, 12 Jan 2026 01:39:47 GMT
 - request:
     method: post
-    uri: https://generativelanguage.googleapis.com/upload/v1beta/fileSearchStores/chat-test-store-4fc09e14-oi0jx7wzeu71:uploadToFileSearchStore?displayName=Sentencia+C-016-98+81f35fce&key=<GEMINI_API_KEY>
+    uri: https://generativelanguage.googleapis.com/upload/v1beta/fileSearchStores/chat-test-store-bb01d46b-wm02xossio59:uploadToFileSearchStore?displayName=Sentencia+C-016-98+7001ac7f&key=<GEMINI_API_KEY>
     body:
       encoding: ASCII-8BIT
       string: !binary |-
@@ -70,13 +70,13 @@ http_interactions:
       content-type:
       - application/json; charset=UTF-8
       x-guploader-uploadid:
-      - AHVrFxMZ7_zqBBB39rVaDOkj7P7JFuMk0REjeLRioOGvwkiIic826clnFC2JX6Z5ysQ-rQ8a
+      - AJRbA5Wg3_amXm1iFtoViFH3PSJuEtold6VsN00IaTM9wX7acyPdm3BdVuoVeP8XeXHz8Ly8
       vary:
       - Origin, X-Origin, Referer
       content-length:
       - '513'
       date:
-      - Mon, 05 Jan 2026 04:48:47 GMT
+      - Mon, 12 Jan 2026 01:39:50 GMT
       server:
       - UploadServer
       alt-svc:
@@ -85,19 +85,19 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "name": "fileSearchStores/chat-test-store-4fc09e14-oi0jx7wzeu71/upload/operations/sentencia-c01698-81f35fce-zhztbkl6g4lx",
+          "name": "fileSearchStores/chat-test-store-bb01d46b-wm02xossio59/upload/operations/sentencia-c01698-7001ac7f-boz1jn9inai1",
           "response": {
             "@type": "type.googleapis.com/google.ai.generativelanguage.v1main.UploadToFileSearchStoreResponse",
-            "parent": "fileSearchStores/chat-test-store-4fc09e14-oi0jx7wzeu71",
-            "documentName": "fileSearchStores/chat-test-store-4fc09e14-oi0jx7wzeu71/documents/sentencia-c01698-81f35fce-zhztbkl6g4lx",
+            "parent": "fileSearchStores/chat-test-store-bb01d46b-wm02xossio59",
+            "documentName": "fileSearchStores/chat-test-store-bb01d46b-wm02xossio59/documents/sentencia-c01698-7001ac7f-boz1jn9inai1",
             "mimeType": "application/pdf",
             "sizeBytes": "202571"
           }
         }
-  recorded_at: Mon, 05 Jan 2026 04:48:47 GMT
+  recorded_at: Mon, 12 Jan 2026 01:39:50 GMT
 - request:
     method: get
-    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/chat-test-store-4fc09e14-oi0jx7wzeu71/upload/operations/sentencia-c01698-81f35fce-zhztbkl6g4lx?key=<GEMINI_API_KEY>
+    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/chat-test-store-bb01d46b-wm02xossio59/upload/operations/sentencia-c01698-7001ac7f-boz1jn9inai1?key=<GEMINI_API_KEY>
     body:
       encoding: US-ASCII
       string: ''
@@ -116,7 +116,7 @@ http_interactions:
       content-encoding:
       - gzip
       date:
-      - Mon, 05 Jan 2026 04:48:48 GMT
+      - Mon, 12 Jan 2026 01:39:51 GMT
       server:
       - scaffolding on HTTPServer2
       x-xss-protection:
@@ -126,7 +126,7 @@ http_interactions:
       x-content-type-options:
       - nosniff
       server-timing:
-      - gfet4t7; dur=869
+      - gfet4t7; dur=668
       alt-svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       transfer-encoding:
@@ -135,17 +135,17 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "name": "fileSearchStores/chat-test-store-4fc09e14-oi0jx7wzeu71/upload/operations/sentencia-c01698-81f35fce-zhztbkl6g4lx",
+          "name": "fileSearchStores/chat-test-store-bb01d46b-wm02xossio59/upload/operations/sentencia-c01698-7001ac7f-boz1jn9inai1",
           "done": true,
           "response": {
             "@type": "type.googleapis.com/google.ai.generativelanguage.v1main.UploadToFileSearchStoreResponse",
-            "parent": "fileSearchStores/chat-test-store-4fc09e14-oi0jx7wzeu71",
-            "documentName": "fileSearchStores/chat-test-store-4fc09e14-oi0jx7wzeu71/documents/sentencia-c01698-81f35fce-zhztbkl6g4lx",
+            "parent": "fileSearchStores/chat-test-store-bb01d46b-wm02xossio59",
+            "documentName": "fileSearchStores/chat-test-store-bb01d46b-wm02xossio59/documents/sentencia-c01698-7001ac7f-boz1jn9inai1",
             "mimeType": "application/pdf",
             "sizeBytes": "202571"
           }
         }
-  recorded_at: Mon, 05 Jan 2026 04:48:48 GMT
+  recorded_at: Mon, 12 Jan 2026 01:39:51 GMT
 - request:
     method: post
     uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=<GEMINI_API_KEY>
@@ -163,7 +163,7 @@ http_interactions:
         del archivo o número de página en el texto de tu respuesta, ya que el sistema
         lo mostrará automáticamente.\n- Integra la información de manera fluida en
         tu respuesta.\n"}]},"contents":[{"role":"user","parts":[{"text":"¿Cuáles fueron
-        los argumentos del demandante en la sentencia C-016-98?"}]}],"tools":[{"fileSearch":{"fileSearchStoreNames":["fileSearchStores/chat-test-store-4fc09e14-oi0jx7wzeu71"]}}],"generationConfig":{"temperature":0.0,"topK":40,"topP":0.95,"maxOutputTokens":8192,"responseMimeType":"text/plain"}}'
+        los argumentos del demandante en la sentencia C-016-98?"}]}],"tools":[{"fileSearch":{"fileSearchStoreNames":["fileSearchStores/chat-test-store-bb01d46b-wm02xossio59"]}}],"generationConfig":{"temperature":0.0,"topK":40,"topP":0.95,"maxOutputTokens":8192,"responseMimeType":"text/plain"}}'
     headers:
       User-Agent:
       - Faraday v2.14.0
@@ -181,7 +181,7 @@ http_interactions:
       content-encoding:
       - gzip
       date:
-      - Mon, 05 Jan 2026 04:49:00 GMT
+      - Mon, 12 Jan 2026 01:40:03 GMT
       server:
       - scaffolding on HTTPServer2
       x-xss-protection:
@@ -191,7 +191,7 @@ http_interactions:
       x-content-type-options:
       - nosniff
       server-timing:
-      - gfet4t7; dur=11275
+      - gfet4t7; dur=11602
       alt-svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       transfer-encoding:
@@ -205,8 +205,8 @@ http_interactions:
               "content": {
                 "parts": [
                   {
-                    "text": "En la sentencia **C-016-98**, los argumentos del demandante para solicitar la inconstitucionalidad de apartes del artículo 46 del Código Sustantivo del Trabajo (subrogado por el artículo 3º de la Ley 50 de 1990) se centraron en los siguientes puntos:\n\n*   **Vulneración de la estabilidad laboral:** El actor argumentó que las normas demandadas, al permitir la contratación a término fijo y su renovación sucesiva, generan una situación de inestabilidad para el trabajador. Sostuvo que esto permite que un trabajador con buen desempeño pueda ver terminada su relación laboral sin un motivo justificado, simplemente por el vencimiento del plazo pactado.\n*   **Afectación del derecho de asociación sindical:** Se planteó que esta modalidad contractual dificulta o imposibilita el ejercicio del derecho de asociación, ya que los trabajadores temen que, al afiliarse a un sindicato, el empleador decida no renovarles el contrato.\n*   **Violación del derecho a la igualdad:** El demandante afirmó que se vulnera el principio de igualdad cuando el empleador impone condiciones de contratación distintas (término fijo vs. término indefinido) para trabajadores que realizan funciones similares, basándose en su facultad discrecional.\n*   **Contravención de principios constitucionales:** Argumentó que las disposiciones impugnadas son contrarias al Preámbulo de la Constitución y a diversos artículos (13, 25, 39, 53, 55 y 56), los cuales protegen el trabajo como un derecho fundamental y un principio esencial del Estado, exigiendo condiciones dignas y justas.\n*   **Crítica a la intermediación laboral:** En el marco de su demanda, también se atacó la existencia de las empresas de servicios temporales, considerándolas parte de un esquema que precariza el empleo.\n\nEstos cargos fueron respaldados por otros intervinientes en el proceso, quienes enfatizaron que la autonomía de la voluntad en el contrato laboral está limitada por el orden público y la protección de la parte débil en la relación de trabajo.",
-                    "thoughtSignature": "EtUKCtIKAXLI2nwdlEQ0QI4tES5yVBjaRA0hJBuNbb4cGVE11E1x4abTVNZu7POAz9lG75iL4ke0wFd491mAvzXeqn+0nySKaoXqpSIFoDNNcCWsSKr59cATc3TGecqHk4Jq39Dh/dk2h09rSGtAsEoxtARURgysLRrAR8/HHWF5FaUcAiotHlp+Z7kDg7mrVMFdRr3C+IhB/wHlBSDRAN1M1EBahde+HHpvwJGef3ayo1AmRyPleiMzHbfQHMbNjlFPvP3BnvMYWg4SVEtvf3FgmxDdFz+NsvKgw4njLUVQ/OSgaex9Qn1gND7ZkcckDg4jUeYo7dSd35IbOdDrkAFeBZGG4SC9u22+S6ArtchaZVGWJDjv6EBsGdGaUuZiFofZtHMKJ1538fX7WpiZ2vYLd0WdMB1gzixwOL5EYF+28Uwaigy4xaGg7KTmMQQlIottXTEf5sDuleT52hDIB6pU4Jf2OB1eE6iTDaBBHmNToR0DNe2mpcaGm2+M1aoaYWP9EgR4oHHpFoDjbGoJp9R8x/NYqsiRf/N20zJXbYhtqnO70bzFNVGdgD4v9woQWOjtHiu8LlQQRC8YA8r6dIogzMC6CQJ9w+kplqoAnCCGWDxq4kH2pYjGzHBT9fAUhKUXCGPTEF2xbuqWlDKi7cYJpAnvFCXebKHBLQxFpJ1v12bplgz4EVwHm3mGtVXFkEYA6DRoA/nSI104nAjWY+yWoAzu2wfgeuck5oSUgF9J+Cx8r9emHrm5R49511BsNGs7wlXCyGXBaRc2dUZfdYI7sezBuJYG7ikR1y5GZ138bUDHegM1ChS2ylcZ/BWb2hHyS1s5rcnO2b56ZDAotCLOSHnbQfW+pAmEOsW4OqDUrbK0xYFTjBV7mJp9HiIsswierLOEBhtWeUX3CpEq0bd43cym0rYxnRTvbbvpbu7WqEwDqBMxME4p4LuQlusrdhyzs6sfOJIwBSU4EIdjD7gdR+jVe245o5R2UpsAQK/dodNxwGtNraA7DCH5jLybT705rjvu8eKY4qshQ5Y6rYOfQpHRiLcflrytxW2RGBhccdq74ARjV23G3+QZRP2M1sdLvlidDFN4CqxgyDjDWBbAIdkbFd5T6cmiJ5rD3/0IzLWHvdq/HAyHBuUcWIzJiU/+MvigqYmIW+ceX4FQ2nw/pdd092VBAV0cuDt0DiH0s9fEtq5uGO4wDrIsdAU8JHz0S90d/WXBbnatHG5R2RWzLeRuD6S4x81++cNPqXBqlpVmwAc/iZ8LX5GtoXMaUMEGGs3D7RPWQ0ItPOIUfbQtkwDnDpcMEPxbh0D9hhW7OGEFmevN/Tg7dbTAWb4D8tWrfY11k/PNokslXVB3+WnM+IYq83i8QmQOFodTPCYDd8i+XjBhAIdY/Zi/SqLU95K6m5n/grMK2mA64EhHYlKtNxEPiPMWcm2XVReGFy3+VrNDai2giELK8ErGg6OqHk1FvtgWIPMkJSXDkFgbz2t9KOLf7ztV0rY05Nu/7gCTZeub/lP1sDEC9RR6ZOIvnhB4kdBSxSnhKINlm2DSihOGBQP7h4lUL/8bfMfQ70UdAwGb9QafqKHdAOallHBSpNgowGN8tzjU5vC4Q6dOINStPkzT+Wy+AKA0eijT2LqwB0PN46/dIFET0PJYlwmRi7EVuJbIdh4aV6Rf/pB/PkdrfWpR9sdmLvfbKg3YsjZBjmGrJAly6d6Li0ksgwuakUcMwZ7nHhoUULmhxM+1TlwlFaOGd8BuhfsTfOSzHZDGvUysweXg0/pUIv/1Mb45XpRbCglasM51GwoKc/UO4D/LWIn1rOg3"
+                    "text": "En la sentencia **C-016-98**, los argumentos del demandante (el actor) para solicitar la inconstitucionalidad de las normas que regulan el contrato de trabajo a término fijo (específicamente el artículo 46 del Código Sustantivo del Trabajo y el artículo 3 de la Ley 50 de 1990) se centraron en los siguientes puntos principales:\n\n*   **Vulneración del principio de estabilidad laboral:** El argumento central fue que la posibilidad de renovar indefinidamente los contratos a término fijo viola el principio de estabilidad en el empleo consagrado en el **artículo 53 de la Constitución Política**. El demandante consideraba que esta modalidad contractual permite al empleador disponer de manera arbitraria de la permanencia del trabajador.\n*   **Desnaturalización de la relación laboral:** Sostuvo que la renovación sucesiva de estos contratos desvirtúa la relación de trabajo, pues aunque en la práctica se prolongue en el tiempo (similar a un contrato a término indefinido), se despoja al trabajador de las prerrogativas y protecciones que se derivan de una vinculación indefinida.\n*   **Afectación del derecho de asociación sindical:** Se argumentó que este tipo de contratación genera un temor en el trabajador que le impide ejercer su derecho a asociarse sindicalmente, ante la posibilidad de que el empleador decida no renovar el contrato como represalia.\n*   **Violación del derecho a la igualdad:** El demandante planteó que se vulnera el derecho a la igualdad (artículo 13 de la Constitución) cuando el empleador impone condiciones contractuales distintas y menos favorables para ciertos trabajadores a través de la temporalidad, a pesar de que estos puedan desempeñar las mismas funciones que otros con contratos indefinidos.\n*   **Inestabilidad e incertidumbre:** Indicó que estas normas exponen al trabajador a un cese de actividades sin motivo alguno, incluso si ha tenido un buen desempeño, lo que genera una situación de inseguridad económica para él y su familia.\n\nEn resumen, el actor consideraba que el contrato a término fijo, tal como estaba regulado, se convertía en un instrumento para que la parte fuerte de la relación (el empleador) eludiera las garantías mínimas constitucionales de los trabajadores.",
+                    "thoughtSignature": "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"
                   }
                 ],
                 "role": "model"
@@ -217,59 +217,60 @@ http_interactions:
                 "groundingChunks": [
                   {
                     "retrievedContext": {
-                      "title": "Sentencia C-016-98 81f35fce",
-                      "text": "fue analizada por la Corte\n Suprema de Justicia en Sentencia 109 del 19 de septiembre de 1991, para lo\n cual remite a su contenido.\n\nV. OTRAS INTERVENCIONES\n\nLos ciudadanos María Paulina Ruiz y Alirio Uribe Muñoz, han presentado\n escrito en el cual solicitan a la Corte declarar la inexequibilidad de las\n disposiciones impugnadas. Los dos apoyan los cargos formulados por el actor.\n\nDicen, además, que las disposiciones demandadas son contrarias al Preámbulo\n y artículos 13, 25, 39, 53, 55 y 56 de la Carta Política.\n\nA su juicio, tales normas generan inestabilidad laboral, no sólo al quedar\n expuesto el trabajador, que ha tenido un buen desempeño, a un cese de\n actividades sin motivo alguno, sino que adicionalmente, se encuentra con la\n imposibilidad de asociarse sindicalmente, ya que es muy posible que no le\n renueven el contrato.\n\nPor último, afirman que se viola el derecho a la igualdad cuando el patrono\n impone diferentes condiciones para la contratación de cada uno de sus\n trabajadores. Atacan, además, la existencia de las empresas de servicios\n temporales.\n\nMINISTERIO DE JUSTICIA\n\nEl ciudadano Alvaro Namen Vargas, obrando en su calidad de apoderado del\n Ministerio de Justicia, presenta escrito en el cual solicita a la Corte declarar la\n exequibilidad de las normas demandadas.\n\nDe una",
-                      "fileSearchStore": "fileSearchStores/chat-test-store-4fc09e14-oi0jx7wzeu71"
+                      "title": "Sentencia C-016-98 7001ac7f",
+                      "text": "están impedidas para acordar condiciones de trabajo que vulneren o\n transgredan sus derechos fundamentales, y en el caso específico que se analiza,\n el del contrato a término fijo, las mismas están supeditadas a las disposiciones\n de las normas impugnadas, que establecen una serie de condiciones que rigen\n ese tipo de contratos; así por ejemplo, en ningún caso podrán las partes pactar\n un término superior a tres años, tampoco podrán prescindir de la formalidad\n del contrato escrito, pero si podrán en cambio, al término de la vigencia\n del contrato, renovarlo indefinidamente, aspecto que es precisamente el que\n impugna por inconstitucional el actor, por considerar que el mismo viola el\n principio de la estabilidad en el empleo que consagra el artículo 53 de la\n Constitución.\n\nQuinta. El principio de estabilidad en el empleo no se opone a la\n celebración de contratos a término definido.\n\nEn este punto es procedente remitirse a algunos de los pronunciamientos de\n esta Corporación, en los que ha señalado que el principio de la estabilidad en\n el empleo no se opone a la celebración de este tipo de contratos, en efecto ha\n dicho la Corte:\n\n\"El principio de estabilidad en el empleo no se opone a la celebración de\n contratos a",
+                      "fileSearchStore": "fileSearchStores/chat-test-store-bb01d46b-wm02xossio59"
                     }
                   },
                   {
                     "retrievedContext": {
-                      "title": "Sentencia C-016-98 81f35fce",
-                      "text": "la Gaceta de la Corte\n Constitucional, cúmplase y archívese el expediente.\n\nΑΝΤΟΝΙΟ BARRERA CARBONELL\n Presidente\n\n\n--- PAGE 13 ---\n\nJORGE ARANGO MEJЛА\n Magistrado\n\nEDUARDO CIFUENTES MUÑOZ\n Magistrado\n\nCARLOS GAVIRIA DIAZ\n Magistrado\n\nHERNANDO HERRERA VERGARA\n Magistrado\n\nJOSE GREGORIO HERNANDEZ GALINDO\n\nMagistrado\n\nALEJANDRO MARTINEZ CABALLERO\n Magistrado\n\nFABIO MORON DIAZ\n\nMagistrado\n\nVLADIMIRO NARANJO MESA\n Magistrado\n\nMARTHA VICTORIA SACHICA DE MONCALEANO\n\nSecretaria General\n\n\n--- PAGE 14 ---\n\nSalvamento de voto a la Sentencia C-016/98\n\nCONTRATO DE TRABAJO A TERMINO FIJO-No es per se\n inconstitucional/CONTRATO DE TRABAJO A TERMINO FIJO-\n Necesidad de sentencia condicionada (Salvamento de voto)\n\nNo compartimos la decisión de declarar la exequibilidad incondicionada del\n articulo impugnado. Estimamos que ha debido ella supeditarse a que se\n entendiera que si, dada la naturaleza de la labor contratada, se llegare a\n establecer que un contrato a término fijo disfraza en realidad una relación\n laboral que no exige lapso determinado, debe hacerse caso omiso de lo\n pactado y tener tal contrato por celebrado a término indefinido, con todas las\n consecuencias salariales y prestacionales correspondientes.\n\nReferencia: Expediente D-1739\n\nLos suscritos magistrados salvamos voto en el asunto de la referencia. Con el\n debido respeto, expresamos inmediatamente las razones que sustentan nuestra\n discrepancia:\n\n1. La disposición preconstitucional demandada, que consagró el contrato de\n trabajo a término fijo y las reglas que le son aplicables, no es contraria\n a la Constitución",
-                      "fileSearchStore": "fileSearchStores/chat-test-store-4fc09e14-oi0jx7wzeu71"
+                      "title": "Sentencia C-016-98 7001ac7f",
+                      "text": "a todos los\n trabajadores, independientemente de que sirvan al Estado o a patronos privados,\n la Constitución busca asegurar que el empleado goce de una certeza mínima en\n el sentido de que el vínculo laboral contraído no se romperá de manera abrupta\n y sorpresiva, de manera que no esté expuesto en forma permanente a perder su\n trabajo y con él los ingresos que permiten su propio sustento y el de su familia,\n por la decisión arbitraria del patrono.\n\nQueda entonces por definir el siguiente interrogante, que constituye el núcleo\n de la acusación que se analiza:\n\nSexta. ¿La renovación sucesiva del contrato a término fijo, vulnera el\n principio de estabilidad laboral y desvirtúa ese tipo de relación laboral, la\n cual adquiere entonces las características de contrato a término indefinido\n pero despojándolo de la prerrogativas que de él se desprenden para el\n trabajador?\n\nDe conformidad con el desarrollo jurisprudencial que ha hecho la Corte en\n torno al principio de estabilidad laboral que consagra el artículo 53 de la C.P.,\n éste se configura y se realiza, en el caso de los contratos a término fijo, cuando\n confluyen los siguientes presupuestos constitutivos del mismo:\n\nCuando al trabajador tiene la certidumbre y la garantía de que conservará el\n empleo, en",
+                      "fileSearchStore": "fileSearchStores/chat-test-store-bb01d46b-wm02xossio59"
                     }
                   },
                   {
                     "retrievedContext": {
-                      "title": "Sentencia C-016-98 81f35fce",
+                      "title": "Sentencia C-016-98 7001ac7f",
+                      "text": "ejercicio de\n las funciones que le corresponden, pero esto no se puede confundir\n con el otorgamiento de facultades omnímodas al nominador para\n prescindir del trabajador, sin relación alguna de causalidad. (Ver\n Sentencia C-479 del 13 de agosto de 1992. Ms. Ps.: Drs. José\n Gregorio Hernández Galindo y Alejandro Martínez Caballero).\n (...)\n\nLa doctrina ha dicho que el derecho al trabajo presenta sin duda\n alguna varias formas de manifestarse: se puede hablar por un lado\n del derecho a adquirir un empleo y por otro el derecho a conservarlo.\n\nEl derecho a conservar el empleo se traduce en la fórmula \"todo\n trabajador tiene derecho a conservar el empleo, salvo que haya una\n causa justa para privarlo de él\". Este concepto se identifica con el de\n la estabilidad.\n\n\n--- PAGE 17 ---\n\nEl principio de estabilidad impide que la autonomía de la voluntad\n produzca sus efectos en toda su plenitud. Esa estabilidad significa\n que en cuanto subsistan las causas y la materia que le dieron origen\n a la relación laboral, ésta se mantiene porque el principio tiene como\n fundamento la Constitución Política:\n\nArt. 53. ...La ley, los contratos, los acuerdos y convenios de trabajo,\n no pueden menoscabar la libertad, la dignidad humana ni los\n derechos de los trabajadores\".\n\nLa",
+                      "fileSearchStore": "fileSearchStores/chat-test-store-bb01d46b-wm02xossio59"
+                    }
+                  },
+                  {
+                    "retrievedContext": {
+                      "title": "Sentencia C-016-98 7001ac7f",
+                      "text": "justicia. Por el contrario, es\n postulado constitucional que se proteja especialmente a aquellas\n personas, como los asalariados, que por su condición económica se\n encuentran en circunstancias de debilidad manifiesta. (artículo 33,\n num.3).\n\nPrecisamente la especial protección al trabajo tiene su fundamento en\n el mandato de hacer la igualdad real y efectiva porque no se puede en\n un Estado Social de Derecho partir de la paridad entre el empresario\n y el trabajador.\n\nEsa estabilidad garantiza la conservación de la fuente de ingresos\n del trabajador, que es normalmente el único medio para cubrir las\n necesidades de él y su familia. Además, la permanencia interesa a\n la sociedad puesto que constituye un medio eficaz para consolidar\n la paz social que es un derecho constitucional, de acuerdo con el\n artículo 22 de la Carta.\n\nTodo lo anterior se sustenta en que el derecho de trabajo es un\n derecho protector de la vida, de la salud y de la condición económica\n del trabajador, parte del presupuesto de la prestación del servicio y\n es, en razón de ella, que impone al patrono cargas y obligaciones.\n\n\n--- PAGE 18 ---\n\nEl origen de la prestación de trabajo, en las diversas formas que\n puede revestir, es necesaria para la formación y nacimiento de",
+                      "fileSearchStore": "fileSearchStores/chat-test-store-bb01d46b-wm02xossio59"
+                    }
+                  },
+                  {
+                    "retrievedContext": {
+                      "title": "Sentencia C-016-98 7001ac7f",
                       "text": "--- PAGE 1 ---\n\nSentencia C-016/98\n\nCONTRATO CIVIL Y CONTRATO LABORAL-Diferencias\n\nEsa distinción, entre el contrato civil y el contrato laboral, se ha ido afianzando\n a través del tiempo y encuentra origen en el reconocimiento de la situación de\n asimetría en la que se encuentran las partes, la cual no permite presumir que\n el acuerdo de voluntades se produzca a partir del ejercicio no interferido ni\n restringido de la autonomía de cada una de ellas, como si ocurre en el contrato\n civil, y en la evolución misma de las sociedades que reivindican el trabajo como\n un valor y un principio esencial del Estado, y como un derecho fundamental\n de las personas de cuya realización efectiva depende el desarrollo de la misma\n en condiciones de dignidad. En efecto, a diferencia de lo que ocurre con el\n contrato civil, el contrato de trabajo es la fuente de la relación laboral, cumple\n una función reguladora complementaria de las condiciones establecidas en la\n Constitución y en la ley, condiciones que las partes no están en capacidad\n de transgredir, empeorar o desconocer, pues ello implicaría la nulidad de sus\n cláusulas.\n\nAUTONOΜΙΑ EN MATERIA LABORAL-Límites\n\nLa restricción de la autonomía de las partes para establecer las condiciones\n que regirán su relación",
-                      "fileSearchStore": "fileSearchStores/chat-test-store-4fc09e14-oi0jx7wzeu71"
-                    }
-                  },
-                  {
-                    "retrievedContext": {
-                      "title": "Sentencia C-016-98 81f35fce",
-                      "text": "La competencia y el objeto de control.\n\nEsta Corte es competente para decidir en definitiva sobre la constitucionalidad\n de la norma acusada, de conformidad con lo dispuesto en el artículo 241,\n numeral 5 de la Constitución Política.\n\nCosa juzgada constitucional\n\nLa Corte Constitucional, mediante Sentencia C-588 del 7 de diciembre de\n 1995 (M.P.: Dr. Antonio Barrera Carbonell), declaró exequibles las expresiones\n \"...pero es renovable indefinidamente\", incluidas en el artículo 46 del Código\n Sustantivo del Trabajo, norma que ahora se demanda en su totalidad.\n\nAl respecto, entonces, habrá de acatarse lo resuelto, en cumplimiento del\n artículo 243 de la Constitución Política en cuanto operó el fenómeno de la cosa\n juzgada.\n\nOcurre lo propio con las palabras \"...y así sucesivamente\", del artículo 3,\n numeral 2, de la Ley 50 de 1990, que subrogó el artículo 46 del Código\n Sustantivo del Trabajo. Ellas fueron declaradas exequibles, ya bajo la vigencia\n de la Constitución Política de 1991, por la Corte Suprema de Justicia, cuando\n todavía ejercía la función de control constitucional, mediante Sentencia 109 del\n 19 de septiembre de 1991 (M.P.: Dr. Simón Rodríguez Rodríguez).\n\nSegunda.- Materia de la demanda.\n\nLa demanda del actor pretende la declaratoria, por parte de esta Corporación,\n de la inconstitucionalidad de los apartes demandados de los",
-                      "fileSearchStore": "fileSearchStores/chat-test-store-4fc09e14-oi0jx7wzeu71"
-                    }
-                  },
-                  {
-                    "retrievedContext": {
-                      "title": "Sentencia C-016-98 81f35fce",
-                      "text": "Ministerio de Justicia, presenta escrito en el cual solicita a la Corte declarar la\n exequibilidad de las normas demandadas.\n\nDe una parte, recuerda que existe cosa juzgada, ya que la Corte Suprema de\n Justicia en Sentencia 109 del 19 de septiembre de 1991, declaró exequibles los\n apartes \"y así sucesivamente\", del artículo 3, numerales 1 y 2 de la Ley 50 de\n 1990, por la cual se subrogó el artículo 46 del Código Sustantivo del Trabajo;\n y la Corte Constitucional en Sentencia C-588 de 1995, declaró exequible la\n expresión \"pero es renovable indefinidamente, perteneciente al mismo artículo\n 46.\n\nPor último afirma que, de acuerdo con la jurisprudencia de la Corte\n Constitucional, \"la estabilidad no es sinónimo de perpetuidad e inamovilidad\".\n\nMINISTERIO DE TRABAJO Y SEGURIDAD SOCIAL\n\nEl ciudadano Pedro Nel Londoño Cortes, actuando en representación del\n Ministerio de Trabajo y Seguridad Social, presenta escrito orientado a\n demostrar la constitucionalidad de las disposiciones impugnadas.\n\n\n--- PAGE 6 ---\n\nSostiene igualmente que existe cosa juzgada, y agrega que es válido y ajustado\n a la Carta Política el celebrar contratos por un tiempo definido.\n\nVI. CONSIDERACIONES DE LA CORTE CONSTITUCIONAL\n\nPrimera.- La competencia y el objeto de control.\n\nEsta Corte es competente para decidir en definitiva sobre la constitucionalidad\n de la norma",
-                      "fileSearchStore": "fileSearchStores/chat-test-store-4fc09e14-oi0jx7wzeu71"
+                      "fileSearchStore": "fileSearchStores/chat-test-store-bb01d46b-wm02xossio59"
                     }
                   }
                 ],
                 "groundingSupports": [
                   {
                     "segment": {
-                      "startIndex": 664,
-                      "endIndex": 940,
-                      "text": "*   **Afectación del derecho de asociación sindical:** Se planteó que esta modalidad contractual dificulta o imposibilita el ejercicio del derecho de asociación, ya que los trabajadores temen que, al afiliarse a un sindicato, el empleador decida no renovarles el contrato."
+                      "startIndex": 335,
+                      "endIndex": 606,
+                      "text": "*   **Vulneración del principio de estabilidad laboral:** El argumento central fue que la posibilidad de renovar indefinidamente los contratos a término fijo viola el principio de estabilidad en el empleo consagrado en el **artículo 53 de la Constitución Política**."
                     },
                     "groundingChunkIndices": [
-                      0
+                      0,
+                      1
                     ]
                   },
                   {
                     "segment": {
-                      "startIndex": 1791,
-                      "endIndex": 2039,
-                      "text": "Estos cargos fueron respaldados por otros intervinientes en el proceso, quienes enfatizaron que la autonomía de la voluntad en el contrato laboral está limitada por el orden público y la protección de la parte débil en la relación de trabajo."
+                      "startIndex": 749,
+                      "endIndex": 1100,
+                      "text": "*   **Desnaturalización de la relación laboral:** Sostuvo que la renovación sucesiva de estos contratos desvirtúa la relación de trabajo, pues aunque en la práctica se prolongue en el tiempo (similar a un contrato a término indefinido), se despoja al trabajador de las prerrogativas y protecciones que se derivan de una vinculación indefinida."
                     },
                     "groundingChunkIndices": [
-                      0
+                      1
                     ]
                   }
                 ]
@@ -277,33 +278,33 @@ http_interactions:
             }
           ],
           "usageMetadata": {
-            "promptTokenCount": 255,
-            "candidatesTokenCount": 454,
-            "totalTokenCount": 10364,
-            "cachedContentTokenCount": 95,
+            "promptTokenCount": 251,
+            "candidatesTokenCount": 481,
+            "totalTokenCount": 10121,
+            "cachedContentTokenCount": 101,
             "promptTokensDetails": [
               {
                 "modality": "TEXT",
-                "tokenCount": 255
+                "tokenCount": 251
               }
             ],
             "cacheTokensDetails": [
               {
                 "modality": "TEXT",
-                "tokenCount": 95
+                "tokenCount": 101
               }
             ],
-            "toolUsePromptTokenCount": 8554,
+            "toolUsePromptTokenCount": 8086,
             "toolUsePromptTokensDetails": [
               {
                 "modality": "TEXT",
-                "tokenCount": 8554
+                "tokenCount": 8086
               }
             ],
-            "thoughtsTokenCount": 1101
+            "thoughtsTokenCount": 1303
           },
           "modelVersion": "gemini-3-flash-preview",
-          "responseId": "vEJbaeHjCbbCqtsP29qz4Q0"
+          "responseId": "81BkaeeqB76dqtsPtoeZ6A8"
         }
-  recorded_at: Mon, 05 Jan 2026 04:49:00 GMT
+  recorded_at: Mon, 12 Jan 2026 01:40:03 GMT
 recorded_with: VCR 6.4.0
