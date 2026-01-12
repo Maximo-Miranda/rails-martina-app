@@ -31,13 +31,13 @@ module Gemini
       # @param options [Hash] optional generation config overrides
       # @return [Hash] { content:, grounding_metadata:, citations:, token_count: }
       def send_message(chat:, user_message:, options: {})
-        store_name = chat.gemini_file_search_store.gemini_store_name
+        store_names = chat.all_store_names
         history = chat.history_for_context
 
-        payload = build_payload(user_message, store_name, history, options)
+        payload = build_payload(user_message, store_names, history, options)
         response = post_generate_content(payload)
 
-        process_response(response, chat.project)
+        process_response(response, chat)
       end
 
       private
@@ -51,11 +51,11 @@ module Gemini
         handle_response(response)
       end
 
-      def build_payload(user_message, store_name, history, options)
+      def build_payload(user_message, store_names, history, options)
         {
           systemInstruction: build_system_instruction,
           contents: build_contents(user_message, history),
-          tools: build_tools(store_name),
+          tools: build_tools(store_names),
           generationConfig: build_generation_config(options),
         }
       end
@@ -79,11 +79,11 @@ module Gemini
         contents
       end
 
-      def build_tools(store_name)
+      def build_tools(store_names)
         [
           {
             fileSearch: {
-              fileSearchStoreNames: [ store_name ],
+              fileSearchStoreNames: store_names,
             },
           },
         ]
@@ -112,7 +112,7 @@ module Gemini
         response.body
       end
 
-      def process_response(data, project)
+      def process_response(data, chat)
         candidate = data.dig("candidates", 0)
 
         if candidate.nil?
@@ -127,7 +127,7 @@ module Gemini
 
         citations = CitationExtractor.extract(
           grounding_metadata: grounding_metadata,
-          project: project
+          stores: chat.all_stores
         )
 
         {

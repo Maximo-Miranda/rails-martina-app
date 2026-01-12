@@ -36,7 +36,10 @@ class ChatsController < ApplicationController
       chat: chat_json(@chat),
       messages: messages_json(@chat.messages.kept.includes(:message_citations).order(:created_at)),
       store: store_json(@chat.gemini_file_search_store),
+      chatGlobalStores: chat_global_stores_json(@chat),
+      globalStores: global_stores_json,
       canSendMessage: policy(@chat).send_message?,
+      canEditGlobalStores: policy(@chat).update?,
     }
   end
 
@@ -46,14 +49,16 @@ class ChatsController < ApplicationController
 
     render inertia: "Chats/Form", props: {
       project: project_json(current_project),
-      chat: { title: nil },
+      chat: { title: nil, global_store_ids: [] },
       store: store_json(@store),
+      globalStores: global_stores_json,
     }
   end
 
   def create
     @chat = current_user.chats.build(chat_params)
     @chat.gemini_file_search_store = @store
+    assign_global_stores(@chat)
     authorize @chat
 
     if @chat.save
@@ -65,6 +70,8 @@ class ChatsController < ApplicationController
 
   def update
     authorize @chat
+
+    assign_global_stores(@chat) if params[:chat]&.key?(:global_store_ids)
 
     if @chat.update(chat_update_params)
       redirect_to chat_path(@chat), notice: t(".success")
@@ -105,6 +112,13 @@ class ChatsController < ApplicationController
     params.require(:chat).permit(:title, :status)
   end
 
+  def assign_global_stores(chat)
+    ids = params[:chat][:global_store_ids]&.reject(&:blank?)&.map(&:to_i) || []
+    ActsAsTenant.without_tenant do
+      chat.global_stores = GeminiFileSearchStore.kept.global.active.where(id: ids)
+    end
+  end
+
   def project_json(project)
     return nil unless project
 
@@ -115,6 +129,22 @@ class ChatsController < ApplicationController
     return nil unless store
 
     store.as_json(only: %i[id display_name status active_documents_count])
+  end
+
+  def global_stores_json
+    ActsAsTenant.without_tenant do
+      GeminiFileSearchStore.kept.global.active.order(:display_name).map { |s| global_store_json(s) }
+    end
+  end
+
+  def chat_global_stores_json(chat)
+    ActsAsTenant.without_tenant do
+      chat.global_stores.reload.map { |s| global_store_json(s) }
+    end
+  end
+
+  def global_store_json(store)
+    store.as_json(only: %i[id display_name active_documents_count])
   end
 
   def chats_json(chats)

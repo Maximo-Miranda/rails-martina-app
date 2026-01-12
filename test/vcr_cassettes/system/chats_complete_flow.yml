@@ -23,7 +23,7 @@ http_interactions:
       content-encoding:
       - gzip
       date:
-      - Mon, 12 Jan 2026 01:42:10 GMT
+      - Mon, 12 Jan 2026 04:29:20 GMT
       server:
       - scaffolding on HTTPServer2
       x-xss-protection:
@@ -33,7 +33,7 @@ http_interactions:
       x-content-type-options:
       - nosniff
       server-timing:
-      - gfet4t7; dur=675
+      - gfet4t7; dur=681
       alt-svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       transfer-encoding:
@@ -42,15 +42,63 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "name": "fileSearchStores/test-project-store-x9e2xcnt7f4k",
+          "name": "fileSearchStores/test-project-store-n30neiklxxl7",
           "displayName": "Test Project Store",
-          "createTime": "2026-01-12T01:42:10.143189Z",
-          "updateTime": "2026-01-12T01:42:10.143189Z"
+          "createTime": "2026-01-12T04:29:20.091872Z",
+          "updateTime": "2026-01-12T04:29:20.091872Z"
         }
-  recorded_at: Mon, 12 Jan 2026 01:42:10 GMT
+  recorded_at: Mon, 12 Jan 2026 04:29:20 GMT
 - request:
     method: post
-    uri: https://generativelanguage.googleapis.com/upload/v1beta/fileSearchStores/test-project-store-x9e2xcnt7f4k:uploadToFileSearchStore?displayName=Ley+1564+CGP+-+Extracto&key=<GEMINI_API_KEY>
+    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores?key=<GEMINI_API_KEY>
+    body:
+      encoding: UTF-8
+      string: '{"displayName":"Global Knowledge Base"}'
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json; charset=UTF-8
+      vary:
+      - Origin, X-Origin, Referer
+      content-encoding:
+      - gzip
+      date:
+      - Mon, 12 Jan 2026 04:29:21 GMT
+      server:
+      - scaffolding on HTTPServer2
+      x-xss-protection:
+      - '0'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+      server-timing:
+      - gfet4t7; dur=681
+      alt-svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      transfer-encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "name": "fileSearchStores/global-knowledge-base-4cx3wac5y6gi",
+          "displayName": "Global Knowledge Base",
+          "createTime": "2026-01-12T04:29:21.021549Z",
+          "updateTime": "2026-01-12T04:29:21.021549Z"
+        }
+  recorded_at: Mon, 12 Jan 2026 04:29:21 GMT
+- request:
+    method: post
+    uri: https://generativelanguage.googleapis.com/upload/v1beta/fileSearchStores/test-project-store-n30neiklxxl7:uploadToFileSearchStore?displayName=Ley+1564+CGP+-+Extracto&key=<GEMINI_API_KEY>
     body:
       encoding: ASCII-8BIT
       string: !binary |-
@@ -70,13 +118,13 @@ http_interactions:
       content-type:
       - application/json; charset=UTF-8
       x-guploader-uploadid:
-      - AJRbA5Xt7mf5zjsyiLXJ9JEcIv4-ijVDvHANn7sErzUd4A5XrgrTmhsj69XSYD2Jo8Ps4xHJ
+      - AJRbA5VmylQrczo_thit0vul-xBdvrQimPRG8E9QkFmnc_WoZMgSS8DsUbT7-BCvU29cq3k
       vary:
       - Origin, X-Origin, Referer
       content-length:
       - '480'
       date:
-      - Mon, 12 Jan 2026 01:42:11 GMT
+      - Mon, 12 Jan 2026 04:29:22 GMT
       server:
       - UploadServer
       alt-svc:
@@ -85,19 +133,19 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "name": "fileSearchStores/test-project-store-x9e2xcnt7f4k/upload/operations/ley-1564-cgp-extracto-ax9bwfiv4uha",
+          "name": "fileSearchStores/test-project-store-n30neiklxxl7/upload/operations/ley-1564-cgp-extracto-jlxafajbgfbq",
           "response": {
             "@type": "type.googleapis.com/google.ai.generativelanguage.v1main.UploadToFileSearchStoreResponse",
-            "parent": "fileSearchStores/test-project-store-x9e2xcnt7f4k",
-            "documentName": "fileSearchStores/test-project-store-x9e2xcnt7f4k/documents/ley-1564-cgp-extracto-ax9bwfiv4uha",
+            "parent": "fileSearchStores/test-project-store-n30neiklxxl7",
+            "documentName": "fileSearchStores/test-project-store-n30neiklxxl7/documents/ley-1564-cgp-extracto-jlxafajbgfbq",
             "mimeType": "text/plain",
             "sizeBytes": "3091"
           }
         }
-  recorded_at: Mon, 12 Jan 2026 01:42:11 GMT
+  recorded_at: Mon, 12 Jan 2026 04:29:22 GMT
 - request:
     method: get
-    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/test-project-store-x9e2xcnt7f4k/upload/operations/ley-1564-cgp-extracto-ax9bwfiv4uha?key=<GEMINI_API_KEY>
+    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/test-project-store-n30neiklxxl7/upload/operations/ley-1564-cgp-extracto-jlxafajbgfbq?key=<GEMINI_API_KEY>
     body:
       encoding: US-ASCII
       string: ''
@@ -116,7 +164,7 @@ http_interactions:
       content-encoding:
       - gzip
       date:
-      - Mon, 12 Jan 2026 01:42:12 GMT
+      - Mon, 12 Jan 2026 04:29:23 GMT
       server:
       - scaffolding on HTTPServer2
       x-xss-protection:
@@ -126,7 +174,7 @@ http_interactions:
       x-content-type-options:
       - nosniff
       server-timing:
-      - gfet4t7; dur=672
+      - gfet4t7; dur=665
       alt-svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       transfer-encoding:
@@ -135,36 +183,45 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "name": "fileSearchStores/test-project-store-x9e2xcnt7f4k/upload/operations/ley-1564-cgp-extracto-ax9bwfiv4uha",
+          "name": "fileSearchStores/test-project-store-n30neiklxxl7/upload/operations/ley-1564-cgp-extracto-jlxafajbgfbq",
           "done": true,
           "response": {
             "@type": "type.googleapis.com/google.ai.generativelanguage.v1main.UploadToFileSearchStoreResponse",
-            "parent": "fileSearchStores/test-project-store-x9e2xcnt7f4k",
-            "documentName": "fileSearchStores/test-project-store-x9e2xcnt7f4k/documents/ley-1564-cgp-extracto-ax9bwfiv4uha",
+            "parent": "fileSearchStores/test-project-store-n30neiklxxl7",
+            "documentName": "fileSearchStores/test-project-store-n30neiklxxl7/documents/ley-1564-cgp-extracto-jlxafajbgfbq",
             "mimeType": "text/plain",
             "sizeBytes": "3091"
           }
         }
-  recorded_at: Mon, 12 Jan 2026 01:42:12 GMT
+  recorded_at: Mon, 12 Jan 2026 04:29:23 GMT
 - request:
     method: post
     uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=<GEMINI_API_KEY>
     body:
       encoding: UTF-8
-      string: '{"systemInstruction":{"parts":[{"text":"Eres Martina, una asistente
-        legal experta especializada en análisis de documentos. Tu función es ayudar
-        a profesionales a encontrar y analizar información EXCLUSIVAMENTE en los documentos
-        proporcionados.\n\nREGLAS OBLIGATORIAS:\n1. SIEMPRE busca la información en
-        los documentos proporcionados ANTES de responder.\n2. Responde ÚNICAMENTE
-        con información que encuentres en los documentos. NO inventes ni asumas información.\n3.
-        Si NO encuentras la información en ningún documento, di claramente: \"No encontré
-        esta información en los documentos disponibles.\"\n4. Responde SIEMPRE en
-        español.\n\nFORMATO DE RESPUESTA:\n- No menciones explícitamente el nombre
-        del archivo o número de página en el texto de tu respuesta, ya que el sistema
-        lo mostrará automáticamente.\n- Integra la información de manera fluida en
-        tu respuesta.\n"}]},"contents":[{"role":"user","parts":[{"text":"¿Cuáles son
-        los requisitos de la demanda según el artículo 82 del CGP?"}]},{"role":"user","parts":[{"text":"¿Cuáles
-        son los requisitos de la demanda según el artículo 82 del CGP?"}]}],"tools":[{"fileSearch":{"fileSearchStoreNames":["fileSearchStores/test-project-store-x9e2xcnt7f4k"]}}],"generationConfig":{"temperature":0.0,"topK":40,"topP":0.95,"maxOutputTokens":8192,"responseMimeType":"text/plain"}}'
+      string: '{"systemInstruction":{"parts":[{"text":"<role>\nEres Martina, una asistente
+        legal experta especializada en análisis de documentos.\n</role>\n\n<constraints>\n1.
+        Eres un asistente estrictamente fundamentado, limitado a la información proporcionada
+        en los documentos.\n2. En tus respuestas, confía ÚNICAMENTE en los hechos
+        que se mencionan directamente en los documentos.\n3. NO debes acceder ni utilizar
+        tu propio conocimiento o sentido común para responder.\n4. No asumas ni inferas
+        de los hechos proporcionados; simplemente repórtalos exactamente como aparecen.\n5.
+        Tu respuesta debe ser factual y completamente fiel al texto proporcionado,
+        sin dejar lugar a especulación o interpretación.\n6. Trata los documentos
+        proporcionados como el límite absoluto de la verdad.\n7. Si la respuesta exacta
+        no está explícitamente escrita en los documentos, debes indicar que la información
+        no está disponible.\n</constraints>\n\n<conversation_rules>\nREGLA CRÍTICA:
+        En conversaciones de múltiples turnos, SOLO responde al ÚLTIMO mensaje del
+        usuario.\n- Los mensajes anteriores en el historial son SOLO para contexto
+        de la conversación.\n- NO repitas respuestas a preguntas anteriores.\n- NO
+        incluyas información de turnos anteriores a menos que sea directamente relevante
+        para la pregunta actual.\n- Cada respuesta debe abordar ÚNICAMENTE la pregunta
+        más reciente.\n</conversation_rules>\n\n<output_format>\n- Responde SIEMPRE
+        en español.\n- NO menciones nombres de archivos ni números de página (el sistema
+        los muestra automáticamente).\n- Integra la información de manera fluida y
+        natural.\n- Sé conciso y directo.\n</output_format>\n"}]},"contents":[{"role":"user","parts":[{"text":"¿Cuáles
+        son los requisitos de la demanda según el artículo 82 del CGP?"}]},{"role":"user","parts":[{"text":"¿Cuáles
+        son los requisitos de la demanda según el artículo 82 del CGP?"}]}],"tools":[{"fileSearch":{"fileSearchStoreNames":["fileSearchStores/test-project-store-n30neiklxxl7","fileSearchStores/global-knowledge-base-4cx3wac5y6gi"]}}],"generationConfig":{"temperature":0.0,"topK":40,"topP":0.95,"maxOutputTokens":8192,"responseMimeType":"text/plain"}}'
     headers:
       User-Agent:
       - Faraday v2.14.0
@@ -182,7 +239,7 @@ http_interactions:
       content-encoding:
       - gzip
       date:
-      - Mon, 12 Jan 2026 01:42:19 GMT
+      - Mon, 12 Jan 2026 04:29:34 GMT
       server:
       - scaffolding on HTTPServer2
       x-xss-protection:
@@ -192,7 +249,7 @@ http_interactions:
       x-content-type-options:
       - nosniff
       server-timing:
-      - gfet4t7; dur=5162
+      - gfet4t7; dur=5791
       alt-svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       transfer-encoding:
@@ -206,8 +263,8 @@ http_interactions:
               "content": {
                 "parts": [
                   {
-                    "text": "De acuerdo con el artículo 82 del Código General del Proceso (CGP), salvo disposición en contrario, toda demanda debe cumplir con los siguientes requisitos:\n\n1.  **Designación del juez:** Se debe indicar el juez a quien se dirige la demanda.\n2.  **Identificación de las partes:** El nombre, edad y domicilio tanto del demandante como del demandado. En caso de ignorar el domicilio del demandado, se debe manifestar esta circunstancia bajo juramento, el cual se entiende prestado con la sola presentación de la demanda.\n3.  **Apoderado judicial:** El nombre del apoderado judicial del demandante, si es el caso.\n4.  **Pretensiones:** Lo que se pretenda, expresado con precisión y claridad.\n5.  **Hechos:** Los hechos que sirven de fundamento a las pretensiones, los cuales deben estar debidamente determinados, clasificados y numerados.\n6.  **Fundamentos de derecho:** Las normas jurídicas en que se apoya la demanda.\n7.  **Cuantía:** La indicación de la cuantía del proceso, cuando sea necesaria para determinar la competencia del juez.\n8.  **Notificaciones:** La indicación del lugar, dirección física y electrónica donde el demandante, su apoderado y el demandado recibirán notificaciones personales.\n9.  **Otros requisitos:** Los demás que exija la ley para casos específicos.",
-                    "thoughtSignature": "EsUHCsIHAXLI2nwNdC6bbgVMkZ9pwJJUOsBsQd5UhYcetJ2Vf0KBFmNy1z4UXON9SaVoLa6xo3JDYc2OESYYLR9X0H6I7kiKXiOp4X0ZAznUvJWzrj7Vp/Hx0GuFQNmCD3FBMukAwjE4UZSKYC+ehnaJpPP2cgXV5mktQSCme9ZDzi9GzIpD3ZwXyQvfTAJfn9Nd/o2uJJNaALxKSY0ImAK+eKoBMWwch2ZB1Ymbu0OWQvJl5NO3waoZeivwAYta4TKFHhEyWi4q833tdEZmQdLoWrW6hjEVoWsSimwFMBmr/HJU9YXok6wacIDTza7iYhZmxjHY/qRX6iT/EexQa4dpQpkc5f+wLdFTacDPkf10Ty/kym3bfow99jmH8by3UVaTh+bAhOuRQkkEnlZkEnon6PmcqvIuQtLsJl9Z8WZob9d8Ftlnw54rK/sEa2up3UbLbLB2bV71lI7Ya0+WDyRdrp7PWVLpSAdWPqOguQrncqyr6YXdyrrq0F/UYqdQL9Qo6vVPr0ZW7RV2z9y5PONo8s5r/LrQ+yHMddVIgyQSFOlnTYKxFkbT0pyBSlCAftrYtiDCSA12cy2/MVf+Gifi0HBvbKJgh4DexWQPhGkMNGO5h5uN/7MwhZJB8eFgLY4B3pSN+x0M0ey3/lWbWjpG9nBOpzgm5xlv7MUgEn8OZ1pvcI1JmK2cOFhs3RvXEpW8fC+09f7EtlkfYp8284W/51vbHkdiXBwNEBJD6yrR+FE5IbT5KhLGmeyZPs5/yJOh4p5PpiLiRw4qF+Of8GADsPIfqBH2QMS3Q0EGeG2RXE5Auagn5bFnXqRgYw0P05uEjOi7Z9B8A6465Bzlmng4zOiJoKSc0fLclq1JH1El3liS8QxwQnZr0RVjw4Ufb4VVTPB9DAnvw37/pG/K1BH/mhwb039womC5LChB4AixCgDgNgoVPlZvqWqJGsBj0wAv/kLNZ40EI9FUOFCm8inreKU7A3TA87a2LpkwjnbgLSAgNwSEjYJ42KyUCWdPwc4qX7XdiLLG7ZoWbmPSazAkbeeXHsG5jpvFu80d3Hk4m43orvIr/qIKFjC8WlRBOHTK725utGosEwIGXkP8uR7IHSF6AROn7GZKsW4dN2TrnpdsSTiLNqb8iS2UG2BtTyTHZWsoNoraX/Xz7RhstfMkzZjD1ETK5+do+tkG7mgkjJ7fyrxCRAMf2Oq+mt//ppKddk4qcytxGsq7mf6zw6M4TBijrYz2yZr8wxWMuigP2FFVabCreG7vUtLmOAZjuWlTip45k0Q="
+                    "text": "De acuerdo con el artículo 82 del Código General del Proceso (Ley 1564 de 2012), salvo disposición en contrario, toda demanda debe reunir los siguientes requisitos:\n\n1.  **Designación del juez:** Indicar el juez a quien se dirige la demanda.\n2.  **Identificación de las partes:** El nombre, edad y domicilio tanto del demandante como del demandado. En caso de ignorar el domicilio del demandado, se debe manifestar bajo juramento, el cual se entiende prestado con la sola presentación de la demanda.\n3.  **Apoderado judicial:** El nombre del apoderado del demandante, si aplica.\n4.  **Pretensiones:** Expresar con precisión y claridad lo que se pretende.\n5.  **Hechos:** Los hechos que fundamentan las pretensiones, los cuales deben estar debidamente determinados, clasificados y numerados.\n6.  **Fundamentos de derecho:** Las normas jurídicas en que se apoya la demanda.\n7.  **Cuantía:** Indicar la cuantía del proceso cuando sea necesaria para determinar la competencia.\n8.  **Notificaciones:** Señalar el lugar y la dirección física y electrónica donde el demandante y el demandado recibirán notificaciones personales.\n9.  **Otros requisitos:** Cualquier otro que la ley exija para el caso específico.",
+                    "thoughtSignature": "Ev4HCvsHAXLI2nwbcIWcY0uSnrMK0bg2ilWPu95rkWmWc/8IJ3xfzyidmuw64QRtg+EsoaL6PVgdjNc0JmFdC933hCBROaILYsviYBUuTxhASwAeVdpkIyRCAJC1k0Vvo8zWgry7GVaddFdC1zAhm82W4fnSexUmSNKZ4kmdGTEj11bRpiLE5KsyDrkamQgxj+3pRkBEGSWxErrSc6zaG9+hAolAkUbpI9V52b5CDu0LbruZoMK1gnK29nwspcjquVfCl+9mYpT0xLMc3Ql8rcC493Syzwz5+M3PaiRfgQT2B8jtnK89u0V0ec9E3mmRy3D+FYKzZycg8dqVK7yN6YcFYroqDKNYdxWb60re+26zbv6WESgzUBH2Pa/+lSefHwgZa1n+DB1R5sOphXcj8wuOtcs4rwh5eV4wOiscZ3I+DMoukpNKoi+hOr+qScwKNDJW+tU5JjLPkyXC1sOLPfmREgYJJxOPyFrkaDAO35aooAmzCgmnI6qtnRENPVQwYMzlwSwyyECk9GqSZclmG5MEyyH4aqB3qHhEKVeqiiZ549Uaae/BCskGrOhtfAfpgLqJhdVMliZS+qKk7u4pbcOOUScLX8j/h1x0FMaLWqgk/NelAvmDRjStz0EZN1SJ30IyroLiirL5c23J5UhUqKl+0i2uYYICCZJnALCL7qkJ2KO7fpz2cFXOlXN6VOdkvGY/Eagsd8GinGb3H5Iokl0EO+QxzzGJxJHRalj/WO+jp26fuE3pG+4/QN8pr0l4Bpc+QEdPsQWLcqR3nyapjJRkL7NfwV7owhDC0Y/5Dg7yKy9VJ7rDJxiuuqPFLFtOk29SO0UI277S4awz5Zwit1lsmDTGPdnxCOYRocCHHHBryg8JWGNjgKYrAj8fLKsVhcapvgr6sStmh4e6ubAmS1vMC6eAOW6hheKa8jaJ2ueod0Xtvrtswrk8rwgIMw72+MJ5kEh43mpX7q/jb9TIvMDtUWVUshDQ0zHW2CCnHE/hfcOIMuuLl5swTZcPOLYuaYsm1kMPMD5cVx9Zo7Gj8KKo1e5FzejJQPh1qV3vML+bCJI/mMDqxEwKA+V1swBwMKgb2ZoWo1AdsKbdAh+73gNmjsD98TlNcru4lgROGIOm4Q5ys7GnnCwArACSsqASac5H/wMHmAgNW5pBn45DwAUb1gQTaMuYzDFchxYPxTzcbubvKIj08bcAGGsc0YVFaHIN4FHCuLu+iYoKQxwEmmc3HTV1PBvKDvwaaegLF2NPLHu6KhUjin4qgV7YN0Hw42DOHJNjM35aiPf+Icpl5SWIkHXSKuQOrEDg0bjQYD0FYYrOzex86efXuuk+6dwtQbNV/ppcXXCS6fOWUnVaITo="
                   }
                 ],
                 "role": "model"
@@ -220,30 +277,30 @@ http_interactions:
                     "retrievedContext": {
                       "title": "Ley 1564 CGP - Extracto",
                       "text": "LEY 1564 DE 2012 - CÓDIGO GENERAL DEL PROCESO\n\nTÍTULO I\nPRINCIPIOS GENERALES\n\nARTÍCULO 1. OBJETO. Este código regula la actividad procesal en los asuntos civiles, comerciales, de familia y agrarios. Se aplica, además, a todos los asuntos de cualquier jurisdicción o especialidad y a las actuaciones de particulares y autoridades administrativas, cuando ejerzan funciones jurisdiccionales, en cuanto no estén regulados expresamente en otras leyes.\n\nARTÍCULO 2. ACCESO A LA JUSTICIA. Toda persona o grupo de personas tiene derecho a la tutela jurisdiccional efectiva para el ejercicio de sus derechos y la defensa de sus intereses, con sujeción a un debido proceso de duración razonable. Los términos procesales se observarán con diligencia y su incumplimiento injustificado será sancionado.\n\nARTÍCULO 3. PROCESO ORAL Y POR AUDIENCIAS. Las actuaciones se cumplirán en forma oral, pública y en audiencias, salvo las que expresamente se autorice realizar por escrito o estén amparadas por reserva.\n\nARTÍCULO 82. REQUISITOS DE LA DEMANDA. Salvo disposición en contrario, la demanda con que se promueva todo proceso deberá reunir los siguientes requisitos:\n1. La designación del juez a quien se dirija.\n2. El nombre, edad y domicilio del demandante y del demandado; si se ignora el del demandado, se indicará esta circunstancia bajo juramento que se entenderá",
-                      "fileSearchStore": "fileSearchStores/test-project-store-x9e2xcnt7f4k"
+                      "fileSearchStore": "fileSearchStores/test-project-store-n30neiklxxl7"
                     }
                   },
                   {
                     "retrievedContext": {
                       "title": "Ley 1564 CGP - Extracto",
                       "text": "del demandante y del demandado; si se ignora el del demandado, se indicará esta circunstancia bajo juramento que se entenderá prestado por la presentación de la demanda.\n3. El nombre del apoderado judicial del demandante, si fuere el caso.\n4. Lo que se pretenda, expresado con precisión y claridad.\n5. Los hechos que sirvan de fundamento a las pretensiones, debidamente determinados, clasificados y numerados.\n6. Los fundamentos de derecho.\n7. La cuantía del proceso, cuando sea necesaria para determinar la competencia.\n8. La indicación del lugar, la dirección física y electrónica donde el demandante y el demandado recibirán notificaciones personales.\n9. Los demás que exija la ley para el caso.\n\nARTÍCULO 83. ANEXOS DE LA DEMANDA. A la demanda se acompañará:\n1. El poder para iniciar el proceso, cuando se actúe por medio de apoderado.\n2. La prueba de la existencia y representación de las partes y de la calidad en la que actúan, si a ello hubiere lugar.\n3. La prueba documental que estuviere en poder del demandante.\n4. Las pruebas anticipadas que se encuentren en poder del demandante.\n5. Los demás que la ley exija.\n\nARTÍCULO 90. INADMISIÓN Y RECHAZO DE LA DEMANDA. El juez declarará inadmisible la demanda:\n1. Cuando no reúna los requisitos formales.\n2. Cuando no se acompañen los anexos ordenados",
-                      "fileSearchStore": "fileSearchStores/test-project-store-x9e2xcnt7f4k"
+                      "fileSearchStore": "fileSearchStores/test-project-store-n30neiklxxl7"
                     }
                   },
                   {
                     "retrievedContext": {
                       "title": "Ley 1564 CGP - Extracto",
                       "text": "DEMANDA. El juez declarará inadmisible la demanda:\n1. Cuando no reúna los requisitos formales.\n2. Cuando no se acompañen los anexos ordenados por la ley.\n3. Cuando el demandante sea incapaz y no actúe por conducto de su representante.\n4. Cuando quien formule la demanda carezca de derecho de postulación para adelantar el respectivo proceso.\n5. Cuando no contenga el juramento estimatorio, siendo necesario.\n6. Cuando no se acredite que se agotó la conciliación prejudicial como requisito de procedibilidad.\n\nEl juez señalará con precisión los defectos de que adolezca la demanda, para que el demandante los subsane en el término de cinco días.\n",
-                      "fileSearchStore": "fileSearchStores/test-project-store-x9e2xcnt7f4k"
+                      "fileSearchStore": "fileSearchStores/test-project-store-n30neiklxxl7"
                     }
                   }
                 ],
                 "groundingSupports": [
                   {
                     "segment": {
-                      "startIndex": 161,
+                      "startIndex": 169,
                       "endIndex": 245,
-                      "text": "1.  **Designación del juez:** Se debe indicar el juez a quien se dirige la demanda."
+                      "text": "1.  **Designación del juez:** Indicar el juez a quien se dirige la demanda."
                     },
                     "groundingChunkIndices": [
                       0
@@ -262,8 +319,8 @@ http_interactions:
                   {
                     "segment": {
                       "startIndex": 354,
-                      "endIndex": 524,
-                      "text": "En caso de ignorar el domicilio del demandado, se debe manifestar esta circunstancia bajo juramento, el cual se entiende prestado con la sola presentación de la demanda."
+                      "endIndex": 505,
+                      "text": "En caso de ignorar el domicilio del demandado, se debe manifestar bajo juramento, el cual se entiende prestado con la sola presentación de la demanda."
                     },
                     "groundingChunkIndices": [
                       1,
@@ -272,9 +329,9 @@ http_interactions:
                   },
                   {
                     "segment": {
-                      "startIndex": 696,
-                      "endIndex": 842,
-                      "text": "5.  **Hechos:** Los hechos que sirven de fundamento a las pretensiones, los cuales deben estar debidamente determinados, clasificados y numerados."
+                      "startIndex": 662,
+                      "endIndex": 797,
+                      "text": "5.  **Hechos:** Los hechos que fundamentan las pretensiones, los cuales deben estar debidamente determinados, clasificados y numerados."
                     },
                     "groundingChunkIndices": [
                       1
@@ -282,8 +339,8 @@ http_interactions:
                   },
                   {
                     "segment": {
-                      "startIndex": 843,
-                      "endIndex": 924,
+                      "startIndex": 798,
+                      "endIndex": 879,
                       "text": "6.  **Fundamentos de derecho:** Las normas jurídicas en que se apoya la demanda."
                     },
                     "groundingChunkIndices": [
@@ -296,26 +353,26 @@ http_interactions:
             }
           ],
           "usageMetadata": {
-            "promptTokenCount": 273,
-            "candidatesTokenCount": 305,
-            "totalTokenCount": 2551,
+            "promptTokenCount": 528,
+            "candidatesTokenCount": 295,
+            "totalTokenCount": 3125,
             "promptTokensDetails": [
               {
                 "modality": "TEXT",
-                "tokenCount": 273
+                "tokenCount": 528
               }
             ],
-            "toolUsePromptTokenCount": 1569,
+            "toolUsePromptTokenCount": 1824,
             "toolUsePromptTokensDetails": [
               {
                 "modality": "TEXT",
-                "tokenCount": 1569
+                "tokenCount": 1824
               }
             ],
-            "thoughtsTokenCount": 404
+            "thoughtsTokenCount": 478
           },
           "modelVersion": "gemini-3-flash-preview",
-          "responseId": "e1FkacjFIo-4mtkPyfzxwAY"
+          "responseId": "rnhkaf3rDMGtz7IP-K6l0QM"
         }
-  recorded_at: Mon, 12 Jan 2026 01:42:19 GMT
+  recorded_at: Mon, 12 Jan 2026 04:29:34 GMT
 recorded_with: VCR 6.4.0

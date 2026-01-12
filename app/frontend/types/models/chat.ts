@@ -29,12 +29,19 @@ export interface MessageCitation {
   pages: number[] | null
   text_snippet: string | null
   confidence_score: number | null
+  is_global: boolean
 }
 
 export interface ChatStore {
   id: number
   display_name: string
   status: string
+  active_documents_count: number
+}
+
+export interface GlobalStore {
+  id: number
+  display_name: string
   active_documents_count: number
 }
 

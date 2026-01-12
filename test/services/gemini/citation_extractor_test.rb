@@ -47,7 +47,7 @@ class Gemini::CitationExtractorTest < ActiveSupport::TestCase
 
     citations = Gemini::CitationExtractor.extract(
       grounding_metadata: grounding_metadata,
-      project: @project
+      stores: [ @store ]
     )
 
     assert_equal 2, citations.length
@@ -98,7 +98,7 @@ class Gemini::CitationExtractorTest < ActiveSupport::TestCase
 
     citations = Gemini::CitationExtractor.extract(
       grounding_metadata: grounding_metadata,
-      project: @project
+      stores: [ @store ]
     )
 
     assert_equal 1, citations.length
@@ -144,7 +144,7 @@ class Gemini::CitationExtractorTest < ActiveSupport::TestCase
 
     citations = Gemini::CitationExtractor.extract(
       grounding_metadata: grounding_metadata,
-      project: @project
+      stores: [ @store ]
     )
 
     assert_equal 1, citations.length
@@ -154,7 +154,7 @@ class Gemini::CitationExtractorTest < ActiveSupport::TestCase
   test "returns empty array for nil grounding metadata" do
     citations = Gemini::CitationExtractor.extract(
       grounding_metadata: nil,
-      project: @project
+      stores: [ @store ]
     )
     assert_empty citations
   end
@@ -162,7 +162,7 @@ class Gemini::CitationExtractorTest < ActiveSupport::TestCase
   test "returns empty array for empty grounding metadata" do
     citations = Gemini::CitationExtractor.extract(
       grounding_metadata: {},
-      project: @project
+      stores: [ @store ]
     )
     assert_empty citations
   end
@@ -174,7 +174,7 @@ class Gemini::CitationExtractorTest < ActiveSupport::TestCase
 
     citations = Gemini::CitationExtractor.extract(
       grounding_metadata: grounding_metadata,
-      project: @project
+      stores: [ @store ]
     )
     assert_empty citations
   end
@@ -200,7 +200,7 @@ class Gemini::CitationExtractorTest < ActiveSupport::TestCase
 
     citations = Gemini::CitationExtractor.extract(
       grounding_metadata: grounding_metadata,
-      project: @project
+      stores: [ @store ]
     )
 
     assert_empty citations
@@ -229,7 +229,7 @@ class Gemini::CitationExtractorTest < ActiveSupport::TestCase
 
     citations = Gemini::CitationExtractor.extract(
       grounding_metadata: grounding_metadata,
-      project: @project
+      stores: [ @store ]
     )
 
     assert_equal 1, citations.length
@@ -262,7 +262,7 @@ class Gemini::CitationExtractorTest < ActiveSupport::TestCase
 
     citations = Gemini::CitationExtractor.extract(
       grounding_metadata: grounding_metadata,
-      project: @project
+      stores: [ @store ]
     )
 
     assert_equal 1, citations.length
@@ -292,7 +292,7 @@ class Gemini::CitationExtractorTest < ActiveSupport::TestCase
 
     citations = Gemini::CitationExtractor.extract(
       grounding_metadata: grounding_metadata,
-      project: @project
+      stores: [ @store ]
     )
 
     assert_equal 1, citations.length
@@ -319,7 +319,7 @@ class Gemini::CitationExtractorTest < ActiveSupport::TestCase
 
     citations = Gemini::CitationExtractor.extract(
       grounding_metadata: grounding_metadata,
-      project: @project
+      stores: [ @store ]
     )
 
     assert_equal 1, citations.length
@@ -360,7 +360,7 @@ class Gemini::CitationExtractorTest < ActiveSupport::TestCase
 
     citations = Gemini::CitationExtractor.extract(
       grounding_metadata: grounding_metadata,
-      project: @project
+      stores: [ @store ]
     )
 
     assert_equal 1, citations.length
@@ -424,7 +424,7 @@ class Gemini::CitationExtractorTest < ActiveSupport::TestCase
 
     citations = Gemini::CitationExtractor.extract(
       grounding_metadata: grounding_metadata,
-      project: @project
+      stores: [ @store ]
     )
 
     # Should only return the document from current project

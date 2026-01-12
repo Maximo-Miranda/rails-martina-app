@@ -8,6 +8,7 @@ class Chat < ApplicationRecord
 
   MAX_CHATS_PER_PROJECT = 100
   MAX_HISTORY_MESSAGES = 25
+  MAX_GLOBAL_STORES = 50
 
   enum :status, {
     active: 0,
@@ -18,6 +19,12 @@ class Chat < ApplicationRecord
   belongs_to :user
   belongs_to :gemini_file_search_store
 
+  has_and_belongs_to_many :global_stores,
+                          class_name: "GeminiFileSearchStore",
+                          join_table: "chat_global_stores",
+                          foreign_key: "chat_id",
+                          association_foreign_key: "gemini_file_search_store_id"
+
   has_many :messages, dependent: :destroy
 
   validates :project_id, presence: true
@@ -26,6 +33,8 @@ class Chat < ApplicationRecord
   validate :max_chats_per_project, on: :create
   validate :store_must_be_synced, on: :create
   validate :store_must_have_documents, on: :create
+  validate :global_stores_limit
+  validate :global_stores_must_be_global_and_active
 
   scope :for_user, ->(user) { where(user: user) }
   scope :for_project, ->(project) { where(project: project) }
@@ -36,7 +45,7 @@ class Chat < ApplicationRecord
   end
 
   def self.ransackable_associations(_auth_object = nil)
-    %w[project user gemini_file_search_store messages]
+    %w[project user gemini_file_search_store messages global_stores]
   end
 
   def owned_by?(check_user)
@@ -61,6 +70,20 @@ class Chat < ApplicationRecord
 
   def display_title
     title.presence || I18n.t("chats.default_title")
+  end
+
+  def all_store_names
+    names = [ gemini_file_search_store&.gemini_store_name ].compact
+    names + global_stores_without_tenant.filter(&:active?).map(&:gemini_store_name).compact
+  end
+
+  def all_stores
+    stores = [ gemini_file_search_store ].compact
+    stores + global_stores_without_tenant.filter(&:active?)
+  end
+
+  def global_stores_without_tenant
+    @global_stores_without_tenant ||= ActsAsTenant.without_tenant { global_stores.reload.to_a }
   end
 
   private
@@ -101,5 +124,24 @@ class Chat < ApplicationRecord
     return if real_count > 0
 
     errors.add(:gemini_file_search_store, :no_documents)
+  end
+
+  def global_stores_limit
+    return if global_stores.size <= MAX_GLOBAL_STORES
+
+    errors.add(:global_stores, :too_many, count: MAX_GLOBAL_STORES)
+  end
+
+  def global_stores_must_be_global_and_active
+    global_stores.each do |store|
+      unless store.global?
+        errors.add(:global_stores, :must_be_global, name: store.display_name)
+        next
+      end
+
+      unless store.active?
+        errors.add(:global_stores, :must_be_active, name: store.display_name)
+      end
+    end
   end
 end

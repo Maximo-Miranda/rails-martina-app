@@ -5,7 +5,7 @@ http_interactions:
     uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores?key=<GEMINI_API_KEY>
     body:
       encoding: UTF-8
-      string: '{"displayName":"Chat Test Store a2e95a90"}'
+      string: '{"displayName":"Chat Test Store adfdcc40"}'
     headers:
       User-Agent:
       - Faraday v2.14.0
@@ -23,7 +23,7 @@ http_interactions:
       content-encoding:
       - gzip
       date:
-      - Mon, 12 Jan 2026 01:40:24 GMT
+      - Mon, 12 Jan 2026 03:52:58 GMT
       server:
       - scaffolding on HTTPServer2
       x-xss-protection:
@@ -33,7 +33,7 @@ http_interactions:
       x-content-type-options:
       - nosniff
       server-timing:
-      - gfet4t7; dur=649
+      - gfet4t7; dur=639
       alt-svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       transfer-encoding:
@@ -42,15 +42,15 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "name": "fileSearchStores/chat-test-store-a2e95a90-zzkqjhe1jf32",
-          "displayName": "Chat Test Store a2e95a90",
-          "createTime": "2026-01-12T01:40:24.298753Z",
-          "updateTime": "2026-01-12T01:40:24.298753Z"
+          "name": "fileSearchStores/chat-test-store-adfdcc40-4mv6u9qoi50w",
+          "displayName": "Chat Test Store adfdcc40",
+          "createTime": "2026-01-12T03:52:58.122074Z",
+          "updateTime": "2026-01-12T03:52:58.122074Z"
         }
-  recorded_at: Mon, 12 Jan 2026 01:40:24 GMT
+  recorded_at: Mon, 12 Jan 2026 03:52:58 GMT
 - request:
     method: post
-    uri: https://generativelanguage.googleapis.com/upload/v1beta/fileSearchStores/chat-test-store-a2e95a90-zzkqjhe1jf32:uploadToFileSearchStore?displayName=Sentencia+C-016-98+d1567e01&key=<GEMINI_API_KEY>
+    uri: https://generativelanguage.googleapis.com/upload/v1beta/fileSearchStores/chat-test-store-adfdcc40-4mv6u9qoi50w:uploadToFileSearchStore?displayName=Sentencia+C-016-98+9601deef&key=<GEMINI_API_KEY>
     body:
       encoding: ASCII-8BIT
       string: !binary |-
@@ -70,13 +70,13 @@ http_interactions:
       content-type:
       - application/json; charset=UTF-8
       x-guploader-uploadid:
-      - AJRbA5VvUS8lqKmdVCI3tN1Mqtr-3n2ii_7hM7jI6WH08t_Wl8ylDAlmDlFQJAOre2f-bomf
+      - AJRbA5UxHBAcPwvOGwNSA9hhf7WXXbRHoiuRhiq9TbhWilqYvHo3QTEkBQKosF9NZN3ONewB
       vary:
       - Origin, X-Origin, Referer
       content-length:
       - '513'
       date:
-      - Mon, 12 Jan 2026 01:40:27 GMT
+      - Mon, 12 Jan 2026 03:53:01 GMT
       server:
       - UploadServer
       alt-svc:
@@ -85,19 +85,19 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "name": "fileSearchStores/chat-test-store-a2e95a90-zzkqjhe1jf32/upload/operations/sentencia-c01698-d1567e01-u7tzl1crc982",
+          "name": "fileSearchStores/chat-test-store-adfdcc40-4mv6u9qoi50w/upload/operations/sentencia-c01698-9601deef-ehbnyykdxpoi",
           "response": {
             "@type": "type.googleapis.com/google.ai.generativelanguage.v1main.UploadToFileSearchStoreResponse",
-            "parent": "fileSearchStores/chat-test-store-a2e95a90-zzkqjhe1jf32",
-            "documentName": "fileSearchStores/chat-test-store-a2e95a90-zzkqjhe1jf32/documents/sentencia-c01698-d1567e01-u7tzl1crc982",
+            "parent": "fileSearchStores/chat-test-store-adfdcc40-4mv6u9qoi50w",
+            "documentName": "fileSearchStores/chat-test-store-adfdcc40-4mv6u9qoi50w/documents/sentencia-c01698-9601deef-ehbnyykdxpoi",
             "mimeType": "application/pdf",
             "sizeBytes": "202571"
           }
         }
-  recorded_at: Mon, 12 Jan 2026 01:40:27 GMT
+  recorded_at: Mon, 12 Jan 2026 03:53:01 GMT
 - request:
     method: get
-    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/chat-test-store-a2e95a90-zzkqjhe1jf32/upload/operations/sentencia-c01698-d1567e01-u7tzl1crc982?key=<GEMINI_API_KEY>
+    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/chat-test-store-adfdcc40-4mv6u9qoi50w/upload/operations/sentencia-c01698-9601deef-ehbnyykdxpoi?key=<GEMINI_API_KEY>
     body:
       encoding: US-ASCII
       string: ''
@@ -116,7 +116,7 @@ http_interactions:
       content-encoding:
       - gzip
       date:
-      - Mon, 12 Jan 2026 01:40:28 GMT
+      - Mon, 12 Jan 2026 03:53:01 GMT
       server:
       - scaffolding on HTTPServer2
       x-xss-protection:
@@ -126,7 +126,7 @@ http_interactions:
       x-content-type-options:
       - nosniff
       server-timing:
-      - gfet4t7; dur=661
+      - gfet4t7; dur=586
       alt-svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       transfer-encoding:
@@ -135,35 +135,217 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "name": "fileSearchStores/chat-test-store-a2e95a90-zzkqjhe1jf32/upload/operations/sentencia-c01698-d1567e01-u7tzl1crc982",
+          "name": "fileSearchStores/chat-test-store-adfdcc40-4mv6u9qoi50w/upload/operations/sentencia-c01698-9601deef-ehbnyykdxpoi"
+        }
+  recorded_at: Mon, 12 Jan 2026 03:53:01 GMT
+- request:
+    method: get
+    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/chat-test-store-adfdcc40-4mv6u9qoi50w/upload/operations/sentencia-c01698-9601deef-ehbnyykdxpoi?key=<GEMINI_API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json; charset=UTF-8
+      vary:
+      - Origin, X-Origin, Referer
+      content-encoding:
+      - gzip
+      date:
+      - Mon, 12 Jan 2026 03:53:07 GMT
+      server:
+      - scaffolding on HTTPServer2
+      x-xss-protection:
+      - '0'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+      server-timing:
+      - gfet4t7; dur=594
+      alt-svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      transfer-encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "name": "fileSearchStores/chat-test-store-adfdcc40-4mv6u9qoi50w/upload/operations/sentencia-c01698-9601deef-ehbnyykdxpoi"
+        }
+  recorded_at: Mon, 12 Jan 2026 03:53:07 GMT
+- request:
+    method: get
+    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/chat-test-store-adfdcc40-4mv6u9qoi50w/upload/operations/sentencia-c01698-9601deef-ehbnyykdxpoi?key=<GEMINI_API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json; charset=UTF-8
+      vary:
+      - Origin, X-Origin, Referer
+      content-encoding:
+      - gzip
+      date:
+      - Mon, 12 Jan 2026 03:53:13 GMT
+      server:
+      - scaffolding on HTTPServer2
+      x-xss-protection:
+      - '0'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+      server-timing:
+      - gfet4t7; dur=590
+      alt-svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      transfer-encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "name": "fileSearchStores/chat-test-store-adfdcc40-4mv6u9qoi50w/upload/operations/sentencia-c01698-9601deef-ehbnyykdxpoi"
+        }
+  recorded_at: Mon, 12 Jan 2026 03:53:13 GMT
+- request:
+    method: get
+    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/chat-test-store-adfdcc40-4mv6u9qoi50w/upload/operations/sentencia-c01698-9601deef-ehbnyykdxpoi?key=<GEMINI_API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json; charset=UTF-8
+      vary:
+      - Origin, X-Origin, Referer
+      content-encoding:
+      - gzip
+      date:
+      - Mon, 12 Jan 2026 03:53:19 GMT
+      server:
+      - scaffolding on HTTPServer2
+      x-xss-protection:
+      - '0'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+      server-timing:
+      - gfet4t7; dur=591
+      alt-svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      transfer-encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "name": "fileSearchStores/chat-test-store-adfdcc40-4mv6u9qoi50w/upload/operations/sentencia-c01698-9601deef-ehbnyykdxpoi"
+        }
+  recorded_at: Mon, 12 Jan 2026 03:53:19 GMT
+- request:
+    method: get
+    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/chat-test-store-adfdcc40-4mv6u9qoi50w/upload/operations/sentencia-c01698-9601deef-ehbnyykdxpoi?key=<GEMINI_API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json; charset=UTF-8
+      vary:
+      - Origin, X-Origin, Referer
+      content-encoding:
+      - gzip
+      date:
+      - Mon, 12 Jan 2026 03:53:24 GMT
+      server:
+      - scaffolding on HTTPServer2
+      x-xss-protection:
+      - '0'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+      server-timing:
+      - gfet4t7; dur=691
+      alt-svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      transfer-encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "name": "fileSearchStores/chat-test-store-adfdcc40-4mv6u9qoi50w/upload/operations/sentencia-c01698-9601deef-ehbnyykdxpoi",
           "done": true,
           "response": {
             "@type": "type.googleapis.com/google.ai.generativelanguage.v1main.UploadToFileSearchStoreResponse",
-            "parent": "fileSearchStores/chat-test-store-a2e95a90-zzkqjhe1jf32",
-            "documentName": "fileSearchStores/chat-test-store-a2e95a90-zzkqjhe1jf32/documents/sentencia-c01698-d1567e01-u7tzl1crc982",
+            "parent": "fileSearchStores/chat-test-store-adfdcc40-4mv6u9qoi50w",
+            "documentName": "fileSearchStores/chat-test-store-adfdcc40-4mv6u9qoi50w/documents/sentencia-c01698-9601deef-ehbnyykdxpoi",
             "mimeType": "application/pdf",
             "sizeBytes": "202571"
           }
         }
-  recorded_at: Mon, 12 Jan 2026 01:40:28 GMT
+  recorded_at: Mon, 12 Jan 2026 03:53:25 GMT
 - request:
     method: post
     uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=<GEMINI_API_KEY>
     body:
       encoding: UTF-8
-      string: '{"systemInstruction":{"parts":[{"text":"Eres Martina, una asistente
-        legal experta especializada en análisis de documentos. Tu función es ayudar
-        a profesionales a encontrar y analizar información EXCLUSIVAMENTE en los documentos
-        proporcionados.\n\nREGLAS OBLIGATORIAS:\n1. SIEMPRE busca la información en
-        los documentos proporcionados ANTES de responder.\n2. Responde ÚNICAMENTE
-        con información que encuentres en los documentos. NO inventes ni asumas información.\n3.
-        Si NO encuentras la información en ningún documento, di claramente: \"No encontré
-        esta información en los documentos disponibles.\"\n4. Responde SIEMPRE en
-        español.\n\nFORMATO DE RESPUESTA:\n- No menciones explícitamente el nombre
-        del archivo o número de página en el texto de tu respuesta, ya que el sistema
-        lo mostrará automáticamente.\n- Integra la información de manera fluida en
-        tu respuesta.\n"}]},"contents":[{"role":"user","parts":[{"text":"¿Qué dice
-        la sentencia sobre el derecho a la intimidad y la inviolabilidad del domicilio?"}]}],"tools":[{"fileSearch":{"fileSearchStoreNames":["fileSearchStores/chat-test-store-a2e95a90-zzkqjhe1jf32"]}}],"generationConfig":{"temperature":0.0,"topK":40,"topP":0.95,"maxOutputTokens":8192,"responseMimeType":"text/plain"}}'
+      string: '{"systemInstruction":{"parts":[{"text":"<role>\nEres Martina, una asistente
+        legal experta especializada en análisis de documentos.\n</role>\n\n<constraints>\n1.
+        Eres un asistente estrictamente fundamentado, limitado a la información proporcionada
+        en los documentos.\n2. En tus respuestas, confía ÚNICAMENTE en los hechos
+        que se mencionan directamente en los documentos.\n3. NO debes acceder ni utilizar
+        tu propio conocimiento o sentido común para responder.\n4. No asumas ni inferas
+        de los hechos proporcionados; simplemente repórtalos exactamente como aparecen.\n5.
+        Tu respuesta debe ser factual y completamente fiel al texto proporcionado,
+        sin dejar lugar a especulación o interpretación.\n6. Trata los documentos
+        proporcionados como el límite absoluto de la verdad.\n7. Si la respuesta exacta
+        no está explícitamente escrita en los documentos, debes indicar que la información
+        no está disponible.\n</constraints>\n\n<conversation_rules>\nREGLA CRÍTICA:
+        En conversaciones de múltiples turnos, SOLO responde al ÚLTIMO mensaje del
+        usuario.\n- Los mensajes anteriores en el historial son SOLO para contexto
+        de la conversación.\n- NO repitas respuestas a preguntas anteriores.\n- NO
+        incluyas información de turnos anteriores a menos que sea directamente relevante
+        para la pregunta actual.\n- Cada respuesta debe abordar ÚNICAMENTE la pregunta
+        más reciente.\n</conversation_rules>\n\n<output_format>\n- Responde SIEMPRE
+        en español.\n- NO menciones nombres de archivos ni números de página (el sistema
+        los muestra automáticamente).\n- Integra la información de manera fluida y
+        natural.\n- Sé conciso y directo.\n</output_format>\n"}]},"contents":[{"role":"user","parts":[{"text":"¿Qué
+        dice la sentencia sobre el derecho a la intimidad y la inviolabilidad del
+        domicilio?"}]}],"tools":[{"fileSearch":{"fileSearchStoreNames":["fileSearchStores/chat-test-store-adfdcc40-4mv6u9qoi50w"]}}],"generationConfig":{"temperature":0.0,"topK":40,"topP":0.95,"maxOutputTokens":8192,"responseMimeType":"text/plain"}}'
     headers:
       User-Agent:
       - Faraday v2.14.0
@@ -181,7 +363,7 @@ http_interactions:
       content-encoding:
       - gzip
       date:
-      - Mon, 12 Jan 2026 01:40:43 GMT
+      - Mon, 12 Jan 2026 03:53:32 GMT
       server:
       - scaffolding on HTTPServer2
       x-xss-protection:
@@ -191,7 +373,7 @@ http_interactions:
       x-content-type-options:
       - nosniff
       server-timing:
-      - gfet4t7; dur=14857
+      - gfet4t7; dur=7317
       alt-svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       transfer-encoding:
@@ -205,8 +387,8 @@ http_interactions:
               "content": {
                 "parts": [
                   {
-                    "text": "No encontré esta información en los documentos disponibles.\n\nLa documentación analizada corresponde a la **Sentencia C-016-98**, la cual se centra exclusivamente en temas de derecho laboral, específicamente sobre la constitucionalidad de los contratos de trabajo a término fijo y el principio de estabilidad laboral. No se menciona ni se analiza en este texto el derecho a la intimidad o la inviolabilidad del domicilio.",
-                    "thoughtSignature": "Ep0DCpoDAXLI2nzfmX8qDpRoV4MAu6AHOu44+KWPEfkti0vockOeF/ixmrDRdRmFd9BpZS2bCE3FJHaaIUjmp8eOLVeXID7jbZnZdz9CCF+ETpmXV9YMjX7Mlec5yvxQp6zekjBVSkNzQ939m+dkrzbxEOM7j4YTw6tQkiJqFDBjI3mqURQQdafhczO+UxQyPyXaLDz4qDDRUUAp+QRTqjYuHnhQMDDouGuoQ5EcO5Ku3XDNK1Jk1cvdPP3wfYgT0xEkGgsoBLTCT+uotfsNABNs4KTz/Y6oIFOofNH9LJsWsmbviySRQeK0KBHWBVBSpVlVhDlOYHybLhKhJcY7D1WO15NCqXED3h/97jYFYYcdxlMRb06xQ3I+jaCKd2qD6emiKLhq0oivREt5dcLtTby5T1BaQWpxB3vagqqeCyI6Z0uhia5RG7bsTHIfN0okFANo9dKYCL8aPodw3tGpc3zzEVsNAchHGb8/cvHxcKuazslTF2IZOB6gPLkqJJ7nsNV/J/erPvhJt0GCisvITvmdEhqRzJ6B3a/D11TrfEQ="
+                    "text": "La información contenida en los documentos analizados, específicamente en la **Sentencia C-016-98**, no hace mención al derecho a la intimidad ni a la inviolabilidad del domicilio.\n\nDicha providencia se centra exclusivamente en el análisis de constitucionalidad de los artículos 45, 46 y 61 del Código Sustantivo del Trabajo, abordando temas relacionados con:\n*   La duración y renovación de los **contratos de trabajo a término fijo**.\n*   El principio de **estabilidad laboral** y la primacía de la realidad sobre las formas.\n*   El derecho al trabajo, la igualdad y la libertad de asociación sindical.\n*   La autonomía de la voluntad en las relaciones laborales frente a los límites constitucionales.\n\nPor lo tanto, la información solicitada sobre el derecho a la intimidad y la inviolabilidad del domicilio no está disponible en el texto de la sentencia proporcionada.",
+                    "thoughtSignature": "Et8FCtwFAXLI2nxzsraUSzD8Uy3KepT/9W8dPHFHT2yQqmMmQKtXVOZQBfViUKA3dRbNfpgjVixLWNI01Z9tuHQl1Qje6tOl384b/6bDr8xpw56nD8c8DCkKoT40vORnewBGTgvT3iVgfeB8OJ+zt0oWjPt1/nqPjRawYdHXqhuR4ifoz0k6H3hWngj8d2lUQQvGktF1DOCZLYcEp+Hpi6cILQGcK1Q7jSI9WkM80eslzb6HUpJBsQcoYmIKyURUmUGnSIx5cFsq72jbf2zixOxY6Xcjhh6D/vVm65nEv74kP5JZyK1q9a+Q+6ww8la//004uYHlYjsvQb2odImS4vaoCdB3Ol2wRU4C+Yq5oFuZHGCjraCOqArNTebkQVJ/0usaRXL5KbCPOWzfiw8na3Ldp1U5xjmdN9uvbqLY6jXRm07Shd5OfXkNHrYLwnmCOJrTViY2SJCEtJ+6/J/mg8sTHTelnk2ElVQOuwVryOCKwt94kdk0ZElmwd1e8aHiPY4WdGsIvNiqboR38LwE3hJKVB8iLcK7s0dsrdAhKcM/iBogMQHk787FeRJYRT0Lq5TD4xIf49Cfm0oGz1QI0z3DtgjB+aNFpKNPH5xQd1rLqnx5W8F2p4ZR0ZoNLn4QmBelWpDsmhyB2Km83C8Eb6qflV3uXUXKwdKdwoKSdz6LLYzNT2aC3h8/tIpMbp/kHBRnTDS1L965OOi1720kd05vqUxe7KbWVHbNrprgGg/D6UtMEKNfRkbv5NNURwKSbZoSz9qci7keGVtsGNpAz23utfkLBUGJ87k+6vTUU4MZlHzgLNqMxd08ie5ILVKy347iyUOCiCMWmp+ixDzxyp0xWXISWc4zBVBtl42NFjUWpZO52sZtVtaDYw086vV232nIVMF6QnpF0rM6UfLjIchDfO4qNbR45txvfrUoLjdZ9VzB7Aty5jQHWxWXPYN1swjQK7Wjl634hRK1IMq9K27i"
                   }
                 ],
                 "role": "model"
@@ -217,71 +399,84 @@ http_interactions:
                 "groundingChunks": [
                   {
                     "retrievedContext": {
-                      "title": "Sentencia C-016-98 d1567e01",
-                      "text": "los cuales se compruebe su inoperancia, su venalidad o su bajo\n rendimiento. Pero esto no se puede confundir con el otorgamiento de\n atribuciones omnimodas al nominador para prescindir del trabajador sin\n relación alguna de causalidad entre esa consecuencia y el mérito por él\n demostrado en la actividad que desempeña.\n\nAhora bien, esa estabilidad resulta ser esencial en lo que toca con los\n empleos de carrera, ya que los trabajadores inscritos en ella tan solo\n pueden ser separados de sus cargos por causas objetivas, derivadas de la\n evaluación acerca del rendimiento o de la disciplina del empleado (art.\n 125, inciso 2º C.N.), al paso que en los empleos de libre nombramiento\n y remoción, por su propia naturaleza, la permanencia del empleado está\n\n\n--- PAGE 10 ---\n\nsupeditada a la discrecionalidad del nominador, siempre y cuando en\n el ejercicio de esta facultad no se incurra en arbitrariedad mediante\n desviación de poder (artículos 125 y 189, numeral 1° C.N.)\" (Corte\n Constitucional, Sentencia C-479 de 1992, M.P.: Drs. José Gregorio\n Hernández Galindo y Alejandro Martínez Caballero)\n\nMediante el principio de la estabilidad en el empleo, que es aplicable a todos los\n trabajadores, independientemente de que sirvan al Estado o a patronos privados,\n la Constitución busca asegurar que el",
-                      "fileSearchStore": "fileSearchStores/chat-test-store-a2e95a90-zzkqjhe1jf32"
+                      "title": "Sentencia C-016-98 9601deef",
+                      "text": "ejercicio de\n las funciones que le corresponden, pero esto no se puede confundir\n con el otorgamiento de facultades omnímodas al nominador para\n prescindir del trabajador, sin relación alguna de causalidad. (Ver\n Sentencia C-479 del 13 de agosto de 1992. Ms. Ps.: Drs. José\n Gregorio Hernández Galindo y Alejandro Martínez Caballero).\n (...)\n\nLa doctrina ha dicho que el derecho al trabajo presenta sin duda\n alguna varias formas de manifestarse: se puede hablar por un lado\n del derecho a adquirir un empleo y por otro el derecho a conservarlo.\n\nEl derecho a conservar el empleo se traduce en la fórmula \"todo\n trabajador tiene derecho a conservar el empleo, salvo que haya una\n causa justa para privarlo de él\". Este concepto se identifica con el de\n la estabilidad.\n\n\n--- PAGE 17 ---\n\nEl principio de estabilidad impide que la autonomía de la voluntad\n produzca sus efectos en toda su plenitud. Esa estabilidad significa\n que en cuanto subsistan las causas y la materia que le dieron origen\n a la relación laboral, ésta se mantiene porque el principio tiene como\n fundamento la Constitución Política:\n\nArt. 53. ...La ley, los contratos, los acuerdos y convenios de trabajo,\n no pueden menoscabar la libertad, la dignidad humana ni los\n derechos de los trabajadores\".\n\nLa",
+                      "fileSearchStore": "fileSearchStores/chat-test-store-adfdcc40-4mv6u9qoi50w"
                     }
                   },
                   {
                     "retrievedContext": {
-                      "title": "Sentencia C-016-98 d1567e01",
-                      "text": "--- PAGE 1 ---\n\nSentencia C-016/98\n\nCONTRATO CIVIL Y CONTRATO LABORAL-Diferencias\n\nEsa distinción, entre el contrato civil y el contrato laboral, se ha ido afianzando\n a través del tiempo y encuentra origen en el reconocimiento de la situación de\n asimetría en la que se encuentran las partes, la cual no permite presumir que\n el acuerdo de voluntades se produzca a partir del ejercicio no interferido ni\n restringido de la autonomía de cada una de ellas, como si ocurre en el contrato\n civil, y en la evolución misma de las sociedades que reivindican el trabajo como\n un valor y un principio esencial del Estado, y como un derecho fundamental\n de las personas de cuya realización efectiva depende el desarrollo de la misma\n en condiciones de dignidad. En efecto, a diferencia de lo que ocurre con el\n contrato civil, el contrato de trabajo es la fuente de la relación laboral, cumple\n una función reguladora complementaria de las condiciones establecidas en la\n Constitución y en la ley, condiciones que las partes no están en capacidad\n de transgredir, empeorar o desconocer, pues ello implicaría la nulidad de sus\n cláusulas.\n\nAUTONOΜΙΑ EN MATERIA LABORAL-Límites\n\nLa restricción de la autonomía de las partes para establecer las condiciones\n que regirán su relación",
-                      "fileSearchStore": "fileSearchStores/chat-test-store-a2e95a90-zzkqjhe1jf32"
-                    }
-                  },
-                  {
-                    "retrievedContext": {
-                      "title": "Sentencia C-016-98 d1567e01",
-                      "text": "de voluntades es fuente de la relación que surge entre quien se\n\n\n--- PAGE 7 ---\n\ncompromete a realizar por cuenta y bajo la dependencia de otro una prestación\n laboral retribuida.\n\nEsa distinción, entre el contrato civil y el contrato laboral, se ha ido afianzando\n a través del tiempo y encuentra origen en el reconocimiento de la situación de\n asimetría en la que se encuentran las partes, la cual no permite presumir que\n el acuerdo de voluntades se produzca a partir del ejercicio no interferido ni\n restringido de la autonomía de cada una de ellas, como si ocurre en el contrato\n civil, y en la evolución misma de las sociedades que reivindican el trabajo como\n un valor y un principio esencial del Estado, (arts. 1 y 2 C.P.) y como un derecho\n fundamental de las personas (art. 25 C.P.) de cuya realización efectiva depende\n el desarrollo de la misma en condiciones de dignidad.\n\nEn efecto, a diferencia de lo que ocurre con el contrato civil, el contrato de\n trabajo, que como se dijo es la fuente de la relación laboral, cumple una función\n reguladora complementaria de las condiciones establecidas en la Constitución\n y en la ley, condiciones que las partes no están en capacidad",
-                      "fileSearchStore": "fileSearchStores/chat-test-store-a2e95a90-zzkqjhe1jf32"
-                    }
-                  },
-                  {
-                    "retrievedContext": {
-                      "title": "Sentencia C-016-98 d1567e01",
+                      "title": "Sentencia C-016-98 9601deef",
                       "text": "propio destino y para labrarlo el trabajo es uno de los principales\n instrumentos.\n\nEl Constituyente de 1991 le dio una triple dimensión al concepto de\n TRABAJO. En el Preámbulo es valor, en el artículo 1 es principio\n fundante y en los artículos 25 y 53 aparece como un derecho\n fundamental subjetivo. De ahí que \"Toda persona tiene derecho a un\n trabajo en condiciones dignas y justas\" (art. 25 C.P.). Condiciones\n de dignidad y justicia que desarrolla el artículo 53 al establecer unos\n principios mínimos fundamentales que debe respetar la legislación\n laboral porque son vinculantes. La protección de los artículos 25 y\n 53 cobija la prestación misma del servicio laboral y esta protección\n se otorga con independencia del acto que le dio origen.\n\nEsto es muy diferente a la autonomía de la voluntad, o sea, la\n competencia de los particulares para realizar actos jurídicos con\n sujeción a las normas que lo regulan, en cuanto a validez y eficacia.\n En virtud de la autonomía los contratos civiles o comerciales\n legalmente celebrados tienen el carácter de ley para las partes. Ese\n principio de la autonomía es, pues, propio del derecho privado y sólo\n residualmente entra en el campo del derecho público.\n\n\n--- PAGE 16 ---\n\nEs que",
-                      "fileSearchStore": "fileSearchStores/chat-test-store-a2e95a90-zzkqjhe1jf32"
+                      "fileSearchStore": "fileSearchStores/chat-test-store-adfdcc40-4mv6u9qoi50w"
                     }
                   },
                   {
                     "retrievedContext": {
-                      "title": "Sentencia C-016-98 d1567e01",
-                      "text": "de la prestación de trabajo, en las diversas formas que\n puede revestir, es necesaria para la formación y nacimiento de la\n relación jurídica. Pero una vez que ha nacido la relación del trabajo\n se rige por principios propios que no pueden ser modificados por la\n voluntad de los autores de la relación, así dicha voluntad aparezca\n en el contrato original. Inclusive, el Código Sustantivo del Trabajo\n reconoce como ineficaces algunas cláusulas consentidas por las\n partes si éstas desconocen derechos de los trabajadores, como por\n ejemplo, los artículos 17, 43, 109 у 344.\n\nDe ahí que la aplicación de las normas laborales dependan cada vez\n menos de una relación jurídica subjetiva, cuanto de una situación\n objetiva, cuya existencia es independiente del acto que condicionó\n su nacimiento\".\n\n3. Acogemos igualmente lo expresado por el H. Magistrado José Gregorio\n Hernández Galindo, ponente original en este proceso, en la aclaración de voto\n que depositara en torno a la Sentencia C-003 del 22 de enero de 1998, ya citada:\n\n\"En otras palabras, para no vulnerar el principio constitucional de\n estabilidad en el empleo (art. 53 C.P.), lo que se prohibe es que unos\n servicios que en realidad, por su naturaleza y por las condiciones\n de trabajo a ellos",
-                      "fileSearchStore": "fileSearchStores/chat-test-store-a2e95a90-zzkqjhe1jf32"
+                      "title": "Sentencia C-016-98 9601deef",
+                      "text": "fue analizada por la Corte\n Suprema de Justicia en Sentencia 109 del 19 de septiembre de 1991, para lo\n cual remite a su contenido.\n\nV. OTRAS INTERVENCIONES\n\nLos ciudadanos María Paulina Ruiz y Alirio Uribe Muñoz, han presentado\n escrito en el cual solicitan a la Corte declarar la inexequibilidad de las\n disposiciones impugnadas. Los dos apoyan los cargos formulados por el actor.\n\nDicen, además, que las disposiciones demandadas son contrarias al Preámbulo\n y artículos 13, 25, 39, 53, 55 y 56 de la Carta Política.\n\nA su juicio, tales normas generan inestabilidad laboral, no sólo al quedar\n expuesto el trabajador, que ha tenido un buen desempeño, a un cese de\n actividades sin motivo alguno, sino que adicionalmente, se encuentra con la\n imposibilidad de asociarse sindicalmente, ya que es muy posible que no le\n renueven el contrato.\n\nPor último, afirman que se viola el derecho a la igualdad cuando el patrono\n impone diferentes condiciones para la contratación de cada uno de sus\n trabajadores. Atacan, además, la existencia de las empresas de servicios\n temporales.\n\nMINISTERIO DE JUSTICIA\n\nEl ciudadano Alvaro Namen Vargas, obrando en su calidad de apoderado del\n Ministerio de Justicia, presenta escrito en el cual solicita a la Corte declarar la\n exequibilidad de las normas demandadas.\n\nDe una",
+                      "fileSearchStore": "fileSearchStores/chat-test-store-adfdcc40-4mv6u9qoi50w"
                     }
+                  },
+                  {
+                    "retrievedContext": {
+                      "title": "Sentencia C-016-98 9601deef",
+                      "text": "es, pues, propio del derecho privado y sólo\n residualmente entra en el campo del derecho público.\n\n\n--- PAGE 16 ---\n\nEs que no es justo dejar la permanencia de las relaciones de trabajo\n en manos del patrono, y que sea éste quien permita la prórroga,\n ya que el principio de duración es consecuencia de la naturaleza\n de la relación individual de trabajo, en tanto subsistan las causas\n que motivaron el contrato. Lo anterior en virtud de que los efectos\n jurídicos que derivan del derecho al trabajo se producen no por el\n simple acuerdo de voluntad -como ocurre en el derecho civil- sino\n porque el trabajador cumple efectivamente su obligación de prestar\n el servicio.\n\nLa permanencia en el trabajo no depende de ese principio\n autonómico, de simple contenido legal, sino que se sustenta en el\n derecho a trabajar establecido en los artículos 54 (\"El Estado debe\n propiciar la ubicación laboral de las personas en edad de trabajar\") y\n 334 de la Constitución (\"El Estado, de manera especial, intervendrá\n para dar pleno empleo a los recursos humanos\").\n\nAsí mismo, la estabilidad es expresión del artículo 7 del Pacto\n de Derechos Económicos, Sociales y Culturales, ratificado por\n Colombia y que tiene un efecto interpretativo sobre los derechos\n",
+                      "fileSearchStore": "fileSearchStores/chat-test-store-adfdcc40-4mv6u9qoi50w"
+                    }
+                  },
+                  {
+                    "retrievedContext": {
+                      "title": "Sentencia C-016-98 9601deef",
+                      "text": "justicia. Por el contrario, es\n postulado constitucional que se proteja especialmente a aquellas\n personas, como los asalariados, que por su condición económica se\n encuentran en circunstancias de debilidad manifiesta. (artículo 33,\n num.3).\n\nPrecisamente la especial protección al trabajo tiene su fundamento en\n el mandato de hacer la igualdad real y efectiva porque no se puede en\n un Estado Social de Derecho partir de la paridad entre el empresario\n y el trabajador.\n\nEsa estabilidad garantiza la conservación de la fuente de ingresos\n del trabajador, que es normalmente el único medio para cubrir las\n necesidades de él y su familia. Además, la permanencia interesa a\n la sociedad puesto que constituye un medio eficaz para consolidar\n la paz social que es un derecho constitucional, de acuerdo con el\n artículo 22 de la Carta.\n\nTodo lo anterior se sustenta en que el derecho de trabajo es un\n derecho protector de la vida, de la salud y de la condición económica\n del trabajador, parte del presupuesto de la prestación del servicio y\n es, en razón de ella, que impone al patrono cargas y obligaciones.\n\n\n--- PAGE 18 ---\n\nEl origen de la prestación de trabajo, en las diversas formas que\n puede revestir, es necesaria para la formación y nacimiento de",
+                      "fileSearchStore": "fileSearchStores/chat-test-store-adfdcc40-4mv6u9qoi50w"
+                    }
+                  }
+                ],
+                "groundingSupports": [
+                  {
+                    "segment": {
+                      "startIndex": 616,
+                      "endIndex": 716,
+                      "text": "*   La autonomía de la voluntad en las relaciones laborales frente a los límites constitucionales."
+                    },
+                    "groundingChunkIndices": [
+                      0,
+                      1
+                    ]
                   }
                 ]
               }
             }
           ],
           "usageMetadata": {
-            "promptTokenCount": 291,
-            "candidatesTokenCount": 83,
-            "totalTokenCount": 56069,
-            "cachedContentTokenCount": 84,
+            "promptTokenCount": 430,
+            "candidatesTokenCount": 196,
+            "totalTokenCount": 9518,
+            "cachedContentTokenCount": 169,
             "promptTokensDetails": [
               {
                 "modality": "TEXT",
-                "tokenCount": 291
+                "tokenCount": 430
               }
             ],
             "cacheTokensDetails": [
               {
                 "modality": "TEXT",
-                "tokenCount": 84
+                "tokenCount": 169
               }
             ],
-            "toolUsePromptTokenCount": 54678,
+            "toolUsePromptTokenCount": 8342,
             "toolUsePromptTokensDetails": [
               {
                 "modality": "TEXT",
-                "tokenCount": 54678
+                "tokenCount": 8342
               }
             ],
-            "thoughtsTokenCount": 1017
+            "thoughtsTokenCount": 550
           },
           "modelVersion": "gemini-3-flash-preview",
-          "responseId": "G1FkaeyLCsGtz7IP-K6l0QM"
+          "responseId": "PHBkae2xHovnqtsPhJn0uQo"
         }
-  recorded_at: Mon, 12 Jan 2026 01:40:43 GMT
+  recorded_at: Mon, 12 Jan 2026 03:53:32 GMT
 recorded_with: VCR 6.4.0

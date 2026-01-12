@@ -66,10 +66,18 @@ module Chats
     end
 
     def create_citations(citations)
+      document_ids = citations.map { |c| c[:document_id] }.compact.uniq
+      documents = ActsAsTenant.without_tenant do
+        Document.where(id: document_ids).index_by(&:id)
+      end
+
       citations.each do |citation|
+        document = documents[citation[:document_id]]
+        next unless document
+
         MessageCitation.create!(
           message: @assistant_message,
-          document_id: citation[:document_id],
+          document: document,
           pages: citation[:pages],
           text_snippet: citation[:text_snippet],
           confidence_score: citation[:confidence_score]
@@ -124,7 +132,7 @@ module Chats
       when 429
         I18n.t("chats.errors.rate_limited")
       else
-        I18n.t("chats.errors.api_error")
+        I18n.t("chats.errors.api_error", chat_title: @chat.display_title)
       end
     end
 

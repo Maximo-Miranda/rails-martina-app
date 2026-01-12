@@ -4,7 +4,10 @@ class DocumentsController < ApplicationController
   include RansackPagyIndex
 
   around_action :skip_tenant_scoping, if: :global_scope?
+  around_action :skip_tenant_scoping, only: %i[temporary_url]
   before_action :set_document, only: %i[show destroy]
+  before_action :set_document_for_temporary_url, only: %i[temporary_url]
+  before_action :set_document_for_file_url, only: %i[file_url]
   before_action :set_store, only: %i[new create]
   before_action :set_store_or_redirect, only: %i[index]
 
@@ -108,6 +111,32 @@ class DocumentsController < ApplicationController
     ), notice: I18n.t("documents.deleted")
   end
 
+  def temporary_url
+    authorize @document, :temporary_url?
+
+    unless @document.global?
+      return render json: { error: I18n.t("documents.errors.not_global") }, status: :unprocessable_entity
+    end
+
+    unless @document.file.attached?
+      return render json: { error: I18n.t("documents.errors.no_file") }, status: :not_found
+    end
+
+    url = rails_blob_url(@document.file, disposition: "inline")
+    render json: { url: url }
+  end
+
+  def file_url
+    authorize @document, :file_url?
+
+    unless @document.file.attached?
+      return render json: { error: I18n.t("documents.errors.no_file") }, status: :not_found
+    end
+
+    url = rails_blob_url(@document.file, disposition: "inline")
+    render json: { url: url }
+  end
+
   private
 
   def set_document
@@ -116,6 +145,19 @@ class DocumentsController < ApplicationController
     else
                   current_project.documents.kept.find(params[:id])
     end
+  end
+
+  def set_document_for_temporary_url
+    @document = ActsAsTenant.without_tenant { Document.kept.find(params[:id]) }
+  end
+
+  def set_document_for_file_url
+    @document = ActsAsTenant.without_tenant { Document.kept.find(params[:id]) }
+
+    return if @document.global?
+
+    return if current_project && @document.project_id == current_project.id
+      raise ActiveRecord::RecordNotFound
   end
 
   def set_store

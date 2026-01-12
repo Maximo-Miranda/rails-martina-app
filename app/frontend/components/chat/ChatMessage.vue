@@ -127,8 +127,7 @@ const formattedTime = computed(() =>
         />
 
         <!-- Token count for assistant messages -->
-        <span v-if="isAssistant && message.token_count" class="text-caption text-grey">
-          {{ message.token_count }} tokens
+        <span v-if="isAssistant && message.token_count" class="text-caption text-grey ml-2">{{ message.token_count }} tokens
         </span>
       </div>
     </div>

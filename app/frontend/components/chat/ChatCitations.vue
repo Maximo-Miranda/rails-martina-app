@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useTranslations } from '@/composables/useTranslations'
+import { useGlobalNotification } from '@/composables/useGlobalNotification'
 import type { MessageCitation } from '@/types'
 
 const props = defineProps<{
@@ -8,8 +9,10 @@ const props = defineProps<{
 }>()
 
 const { t } = useTranslations()
+const { show: showNotification } = useGlobalNotification()
 
 const expanded = ref(false)
+const loadingDocumentId = ref<number | null>(null)
 
 const citationsCount = computed(() => props.citations.length)
 
@@ -23,9 +26,21 @@ function formatConfidence(score: number | null): string {
   return `${Math.round(score * 100)}%`
 }
 
-function viewDocument(documentId: number) {
-  // Open document in new tab
-  window.open(`/documents/${documentId}`, '_blank')
+async function viewDocument(citation: MessageCitation) {
+  loadingDocumentId.value = citation.document_id
+  try {
+    const response = await fetch(`/documents/${citation.document_id}/file_url`)
+    if (response.ok) {
+      const data = await response.json()
+      window.open(data.url, '_blank')
+    } else {
+      showNotification(t('chats.chat_detail.document_access_error'), 'error')
+    }
+  } catch {
+    showNotification(t('chats.chat_detail.document_access_error'), 'error')
+  } finally {
+    loadingDocumentId.value = null
+  }
 }
 </script>
 
@@ -55,7 +70,7 @@ function viewDocument(documentId: number) {
     <v-expand-transition>
       <div v-show="expanded">
         <v-divider />
-        <v-list density="compact" class="py-0">
+        <v-list density="compact" class="py-0 citations-list">
           <v-list-item
             v-for="citation in citations"
             :key="citation.id"
@@ -66,8 +81,16 @@ function viewDocument(documentId: number) {
               <v-icon size="small" color="grey">mdi-file-document</v-icon>
             </template>
 
-            <v-list-item-title class="text-body-2">
-              {{ citation.document_name || `Documento ${citation.document_id}` }}
+            <v-list-item-title class="text-body-2 d-flex align-center gap-1">
+              <template v-if="citation.is_global">
+                <v-chip size="x-small" color="info" variant="tonal" class="mr-1">
+                  Martina
+                </v-chip>
+                {{ citation.document_name || `Documento ${citation.document_id}` }}
+              </template>
+              <template v-else>
+                {{ citation.document_name || `Documento ${citation.document_id}` }}
+              </template>
             </v-list-item-title>
 
             <v-list-item-subtitle class="text-caption">
@@ -93,8 +116,9 @@ function viewDocument(documentId: number) {
                 variant="text"
                 size="x-small"
                 :title="t('chats.chat_detail.view_document')"
+                :loading="loadingDocumentId === citation.document_id"
                 data-testid="chat-btn-view-document"
-                @click.stop="viewDocument(citation.document_id)"
+                @click.stop="viewDocument(citation)"
               >
                 <v-icon size="small">mdi-open-in-new</v-icon>
               </v-btn>
@@ -109,6 +133,11 @@ function viewDocument(documentId: number) {
 <style scoped>
 .citations-card {
   background-color: rgba(var(--v-theme-surface-variant), 0.5);
+}
+
+.citations-list {
+  max-height: 200px;
+  overflow-y: auto;
 }
 
 .citation-snippet {

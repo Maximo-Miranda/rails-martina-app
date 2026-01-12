@@ -19,14 +19,20 @@ class MessageCitation < ApplicationRecord
   end
 
   def to_api_hash
+    doc = document_without_tenant
     {
       id: id,
       document_id: document_id,
-      document_name: document&.display_name,
+      document_name: doc&.display_name,
       pages: pages,
       text_snippet: text_snippet,
       confidence_score: confidence_score,
+      is_global: doc&.global?,
     }
+  end
+
+  def document_without_tenant
+    @document_without_tenant ||= ActsAsTenant.without_tenant { Document.find_by(id: document_id) }
   end
 
   def document_file_url

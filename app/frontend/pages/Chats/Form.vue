@@ -5,17 +5,24 @@ import { useTranslations } from '@/composables/useTranslations'
 import { useNavigation } from '@/composables/useNavigation'
 import PageHeader from '@/components/PageHeader.vue'
 import FormActions from '@/components/FormActions.vue'
-import type { ChatStore } from '@/types'
+import type { ChatStore, GlobalStore } from '@/types'
 
-const props = defineProps<{
-  chat: { title: string | null }
-  store: ChatStore | null
-}>()
+const props = withDefaults(
+  defineProps<{
+    chat: { title: string | null; global_store_ids: number[] }
+    store: ChatStore | null
+    globalStores?: GlobalStore[]
+  }>(),
+  {
+    globalStores: () => []
+  }
+)
 
 const { t } = useTranslations()
 const { navigateTo } = useNavigation()
 
 const title = ref(props.chat.title || '')
+const globalStoreIds = ref<number[]>(props.chat.global_store_ids || [])
 const saving = ref(false)
 
 function handleSubmit() {
@@ -24,7 +31,7 @@ function handleSubmit() {
   saving.value = true
   router.post(
     '/chats',
-    { chat: { title: title.value.trim() || null } },
+    { chat: { title: title.value.trim() || null, global_store_ids: globalStoreIds.value } },
     {
       onFinish: () => {
         saving.value = false
@@ -72,6 +79,48 @@ function handleCancel() {
             {{ store.status }}
           </v-chip>
         </div>
+      </v-card-text>
+    </v-card>
+
+    <!-- Global Stores Selection -->
+    <v-card v-if="globalStores.length > 0" class="rounded-xl mb-4" elevation="0" border>
+      <v-card-text class="pa-4">
+        <div class="text-subtitle-2 text-grey mb-2">{{ t('chats.global_stores_label') }}</div>
+        <v-select
+          v-model="globalStoreIds"
+          :items="globalStores"
+          item-title="display_name"
+          item-value="id"
+          :label="t('chats.select_global_stores')"
+          :hint="t('chats.global_stores_hint')"
+          multiple
+          chips
+          closable-chips
+          variant="outlined"
+          density="comfortable"
+          data-testid="chats-select-global-stores"
+        >
+          <template #chip="{ props: chipProps, item }">
+            <v-chip
+              v-bind="chipProps"
+              color="primary"
+              variant="tonal"
+            >
+              <v-icon start size="small">mdi-database</v-icon>
+              {{ item.title }}
+            </v-chip>
+          </template>
+          <template #item="{ props: itemProps, item }">
+            <v-list-item
+              v-bind="itemProps"
+              :subtitle="`${item.raw.active_documents_count} ${t('chats.documents_count')}`"
+            >
+              <template #prepend>
+                <v-icon color="primary">mdi-database</v-icon>
+              </template>
+            </v-list-item>
+          </template>
+        </v-select>
       </v-card-text>
     </v-card>
 

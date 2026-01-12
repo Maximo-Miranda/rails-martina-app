@@ -7,12 +7,15 @@ import { useChatsChannel } from '@/composables/useChatsChannel'
 import { useGlobalNotification } from '@/composables/useGlobalNotification'
 import ChatMessage from '@/components/chat/ChatMessage.vue'
 import ChatInput from '@/components/chat/ChatInput.vue'
-import type { Chat, Message } from '@/types'
+import type { Chat, Message, GlobalStore } from '@/types'
 
 const props = defineProps<{
   chat: Chat
   messages: Message[]
   canSendMessage: boolean
+  chatGlobalStores: GlobalStore[]
+  globalStores: GlobalStore[]
+  canEditGlobalStores: boolean
 }>()
 
 const { t } = useTranslations()
@@ -36,6 +39,9 @@ const sending = ref(false)
 const editingTitle = ref(false)
 const titleInput = ref('')
 const messagesContainer = ref<HTMLElement | null>(null)
+const showGlobalStoresDialog = ref(false)
+const selectedGlobalStoreIds = ref<number[]>([])
+const savingGlobalStores = ref(false)
 
 // Computed
 const displayTitle = computed(() => chatTitle.value || props.chat.title)
@@ -175,6 +181,27 @@ function saveTitle() {
 function cancelEditingTitle() {
   editingTitle.value = false
 }
+
+function openGlobalStoresDialog() {
+  selectedGlobalStoreIds.value = props.chatGlobalStores.map(s => s.id)
+  showGlobalStoresDialog.value = true
+}
+
+function saveGlobalStores() {
+  savingGlobalStores.value = true
+  router.patch(
+    `/chats/${props.chat.id}`,
+    { chat: { global_store_ids: selectedGlobalStoreIds.value } },
+    {
+      preserveState: false,
+      preserveScroll: true,
+      onFinish: () => {
+        savingGlobalStores.value = false
+        showGlobalStoresDialog.value = false
+      }
+    }
+  )
+}
 </script>
 
 <template>
@@ -267,6 +294,38 @@ function cancelEditingTitle() {
           </v-chip>
         </div>
 
+        <!-- Global Stores Info -->
+        <div v-if="chatGlobalStores.length > 0 || (globalStores.length > 0 && canEditGlobalStores)" class="mb-4">
+          <div class="d-flex align-center gap-2 flex-wrap">
+            <span class="text-caption text-grey mr-1">{{ t('chats.selected_global_stores') }}:</span>
+            <template v-if="chatGlobalStores.length > 0">
+              <v-chip
+                v-for="store in chatGlobalStores"
+                :key="store.id"
+                size="small"
+                color="primary"
+                variant="tonal"
+                data-testid="chats-global-store-chip"
+              >
+                <v-icon start size="small">mdi-database</v-icon>
+                {{ store.display_name }}
+              </v-chip>
+            </template>
+            <span v-else class="text-caption text-grey-darken-1">{{ t('chats.no_global_stores') }}</span>
+            <v-btn
+              v-if="canEditGlobalStores && globalStores.length > 0"
+              icon
+              variant="text"
+              size="x-small"
+              :title="t('chats.edit_global_stores')"
+              data-testid="chats-btn-edit-global-stores"
+              @click="openGlobalStoresDialog"
+            >
+              <v-icon size="small">mdi-pencil</v-icon>
+            </v-btn>
+          </div>
+        </div>
+
         <!-- Messages Area -->
         <v-card class="grow d-flex flex-column rounded-xl" elevation="0" border>
           <!-- Messages Container -->
@@ -295,12 +354,13 @@ function cancelEditingTitle() {
               />
 
               <!-- Thinking indicator -->
-              <div v-if="isThinking" class="d-flex align-center gap-2 pa-3">
+              <div v-if="isThinking" class="d-flex align-center gap-3 pa-3">
                 <v-progress-circular
                   indeterminate
                   size="20"
                   width="2"
                   color="primary"
+                  class="mr-2"
                 />
                 <span class="text-body-2 text-grey">{{ t('chats.chat_detail.thinking') }}</span>
               </div>
@@ -322,6 +382,72 @@ function cancelEditingTitle() {
         </v-card>
       </v-col>
     </v-row>
+
+    <!-- Global Stores Dialog -->
+    <v-dialog v-model="showGlobalStoresDialog" max-width="500">
+      <v-card>
+        <v-card-title class="d-flex align-center">
+          <v-icon start>mdi-database-edit</v-icon>
+          {{ t('chats.edit_global_stores') }}
+        </v-card-title>
+        <v-card-text>
+          <v-select
+            v-model="selectedGlobalStoreIds"
+            :items="globalStores"
+            item-title="display_name"
+            item-value="id"
+            :label="t('chats.select_global_stores')"
+            :hint="t('chats.global_stores_hint')"
+            multiple
+            chips
+            closable-chips
+            variant="outlined"
+            density="comfortable"
+            data-testid="chats-dialog-select-global-stores"
+          >
+            <template #chip="{ props: chipProps, item }">
+              <v-chip
+                v-bind="chipProps"
+                color="primary"
+                variant="tonal"
+              >
+                <v-icon start size="small">mdi-database</v-icon>
+                {{ item.title }}
+              </v-chip>
+            </template>
+            <template #item="{ props: itemProps, item }">
+              <v-list-item
+                v-bind="itemProps"
+                :subtitle="`${item.raw.active_documents_count} ${t('chats.documents_count')}`"
+              >
+                <template #prepend>
+                  <v-icon color="primary">mdi-database</v-icon>
+                </template>
+              </v-list-item>
+            </template>
+          </v-select>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer />
+          <v-btn
+            variant="text"
+            data-testid="chats-dialog-btn-cancel"
+            @click="showGlobalStoresDialog = false"
+          >
+            {{ t('common.cancel') }}
+          </v-btn>
+          <v-btn
+            color="primary"
+            variant="flat"
+            :loading="savingGlobalStores"
+            data-testid="chats-dialog-btn-save"
+            @click="saveGlobalStores"
+          >
+            {{ t('common.save') }}
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 

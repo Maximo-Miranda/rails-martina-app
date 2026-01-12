@@ -25,10 +25,10 @@ class Gemini::ChatServiceTest < ActiveSupport::TestCase
   # ==========================================
 
   test "build_payload creates correct structure" do
-    store_name = @store.gemini_store_name
+    store_names = [ @store.gemini_store_name ]
     history = []
 
-    payload = Gemini::ChatService.send(:build_payload, "Test question", store_name, history, {})
+    payload = Gemini::ChatService.send(:build_payload, "Test question", store_names, history, {})
 
     # Verify system instruction
     assert payload[:systemInstruction].present?
@@ -44,7 +44,7 @@ class Gemini::ChatServiceTest < ActiveSupport::TestCase
     assert payload[:tools].present?
     file_search = payload[:tools].first[:fileSearch]
     assert_not_nil file_search
-    assert_includes file_search[:fileSearchStoreNames], store_name
+    assert_equal store_names, file_search[:fileSearchStoreNames]
 
     # Verify generation config
     config = payload[:generationConfig]
@@ -53,13 +53,13 @@ class Gemini::ChatServiceTest < ActiveSupport::TestCase
   end
 
   test "build_payload includes chat history" do
-    store_name = @store.gemini_store_name
+    store_names = [ @store.gemini_store_name ]
     history = [
       { role: "user", content: "Primera pregunta" },
       { role: "model", content: "Primera respuesta del asistente" },
     ]
 
-    payload = Gemini::ChatService.send(:build_payload, "Segunda pregunta", store_name, history, {})
+    payload = Gemini::ChatService.send(:build_payload, "Segunda pregunta", store_names, history, {})
     contents = payload[:contents]
 
     # Should have history (2 messages) + new message (1)
@@ -75,10 +75,10 @@ class Gemini::ChatServiceTest < ActiveSupport::TestCase
   end
 
   test "build_payload accepts custom generation config options" do
-    store_name = @store.gemini_store_name
+    store_names = [ @store.gemini_store_name ]
     history = []
 
-    payload = Gemini::ChatService.send(:build_payload, "Test", store_name, history, {
+    payload = Gemini::ChatService.send(:build_payload, "Test", store_names, history, {
       temperature: 0.5,
       max_output_tokens: 4096,
     })
@@ -107,7 +107,7 @@ class Gemini::ChatServiceTest < ActiveSupport::TestCase
 
   test "process_response extracts content correctly" do
     response = successful_response
-    result = Gemini::ChatService.send(:process_response, response, @project)
+    result = Gemini::ChatService.send(:process_response, response, @chat)
 
     assert_equal "El CGP es el Código General del Proceso...", result[:content]
     assert_equal "STOP", result[:finish_reason]
@@ -116,7 +116,7 @@ class Gemini::ChatServiceTest < ActiveSupport::TestCase
 
   test "process_response handles SAFETY finish reason" do
     response = blocked_response(finish_reason: "SAFETY")
-    result = Gemini::ChatService.send(:process_response, response, @project)
+    result = Gemini::ChatService.send(:process_response, response, @chat)
 
     assert_equal I18n.t("chats.errors.blocked_safety"), result[:content]
     assert_equal "SAFETY", result[:finish_reason]
@@ -124,14 +124,14 @@ class Gemini::ChatServiceTest < ActiveSupport::TestCase
 
   test "process_response handles RECITATION finish reason" do
     response = blocked_response(finish_reason: "RECITATION")
-    result = Gemini::ChatService.send(:process_response, response, @project)
+    result = Gemini::ChatService.send(:process_response, response, @chat)
 
     assert_equal I18n.t("chats.errors.blocked_recitation"), result[:content]
   end
 
   test "process_response handles MAX_TOKENS finish reason" do
     response = blocked_response(finish_reason: "MAX_TOKENS")
-    result = Gemini::ChatService.send(:process_response, response, @project)
+    result = Gemini::ChatService.send(:process_response, response, @chat)
 
     assert_equal I18n.t("chats.errors.max_tokens"), result[:content]
   end
@@ -148,7 +148,7 @@ class Gemini::ChatServiceTest < ActiveSupport::TestCase
       "usageMetadata" => { "totalTokenCount" => 100 },
     }
 
-    result = Gemini::ChatService.send(:process_response, response, @project)
+    result = Gemini::ChatService.send(:process_response, response, @chat)
     assert_equal I18n.t("chats.errors.no_relevant_info"), result[:content]
   end
 
@@ -156,7 +156,7 @@ class Gemini::ChatServiceTest < ActiveSupport::TestCase
     response = { "candidates" => [] }
 
     assert_raises(Gemini::ChatService::ChatError) do
-      Gemini::ChatService.send(:process_response, response, @project)
+      Gemini::ChatService.send(:process_response, response, @chat)
     end
   end
 
@@ -164,7 +164,7 @@ class Gemini::ChatServiceTest < ActiveSupport::TestCase
     response = {}
 
     error = assert_raises(Gemini::ChatService::ChatError) do
-      Gemini::ChatService.send(:process_response, response, @project)
+      Gemini::ChatService.send(:process_response, response, @chat)
     end
 
     assert_includes error.message, "respuesta"
@@ -172,7 +172,7 @@ class Gemini::ChatServiceTest < ActiveSupport::TestCase
 
   test "process_response extracts grounding metadata" do
     response = successful_response
-    result = Gemini::ChatService.send(:process_response, response, @project)
+    result = Gemini::ChatService.send(:process_response, response, @chat)
 
     assert result[:grounding_metadata].present?
     assert result[:grounding_metadata]["groundingChunks"].present?
@@ -180,7 +180,7 @@ class Gemini::ChatServiceTest < ActiveSupport::TestCase
 
   test "process_response calls CitationExtractor" do
     response = successful_response
-    result = Gemini::ChatService.send(:process_response, response, @project)
+    result = Gemini::ChatService.send(:process_response, response, @chat)
 
     # Citations should be an array (empty since no real documents match)
     assert result[:citations].is_a?(Array)

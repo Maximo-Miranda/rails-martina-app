@@ -223,4 +223,100 @@ class ChatTest < ActiveSupport::TestCase
     assert chat.discarded?
     assert_not_nil chat.deleted_at
   end
+
+  # === GLOBAL STORES ===
+
+  test "all_store_names returns only project store when no global stores" do
+    chat = Chat.create!(
+      project: @project,
+      user: @user,
+      gemini_file_search_store: @store,
+      title: "Test Chat"
+    )
+
+    store_names = chat.all_store_names
+
+    assert_equal 1, store_names.length
+    assert_includes store_names, @store.gemini_store_name
+  end
+
+  test "all_store_names includes global stores when associated" do
+    global_store = gemini_file_search_stores(:global_store)
+    chat = Chat.create!(
+      project: @project,
+      user: @user,
+      gemini_file_search_store: @store,
+      title: "Test Chat with Global Store"
+    )
+
+    # Associate global store
+    ActsAsTenant.without_tenant do
+      chat.global_stores << global_store
+    end
+
+    store_names = chat.all_store_names
+
+    assert_equal 2, store_names.length
+    assert_includes store_names, @store.gemini_store_name
+    assert_includes store_names, global_store.gemini_store_name
+  end
+
+  test "all_store_names excludes inactive global stores" do
+    global_store = gemini_file_search_stores(:global_store)
+    chat = Chat.create!(
+      project: @project,
+      user: @user,
+      gemini_file_search_store: @store,
+      title: "Test Chat"
+    )
+
+    # Associate and then deactivate global store
+    ActsAsTenant.without_tenant do
+      chat.global_stores << global_store
+      global_store.update!(status: :pending)
+    end
+
+    store_names = chat.all_store_names
+
+    assert_equal 1, store_names.length
+    assert_includes store_names, @store.gemini_store_name
+    assert_not_includes store_names, global_store.gemini_store_name
+  end
+
+  test "all_stores returns both project and global stores" do
+    global_store = gemini_file_search_stores(:global_store)
+    chat = Chat.create!(
+      project: @project,
+      user: @user,
+      gemini_file_search_store: @store,
+      title: "Test Chat"
+    )
+
+    ActsAsTenant.without_tenant do
+      chat.global_stores << global_store
+    end
+
+    all_stores = chat.all_stores
+
+    assert_equal 2, all_stores.length
+    assert_includes all_stores, @store
+    assert_includes all_stores, global_store
+  end
+
+  test "chat global_stores association works correctly" do
+    global_store = gemini_file_search_stores(:global_store)
+    chat = Chat.create!(
+      project: @project,
+      user: @user,
+      gemini_file_search_store: @store,
+      title: "Test Chat"
+    )
+
+    ActsAsTenant.without_tenant do
+      chat.global_stores << global_store
+    end
+
+    assert_equal 1, chat.global_stores.count
+    assert_includes chat.global_stores, global_store
+  end
 end

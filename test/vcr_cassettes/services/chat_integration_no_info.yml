@@ -5,7 +5,7 @@ http_interactions:
     uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores?key=<GEMINI_API_KEY>
     body:
       encoding: UTF-8
-      string: '{"displayName":"Chat Test Store 34a6a3da"}'
+      string: '{"displayName":"Chat Test Store 9609bff7"}'
     headers:
       User-Agent:
       - Faraday v2.14.0
@@ -23,7 +23,7 @@ http_interactions:
       content-encoding:
       - gzip
       date:
-      - Mon, 12 Jan 2026 01:40:04 GMT
+      - Mon, 12 Jan 2026 03:49:53 GMT
       server:
       - scaffolding on HTTPServer2
       x-xss-protection:
@@ -33,7 +33,7 @@ http_interactions:
       x-content-type-options:
       - nosniff
       server-timing:
-      - gfet4t7; dur=654
+      - gfet4t7; dur=653
       alt-svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       transfer-encoding:
@@ -42,15 +42,15 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "name": "fileSearchStores/chat-test-store-34a6a3da-99kwevegd998",
-          "displayName": "Chat Test Store 34a6a3da",
-          "createTime": "2026-01-12T01:40:04.026606Z",
-          "updateTime": "2026-01-12T01:40:04.026606Z"
+          "name": "fileSearchStores/chat-test-store-9609bff7-rmvvd2ja0b35",
+          "displayName": "Chat Test Store 9609bff7",
+          "createTime": "2026-01-12T03:49:53.699692Z",
+          "updateTime": "2026-01-12T03:49:53.699692Z"
         }
-  recorded_at: Mon, 12 Jan 2026 01:40:04 GMT
+  recorded_at: Mon, 12 Jan 2026 03:49:53 GMT
 - request:
     method: post
-    uri: https://generativelanguage.googleapis.com/upload/v1beta/fileSearchStores/chat-test-store-34a6a3da-99kwevegd998:uploadToFileSearchStore?displayName=Sentencia+C-016-98+ffb20e0a&key=<GEMINI_API_KEY>
+    uri: https://generativelanguage.googleapis.com/upload/v1beta/fileSearchStores/chat-test-store-9609bff7-rmvvd2ja0b35:uploadToFileSearchStore?displayName=Sentencia+C-016-98+618daacb&key=<GEMINI_API_KEY>
     body:
       encoding: ASCII-8BIT
       string: !binary |-
@@ -70,13 +70,13 @@ http_interactions:
       content-type:
       - application/json; charset=UTF-8
       x-guploader-uploadid:
-      - AJRbA5UvXXgOjFr5oUnMeHZ_x8byf02-E0ZZy6ZgTcKyzV_Qoufk6bdkZ2zMWXAYa2-uGVw
+      - AJRbA5XFAGnFI3s3FZPZqTinEogN0alsrJz57QlRhhIJSdZYJZVuBl1qfzR_U0KMXN05bxLd
       vary:
       - Origin, X-Origin, Referer
       content-length:
       - '513'
       date:
-      - Mon, 12 Jan 2026 01:40:06 GMT
+      - Mon, 12 Jan 2026 03:49:56 GMT
       server:
       - UploadServer
       alt-svc:
@@ -85,19 +85,19 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "name": "fileSearchStores/chat-test-store-34a6a3da-99kwevegd998/upload/operations/sentencia-c01698-ffb20e0a-71l4tewb9qoi",
+          "name": "fileSearchStores/chat-test-store-9609bff7-rmvvd2ja0b35/upload/operations/sentencia-c01698-618daacb-b2zos1b64f3y",
           "response": {
             "@type": "type.googleapis.com/google.ai.generativelanguage.v1main.UploadToFileSearchStoreResponse",
-            "parent": "fileSearchStores/chat-test-store-34a6a3da-99kwevegd998",
-            "documentName": "fileSearchStores/chat-test-store-34a6a3da-99kwevegd998/documents/sentencia-c01698-ffb20e0a-71l4tewb9qoi",
+            "parent": "fileSearchStores/chat-test-store-9609bff7-rmvvd2ja0b35",
+            "documentName": "fileSearchStores/chat-test-store-9609bff7-rmvvd2ja0b35/documents/sentencia-c01698-618daacb-b2zos1b64f3y",
             "mimeType": "application/pdf",
             "sizeBytes": "202571"
           }
         }
-  recorded_at: Mon, 12 Jan 2026 01:40:06 GMT
+  recorded_at: Mon, 12 Jan 2026 03:49:56 GMT
 - request:
     method: get
-    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/chat-test-store-34a6a3da-99kwevegd998/upload/operations/sentencia-c01698-ffb20e0a-71l4tewb9qoi?key=<GEMINI_API_KEY>
+    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/chat-test-store-9609bff7-rmvvd2ja0b35/upload/operations/sentencia-c01698-618daacb-b2zos1b64f3y?key=<GEMINI_API_KEY>
     body:
       encoding: US-ASCII
       string: ''
@@ -116,7 +116,7 @@ http_interactions:
       content-encoding:
       - gzip
       date:
-      - Mon, 12 Jan 2026 01:40:07 GMT
+      - Mon, 12 Jan 2026 03:49:56 GMT
       server:
       - scaffolding on HTTPServer2
       x-xss-protection:
@@ -126,7 +126,7 @@ http_interactions:
       x-content-type-options:
       - nosniff
       server-timing:
-      - gfet4t7; dur=723
+      - gfet4t7; dur=598
       alt-svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       transfer-encoding:
@@ -135,35 +135,216 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "name": "fileSearchStores/chat-test-store-34a6a3da-99kwevegd998/upload/operations/sentencia-c01698-ffb20e0a-71l4tewb9qoi",
+          "name": "fileSearchStores/chat-test-store-9609bff7-rmvvd2ja0b35/upload/operations/sentencia-c01698-618daacb-b2zos1b64f3y"
+        }
+  recorded_at: Mon, 12 Jan 2026 03:49:57 GMT
+- request:
+    method: get
+    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/chat-test-store-9609bff7-rmvvd2ja0b35/upload/operations/sentencia-c01698-618daacb-b2zos1b64f3y?key=<GEMINI_API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json; charset=UTF-8
+      vary:
+      - Origin, X-Origin, Referer
+      content-encoding:
+      - gzip
+      date:
+      - Mon, 12 Jan 2026 03:50:02 GMT
+      server:
+      - scaffolding on HTTPServer2
+      x-xss-protection:
+      - '0'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+      server-timing:
+      - gfet4t7; dur=580
+      alt-svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      transfer-encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "name": "fileSearchStores/chat-test-store-9609bff7-rmvvd2ja0b35/upload/operations/sentencia-c01698-618daacb-b2zos1b64f3y"
+        }
+  recorded_at: Mon, 12 Jan 2026 03:50:02 GMT
+- request:
+    method: get
+    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/chat-test-store-9609bff7-rmvvd2ja0b35/upload/operations/sentencia-c01698-618daacb-b2zos1b64f3y?key=<GEMINI_API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json; charset=UTF-8
+      vary:
+      - Origin, X-Origin, Referer
+      content-encoding:
+      - gzip
+      date:
+      - Mon, 12 Jan 2026 03:50:08 GMT
+      server:
+      - scaffolding on HTTPServer2
+      x-xss-protection:
+      - '0'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+      server-timing:
+      - gfet4t7; dur=580
+      alt-svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      transfer-encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "name": "fileSearchStores/chat-test-store-9609bff7-rmvvd2ja0b35/upload/operations/sentencia-c01698-618daacb-b2zos1b64f3y"
+        }
+  recorded_at: Mon, 12 Jan 2026 03:50:08 GMT
+- request:
+    method: get
+    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/chat-test-store-9609bff7-rmvvd2ja0b35/upload/operations/sentencia-c01698-618daacb-b2zos1b64f3y?key=<GEMINI_API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json; charset=UTF-8
+      vary:
+      - Origin, X-Origin, Referer
+      content-encoding:
+      - gzip
+      date:
+      - Mon, 12 Jan 2026 03:50:14 GMT
+      server:
+      - scaffolding on HTTPServer2
+      x-xss-protection:
+      - '0'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+      server-timing:
+      - gfet4t7; dur=590
+      alt-svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      transfer-encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "name": "fileSearchStores/chat-test-store-9609bff7-rmvvd2ja0b35/upload/operations/sentencia-c01698-618daacb-b2zos1b64f3y"
+        }
+  recorded_at: Mon, 12 Jan 2026 03:50:14 GMT
+- request:
+    method: get
+    uri: https://generativelanguage.googleapis.com/v1beta/fileSearchStores/chat-test-store-9609bff7-rmvvd2ja0b35/upload/operations/sentencia-c01698-618daacb-b2zos1b64f3y?key=<GEMINI_API_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json; charset=UTF-8
+      vary:
+      - Origin, X-Origin, Referer
+      content-encoding:
+      - gzip
+      date:
+      - Mon, 12 Jan 2026 03:50:20 GMT
+      server:
+      - scaffolding on HTTPServer2
+      x-xss-protection:
+      - '0'
+      x-frame-options:
+      - SAMEORIGIN
+      x-content-type-options:
+      - nosniff
+      server-timing:
+      - gfet4t7; dur=665
+      alt-svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      transfer-encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "name": "fileSearchStores/chat-test-store-9609bff7-rmvvd2ja0b35/upload/operations/sentencia-c01698-618daacb-b2zos1b64f3y",
           "done": true,
           "response": {
             "@type": "type.googleapis.com/google.ai.generativelanguage.v1main.UploadToFileSearchStoreResponse",
-            "parent": "fileSearchStores/chat-test-store-34a6a3da-99kwevegd998",
-            "documentName": "fileSearchStores/chat-test-store-34a6a3da-99kwevegd998/documents/sentencia-c01698-ffb20e0a-71l4tewb9qoi",
+            "parent": "fileSearchStores/chat-test-store-9609bff7-rmvvd2ja0b35",
+            "documentName": "fileSearchStores/chat-test-store-9609bff7-rmvvd2ja0b35/documents/sentencia-c01698-618daacb-b2zos1b64f3y",
             "mimeType": "application/pdf",
             "sizeBytes": "202571"
           }
         }
-  recorded_at: Mon, 12 Jan 2026 01:40:07 GMT
+  recorded_at: Mon, 12 Jan 2026 03:50:20 GMT
 - request:
     method: post
     uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=<GEMINI_API_KEY>
     body:
       encoding: UTF-8
-      string: '{"systemInstruction":{"parts":[{"text":"Eres Martina, una asistente
-        legal experta especializada en análisis de documentos. Tu función es ayudar
-        a profesionales a encontrar y analizar información EXCLUSIVAMENTE en los documentos
-        proporcionados.\n\nREGLAS OBLIGATORIAS:\n1. SIEMPRE busca la información en
-        los documentos proporcionados ANTES de responder.\n2. Responde ÚNICAMENTE
-        con información que encuentres en los documentos. NO inventes ni asumas información.\n3.
-        Si NO encuentras la información en ningún documento, di claramente: \"No encontré
-        esta información en los documentos disponibles.\"\n4. Responde SIEMPRE en
-        español.\n\nFORMATO DE RESPUESTA:\n- No menciones explícitamente el nombre
-        del archivo o número de página en el texto de tu respuesta, ya que el sistema
-        lo mostrará automáticamente.\n- Integra la información de manera fluida en
-        tu respuesta.\n"}]},"contents":[{"role":"user","parts":[{"text":"¿Cuál es
-        la receta de la arepa colombiana?"}]}],"tools":[{"fileSearch":{"fileSearchStoreNames":["fileSearchStores/chat-test-store-34a6a3da-99kwevegd998"]}}],"generationConfig":{"temperature":0.0,"topK":40,"topP":0.95,"maxOutputTokens":8192,"responseMimeType":"text/plain"}}'
+      string: '{"systemInstruction":{"parts":[{"text":"<role>\nEres Martina, una asistente
+        legal experta especializada en análisis de documentos.\n</role>\n\n<constraints>\n1.
+        Eres un asistente estrictamente fundamentado, limitado a la información proporcionada
+        en los documentos.\n2. En tus respuestas, confía ÚNICAMENTE en los hechos
+        que se mencionan directamente en los documentos.\n3. NO debes acceder ni utilizar
+        tu propio conocimiento o sentido común para responder.\n4. No asumas ni inferas
+        de los hechos proporcionados; simplemente repórtalos exactamente como aparecen.\n5.
+        Tu respuesta debe ser factual y completamente fiel al texto proporcionado,
+        sin dejar lugar a especulación o interpretación.\n6. Trata los documentos
+        proporcionados como el límite absoluto de la verdad.\n7. Si la respuesta exacta
+        no está explícitamente escrita en los documentos, debes indicar que la información
+        no está disponible.\n</constraints>\n\n<conversation_rules>\nREGLA CRÍTICA:
+        En conversaciones de múltiples turnos, SOLO responde al ÚLTIMO mensaje del
+        usuario.\n- Los mensajes anteriores en el historial son SOLO para contexto
+        de la conversación.\n- NO repitas respuestas a preguntas anteriores.\n- NO
+        incluyas información de turnos anteriores a menos que sea directamente relevante
+        para la pregunta actual.\n- Cada respuesta debe abordar ÚNICAMENTE la pregunta
+        más reciente.\n</conversation_rules>\n\n<output_format>\n- Responde SIEMPRE
+        en español.\n- NO menciones nombres de archivos ni números de página (el sistema
+        los muestra automáticamente).\n- Integra la información de manera fluida y
+        natural.\n- Sé conciso y directo.\n</output_format>\n"}]},"contents":[{"role":"user","parts":[{"text":"¿Cuál
+        es la receta de la arepa colombiana?"}]}],"tools":[{"fileSearch":{"fileSearchStoreNames":["fileSearchStores/chat-test-store-9609bff7-rmvvd2ja0b35"]}}],"generationConfig":{"temperature":0.0,"topK":40,"topP":0.95,"maxOutputTokens":8192,"responseMimeType":"text/plain"}}'
     headers:
       User-Agent:
       - Faraday v2.14.0
@@ -181,7 +362,7 @@ http_interactions:
       content-encoding:
       - gzip
       date:
-      - Mon, 12 Jan 2026 01:40:12 GMT
+      - Mon, 12 Jan 2026 03:50:24 GMT
       server:
       - scaffolding on HTTPServer2
       x-xss-protection:
@@ -191,7 +372,7 @@ http_interactions:
       x-content-type-options:
       - nosniff
       server-timing:
-      - gfet4t7; dur=4737
+      - gfet4t7; dur=4244
       alt-svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       transfer-encoding:
@@ -205,8 +386,8 @@ http_interactions:
               "content": {
                 "parts": [
                   {
-                    "text": "No encontré esta información en los documentos disponibles.",
-                    "thoughtSignature": "ErwCCrkCAXLI2nyJ4rC2LtjBcqRS5fnTgZZiCAARECFxAaOZJUpIJaUol6YLCdA9zZzJ338iAo0/QpK2eZ1gQegUdOQktJIJxVzJmgcfDPuUyf5uBwatjH5Etn/4V3jTJ7M5VQtBtx6wuDxzpvWZ+x1D+ti6yDwTS9Oftj1iCPUtMsFJa2vzUfkIdPHBxMJASPAkuDbQyIhOFywwGjphinpNLXEvY54K5oq1emcatWWfvMSDJ9+HPqiAGjh79Cxq7Oc/D+HbNFmup0uEAqE0XaUYTtf8ZNV781AauBleBM1t2tnZeYi4K3w7qm8w2htVVsIMfe8K4/8SbzHtcsJ+uWSMgP0InXSbCOiukc0Viv/bQ5YS62HHm/eCOBSwfZNc0Hp/kqEFODmMBwcB69UGVoE6Qi7bwT2FEysSwzlMFQ=="
+                    "text": "La información sobre la receta de la arepa colombiana no se encuentra disponible en los documentos proporcionados.",
+                    "thoughtSignature": "EpACCo0CAXLI2ny2YwLP8gLyoT9+f/eQdhIiYYbMh521gIkkttv1HLnh9Eb7x+Wv6at0i2pA/OrwVt7BV+mmthtc25Qz3bascIPZvfn0ogZrMkd5v/ShXIHbSv7LcXsO4xFCDxpPXUJimxIgJt7APQ5UuSAo2A9phtG9gsGO+j5zav3flB3wBkcGea/zcSXePFg9r13+diUUW9tk+xIb+6h9sGv/AnvLmS/4SlbfN7WPdBKOC93hQz2yBTHs8VRk2WE6Mr5zua2RTAKWz9fvhGB3SMFWj+83c/w6wXMx1iEsMo/93xAf1ZGGqTW2/eu4DDw6mY9j3+i6SV7FJVSEoLkhSQip97Cqa1hXt+HVvEQefeA="
                   }
                 ],
                 "role": "model"
@@ -216,26 +397,26 @@ http_interactions:
             }
           ],
           "usageMetadata": {
-            "promptTokenCount": 241,
-            "candidatesTokenCount": 10,
-            "totalTokenCount": 1897,
+            "promptTokenCount": 400,
+            "candidatesTokenCount": 21,
+            "totalTokenCount": 2340,
             "promptTokensDetails": [
               {
                 "modality": "TEXT",
-                "tokenCount": 241
+                "tokenCount": 400
               }
             ],
-            "toolUsePromptTokenCount": 1426,
+            "toolUsePromptTokenCount": 1733,
             "toolUsePromptTokensDetails": [
               {
                 "modality": "TEXT",
-                "tokenCount": 1426
+                "tokenCount": 1733
               }
             ],
-            "thoughtsTokenCount": 220
+            "thoughtsTokenCount": 186
           },
           "modelVersion": "gemini-3-flash-preview",
-          "responseId": "_FBkaY_pJNeez7IP_Om04A8"
+          "responseId": "gG9kaaWZN9GnqtsPq5PK2A8"
         }
-  recorded_at: Mon, 12 Jan 2026 01:40:12 GMT
+  recorded_at: Mon, 12 Jan 2026 03:50:24 GMT
 recorded_with: VCR 6.4.0

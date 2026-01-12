@@ -61,7 +61,12 @@ Rails.application.routes.draw do
   # Documents (both global and project-scoped via tenant)
   # Global scope: /documents?scope=global&store_id=X (admin only)
   # Project scope: /documents (uses current_project tenant)
-  resources :documents, only: %i[index show new create destroy]
+  resources :documents, only: %i[index show new create destroy] do
+    member do
+      get :temporary_url
+      get :file_url
+    end
+  end
 
   resources :chats, except: %i[edit] do
     resources :messages, only: %i[create]

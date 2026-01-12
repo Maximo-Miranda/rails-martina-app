@@ -29,6 +29,28 @@ class DocumentPolicy < ApplicationPolicy
     create?
   end
 
+  # Any authenticated user can get temporary URLs for global documents
+  # (used in chat citations when referencing global store documents)
+  def temporary_url?
+    return false unless user
+    return false unless record.is_a?(Document) && record.global?
+
+    true
+  end
+
+  def file_url?
+    return false unless user
+    return false unless record.is_a?(Document)
+
+    return true if record.global?
+
+    return false unless record.project
+
+    user.has_any_role?(:super_admin, :admin) ||
+      user.has_role?(:owner, record.project) ||
+      user.has_role?(:coworker, record.project)
+  end
+
   def self.show_menu?(user)
     user&.has_any_role?(:super_admin, :admin)
   end

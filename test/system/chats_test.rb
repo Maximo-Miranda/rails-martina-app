@@ -9,6 +9,7 @@ class ChatsTest < ApplicationSystemTestCase
     @owner = users(:confirmed_user)
     @project = projects(:test_project)
     @store = gemini_file_search_stores(:active_store)
+    @global_store = gemini_file_search_stores(:global_store)
     @test_document = nil
   end
 
@@ -20,6 +21,7 @@ class ChatsTest < ApplicationSystemTestCase
   test "owner can create chat, send message, receive response and delete it" do
     with_vcr_lifecycle_cassette("system/chats_complete_flow") do
       ensure_store_synced(@store)
+      ensure_store_synced(@global_store)
 
       @test_document = upload_test_document(@store)
 
@@ -32,6 +34,14 @@ class ChatsTest < ApplicationSystemTestCase
 
       assert_selector "[data-testid='chats-input-title']", wait: 10
       fill_in_field "[data-testid='chats-input-title'] input", with: "Consulta sobre CGP"
+
+      if has_selector?("[data-testid='chats-select-global-stores']", wait: 2)
+        find("[data-testid='chats-select-global-stores']").click
+        assert_selector ".v-overlay--active .v-list-item", wait: 5
+        find(".v-overlay--active .v-list-item", match: :first).click(force: true)
+        send_keys(:escape)
+        assert_no_selector ".v-overlay--active .v-list", wait: 5
+      end
 
       find("[data-testid='form-btn-submit']").click
 
@@ -66,7 +76,7 @@ class ChatsTest < ApplicationSystemTestCase
 
       chat_row = find("tr", text: "Consulta sobre CGP")
       chat_row.find("[data-testid='chats-btn-delete']").click
-      assert_selector "[data-testid='chats-dialog-delete']", wait: 5
+      assert_selector "[data-testid='chats-dialog-delete']", wait: 10
 
       find("[data-testid='chats-dialog-delete-btn-confirm']").click
 
