@@ -360,7 +360,7 @@ GEM
       activerecord (>= 7.2)
       activesupport (>= 7.2)
       i18n
-    rdoc (7.0.3)
+    rdoc (7.1.0)
       erb
       psych (>= 4.0.0)
       tsort
@@ -423,7 +423,7 @@ GEM
       activejob (>= 7.2)
       activerecord (>= 7.2)
       railties (>= 7.2)
-    solid_queue (1.2.4)
+    solid_queue (1.3.0)
       activejob (>= 7.1)
       activerecord (>= 7.1)
       concurrent-ruby (>= 1.3.1)
