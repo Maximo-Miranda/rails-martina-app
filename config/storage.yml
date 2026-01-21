@@ -6,6 +6,15 @@ local:
   service: Disk
   root: <%= Rails.root.join("storage") %>
 
+contabo:
+  service: S3
+  access_key_id: <%= Rails.application.credentials.dig(:contabo, :access_key_id) %>
+  secret_access_key: <%= Rails.application.credentials.dig(:contabo, :secret_access_key) %>
+  region: us-central
+  bucket: martina-production-app
+  endpoint: https://usc1.contabostorage.com
+  force_path_style: true
+
 # Use bin/rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:
 #   service: S3
