@@ -17,6 +17,7 @@ module ActiveSupport
     fixtures :all
 
     include VcrTestHelper
+    include ActiveJob::TestHelper
   end
 end
 

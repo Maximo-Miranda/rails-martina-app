@@ -6,6 +6,7 @@ class PermissionServiceTest < ActiveSupport::TestCase
   setup do
     @user = users(:confirmed_user)
     @project = projects(:test_project)
+    ActsAsTenant.current_tenant = @project
     # Clear any existing roles for clean state
     @user.roles.destroy_all
     @user.reload

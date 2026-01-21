@@ -42,8 +42,11 @@ class ApplicationPolicy
   def global_admin? = user.global_admin?
 
   def owner?
-    project = ActsAsTenant.current_tenant || user.current_project
-    project && user.owner_of?(project)
+    ActsAsTenant.current_tenant && user.owner_of?(ActsAsTenant.current_tenant)
+  end
+
+  def coworker?
+    ActsAsTenant.current_tenant && user.has_role?(:coworker, ActsAsTenant.current_tenant)
   end
 
   class Scope

@@ -60,14 +60,8 @@ class ChatPolicy < ApplicationPolicy
   end
 
   def user_can_access_chats?
-    return true if global_admin?
-
-    project = ActsAsTenant.current_tenant
-    return false unless project
-
     # Only owners and coworkers can access chats (not clients)
-    user.has_role?(:owner, project) ||
-      user.has_role?(:coworker, project)
+    global_admin? || owner? || coworker?
   end
 
   # Alias - same permissions for access and management

@@ -1,0 +1,12 @@
+Hola <%= @recipient.full_name || @recipient.email %>,
+Te recordamos que tienes un evento programado en <%= @time_until %>:
+TÍTULO: <%= @case_reminder.title %>
+TIPO: <%= @case_reminder.display_type %>
+FECHA Y HORA: <%= l(@case_reminder.reminder_at, format: :long) %>
+<% if @case_reminder.location.present? %>LUGAR: <%= @case_reminder.location %><% end %>
+<% if @case_reminder.description.present? %>DESCRIPCIÓN: <%= @case_reminder.description %><% end %>
+EXPEDIENTE: <%= @legal_case.case_number %>
+PARTES: <%= @legal_case.plaintiff %> vs <%= @legal_case.defendant %>
+JUZGADO: <%= @legal_case.court %>
+---
+Este es un correo automático de Martina.

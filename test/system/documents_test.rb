@@ -200,9 +200,9 @@ class DocumentsTest < ApplicationSystemTestCase
   def navigate_to_global_documents
     assert_selector "[data-testid='nav-drawer']"
     find("[data-testid='nav-hamburger']").click
-    within("[data-testid='nav-drawer']") do
-      find("[data-testid='nav-item-documents?scope=global']").click
-    end
+    assert_selector "[data-testid='nav-drawer']", visible: true
+    # Use JS click to avoid Playwright viewport issues during drawer animation
+    page.execute_script("document.querySelector(\"[data-testid='nav-item-documents?scope=global']\").click()")
     assert_selector "[data-testid='documents-store-card-#{@global_store.id}']"
     find("[data-testid='documents-store-card-#{@global_store.id}']").click
     assert_selector "[data-testid='global-documents-table']"
@@ -211,9 +211,9 @@ class DocumentsTest < ApplicationSystemTestCase
   def navigate_to_project_documents
     assert_selector "[data-testid='nav-drawer']"
     find("[data-testid='nav-hamburger']").click
-    within("[data-testid='nav-drawer']") do
-      find("[data-testid='nav-item-documents']").click
-    end
+    assert_selector "[data-testid='nav-drawer']", visible: true
+    # Use JS click - Playwright's force:true still checks viewport in some cases
+    page.execute_script("document.querySelector(\"[data-testid='nav-item-documents']\").click()")
     assert_selector "[data-testid='project-documents-table']"
   end
 

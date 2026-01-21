@@ -71,4 +71,25 @@ Rails.application.routes.draw do
   resources :chats, except: %i[edit] do
     resources :messages, only: %i[create]
   end
+
+  resources :legal_cases do
+    resources :case_notebooks, only: %i[index show new create update destroy] do
+      resources :case_documents, only: %i[index show new create update destroy] do
+        member do
+          post :enable_ai
+          post :disable_ai
+          get :file_url
+          get :file_content
+        end
+      end
+    end
+
+    resources :court_orders, only: %i[index show new create update destroy]
+
+    resources :case_reminders, only: %i[index show new create update destroy] do
+      member do
+        post :acknowledge
+      end
+    end
+  end
 end

@@ -1,0 +1,29 @@
+principal_notebook:
+  legal_case: legal_case_one
+  notebook_type: principal
+  code: "C01"
+  description: "Cuaderno Principal"
+  volume: 1
+  folio_count: 150
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+medidas_notebook:
+  legal_case: legal_case_one
+  notebook_type: medidas_cautelares
+  code: "C02"
+  description: "Medidas Cautelares"
+  volume: 1
+  folio_count: 45
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+principal_notebook_two:
+  legal_case: legal_case_two
+  notebook_type: principal
+  code: "C01"
+  description: "Cuaderno Principal"
+  volume: 1
+  folio_count: 80
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>

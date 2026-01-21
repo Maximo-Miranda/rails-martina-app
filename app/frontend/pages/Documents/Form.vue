@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, reactive } from 'vue'
 import { router } from '@inertiajs/vue3'
+import type { VForm } from 'vuetify/components'
 import { useTranslations } from '@/composables/useTranslations'
 import { useNavigation } from '@/composables/useNavigation'
 import { useDocumentContext } from '@/composables/useDocumentContext'
@@ -29,6 +30,7 @@ const { navigateTo, isNavigating } = useNavigation()
 const { routes, testIdPrefix } = useDocumentContext()
 const { formatBytes, getContentTypeIcon } = useFileFormat()
 
+const formRef = ref<VForm | null>(null)
 const fileInput = ref<HTMLInputElement | null>(null)
 const selectedFile = ref<File | null>(null)
 const fileError = ref<string | null>(null)
@@ -130,7 +132,19 @@ const removeTag = (index: number) => {
   formData.custom_metadata.context_tags.splice(index, 1)
 }
 
-const submit = () => {
+const rules = {
+  required: (v: string | number | null | undefined) => !!v || t('validation.required'),
+}
+
+const submit = async () => {
+  const { valid } = await formRef.value!.validate()
+  if (!valid) return
+
+  if (!selectedFile.value) {
+    fileError.value = t('validation.required')
+    return
+  }
+
   processing.value = true
   const params = new URLSearchParams()
   if (props.project === null) {
@@ -175,7 +189,7 @@ const submit = () => {
 
     <v-card class="rounded-xl" elevation="0" border>
       <v-card-text class="pa-6">
-        <v-form @submit.prevent="submit" :data-testid="`${testIdPrefix}-form`">
+        <v-form ref="formRef" @submit.prevent="submit" :data-testid="`${testIdPrefix}-form`">
           <!-- File Upload Zone -->
           <div class="mb-6">
             <div class="text-subtitle-2 mb-2">{{ t('documents.select_file') }} *</div>
@@ -242,12 +256,12 @@ const submit = () => {
           <v-text-field
             v-model="formData.display_name"
             :data-testid="`${testIdPrefix}-input-display-name`"
-            :label="t('documents.display_name')"
+            :label="t('documents.display_name') + ' *'"
+            :rules="[rules.required]"
             :error-messages="errors?.display_name"
             :disabled="processing"
             variant="outlined"
             class="mb-4"
-            required
           />
 
           <!-- Custom Metadata Section -->

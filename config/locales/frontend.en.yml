@@ -13,6 +13,8 @@ en:
       edit: "Edit"
       back: "Back"
       confirm: "Confirm"
+      preview: "Preview"
+      download: "Download"
       loading: "Loading..."
       or: "or"
       see_all: "See all"
@@ -20,6 +22,7 @@ en:
       actions: "Actions"
       created_at: "Created"
       no_results: "No results found"
+      search: "Search"
 
     tooltips:
       upload: "Upload document"
@@ -49,6 +52,14 @@ en:
       error_icon: "Error"
       project_icon: "Project"
 
+    validation:
+      required: "This field is required"
+      email_invalid: "Enter a valid email address"
+      min_length: "Must have at least %{count} characters"
+      min_value: "Minimum value is %{min}"
+      password_hint: "Use 6 or more characters with letters, numbers and symbols."
+      passwords_no_match: "Passwords do not match"
+
     navigation:
       dashboard: "Dashboard"
       projects: "Projects"
@@ -56,6 +67,8 @@ en:
       gemini_stores: "File Search Stores"
       documents: "Documents (Global)"
       project_documents: "Project Documents"
+      chats: "Chats"
+      legal_cases: "Legal Cases"
       tasks: "Tasks"
       reports: "Reports"
       settings: "Settings"
