@@ -14,15 +14,12 @@ class CaseNotebooksTest < ApplicationSystemTestCase
     sign_in_with_form(@owner)
     navigate_to_legal_case(@legal_case)
 
-    # Go to notebooks tab
     find("[data-testid='legal-case-tab-notebooks']").click
     assert_selector "[data-testid='legal-case-btn-add-notebook']", wait: 5
 
     find("[data-testid='legal-case-btn-add-notebook']").click
-    # Navigates to CaseNotebooks/Form.vue which uses "case-notebooks-*" selectors
     assert_selector "[data-testid='case-notebooks-input-type']", wait: 5
 
-    # Fill form
     find("[data-testid='case-notebooks-input-type']").click
     find(".v-list-item", text: /Incidentes/i).click
 
@@ -32,11 +29,9 @@ class CaseNotebooksTest < ApplicationSystemTestCase
 
     find("[data-testid='case-notebooks-btn-submit']").click
 
-    # Wait for flash message confirming creation
     assert_selector ".flash-snackbar", wait: 10
     assert_text "C99", wait: 10
 
-    # Verify creation
     notebook = @legal_case.case_notebooks.find_by(code: "C99")
     assert_not_nil notebook
     assert_equal "incidentes", notebook.notebook_type
@@ -46,21 +41,16 @@ class CaseNotebooksTest < ApplicationSystemTestCase
     sign_in_with_form(@owner)
     navigate_to_legal_case(@legal_case)
 
-    # Go to notebooks tab
     find("[data-testid='legal-case-tab-notebooks']").click
     assert_selector "[data-testid='legal-case-notebook-#{@notebook.id}']", wait: 5
 
     notebook_id = @notebook.id
     find("[data-testid='legal-case-notebook-btn-delete-#{notebook_id}']").click
 
-    # Confirm deletion
     assert_selector ".v-dialog", wait: 5
     find(".v-dialog .v-btn", text: /Eliminar|Delete|Sí/i).click
 
-    # Wait for flash message confirming deletion
     assert_selector ".flash-snackbar", wait: 10
-
-    # Verify deleted
     assert_no_selector "[data-testid='legal-case-notebook-#{notebook_id}']", wait: 10
     assert @notebook.reload.discarded?
   end

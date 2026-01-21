@@ -14,14 +14,11 @@ class ChatsTest < ApplicationSystemTestCase
   end
 
   teardown do
-    # Restore queue adapter
     ActiveJob::Base.queue_adapter = :test
-    # Cleanup uploaded document if exists
     @test_document&.destroy! if @test_document&.persisted?
   end
 
   test "owner can create chat, send message, receive response and delete it" do
-    # Use inline adapter so SendMessageJob executes immediately in the server process
     ActiveJob::Base.queue_adapter = :inline
 
     with_vcr_lifecycle_cassette("system/chats_complete_flow") do
@@ -62,18 +59,12 @@ class ChatsTest < ApplicationSystemTestCase
       assert_selector "[data-testid^='chat-message-']", minimum: 1, wait: 10
       assert_text question, wait: 5
 
-      # Reload page to see the assistant response (WebSocket broadcasts don't work in tests)
-      # With :inline adapter, the job already executed during the POST request
-      # Use Playwright's reload with wait_until: 'load' to ensure page is fully loaded
+      # WebSocket broadcasts don't work in tests - reload with Playwright's waitUntil to ensure page is fully loaded
       page.driver.with_playwright_page do |playwright_page|
         playwright_page.reload(waitUntil: "load")
       end
 
-      # Verify we can see at least 2 messages (user + assistant)
       assert_selector "[data-testid^='chat-message-']", minimum: 2, wait: 15
-
-      # Verify the assistant responded with relevant content
-      # The response should mention aspects of article 82 (demanda)
       assert_text "demanda", wait: 10
 
       find("[data-testid='chats-btn-back']").click
@@ -129,10 +120,7 @@ class ChatsTest < ApplicationSystemTestCase
     document.file.attach(io: file_io, filename: file_path.basename.to_s, content_type: "text/plain")
     document.save!
 
-    # Process the document with Gemini
     Documents::UploadDocumentJob.perform_now(document.id)
     document.reload
-
-    document
   end
 end

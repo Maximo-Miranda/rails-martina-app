@@ -45,7 +45,6 @@ class DocumentsTest < ApplicationSystemTestCase
       document.reload
       assert_equal "active", document.status, "Error: #{document.error_message}"
 
-      # WebSocket broadcast runs in test process, not Capybara's server - navigate to verify
       navigate_to_global_documents
       assert_selector "[data-testid='document-status-#{document_id}']", text: "Activo", wait: 5
     end
@@ -71,7 +70,6 @@ class DocumentsTest < ApplicationSystemTestCase
     assert_selector "[data-testid='global-documents-delete-dialog']"
     find("[data-testid='global-documents-delete-dialog-btn-confirm']").click
 
-    # Document should disappear from the list after deletion
     assert_no_text document_name, wait: 5
   end
 
@@ -100,7 +98,6 @@ class DocumentsTest < ApplicationSystemTestCase
       document.reload
       assert_equal "active", document.status
 
-      # WebSocket broadcast runs in test process - navigate to verify
       navigate_to_project_documents
       assert_selector "[data-testid='document-status-#{document_id}']", text: "Activo", wait: 5
     end
@@ -125,7 +122,6 @@ class DocumentsTest < ApplicationSystemTestCase
     assert_selector "[data-testid='project-documents-delete-dialog']"
     find("[data-testid='project-documents-delete-dialog-btn-confirm']").click
 
-    # Document should disappear from the list after deletion
     assert_no_text document_name, wait: 5
   end
 
@@ -201,7 +197,6 @@ class DocumentsTest < ApplicationSystemTestCase
     assert_selector "[data-testid='nav-drawer']"
     find("[data-testid='nav-hamburger']").click
     assert_selector "[data-testid='nav-drawer']", visible: true
-    # Use JS click to avoid Playwright viewport issues during drawer animation
     page.execute_script("document.querySelector(\"[data-testid='nav-item-documents?scope=global']\").click()")
     assert_selector "[data-testid='documents-store-card-#{@global_store.id}']"
     find("[data-testid='documents-store-card-#{@global_store.id}']").click
@@ -212,7 +207,6 @@ class DocumentsTest < ApplicationSystemTestCase
     assert_selector "[data-testid='nav-drawer']"
     find("[data-testid='nav-hamburger']").click
     assert_selector "[data-testid='nav-drawer']", visible: true
-    # Use JS click - Playwright's force:true still checks viewport in some cases
     page.execute_script("document.querySelector(\"[data-testid='nav-item-documents']\").click()")
     assert_selector "[data-testid='project-documents-table']"
   end

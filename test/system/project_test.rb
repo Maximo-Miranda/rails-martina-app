@@ -5,7 +5,6 @@ require "application_system_test_case"
 class ProjectTest < ApplicationSystemTestCase
   include VcrTestHelper
 
-  # === Setup ===
   setup do
     @super_admin = users(:super_admin_user)
     @admin = users(:admin_user)
@@ -61,7 +60,6 @@ class ProjectTest < ApplicationSystemTestCase
     find("[data-testid='switcher-btn']").click
     assert_selector "[data-testid='switcher-menu']", wait: 5
 
-    # Search for test project
     find("[data-testid='switcher-input-search'] input").fill_in with: "Test"
 
     assert_selector "[data-testid='switcher-project-#{@test_project.slug}']", wait: 10
@@ -92,7 +90,6 @@ class ProjectTest < ApplicationSystemTestCase
       fill_in_field "[data-testid='projects-input-name'] input", with: "Mi Nuevo Proyecto"
       fill_in_field "[data-testid='projects-input-description'] textarea", with: "Descripción del proyecto de prueba"
 
-      # Execute enqueued jobs (CreateStoreJob runs async via perform_later)
       perform_enqueued_jobs do
         find("[data-testid='projects-form-btn-submit']").click
         assert_current_path dashboard_path
@@ -116,11 +113,9 @@ class ProjectTest < ApplicationSystemTestCase
   test "can navigate to new project from switcher dropdown" do
     sign_in_with_form(@owner)
 
-    # Abrir switcher
     find("[data-testid='switcher-btn']").click
     assert_selector "[data-testid='switcher-menu']"
 
-    # Click en nuevo proyecto
     find("[data-testid='switcher-btn-new']").click
 
     assert_current_path new_project_path
@@ -153,17 +148,13 @@ class ProjectTest < ApplicationSystemTestCase
   end
 
   test "owner can delete their project" do
-    # The test_project already has active_store associated (from fixtures)
-    # This test uses lifecycle cassette to create a real store that can be deleted
     with_vcr_lifecycle_cassette("system/project_delete_ui_lifecycle") do
-      # First, ensure the project's store has a real gemini_store_name by creating it via API
       store = @test_project.gemini_file_search_store || GeminiFileSearchStore.create!(
         display_name: "Store for deletion test",
         status: :pending,
         project: @test_project
       )
 
-      # If store doesn't have a real gemini_store_name, create one via API
       if store.gemini_store_name.blank? || store.gemini_store_name.start_with?("corpora/abc")
         store.update!(status: :pending, gemini_store_name: nil)
         Gemini::CreateStoreJob.perform_now(store.id)
@@ -178,7 +169,6 @@ class ProjectTest < ApplicationSystemTestCase
 
       assert_selector "[data-testid='projects-dialog-delete-btn-confirm']"
 
-      # Execute enqueued jobs (DeleteStoreJob runs async via perform_later)
       perform_enqueued_jobs do
         find("[data-testid='projects-dialog-delete-btn-confirm']").click
         assert_no_text @test_project.name
@@ -224,9 +214,5 @@ class ProjectTest < ApplicationSystemTestCase
 
   def fill_in_field(selector, with:)
     find(selector).fill_in with: with
-  end
-
-  def t(key, **options)
-    I18n.t(key, scope: :frontend, **options)
   end
 end
