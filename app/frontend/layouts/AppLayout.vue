@@ -276,7 +276,7 @@ const navigateTo = (href: string) => {
                 <v-avatar color="white" size="36" class="mr-2 shrink-0">
                   <v-icon color="primary" size="20">mdi-folder-outline</v-icon>
                 </v-avatar>
-                <div class="min-width-0 flex-grow-1">
+                <div class="min-width-0 grow">
                   <div class="sidebar-project-name text-white">{{ currentProject.name }}</div>
                 </div>
                 <v-btn

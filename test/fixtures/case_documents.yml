@@ -34,6 +34,7 @@ auto_admisorio:
   item_number: 3
   document_type: auto
   name: "Auto Admisorio de la Demanda"
+  description: "Auto que admite la demanda"
   folio_start: 46
   folio_end: 48
   page_count: 3

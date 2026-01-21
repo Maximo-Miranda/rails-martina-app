@@ -19,3 +19,10 @@ reminder_user_acknowledged:
   acknowledged_at: <%= 1.day.ago %>
   created_at: <%= Time.current %>
   updated_at: <%= Time.current %>
+
+reminder_user_coworker:
+  case_reminder: audiencia_reminder
+  user: coworker_user
+  acknowledged: false
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
