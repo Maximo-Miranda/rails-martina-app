@@ -1,0 +1,31 @@
+audiencia_reminder:
+  legal_case: legal_case_one
+  court_order: auto_pruebas
+  created_by: confirmed_user
+  title: "Audiencia de Conciliación"
+  reminder_type: audiencia
+  description: "Audiencia programada en el Juzgado 1 Civil"
+  reminder_at: <%= 2.days.from_now %>
+  location: "Sala 3, Piso 2, Palacio de Justicia"
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+termino_reminder:
+  legal_case: legal_case_one
+  created_by: confirmed_user
+  title: "Vencimiento Término Probatorio"
+  reminder_type: vencimiento_termino
+  description: "Vence el término para aportar pruebas"
+  reminder_at: <%= 5.days.from_now %>
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+reminder_past:
+  legal_case: legal_case_one
+  created_by: confirmed_user
+  title: "Presentar Memorial de Alegatos"
+  reminder_type: presentar_memorial
+  description: "Memorial de alegatos de conclusión"
+  reminder_at: <%= 1.day.ago %>
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>

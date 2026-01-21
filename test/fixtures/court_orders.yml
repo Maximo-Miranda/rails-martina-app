@@ -1,0 +1,32 @@
+auto_admisorio_order:
+  legal_case: legal_case_one
+  created_by: confirmed_user
+  order_type: auto_de_tramite
+  summary: "Se admite la demanda y se ordena notificar al demandado"
+  order_date: <%= Date.current - 25.days %>
+  deadline: <%= Date.current - 10.days %>
+  status: cumplido
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+auto_pruebas:
+  legal_case: legal_case_one
+  created_by: confirmed_user
+  order_type: auto_interlocutorio
+  summary: "Se decreta período probatorio de 20 días"
+  order_date: <%= Date.current - 5.days %>
+  deadline: <%= Date.current + 15.days %>
+  status: pendiente
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+auto_vencido:
+  legal_case: legal_case_one
+  created_by: confirmed_user
+  order_type: providencia
+  summary: "Auto de pruebas vencido"
+  order_date: <%= Date.current - 30.days %>
+  deadline: <%= Date.current - 5.days %>
+  status: pendiente
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>

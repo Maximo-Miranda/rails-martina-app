@@ -1,0 +1,54 @@
+legal_case_one:
+  project: test_project
+  created_by: confirmed_user
+  case_number: "2024-00123-00"
+  court: "Juzgado 1 Civil del Circuito de Bogotá"
+  specialty: civil
+  status: activo
+  action_type: "Proceso Ejecutivo"
+  filing_date: <%= Date.current - 30.days %>
+  plaintiff: "Juan Pérez García"
+  defendant: "María López Rodríguez"
+  plaintiff_lawyer: "Abogado del Demandante"
+  defendant_lawyer: "Abogado del Demandado"
+  lawyer_in_charge: "Carlos Martínez"
+  lawyer_phone: "3001234567"
+  lawyer_email: "carlos@example.com"
+  lawyer_professional_card: "TP-12345"
+  current_term_date: <%= Date.current + 5.days %>
+  last_action_date: <%= Date.current - 2.days %>
+  notes: "Expediente de prueba para desarrollo"
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+legal_case_two:
+  project: test_project
+  created_by: confirmed_user
+  case_number: "2024-00456-00"
+  court: "Juzgado 3 Laboral del Circuito de Medellín"
+  specialty: laboral
+  status: activo
+  action_type: "Proceso Ordinario Laboral"
+  filing_date: <%= Date.current - 60.days %>
+  plaintiff: "Pedro Gómez"
+  defendant: "Empresa ABC S.A.S."
+  lawyer_in_charge: "Laura Fernández"
+  lawyer_professional_card: "TP-67890"
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+archived_case:
+  project: test_project
+  created_by: confirmed_user
+  case_number: "2023-00789-00"
+  court: "Juzgado 2 de Familia de Cali"
+  specialty: familia
+  status: archivado
+  action_type: "Divorcio Contencioso"
+  filing_date: <%= Date.current - 365.days %>
+  plaintiff: "Sandra Ruiz"
+  defendant: "Jorge Mendoza"
+  lawyer_in_charge: "María Torres"
+  lawyer_professional_card: "TP-11111"
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>

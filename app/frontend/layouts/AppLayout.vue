@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, onMounted } from 'vue'
 import { router, usePage } from '@inertiajs/vue3'
+import { useDisplay } from 'vuetify'
 import { useTranslations } from '@/composables/useTranslations'
 import { useUser } from '@/composables/useUser'
 import { usePermissions } from '@/composables/usePermissions'
@@ -21,8 +22,32 @@ const { can } = usePermissions()
 const { isLoading } = useGlobalLoading()
 const { notification, clear: clearNotification } = useGlobalNotification()
 const page = usePage()
+const { mobile } = useDisplay()
 
+const DRAWER_STORAGE_KEY = 'app_drawer_open'
 const drawer = ref(false)
+
+onMounted(() => {
+  if (!mobile.value) {
+    const savedState = localStorage.getItem(DRAWER_STORAGE_KEY)
+    drawer.value = savedState === 'true'
+  }
+})
+
+watch(drawer, (newValue) => {
+  if (!mobile.value) {
+    localStorage.setItem(DRAWER_STORAGE_KEY, String(newValue))
+  }
+})
+
+watch(mobile, (isMobile) => {
+  if (isMobile) {
+    drawer.value = false
+  } else {
+    const savedState = localStorage.getItem(DRAWER_STORAGE_KEY)
+    drawer.value = savedState === 'true'
+  }
+})
 const userMenu = ref(false)
 const snackbar = ref(false)
 const snackbarMessage = ref('')
@@ -30,7 +55,6 @@ const snackbarColor = ref('success')
 
 const flash = computed(() => page.props.flash as Flash)
 
-// Show snackbar for flash messages
 watch(flash, (newFlash) => {
   if (newFlash?.notice) {
     snackbarMessage.value = newFlash.notice
@@ -47,7 +71,6 @@ watch(flash, (newFlash) => {
   }
 }, { immediate: true })
 
-// Show snackbar for global notifications (e.g., from Inertia error handler)
 watch(notification, (newNotification) => {
   if (newNotification) {
     snackbarMessage.value = newNotification.message
@@ -57,9 +80,10 @@ watch(notification, (newNotification) => {
   }
 })
 
-const navigationItems = computed(() => {
-  const currentProject = page.props.current_project as { id: number; name: string; slug: string } | null
+const currentProject = computed(() => page.props.current_project as { id: number; name: string; slug: string } | null)
+const isLongProjectName = computed(() => (currentProject.value?.name.length ?? 0) > 25)
 
+const navigationItems = computed(() => {
   return [
     {
       title: t('navigation.dashboard'),
@@ -77,13 +101,19 @@ const navigationItems = computed(() => {
       title: t('navigation.project_documents'),
       icon: 'mdi-file-document-edit-outline',
       href: '/documents',
-      visible: can.value.accessProjectDocuments && !!currentProject
+      visible: can.value.accessProjectDocuments && !!currentProject.value
     },
     {
       title: t('navigation.chats'),
       icon: 'mdi-chat-outline',
       href: '/chats',
-      visible: can.value.accessChats && !!currentProject
+      visible: can.value.accessChats && !!currentProject.value
+    },
+    {
+      title: t('navigation.legal_cases'),
+      icon: 'mdi-briefcase-outline',
+      href: '/legal_cases',
+      visible: can.value.accessLegalCases && !!currentProject.value
     },
     {
       title: t('navigation.users'),
@@ -109,7 +139,9 @@ const navigationItems = computed(() => {
 const navigateTo = (href: string) => {
   if (isLoading.value) return
   userMenu.value = false
-  drawer.value = false
+  if (mobile.value) {
+    drawer.value = false
+  }
   router.visit(href)
 }
 </script>
@@ -229,26 +261,50 @@ const navigateTo = (href: string) => {
       </template>
     </v-app-bar>
 
-    <!-- Navigation drawer (temporary - authenticated users only) -->
     <v-navigation-drawer
       v-if="isAuthenticated"
       v-model="drawer"
-      temporary
+      :temporary="mobile"
       class="elevation-0"
       data-testid="nav-drawer"
     >
-      <!-- Drawer header -->
-      <div class="pa-4 bg-primary">
-        <div class="d-flex align-center">
-          <v-avatar color="white" size="48" class="mr-3">
-            <span class="text-primary text-h6 font-weight-bold">{{ userInitials }}</span>
-          </v-avatar>
-          <div>
-            <div class="text-body-1 font-weight-medium text-white">{{ currentUser?.full_name }}</div>
-            <div class="text-body-2 text-white" style="opacity: 0.8;">{{ currentUser?.email }}</div>
+      <v-tooltip location="bottom" :disabled="!currentProject || currentProject.name.length < 25">
+        <template v-slot:activator="{ props: tooltipProps }">
+          <div class="pa-3 bg-primary" v-bind="tooltipProps">
+            <template v-if="currentProject">
+              <div class="d-flex" :class="isLongProjectName ? 'align-start' : 'align-center'">
+                <v-avatar color="white" size="36" class="mr-2 shrink-0">
+                  <v-icon color="primary" size="20">mdi-folder-outline</v-icon>
+                </v-avatar>
+                <div class="min-width-0 grow">
+                  <div class="sidebar-project-name text-white">{{ currentProject.name }}</div>
+                </div>
+                <v-btn
+                  v-if="can.editCurrentProject"
+                  icon
+                  variant="text"
+                  size="x-small"
+                  color="white"
+                  class="ml-1 shrink-0"
+                  data-testid="nav-project-settings"
+                  @click.stop="navigateTo(`/projects/${currentProject.slug}/edit`)"
+                >
+                  <v-icon size="18">mdi-cog-outline</v-icon>
+                </v-btn>
+              </div>
+            </template>
+            <template v-else>
+              <div class="d-flex align-center">
+                <v-avatar color="white" size="36" class="mr-2" style="opacity: 0.7;">
+                  <v-icon color="primary" size="20">mdi-folder-alert-outline</v-icon>
+                </v-avatar>
+                <div class="text-body-2 font-weight-medium text-white">{{ t('projects.select') }}</div>
+              </div>
+            </template>
           </div>
-        </div>
-      </div>
+        </template>
+        <span>{{ currentProject?.name }}</span>
+      </v-tooltip>
 
       <v-divider />
 
@@ -321,6 +377,18 @@ const navigateTo = (href: string) => {
 </template>
 
 <style scoped>
+.sidebar-project-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+}
+
 .flash-snackbar :deep(.v-snackbar__content) {
   max-width: 100%;
   overflow: hidden;

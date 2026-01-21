@@ -27,6 +27,12 @@ class Project < ApplicationRecord
     %w[user]
   end
 
+  def members
+    User.kept.joins(:roles)
+        .where(roles: { resource_type: "Project", resource_id: id })
+        .distinct
+  end
+
   private
 
   def assign_owner_role

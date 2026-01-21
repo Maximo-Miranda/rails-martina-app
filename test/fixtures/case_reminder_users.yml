@@ -1,0 +1,28 @@
+reminder_user_one:
+  case_reminder: audiencia_reminder
+  user: confirmed_user
+  acknowledged: false
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+reminder_user_two:
+  case_reminder: termino_reminder
+  user: confirmed_user
+  acknowledged: false
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+reminder_user_acknowledged:
+  case_reminder: reminder_past
+  user: confirmed_user
+  acknowledged: true
+  acknowledged_at: <%= 1.day.ago %>
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+reminder_user_coworker:
+  case_reminder: audiencia_reminder
+  user: coworker_user
+  acknowledged: false
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>

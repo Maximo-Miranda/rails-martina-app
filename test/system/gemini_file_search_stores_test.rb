@@ -103,10 +103,6 @@ class GeminiFileSearchStoresTest < ApplicationSystemTestCase
     assert_selector "[data-testid='gemini-stores-btn-create']"
   end
 
-  # =============================================================================
-  # Tests: Crear store global
-  # =============================================================================
-
   test "super_admin can create a new global store" do
     with_vcr_cassette("system/store_create") do
       sign_in_with_form(@super_admin)

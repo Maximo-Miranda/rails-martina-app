@@ -1,0 +1,44 @@
+demanda_document:
+  case_notebook: principal_notebook
+  uploaded_by: confirmed_user
+  item_number: 1
+  document_type: demanda
+  name: "Demanda Ejecutiva"
+  description: "Demanda principal del proceso"
+  folio_start: 1
+  folio_end: 25
+  page_count: 25
+  document_date: <%= Date.current - 30.days %>
+  issuer: "Demandante"
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+contestacion_document:
+  case_notebook: principal_notebook
+  uploaded_by: confirmed_user
+  item_number: 2
+  document_type: contestacion
+  name: "Contestación de la Demanda"
+  description: "Respuesta del demandado"
+  folio_start: 26
+  folio_end: 45
+  page_count: 20
+  document_date: <%= Date.current - 20.days %>
+  issuer: "Demandado"
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+auto_admisorio:
+  case_notebook: principal_notebook
+  uploaded_by: confirmed_user
+  item_number: 3
+  document_type: auto
+  name: "Auto Admisorio de la Demanda"
+  description: "Auto que admite la demanda"
+  folio_start: 46
+  folio_end: 48
+  page_count: 3
+  document_date: <%= Date.current - 25.days %>
+  issuer: "Juzgado"
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>

@@ -35,10 +35,9 @@ class UserPolicy < ApplicationPolicy
 
   class Scope < ApplicationPolicy::Scope
     def resolve
-      project = ActsAsTenant.current_tenant || user.current_project
-      return scope.none unless project
+      return scope.none unless ActsAsTenant.current_tenant
 
-      scope.kept.joins(:roles).where(roles: { resource: project }).distinct
+      scope.kept.joins(:roles).where(roles: { resource: ActsAsTenant.current_tenant }).distinct
     end
   end
 end

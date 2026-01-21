@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { ref, computed } from 'vue'
 import { useForm } from '@inertiajs/vue3'
+import type { VForm } from 'vuetify/components'
 import { useTranslations } from '@/composables/useTranslations'
 import { useNavigation } from '@/composables/useNavigation'
 import PageHeader from '@/components/PageHeader.vue'
@@ -14,20 +16,27 @@ interface GeminiStore {
 
 const props = defineProps<{
   store: Partial<GeminiStore>
-  errors?: Record<string, string[]>
 }>()
 
 const { t } = useTranslations()
 const { navigateTo, isNavigating } = useNavigation()
 
-const isEditing = !!props.store.id
+const formRef = ref<VForm | null>(null)
+const isEditing = computed(() => !!props.store.id)
 
 const form = useForm({
-  display_name: props.store.display_name || ''
+  display_name: props.store.display_name ?? ''
 })
 
-const submit = () => {
-  if (isEditing) {
+const rules = {
+  required: (v: string | number | null | undefined) => !!v || t('validation.required'),
+}
+
+const submit = async () => {
+  const { valid } = await formRef.value!.validate()
+  if (!valid) return
+
+  if (isEditing.value) {
     form.put(`/gemini_file_search_stores/${props.store.id}`)
   } else {
     form.post('/gemini_file_search_stores')
@@ -44,16 +53,16 @@ const submit = () => {
 
     <v-card class="rounded-xl" elevation="0" border>
       <v-card-text class="pa-6">
-        <v-form @submit.prevent="submit" data-testid="gemini-store-form">
+        <v-form ref="formRef" @submit.prevent="submit" data-testid="gemini-store-form">
           <v-text-field
             v-model="form.display_name"
             data-testid="gemini-store-input-display-name"
-            :label="t('gemini_stores.display_name')"
-            :error-messages="form.errors.display_name || errors?.display_name"
+            :label="t('gemini_stores.display_name') + ' *'"
+            :rules="[rules.required]"
+            :error-messages="form.errors.display_name"
             :disabled="form.processing"
             variant="outlined"
             class="mb-4"
-            required
           />
 
           <v-alert

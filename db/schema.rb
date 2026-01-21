@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_12_021433) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_12_171859) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -42,6 +42,82 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_12_021433) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "case_documents", force: :cascade do |t|
+    t.bigint "case_notebook_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at"
+    t.text "description"
+    t.date "document_date"
+    t.bigint "document_id"
+    t.string "document_type", null: false
+    t.integer "folio_end"
+    t.integer "folio_start"
+    t.string "issuer"
+    t.integer "item_number"
+    t.string "name", null: false
+    t.integer "page_count"
+    t.datetime "updated_at", null: false
+    t.bigint "uploaded_by_id", null: false
+    t.index ["case_notebook_id", "item_number"], name: "idx_case_documents_unique_item", unique: true, where: "(deleted_at IS NULL)"
+    t.index ["case_notebook_id"], name: "index_case_documents_on_case_notebook_id"
+    t.index ["deleted_at"], name: "index_case_documents_on_deleted_at"
+    t.index ["document_id"], name: "index_case_documents_on_document_id"
+    t.index ["document_type"], name: "index_case_documents_on_document_type"
+    t.index ["uploaded_by_id"], name: "index_case_documents_on_uploaded_by_id"
+  end
+
+  create_table "case_notebooks", force: :cascade do |t|
+    t.string "code", null: false
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at"
+    t.string "description"
+    t.integer "folio_count", default: 0
+    t.bigint "legal_case_id", null: false
+    t.string "notebook_type", null: false
+    t.datetime "updated_at", null: false
+    t.integer "volume", default: 1
+    t.index ["deleted_at"], name: "index_case_notebooks_on_deleted_at"
+    t.index ["legal_case_id", "code", "volume"], name: "idx_case_notebooks_unique", unique: true, where: "(deleted_at IS NULL)"
+    t.index ["legal_case_id"], name: "index_case_notebooks_on_legal_case_id"
+  end
+
+  create_table "case_reminder_users", force: :cascade do |t|
+    t.boolean "acknowledged", default: false
+    t.datetime "acknowledged_at"
+    t.bigint "case_reminder_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["case_reminder_id", "user_id"], name: "idx_case_reminder_users_unique", unique: true
+    t.index ["case_reminder_id"], name: "index_case_reminder_users_on_case_reminder_id"
+    t.index ["user_id"], name: "index_case_reminder_users_on_user_id"
+  end
+
+  create_table "case_reminders", force: :cascade do |t|
+    t.bigint "court_order_id"
+    t.datetime "created_at", null: false
+    t.bigint "created_by_id", null: false
+    t.string "custom_type"
+    t.datetime "deleted_at"
+    t.text "description"
+    t.bigint "legal_case_id", null: false
+    t.string "location"
+    t.string "notification_1d_job_id"
+    t.string "notification_1h_job_id"
+    t.string "notification_3d_job_id"
+    t.string "notification_4h_job_id"
+    t.datetime "reminder_at", null: false
+    t.string "reminder_type", null: false
+    t.string "title", null: false
+    t.datetime "updated_at", null: false
+    t.index ["court_order_id"], name: "index_case_reminders_on_court_order_id"
+    t.index ["created_by_id"], name: "index_case_reminders_on_created_by_id"
+    t.index ["deleted_at"], name: "index_case_reminders_on_deleted_at"
+    t.index ["legal_case_id"], name: "index_case_reminders_on_legal_case_id"
+    t.index ["reminder_at"], name: "index_case_reminders_on_reminder_at"
+    t.index ["reminder_type"], name: "index_case_reminders_on_reminder_type"
+  end
+
   create_table "chat_global_stores", force: :cascade do |t|
     t.bigint "chat_id", null: false
     t.datetime "created_at", null: false
@@ -69,6 +145,25 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_12_021433) do
     t.index ["status"], name: "index_chats_on_status"
     t.index ["user_id", "created_at"], name: "index_chats_on_user_and_created_at"
     t.index ["user_id"], name: "index_chats_on_user_id"
+  end
+
+  create_table "court_orders", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "created_by_id", null: false
+    t.date "deadline"
+    t.datetime "deleted_at"
+    t.bigint "legal_case_id", null: false
+    t.date "order_date", null: false
+    t.string "order_type", null: false
+    t.string "status", default: "pendiente", null: false
+    t.text "summary"
+    t.datetime "updated_at", null: false
+    t.index ["created_by_id"], name: "index_court_orders_on_created_by_id"
+    t.index ["deadline"], name: "index_court_orders_on_deadline"
+    t.index ["deleted_at"], name: "index_court_orders_on_deleted_at"
+    t.index ["legal_case_id", "order_date"], name: "index_court_orders_on_legal_case_id_and_order_date"
+    t.index ["legal_case_id"], name: "index_court_orders_on_legal_case_id"
+    t.index ["status"], name: "index_court_orders_on_status"
   end
 
   create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
@@ -150,6 +245,37 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_12_021433) do
     t.index ["gemini_store_name"], name: "index_gemini_file_search_stores_on_gemini_store_name", unique: true
     t.index ["project_id", "display_name"], name: "index_gemini_file_search_stores_on_project_id_and_display_name", unique: true
     t.index ["project_id"], name: "index_gemini_file_search_stores_on_project_id"
+  end
+
+  create_table "legal_cases", force: :cascade do |t|
+    t.string "action_type"
+    t.string "case_number", null: false
+    t.string "court", null: false
+    t.datetime "created_at", null: false
+    t.bigint "created_by_id", null: false
+    t.date "current_term_date"
+    t.string "defendant"
+    t.string "defendant_lawyer"
+    t.datetime "deleted_at"
+    t.date "filing_date"
+    t.date "last_action_date"
+    t.string "lawyer_email"
+    t.string "lawyer_in_charge"
+    t.string "lawyer_phone"
+    t.string "lawyer_professional_card"
+    t.text "notes"
+    t.string "plaintiff"
+    t.string "plaintiff_lawyer"
+    t.bigint "project_id", null: false
+    t.string "specialty"
+    t.string "status", default: "activo", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_by_id"], name: "index_legal_cases_on_created_by_id"
+    t.index ["current_term_date"], name: "index_legal_cases_on_current_term_date"
+    t.index ["deleted_at"], name: "index_legal_cases_on_deleted_at"
+    t.index ["project_id", "case_number"], name: "idx_legal_cases_unique_case_number", unique: true, where: "(deleted_at IS NULL)"
+    t.index ["project_id"], name: "index_legal_cases_on_project_id"
+    t.index ["status"], name: "index_legal_cases_on_status"
   end
 
   create_table "message_citations", force: :cascade do |t|
@@ -285,16 +411,29 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_12_021433) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "case_documents", "case_notebooks"
+  add_foreign_key "case_documents", "documents"
+  add_foreign_key "case_documents", "users", column: "uploaded_by_id"
+  add_foreign_key "case_notebooks", "legal_cases"
+  add_foreign_key "case_reminder_users", "case_reminders"
+  add_foreign_key "case_reminder_users", "users"
+  add_foreign_key "case_reminders", "court_orders"
+  add_foreign_key "case_reminders", "legal_cases"
+  add_foreign_key "case_reminders", "users", column: "created_by_id"
   add_foreign_key "chat_global_stores", "chats"
   add_foreign_key "chat_global_stores", "gemini_file_search_stores"
   add_foreign_key "chats", "gemini_file_search_stores"
   add_foreign_key "chats", "projects"
   add_foreign_key "chats", "users"
+  add_foreign_key "court_orders", "legal_cases"
+  add_foreign_key "court_orders", "users", column: "created_by_id"
   add_foreign_key "documents", "gemini_file_search_stores"
   add_foreign_key "documents", "projects"
   add_foreign_key "documents", "users", column: "uploaded_by_id"
   add_foreign_key "event_store_events_in_streams", "event_store_events", column: "event_id", primary_key: "event_id"
   add_foreign_key "gemini_file_search_stores", "projects"
+  add_foreign_key "legal_cases", "projects"
+  add_foreign_key "legal_cases", "users", column: "created_by_id"
   add_foreign_key "message_citations", "documents"
   add_foreign_key "message_citations", "messages"
   add_foreign_key "messages", "chats"

@@ -11,7 +11,7 @@ defineProps<{
       <h1 class="text-h5 text-sm-h4 font-weight-bold mb-1 page-header__title">{{ title }}</h1>
       <p v-if="subtitle" class="text-body-2 text-sm-body-1 text-medium-emphasis">{{ subtitle }}</p>
     </div>
-    <div class="d-flex align-center gap-2 w-100 w-sm-auto shrink-0">
+    <div class="d-flex align-center flex-wrap page-header__actions">
       <slot name="actions" />
     </div>
   </div>
@@ -33,9 +33,18 @@ defineProps<{
   hyphens: auto;
 }
 
+.page-header__actions {
+  gap: 0.5rem;
+}
+
 @media (max-width: 599px) {
-  :deep(.v-btn) {
+  .page-header__actions {
     width: 100%;
+    justify-content: flex-start;
+  }
+
+  :deep(.v-btn) {
+    flex: 1 1 auto;
   }
 }
 </style>

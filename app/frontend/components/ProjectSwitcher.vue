@@ -64,21 +64,26 @@ watch(menu, (isOpen) => {
 </script>
 
 <template>
-  <v-menu v-model="menu" :close-on-content-click="false" location="bottom start" min-width="300">
+  <v-menu v-model="menu" :close-on-content-click="false" location="bottom start" min-width="320">
     <template v-slot:activator="{ props }">
-      <v-btn
-        v-bind="props"
-        data-testid="switcher-btn"
-        variant="tonal"
-        color="white"
-        class="text-none"
-        rounded="lg"
-        size="small"
-      >
-        <v-icon start size="small">mdi-folder-outline</v-icon>
-        <span class="d-none d-sm-inline">{{ currentProject?.name || t('projects.select') }}</span>
-        <v-icon end size="small">mdi-chevron-down</v-icon>
-      </v-btn>
+      <v-tooltip location="bottom" :disabled="!currentProject || currentProject.name.length < 30">
+        <template v-slot:activator="{ props: tooltipProps }">
+          <v-btn
+            v-bind="{ ...props, ...tooltipProps }"
+            data-testid="switcher-btn"
+            variant="tonal"
+            color="white"
+            class="text-none switcher-btn"
+            rounded="lg"
+            size="small"
+          >
+            <v-icon start size="small">mdi-folder-outline</v-icon>
+            <span class="d-none d-sm-inline switcher-btn-text">{{ currentProject?.name || t('projects.select') }}</span>
+            <v-icon end size="small">mdi-chevron-down</v-icon>
+          </v-btn>
+        </template>
+        <span>{{ currentProject?.name }}</span>
+      </v-tooltip>
     </template>
 
     <v-card class="rounded-xl" elevation="8" data-testid="switcher-menu">
@@ -106,20 +111,20 @@ watch(menu, (isOpen) => {
             <v-list-item
               v-for="project in projects"
               :key="project.id"
-              :title="project.name"
-              :subtitle="'/' + project.slug"
               :active="currentProject?.id === project.id"
               :disabled="isLoading"
               :data-testid="`switcher-project-${project.slug}`"
               @click="switchProject(project.slug)"
               rounded="lg"
               color="primary"
+              class="py-2"
             >
               <template v-slot:prepend>
-                <v-avatar color="primary" size="32" variant="tonal">
+                <v-avatar color="primary" size="32" variant="tonal" class="mr-3">
                   <v-icon size="small">mdi-folder-outline</v-icon>
                 </v-avatar>
               </template>
+              <v-list-item-title class="project-item-title">{{ project.name }}</v-list-item-title>
             </v-list-item>
           </template>
 
@@ -149,3 +154,27 @@ watch(menu, (isOpen) => {
     </v-card>
   </v-menu>
 </template>
+
+<style scoped>
+.switcher-btn {
+  max-width: 320px;
+}
+
+.switcher-btn-text {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.project-item-title {
+  font-size: 0.875rem;
+  line-height: 1.3;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+</style>

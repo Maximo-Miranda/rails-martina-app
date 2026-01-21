@@ -298,3 +298,63 @@ es:
     gemini_store_deletion_failed_notifier:
       notification:
         message: "Error al eliminar el store '%{name}'"
+    case_reminder_notifier:
+      notification:
+        message: "Recordatorio: %{title} en %{time}"
+
+  case_reminder_mailer:
+    reminder_notification:
+      subject: "Recordatorio: %{title} - %{time}"
+
+  legal_cases:
+    create:
+      success: "Expediente creado exitosamente"
+    update:
+      success: "Expediente actualizado exitosamente"
+    destroy:
+      success: "Expediente eliminado exitosamente"
+    services:
+      file_not_attached: "El documento no tiene archivo adjunto"
+      store_not_found: "El proyecto no tiene un almacén de archivos configurado"
+      unsupported_content_type: "El tipo de archivo no es compatible con la IA"
+      ai_not_enabled: "La IA no está habilitada para este documento"
+
+  case_notebooks:
+    create:
+      success: "Cuaderno creado exitosamente"
+    update:
+      success: "Cuaderno actualizado exitosamente"
+    destroy:
+      success: "Cuaderno eliminado exitosamente"
+
+  case_documents:
+    create:
+      success: "Documento agregado exitosamente"
+    update:
+      success: "Documento actualizado exitosamente"
+    destroy:
+      success: "Documento eliminado exitosamente"
+    enable_ai:
+      success: "Documento habilitado para IA exitosamente"
+    disable_ai:
+      success: "Documento deshabilitado de IA exitosamente"
+    file_url:
+      no_file: "El documento no tiene archivo adjunto"
+
+  court_orders:
+    create:
+      success: "Auto creado exitosamente"
+    update:
+      success: "Auto actualizado exitosamente"
+    destroy:
+      success: "Auto eliminado exitosamente"
+
+  case_reminders:
+    create:
+      success: "Recordatorio creado exitosamente"
+    update:
+      success: "Recordatorio actualizado exitosamente"
+    destroy:
+      success: "Recordatorio eliminado exitosamente"
+    acknowledge:
+      success: "Recordatorio confirmado exitosamente"

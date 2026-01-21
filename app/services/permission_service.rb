@@ -34,6 +34,7 @@ class PermissionService
       can_access_documents: DocumentPolicy.show_menu?(user),
       can_access_project_documents: DocumentPolicy.show_project_menu?(user, current_project),
       can_access_chats: ChatPolicy.show_menu?(user, current_project),
+      can_access_legal_cases: LegalCasePolicy.show_project_menu?(user, current_project),
 
       # Feature flags (can be extended)
       can_view_analytics: user.global_admin?,
