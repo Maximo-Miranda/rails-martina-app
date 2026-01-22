@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     ) => "/res"
   end
 
+  # Mission Control Jobs Dashboard (super_admin only)
+  mount MissionControl::Jobs::Engine, at: "/jobs"
+
   get "pages/landing"
   # Redirect to localhost from 127.0.0.1 to use same IP address with Vite server
   constraints(host: "127.0.0.1") do

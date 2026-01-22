@@ -2,7 +2,7 @@
 
 module Gemini
   class CreateStoreJob < ApplicationJob
-    queue_as :default
+    queue_as :gemini
 
     retry_on Gemini::Client::ApiError, wait: 5.seconds, attempts: 5
     retry_on Faraday::Error, wait: 5.seconds, attempts: 5

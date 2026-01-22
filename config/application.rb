@@ -23,8 +23,8 @@ module RailsMartinaApp
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
 
-    # Zona horaria de Colombia
     config.time_zone = "America/Bogota"
+    config.active_record.default_timezone = :utc
 
     # Configuración de i18n - Español Colombia (default), Inglés disponible
     config.i18n.default_locale = :es

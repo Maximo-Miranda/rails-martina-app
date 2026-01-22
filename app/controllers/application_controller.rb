@@ -18,7 +18,10 @@ class ApplicationController < ActionController::Base
   set_current_tenant_through_filter
 
   # Translations cached on the client with once
-  inertia_share t: InertiaRails.once { I18n.t("frontend").deep_stringify_keys }
+  inertia_share t: InertiaRails.once {
+    translations = I18n.t("frontend")
+    translations.is_a?(Hash) ? translations.deep_stringify_keys : {}
+  }
 
   inertia_share do
     {
