@@ -247,7 +247,7 @@ jobs:
           generate_release_notes: true
 
       - name: Trigger Dokploy deployment
-        if: secrets.DOKPLOY_WEBHOOK_URL != ''
+        if: vars.DOKPLOY_WEBHOOK_URL != ''
         run: |
-          curl -X GET "${{ secrets.DOKPLOY_WEBHOOK_URL }}" \
+          curl -X GET "${{ vars.DOKPLOY_WEBHOOK_URL }}" \
             --fail --silent --show-error
