@@ -2,7 +2,7 @@
 
 module Documents
   class DeleteDocumentJob < ApplicationJob
-    queue_as :default
+    queue_as :documents
 
     retry_on Gemini::DocumentService::DeleteError, wait: :polynomially_longer, attempts: 3
     discard_on ActiveRecord::RecordNotFound

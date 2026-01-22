@@ -2,7 +2,7 @@
 
 module Chats
   class SendMessageJob < ApplicationJob
-    queue_as :default
+    queue_as :chats
 
     # Retry on rate limiting and server errors (with polynomially increasing wait)
     retry_on Gemini::ChatService::ChatError,

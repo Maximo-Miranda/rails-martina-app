@@ -118,3 +118,6 @@ gem "rails_event_store", "~> 2.18"
 gem "faraday", "~> 2.14"
 
 gem "noticed", "~> 3.0"
+
+# Job dashboard
+gem "mission_control-jobs"

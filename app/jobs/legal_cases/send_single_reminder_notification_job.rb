@@ -2,7 +2,7 @@
 
 module LegalCases
   class SendSingleReminderNotificationJob < ApplicationJob
-    queue_as :default
+    queue_as :notifications
 
     NOTIFICATION_WINDOWS = {
       notification_3d: { time_until: "3 días", threshold: 3.days },

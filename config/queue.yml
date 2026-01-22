@@ -3,10 +3,26 @@ default: &default
     - polling_interval: 1
       batch_size: 500
   workers:
-    - queues: "*"
-      threads: 3
-      processes: <%= ENV.fetch("JOB_CONCURRENCY", 1) %>
+    - queues: [chats]
+      threads: 2
+      processes: 1
       polling_interval: 0.1
+    - queues: [notifications]
+      threads: 2
+      processes: 1
+      polling_interval: 1
+    - queues: [documents]
+      threads: 2
+      processes: 1
+      polling_interval: 0.5
+    - queues: [gemini]
+      threads: 2
+      processes: 1
+      polling_interval: 1
+    - queues: [default]
+      threads: 2
+      processes: 1
+      polling_interval: 1
 
 development:
   <<: *default
@@ -15,4 +31,36 @@ test:
   <<: *default
 
 production:
-  <<: *default
+  dispatchers:
+    - polling_interval: 1
+      batch_size: 500
+  workers:
+    # Chat messages - alta prioridad, tiempo real
+    - queues: [chats]
+      threads: 3
+      processes: <%= ENV.fetch("JOB_CONCURRENCY", 1) %>
+      polling_interval: 0.1
+
+    # Notificaciones programadas (recordatorios)
+    - queues: [notifications]
+      threads: 2
+      processes: <%= ENV.fetch("JOB_CONCURRENCY", 1) %>
+      polling_interval: 1
+
+    # Documentos - upload/delete
+    - queues: [documents]
+      threads: 3
+      processes: <%= ENV.fetch("JOB_CONCURRENCY", 1) %>
+      polling_interval: 0.5
+
+    # Gemini API - stores
+    - queues: [gemini]
+      threads: 2
+      processes: <%= ENV.fetch("JOB_CONCURRENCY", 1) %>
+      polling_interval: 1
+
+    # Default - cualquier otro job
+    - queues: [default]
+      threads: 2
+      processes: <%= ENV.fetch("JOB_CONCURRENCY", 1) %>
+      polling_interval: 1
