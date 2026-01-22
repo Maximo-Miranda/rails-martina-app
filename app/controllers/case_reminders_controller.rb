@@ -107,7 +107,7 @@ class CaseRemindersController < ApplicationController
   end
 
   def assign_users_to_reminder
-    user_ids = Array(params[:case_reminder][:user_ids]).map(&:to_i)
+    user_ids = Array(params[:user_ids]).map(&:to_i)
     user_ids << current_user.id
     user_ids.uniq.each do |user_id|
       @case_reminder.case_reminder_users.find_or_create_by(user_id: user_id)
